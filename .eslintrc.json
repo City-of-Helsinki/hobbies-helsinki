@@ -1,0 +1,47 @@
+{
+  "extends": ["plugin:@typescript-eslint/recommended", "next", "prettier"],
+  "env": {
+    "browser": true,
+    "es2020": true,
+    "node": true,
+    "jest": true
+  },
+  "rules": {
+    "@typescript-eslint/brace-style": [
+      "error",
+      "1tbs",
+      { "allowSingleLine": true }
+    ],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/func-call-spacing": ["error"],
+    "@typescript-eslint/no-require-imports": ["error"],
+    "react/no-unused-prop-types": ["warn", { "skipShapeProps": true }],
+    "array-bracket-spacing": ["warn", "never"],
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          ["internal", "parent", "sibling", "index"]
+        ],
+        "newlines-between": "always"
+      }
+    ],
+    "max-len": ["warn", { "code": 120 }],
+    "no-console": "warn",
+    "no-plusplus": "error",
+    "no-undef": "warn",
+    "object-curly-spacing": ["warn", "always"],
+    "@next/next/no-img-element": "off",
+    "no-restricted-imports": [
+      "warn",
+      {
+        "paths": ["react-i18next"]
+      }
+    ]
+  },
+  "ignorePatterns": ["node_modules/", ".next/"],
+  "overrides": [{ "files": ["*.ts", "*.tsx"], "rules": { "no-undef": "off" } }]
+}
