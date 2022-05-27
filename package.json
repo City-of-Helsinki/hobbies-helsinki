@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "next lint --fix",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -47,6 +49,7 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^8.0.1",
     "jest": "^28.1.0",
     "jest-dom": "^4.0.0",
     "jest-environment-jsdom": "^28.1.0",

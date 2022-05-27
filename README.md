@@ -13,6 +13,11 @@ docker-compose up
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
+## Setting up Husky pre-commit hooks:
+
+1. Run `yarn install` and `yarn prepare` on project root
+2. Try `git commit -m foo`. It does not commit anything for real but pre-commit hook should be triggered.
+
 ## Available scripts
 
 ###`yarn dev`
