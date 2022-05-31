@@ -62,17 +62,10 @@ USER appuser
 COPY --from=staticbuilder --chown=appuser:appuser /app/.next /app/.next
 COPY --from=staticbuilder --chown=appuser:appuser /app/node_modules /app/node_modules
 COPY --from=staticbuilder --chown=appuser:appuser /app/next.config.js /app/next.config.js
-
-# Copy public package.json and yarn.lock files
-COPY --chown=appuser:appuser public package.json yarn.lock /app/
-
-# Copy public folder
-COPY --chown=appuser:appuser public /app/public
-
-COPY --from=staticbuilder --chown=appuser:appuser /app/node_modules /app/node_modules
+COPY --from=staticbuilder --chown=appuser:appuser /app/public /app/public
 
 # Expose port
 EXPOSE 80
 
 # Start ssr server
-CMD ["yarn", "start"]
+CMD ["next", "start"]
