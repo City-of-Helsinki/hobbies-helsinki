@@ -26,7 +26,8 @@ env:
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.GH_SENTRY_DSN }}
   NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE: 1.0
   SENTRY_AUTH_TOKEN: ${{ secrets.GH_SENTRY_AUTH_TOKEN }}
-  NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
+  #NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
+  NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
   NEXT_PUBLIC_APP_ORIGIN: https://${{ secrets.ENVIRONMENT_URL_STAGING }}
 
 jobs:
