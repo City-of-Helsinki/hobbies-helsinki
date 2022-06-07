@@ -1,18 +1,18 @@
-import { IconSearch } from 'hds-react';
-import React, { ChangeEvent } from 'react';
+import { IconSearch } from "hds-react";
+import React, { ChangeEvent } from "react";
 
 import {
   AUTOSUGGEST_KEYWORD_BLACK_LIST,
   AUTOSUGGEST_TYPES,
-} from '../../../constants';
-import { useKeywordListQuery } from '../../../generated/graphql';
-import useDebounce from '../../../hooks/useDebounce';
-import useKeyboardNavigation from '../../../hooks/useDropdownKeyboardNavigation';
-import useLocale from '../../../hooks/useLocale';
-import getLocalisedString from '../../../util/getLocalisedString';
-import { AutosuggestMenuOption } from '../../types';
-import AutosuggestMenu from './AutosuggestMenu';
-import styles from './searchAutosuggest.module.scss';
+} from "../../../constants";
+// import { useKeywordListQuery } from '../../../generated/graphql';
+import useDebounce from "../../../hooks/useDebounce";
+import useKeyboardNavigation from "../../../hooks/useDropdownKeyboardNavigation";
+import useLocale from "../../../hooks/useLocale";
+import { AutosuggestMenuOption } from "../../types";
+import getLocalisedString from "../../utils/getLocalisedString";
+import AutosuggestMenu from "./AutosuggestMenu";
+import styles from "./searchAutosuggest.module.scss";
 
 export interface SearchAutosuggestProps {
   name: string;
@@ -35,14 +35,18 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const internalInputValue = useDebounce(searchValue, 300);
 
-  const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
-    skip: !internalInputValue,
-    variables: {
-      hasUpcomingEvents: true,
-      pageSize: 5,
-      text: internalInputValue,
-    },
-  });
+  // const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
+  //   skip: !internalInputValue,
+  //   variables: {
+  //     hasUpcomingEvents: true,
+  //     pageSize: 5,
+  //     text: internalInputValue,
+  //   },
+  // });
+
+  // TODO: Load with query
+  const keywordsData = [];
+  const loadingKeywords = false;
 
   const [autoSuggestItems, setAutoSuggestItems] = React.useState<
     AutosuggestMenuOption[]
@@ -69,14 +73,14 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
     listLength: autoSuggestItems.length,
     onKeyDown: (event: KeyboardEvent) => {
       switch (event.key) {
-        case 'ArrowUp':
-        case 'ArrowDown':
+        case "ArrowUp":
+        case "ArrowDown":
           ensureMenuIsOpen();
           break;
-        case 'Escape':
+        case "Escape":
           handleCloseMenu();
           break;
-        case 'Enter':
+        case "Enter":
           const selectedItem = autoSuggestItems[focusedIndex];
 
           if (selectedItem) {
@@ -90,7 +94,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
             });
           }
           break;
-        case 'Tab':
+        case "Tab":
           ensureMenuIsClosed();
       }
     },
@@ -109,11 +113,11 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
     items.push(textItem);
 
     items.push(
-      ...(keywordsData?.keywordList.data
+      ...(keywordsData?.keywordList?.data
         .filter((keyword) => {
           const name = getLocalisedString(keyword.name, locale).toLowerCase();
           return (
-            !AUTOSUGGEST_KEYWORD_BLACK_LIST.includes(keyword.id || '') &&
+            !AUTOSUGGEST_KEYWORD_BLACK_LIST.includes(keyword.id || "") &&
             name &&
             name !== textItem.text.toLowerCase()
           );
@@ -121,7 +125,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
         .map((keyword) => ({
           text: getLocalisedString(keyword.name, locale),
           type: AUTOSUGGEST_TYPES.KEYWORD,
-          value: keyword.id || '',
+          value: keyword.id || "",
         })) || [])
     );
 
@@ -189,13 +193,13 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
 
   React.useEffect(() => {
     setupKeyboardNav();
-    document.addEventListener('click', onDocumentClick);
-    document.addEventListener('focusin', onDocumentFocusin);
+    document.addEventListener("click", onDocumentClick);
+    document.addEventListener("focusin", onDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
       teardownKeyboardNav();
-      document.removeEventListener('click', onDocumentClick);
-      document.removeEventListener('focusin', onDocumentFocusin);
+      document.removeEventListener("click", onDocumentClick);
+      document.removeEventListener("focusin", onDocumentFocusin);
     };
   }, [
     onDocumentClick,

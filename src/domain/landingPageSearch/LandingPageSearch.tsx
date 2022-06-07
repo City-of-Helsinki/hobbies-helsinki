@@ -6,7 +6,7 @@ import { Link } from "react-helsinki-headless-cms";
 import CategoryFilter from "../../common/components/category/CategoryFilter";
 import DateSelector from "../../common/components/dateSelector/DateSelector";
 import MobileDateSelector from "../../common/components/mobileDateSelector/MobileDateSelector";
-// import SearchAutosuggest from "../../common/components/search/SearchAutosuggest";
+import SearchAutosuggest from "../../common/components/search/SearchAutosuggest";
 import SearchLabel from "../../common/components/search/searchLabel/SearchLabel";
 import { AutosuggestMenuOption } from "../../common/types";
 import { EVENT_DEFAULT_SEARCH_FILTERS } from "../eventSearch/constants";
@@ -55,16 +55,16 @@ const Search: React.FC = () => {
     goToSearchPage(search);
   };
 
-  // const handleMenuOptionClick = (option: AutosuggestMenuOption) => {
-  //   const search = getSearchQuery({
-  //     ...EVENT_DEFAULT_SEARCH_FILTERS,
-  //     dateTypes,
-  //     end,
-  //     start,
-  //     text: [option.text],
-  //   });
-  //   goToSearchPage(search);
-  // };
+  const handleMenuOptionClick = (option: AutosuggestMenuOption) => {
+    const search = getSearchQuery({
+      ...EVENT_DEFAULT_SEARCH_FILTERS,
+      dateTypes,
+      end,
+      start,
+      text: [option.text],
+    });
+    goToSearchPage(search);
+  };
 
   return (
     <>
@@ -79,14 +79,14 @@ const Search: React.FC = () => {
             <SearchLabel htmlFor={"search"}>
               {t("home.search.labelSearchField")}
             </SearchLabel>
-            <div></div>
-            {/* <SearchAutosuggest
+
+            <SearchAutosuggest
               name="search"
               onChangeSearchValue={setAutosuggestInput}
               onOptionClick={handleMenuOptionClick}
               placeholder={t("home.search.placeholder")}
               searchValue={autosuggestInput}
-            /> */}
+            />
           </div>
           <div className={styles.dateAndButtonWrapper}>
             <div className={styles.dateSelectorWrapper}>
