@@ -79,6 +79,7 @@ const Search: React.FC = () => {
             <SearchLabel htmlFor={"search"}>
               {t("home.search.labelSearchField")}
             </SearchLabel>
+            <div></div>
             {/* <SearchAutosuggest
               name="search"
               onChangeSearchValue={setAutosuggestInput}

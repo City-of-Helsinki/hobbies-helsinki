@@ -17,7 +17,7 @@
     outline-offset: 2px;
   }
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     display: none;
   }
 

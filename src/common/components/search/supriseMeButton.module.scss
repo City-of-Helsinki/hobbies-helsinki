@@ -1,4 +1,4 @@
-@import 'layout';
+@import "layout";
 
 .supriseMeButton {
   height: 4.75rem;
@@ -34,7 +34,7 @@
     transform: translateX(-50%);
   }
 
-  @include respond-above(sm) {
+  @include respond-above(s) {
     height: 6.25rem;
     width: 6.25rem;
     top: -4.75rem;
