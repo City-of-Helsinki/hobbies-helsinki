@@ -14,6 +14,9 @@ import {
 } from "../domain/landingPage/LandingPage";
 import styles from "./pageLayout.module.scss";
 
+const DEFAULT_HEADER_MENU_NAME =
+  process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME ?? "Hobbies Helsinki Header FI";
+
 export default function HomePage() {
   const router = useRouter();
   const currentPage = router.pathname;
@@ -31,7 +34,7 @@ export default function HomePage() {
       className={styles.pageLayout}
       navigation={
         <Navigation
-          menuName="Hobbies Helsinki Header"
+          menuName={DEFAULT_HEADER_MENU_NAME}
           onTitleClick={() => {
             // eslint-disable-next-line no-console
           }}
