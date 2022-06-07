@@ -1,0 +1,51 @@
+@use "breakpoints";
+@import "variables";
+
+.box {
+  --width: 100%;
+  --max-width: 20rem;
+
+  grid-row: 1;
+  align-self: center;
+  background-color: rgba($color-black, 70%);
+  width: var(--width);
+  max-width: var(--max-width);
+  margin-bottom: 10rem;
+  padding: $spacing-m;
+
+  @include breakpoints.respond-above(m) {
+    --width: 30rem;
+    --max-width: unset;
+  }
+}
+
+.boxHelper > p {
+  color: $color-white !important;
+  margin-bottom: $spacing-s !important;
+}
+
+.boxTitle {
+  margin-top: 0;
+  padding-top: 0;
+  color: $color-white;
+  line-height: $lineheight-s;
+  margin-bottom: $spacing-m;
+}
+
+.linkButton {
+  display: block;
+  margin-top: $spacing-s;
+  padding: $spacing-xs;
+  width: fit-content;
+
+  text-decoration: none;
+  color: $color-white;
+
+  background-color: $color-coat-of-arms;
+  border-color: $color-coat-of-arms !important;
+
+  &:hover {
+    background-color: $color-bus;
+    border-color: $color-bus !important;
+  }
+}

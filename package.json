@@ -17,13 +17,20 @@
     "extends": "react-app"
   },
   "dependencies": {
+    "@apollo/client": "^3.6.6",
     "@types/jsdom": "^16.2.14",
+    "classnames": "^2.3.1",
+    "hds-react": "^1.15.0",
     "jsdom": "^19.0.0",
     "msw": "^0.41.0",
     "next": "12.1.6",
     "next-i18next": "^11.0.0",
+    "nprogress": "^0.2.0",
+    "query-string": "^7.1.1",
     "react": "18.1.0",
     "react-dom": "18.1.0",
+    "react-helsinki-headless-cms": "1.0.0-alpha2-canary-aa010d2",
+    "react-toastify": "^9.0.3",
     "sass": "^1.52.1"
   },
   "devDependencies": {
