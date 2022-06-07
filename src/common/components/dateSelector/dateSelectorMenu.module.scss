@@ -8,7 +8,7 @@
 
   min-width: fit-content;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     position: absolute;
     top: 100%;
     left: 0;
