@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SupriseMeButton matches snapshot 1`] = `
+<button
+  class="supriseMeButton"
+  type="button"
+>
+  <div
+    class="text"
+  >
+    Koeta onneasi
+  </div>
+  <svg>
+    suprise-me.svg
+  </svg>
+</button>
+`;

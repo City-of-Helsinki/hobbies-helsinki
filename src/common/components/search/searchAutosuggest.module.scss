@@ -1,0 +1,33 @@
+.searchAutosuggest {
+  position: relative;
+  min-height: 3.375rem;
+  background: var(--color-white);
+  display: flex;
+  padding: 0 1rem;
+  align-items: center;
+  box-sizing: border-box;
+
+  .iconWrapper {
+    display: flex;
+    align-self: center;
+    color: var(--color-black);
+  }
+
+  svg {
+    margin-right: 1rem;
+  }
+
+  .inputWrapper {
+    flex: 1 1 0%;
+    min-width: 50%;
+
+    input {
+      height: 100%;
+      line-height: 1.25rem;
+      width: 100%;
+      padding-left: 0;
+      border: none;
+      outline: none;
+    }
+  }
+}

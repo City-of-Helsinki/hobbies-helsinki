@@ -1,0 +1,23 @@
+@import "breakpoints";
+
+.mobileDateSelector {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin-bottom: -1.25rem;
+
+  @include respond_above(sm) {
+    display: none;
+  }
+
+  .iconCalendar {
+    fill: var(--color-white);
+
+    &.isSelected {
+      fill: #464646;
+    }
+  }
+}
+
+.menuWrapper {
+  display: inline;
+}
