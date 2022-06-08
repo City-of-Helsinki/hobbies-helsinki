@@ -1,10 +1,10 @@
-import classNames from 'classnames';
-import { IconCross } from 'hds-react';
-import React, { FunctionComponent } from 'react';
-import { useTranslation } from 'react-i18next';
+import classNames from "classnames";
+import { IconCross } from "hds-react";
+import React, { FunctionComponent } from "react";
+import { useTranslation } from "next-i18next";
 
-import { AutosuggestMenuOption } from '../../types';
-import styles from './autosuggestMenu.module.scss';
+import { AutosuggestMenuOption } from "../../types";
+import styles from "./autosuggestMenu.module.scss";
 
 interface Props {
   focusedOption: number;
@@ -28,9 +28,9 @@ const AutosuggestMenu: FunctionComponent<Props> = ({
   return (
     <div className={styles.autosuggestMenu}>
       <div className={styles.title}>
-        {t('commons.autosuggest.menu.title')}
+        {t("commons.autosuggest.menu.title")}
         <button
-          aria-label={t('commons.autosuggest.menu.ariaButtonClose')}
+          aria-label={t("commons.autosuggest.menu.ariaButtonClose")}
           className={styles.closeButton}
           onClick={onClose}
         >
@@ -50,7 +50,7 @@ const AutosuggestMenu: FunctionComponent<Props> = ({
                 styles.autosuggestOption,
                 styles[`autosuggestOption--${option.type}`],
                 {
-                  [styles['autosuggestOption--isFocused']]:
+                  [styles["autosuggestOption--isFocused"]]:
                     focusedOption === index,
                 }
               )}
@@ -65,7 +65,7 @@ const AutosuggestMenu: FunctionComponent<Props> = ({
         })}
       </ul>
 
-      <div className={styles.info}>{t('commons.autosuggest.menu.info')}</div>
+      <div className={styles.info}>{t("commons.autosuggest.menu.info")}</div>
     </div>
   );
 };
