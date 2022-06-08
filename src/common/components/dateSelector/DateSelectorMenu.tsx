@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { IconAngleLeft, IconAngleRight, IconCalendarPlus } from "hds-react";
-import { useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import React, { ChangeEvent, FunctionComponent, MutableRefObject } from "react";
 
 import { translateValue } from "../../utils/translateUtils";
@@ -27,6 +27,7 @@ interface Props {
   onCloseMenu: () => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
+  t: TFunction;
 }
 
 const DateSelectorMenu: FunctionComponent<Props> = ({
@@ -44,9 +45,8 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
   onCloseMenu,
   startDate,
   toggleIsCustomDate,
+  t,
 }) => {
-  const { t } = useTranslation();
-
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (dateTypes.indexOf(event.target.value) !== -1) {
       onChangeDateTypes(
@@ -98,7 +98,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconCalendarPlus aria-hidden />
         <div className={styles.buttonText}>
-          {t("commons.dateSelector.menu.buttonCustom")}
+          {t<string>("commons.dateSelector.menu.buttonCustom")}
         </div>
         <IconAngleRight aria-hidden />
       </button>
@@ -113,7 +113,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconAngleLeft aria-hidden />
         <div className={styles.buttonText}>
-          {t("commons.dateSelector.menu.buttonBack")}
+          {t<string>("commons.dateSelector.menu.buttonBack")}
         </div>
       </button>
 
@@ -135,7 +135,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
         type="button"
       >
         <div className={styles.buttonText}>
-          {t("commons.dateSelector.menu.buttonClose")}
+          {t<string>("commons.dateSelector.menu.buttonClose")}
         </div>
       </button>
     </div>

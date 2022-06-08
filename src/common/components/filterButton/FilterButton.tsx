@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { IconCross } from "hds-react";
-import { useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import React from "react";
 
 import styles from "./filterButton.module.scss";
@@ -11,11 +11,10 @@ interface Props {
   text: string;
   type: FilterType;
   value: string;
+  t: TFunction;
 }
 
-const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
-  const { t } = useTranslation();
-
+const FilterButton: React.FC<Props> = ({ onRemove, text, type, value, t }) => {
   const handleRemove = () => {
     onRemove(value, type);
   };
@@ -26,7 +25,7 @@ const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
         type="button"
         className={styles.closeButton}
         onClick={handleRemove}
-        aria-label={t("commons.filter.ariaButtonRemove", {
+        aria-label={t<string>("commons.filter.ariaButtonRemove", {
           filter: text,
         })}
       >

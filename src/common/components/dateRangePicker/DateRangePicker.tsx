@@ -7,7 +7,7 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 import { registerLocale } from "react-datepicker";
 
-import useLocale from "../../../hooks/useLocale";
+import useLocale from "../../hooks/useLocale";
 import {
   formatDate,
   isValidDateString,
