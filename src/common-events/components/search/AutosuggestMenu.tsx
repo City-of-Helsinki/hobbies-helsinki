@@ -3,7 +3,7 @@ import { IconCross } from "hds-react";
 import React, { FunctionComponent } from "react";
 import { useTranslation } from "next-i18next";
 
-import { AutosuggestMenuOption } from "../../types";
+import { AutosuggestMenuOption } from "../../../common/types";
 import styles from "./autosuggestMenu.module.scss";
 
 interface Props {

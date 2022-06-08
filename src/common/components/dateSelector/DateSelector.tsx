@@ -1,9 +1,9 @@
 import { IconAngleDown, IconAngleUp, IconCalendarClock } from "hds-react";
-import { useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import React, { FunctionComponent } from "react";
 
 import { DATE_TYPES } from "../../../constants";
-import useLocale from "../../../hooks/useLocale";
+import useLocale from "../../hooks/useLocale";
 import { formatDate } from "../../utils/dateUtils";
 import { translateValue } from "../../utils/translateUtils";
 import styles from "./dateSelector.module.scss";
@@ -26,6 +26,7 @@ export interface DateSelectorProps {
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
+  t: TFunction;
 }
 
 const DateSelector: FunctionComponent<DateSelectorProps> = ({
@@ -38,8 +39,8 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
   onChangeStartDate,
   startDate,
   toggleIsCustomDate,
+  t,
 }) => {
-  const { t } = useTranslation();
   const locale = useLocale();
   const backBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const customDatesBtnRef = React.useRef<HTMLButtonElement | null>(null);
@@ -159,7 +160,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
       <button
         aria-haspopup="true"
         aria-expanded={isMenuOpen}
-        aria-label={t("commons.dateSelector.title")}
+        aria-label={t<string>("commons.dateSelector.title")}
         className={styles.button}
         onClick={toggleMenu}
         type="button"
@@ -169,7 +170,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
         </div>
         <div className={styles.info}>
           <div className={styles.buttonTextWrapper}>
-            {selectedText || t("commons.dateSelector.title")}
+            {selectedText || t<string>("commons.dateSelector.title")}
           </div>
         </div>
         <div className={styles.arrowWrapper}>
@@ -196,6 +197,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
         startDate={startDate}
         toggleIsCustomDate={handleToggleIsCustomDate}
         onCloseMenu={ensureMenuIsClosed}
+        t={t}
       />
     </div>
   );

@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React, { FunctionComponent, MutableRefObject } from "react";
-import { useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./mobileDateSelectorMenu.module.scss"; // the locale you want
@@ -17,6 +17,7 @@ interface Props {
   onChangeStartDate: (date: Date | null) => void;
   onCloseMenu: () => void;
   startDate: Date | null;
+  t: TFunction;
 }
 
 const MobileDateSelectorMenu: FunctionComponent<Props> = ({
@@ -27,9 +28,8 @@ const MobileDateSelectorMenu: FunctionComponent<Props> = ({
   onChangeStartDate,
   onCloseMenu,
   startDate,
+  t,
 }) => {
-  const { t } = useTranslation();
-
   if (!isOpen) return null;
   return (
     <div data-testid={testIds.menu} className={styles.mobileDateSelectorMenu}>
@@ -47,7 +47,7 @@ const MobileDateSelectorMenu: FunctionComponent<Props> = ({
         onClick={onCloseMenu}
       >
         <div className={styles.buttonText}>
-          {t("commons.dateSelector.menu.buttonClose")}
+          {t<string>("commons.dateSelector.menu.buttonClose")}
         </div>
       </button>
     </div>

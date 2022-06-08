@@ -6,12 +6,12 @@ import { Link } from "react-helsinki-headless-cms";
 import CategoryFilter from "../../common/components/category/CategoryFilter";
 import DateSelector from "../../common/components/dateSelector/DateSelector";
 import MobileDateSelector from "../../common/components/mobileDateSelector/MobileDateSelector";
-import SearchAutosuggest from "../../common/components/search/SearchAutosuggest";
-import SearchLabel from "../../common/components/search/searchLabel/SearchLabel";
+import SearchAutosuggest from "../../common-events/components/search/SearchAutosuggest";
+import SearchLabel from "../../common-events/components/search/searchLabel/SearchLabel";
 import { AutosuggestMenuOption } from "../../common/types";
 import { EVENT_DEFAULT_SEARCH_FILTERS } from "../eventSearch/constants";
 import { getEventCategoryOptions, getSearchQuery } from "../eventSearch/utils";
-import useLocale from "../../hooks/useLocale";
+import useLocale from "../../common/hooks/useLocale";
 import useRouter from "../i18n/router/useRouter";
 import styles from "./landingPageSearch.module.scss";
 import { getI18nPath } from "../i18n/router/utils";
@@ -102,6 +102,7 @@ const Search: React.FC = () => {
                   onChangeStartDate={setStart}
                   startDate={start}
                   toggleIsCustomDate={toggleIsCustomDate}
+                  t={t}
                 />
               </div>
               <MobileDateSelector

@@ -6,11 +6,11 @@ import {
   AUTOSUGGEST_TYPES,
 } from "../../../constants";
 // import { useKeywordListQuery } from '../../../generated/graphql';
-import useDebounce from "../../../hooks/useDebounce";
-import useKeyboardNavigation from "../../../hooks/useDropdownKeyboardNavigation";
-import useLocale from "../../../hooks/useLocale";
-import { AutosuggestMenuOption } from "../../types";
-import getLocalisedString from "../../utils/getLocalisedString";
+import useDebounce from "../../../common/hooks/useDebounce";
+import useKeyboardNavigation from "../../../common/hooks/useDropdownKeyboardNavigation";
+import useLocale from "../../../common/hooks/useLocale";
+import { AutosuggestMenuOption } from "../../../common/types";
+import getLocalisedString from "../../../common/utils/getLocalisedString";
 import AutosuggestMenu from "./AutosuggestMenu";
 import styles from "./searchAutosuggest.module.scss";
 
