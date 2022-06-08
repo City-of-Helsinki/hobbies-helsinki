@@ -137,7 +137,7 @@ const Search: React.FC = () => {
         {categories.map((category) => {
           return (
             <CategoryFilter
-              href={`${getI18nPath("/events", locale)}${getSearchQuery({
+              href={`${getI18nPath("/search", locale)}${getSearchQuery({
                 ...EVENT_DEFAULT_SEARCH_FILTERS,
                 categories: [category.value],
                 dateTypes,
