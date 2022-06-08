@@ -62,7 +62,9 @@ export function LandingPageMainContent({ page }: LandingPageProps) {
           <LandingPageSearch />
           <SearchShortcuts
             shortcuts={shortcuts
-              .filter((shortcut) => shortcut.seasons.includes(currentSeason))
+              .filter((shortcut) =>
+                currentSeason ? shortcut.seasons.includes(currentSeason) : true
+              )
               .map((shortcut) => ({
                 id: shortcut.id,
                 label: tShortcuts(shortcut.id),
