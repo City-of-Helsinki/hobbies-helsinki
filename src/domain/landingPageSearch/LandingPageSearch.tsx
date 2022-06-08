@@ -69,8 +69,6 @@ const Search: React.FC = () => {
   return (
     <>
       <div className={styles.landingPageSearch}>
-        {/* Hide Suprise me button on MVP version */}
-        {/* <SupriseMeButton onClick={handleClickSupriseMe} /> */}
         <div className={styles.searchRow}>
           <div className={styles.titleWrapper}>
             <h2>{t("home.search.title")}</h2>
