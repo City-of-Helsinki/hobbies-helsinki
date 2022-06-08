@@ -1,5 +1,7 @@
 import React from "react";
 
+import { getI18nPath } from "../../../domain/i18n/router/utils";
+import useLocale from "../../hooks/useLocale";
 import CategoryLink from "../link/CategoryLink";
 import List from "../list/List";
 
@@ -15,6 +17,7 @@ type Props = {
 };
 
 function SearchShortcuts({ shortcuts }: Props) {
+  const locale = useLocale();
   return (
     <List
       variant="fixed-grid-4"
@@ -24,7 +27,10 @@ function SearchShortcuts({ shortcuts }: Props) {
           key={shortcut.id}
           label={shortcut.label}
           icon={shortcut.icon}
-          href={`/search${shortcut.ontologyTreeIds.reduce(
+          href={`${getI18nPath(
+            "/search",
+            locale
+          )}${shortcut.ontologyTreeIds.reduce(
             (acc, id, i) => `${acc}${i === 0 ? "?" : "&"}ontologyTreeIds=${id}`,
             ""
           )}`}
