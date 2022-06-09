@@ -31,7 +31,8 @@ export const LANDING_PAGE_QUERY = gql`
 `;
 
 export type LandingPageProps = {
-  page: any; // TODO: Add better type
+  // TODO: Fix any type by adding the landing page query to HCRC-lib
+  page: any;
 };
 
 export function LandingPageMainContent({ page }: LandingPageProps) {

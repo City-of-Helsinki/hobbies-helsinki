@@ -14,10 +14,9 @@ import {
   ModuleItemTypeEnum,
 } from "react-helsinki-headless-cms";
 
-import { useCmsApollo } from "../domain/clients/cmsApolloClient";
 import useRouter from "../domain/i18n/router/useRouter";
-
 import "../styles/globals.scss";
+import { useCmsApollo } from "../domain/clients/cmsApolloClient";
 
 const CMS_API_DOMAIN = process.env.NEXT_PUBLIC_CMS_BASE_URL
   ? new URL(process.env.NEXT_PUBLIC_CMS_BASE_URL).origin
@@ -30,7 +29,7 @@ const TopProgressBar = dynamic(
   { ssr: false }
 );
 
-function Center({ children }) {
+function Center({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{

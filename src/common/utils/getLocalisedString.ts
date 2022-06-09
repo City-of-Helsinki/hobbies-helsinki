@@ -1,13 +1,6 @@
 import { supportedLanguages } from "../../constants";
+import { LocalizedObject } from "../../domain/nextApi/graphql/generated/graphql";
 import { Locale } from "../../types";
-// import { LocalizedObject } from "../generated/graphql";
-// TODO: Get from graphql schema
-export type LocalizedObject = {
-  __typename?: "LocalizedObject";
-  fi?: string | null;
-  sv?: string | null;
-  en?: string | null;
-};
 
 /**
  * Check is the instance that is rendering component client (not SSR)
