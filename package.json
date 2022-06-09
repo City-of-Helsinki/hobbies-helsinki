@@ -11,8 +11,7 @@
     "test": "jest",
     "lint": "next lint",
     "get-translations": "node ./scripts/get-translations.js",
-    "generate:graphql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen -r dotenv/config --config codegen.yml",
-    "codegen": "gql-gen"
+    "generate:graphql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen -r dotenv/config --config codegen.yml"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,9 +44,11 @@
     "@babel/helper-environment-visitor": "^7.18.2",
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
-    "@graphql-codegen/cli": "^2.6.2",
-    "@graphql-codegen/typescript": "^2.5.0",
-    "@graphql-codegen/typescript-operations": "^2.4.1",
+    "@graphql-codegen/cli": "2.6.2",
+    "@graphql-codegen/introspection": "^2.1.1",
+    "@graphql-codegen/typescript": "2.5.0",
+    "@graphql-codegen/typescript-operations": "2.4.1",
+    "@graphql-codegen/typescript-react-apollo": "3.2.15",
     "@graphql-codegen/typescript-resolvers": "^2.6.5",
     "@testing-library/dom": "^8.13.0",
     "@testing-library/jest-dom": "^5.16.4",
@@ -73,7 +74,6 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
-    "graphql-codegen": "^0.4.0",
     "husky": "^8.0.1",
     "jest": "^28.1.0",
     "jest-date-mock": "^1.0.8",
