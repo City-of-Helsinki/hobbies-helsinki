@@ -1,29 +1,29 @@
-import { Button, IconSearch } from 'hds-react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router';
+import { Button, IconSearch } from "hds-react";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import React from "react";
 
-import useLocale from '../../../hooks/useLocale';
-import { ROUTES } from '../../app/routes/constants';
-import styles from './resultsInfo.module.scss';
+import useLocale from "../../../../common/hooks/useLocale";
+import { getI18nPath } from "../../../i18n/router/utils";
+import styles from "./resultsInfo.module.scss";
 
 const ResultsInfoContainer: React.FC<{
   resultsCount: number;
 }> = ({ resultsCount }) => {
   const { t } = useTranslation();
-  const history = useHistory();
+  const router = useRouter();
   const locale = useLocale();
-  const isFinnish = locale === 'fi';
+  const isFinnish = locale === "fi";
 
   const goToFinnishSearch = () => {
-    history.push(`/fi${ROUTES.EVENTS}`);
+    router.push(getI18nPath("/search", locale));
   };
 
   const ActionButtons = () => (
     <>
       {!isFinnish && (
         <Button variant="success" onClick={goToFinnishSearch}>
-          {t('eventSearch.searchNotification.buttons.labelSearchInFinnish')}
+          {t("eventSearch.searchNotification.buttons.labelSearchInFinnish")}
         </Button>
       )}
     </>

@@ -21,7 +21,9 @@ export default function Link({ href, escape, ...delegated }: Props) {
   const locale = delegated.locale || router.locale;
   const i18nHref = {
     ...href,
-    pathname: getI18nPath(href.pathname, locale) ?? router.pathname,
+    pathname: href.pathname
+      ? getI18nPath(href.pathname, locale)
+      : undefined ?? router.pathname,
   };
   const enhancedHref = escape
     ? i18nHref

@@ -1,26 +1,25 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
-
 import { scroller } from "react-scroll";
 import { toast } from "react-toastify";
-import useLocale from "../../../common/hooks/useLocale";
 
+import eventsApolloClient from "../../clients/eventsApolloClient";
+import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
+import SrOnly from "../../../common/components/srOnly/SrOnly";
+import useIsSmallScreen from "../../../common/hooks/useIsSmallScreen";
+import useLocale from "../../../common/hooks/useLocale";
+import useRouter from "../../i18n/router/useRouter";
 import {
   QueryEventListArgs,
   useEventListQuery,
-  useLandingPagesQuery,
-} from "../../generated/graphql";
-
-import MainContent from "../app/layout/MainContent";
-import PageWrapper from "../app/layout/PageWrapper";
-import { getLargeEventCardId } from "../event/EventUtils";
-import EventList from "../eventList/EventList";
-import LandingPageMeta from "../search/landingPage/landingPageMeta/LandingPageMeta";
-import { isLanguageSupported } from "../search/landingPage/utils";
+} from "../../nextApi/graphql/generated/graphql";
 import { EVENT_SORT_OPTIONS, PAGE_SIZE } from "./constants";
 import styles from "./eventSearchPage.module.scss";
 import SearchResultsContainer from "./searchResultList/SearchResultsContainer";
 import { getEventSearchVariables, getNextPage } from "./utils";
+import { removeQueryParamsFromRouter } from "../../i18n/router/utils";
+import { getLargeEventCardId } from "../../event/EventUtils";
+import EventList from "../../eventList/EventList";
 
 const SearchPage: React.FC<{
   SearchComponent: React.FC<{
@@ -31,11 +30,14 @@ const SearchPage: React.FC<{
 }> = ({ SearchComponent, pageTitle }) => {
   const { t } = useTranslation();
   const locale = useLocale();
+  const router = useRouter();
+  const params: { place?: string } = router.query;
+
   const [isFetchingMore, setIsFetchingMore] = React.useState(false);
   const isSmallScreen = useIsSmallScreen();
 
   const eventFilters = React.useMemo(() => {
-    const searchParams = new URLSearchParams(location.search);
+    const searchParams = new URLSearchParams(router.asPath);
     const variables: QueryEventListArgs = getEventSearchVariables({
       include: ["keywords", "location"],
       language: locale,
@@ -46,20 +48,14 @@ const SearchPage: React.FC<{
       superEventType: ["umbrella", "none"],
     });
     return variables;
-  }, [locale, location.search, params.place]);
-
-  const { data: landingPageData } = useLandingPagesQuery({
-    variables: { visibleOnFrontpage: true },
-  });
-  const landingPage = landingPageData?.landingPages.data.find((page) =>
-    isLanguageSupported(page, locale)
-  );
+  }, [locale, router.asPath, params.place]);
 
   const {
     data: eventsData,
     fetchMore,
     loading: isLoadingEvents,
   } = useEventListQuery({
+    client: eventsApolloClient,
     notifyOnNetworkStatusChange: true,
     ssr: false,
     variables: eventFilters,
@@ -109,22 +105,23 @@ const SearchPage: React.FC<{
   };
 
   React.useEffect(() => {
-    if (location.search && location.state?.scrollToResults) {
+    if (router.asPath && router.query?.scrollToResults) {
       scrollToResultList();
-    } else if (location.state?.eventId) {
-      scrollToEventCard(getLargeEventCardId(location.state.eventId));
-      // Clear eventId value to keep scroll position correctly
-      const state = { ...location.state };
-      delete state.eventId;
-      // location.search seems to reset if not added here (...location)
-      history.replace({ ...location, state });
+    } else if (router.query?.eventId) {
+      scrollToEventCard(
+        getLargeEventCardId(
+          Array.isArray(router.query.eventId)
+            ? router.query.eventId[0]
+            : router.query.eventId
+        )
+      );
+      removeQueryParamsFromRouter(router, ["eventId"]);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <PageWrapper className={styles.eventSearchPageWrapper} title={pageTitle}>
-      {landingPage && <LandingPageMeta landingPage={landingPage} noTitle />}
+    <div>
       <SrOnly as="h1">{t(pageTitle)}</SrOnly>
       <SearchComponent
         scrollToResultList={scrollToResultList}
@@ -144,26 +141,24 @@ const SearchPage: React.FC<{
         </SrOnly>
         <LoadingSpinner isLoading={!isFetchingMore && isLoadingEvents}>
           {eventsList && (
-            <MainContent offset={-70}>
-              <SearchResultsContainer
-                eventsCount={eventsList.meta.count}
-                loading={isLoadingEvents}
-                eventList={
-                  <EventList
-                    cardSize="large"
-                    events={eventsList.data}
-                    hasNext={!!eventsList.meta.next}
-                    count={eventsList.meta.count}
-                    loading={isLoadingEvents}
-                    onLoadMore={handleLoadMore}
-                  />
-                }
-              />
-            </MainContent>
+            <SearchResultsContainer
+              eventsCount={eventsList.meta.count}
+              loading={isLoadingEvents}
+              eventList={
+                <EventList
+                  cardSize="large"
+                  events={eventsList.data}
+                  hasNext={!!eventsList.meta.next}
+                  count={eventsList.meta.count}
+                  loading={isLoadingEvents}
+                  onLoadMore={handleLoadMore}
+                />
+              }
+            />
           )}
         </LoadingSpinner>
       </div>
-    </PageWrapper>
+    </div>
   );
 };
 

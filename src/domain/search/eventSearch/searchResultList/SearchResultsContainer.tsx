@@ -1,10 +1,10 @@
-import classNames from 'classnames';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import classNames from "classnames";
+import { Container } from "hds-react";
+import { useTranslation } from "next-i18next";
+import React from "react";
 
-import Container from '../../app/layout/Container';
-import ResultsInfoContainer from './ResultsInfo';
-import styles from './searchResultList.module.scss';
+import ResultsInfoContainer from "./ResultsInfo";
+import styles from "./searchResultList.module.scss";
 
 interface Props {
   loading: boolean;
@@ -24,7 +24,7 @@ const SearchResultsContainer: React.FC<Props> = ({
       <Container>
         <div className={classNames(styles.searchResultWrapper)}>
           <h2 className={styles.count}>
-            {t('eventSearch.textFoundEvents', {
+            {t("eventSearch.textFoundEvents", {
               count: eventsCount,
             })}
           </h2>

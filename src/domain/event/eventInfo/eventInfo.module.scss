@@ -1,0 +1,32 @@
+@import "breakpoints";
+
+.eventInfo {
+  padding: 0;
+  font-size: var(--fontsize-body-l);
+
+  display: grid;
+  grid-template-columns: 1fr;
+
+  @include respond_above(sm) {
+    padding: var(--spacing-xl);
+  }
+
+  @include respond_above(md) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  button,
+  a {
+    outline: none !important;
+  }
+
+  .focusVisible {
+    &:focus {
+      outline: 2px solid var(--color-black) !important;
+    }
+  }
+}
+
+.buyButtonWrapper {
+  margin-top: var(--spacing-s);
+}
