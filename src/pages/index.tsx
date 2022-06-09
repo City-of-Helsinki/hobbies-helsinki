@@ -2,7 +2,7 @@ import React from "react";
 import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { Navigation, Page } from "react-helsinki-headless-cms/apollo";
+import { Page as RHHCApolloPage } from "react-helsinki-headless-cms/apollo";
 
 import getHobbiesStaticProps from "../domain/app/getHobbiesStaticProps";
 import serverSideTranslationsWithCommon from "../domain/i18n/serverSideTranslationsWithCommon";
@@ -11,17 +11,16 @@ import { getQlLanguage } from "../common/apollo/utils";
 import {
   LandingPageMainContent,
   LANDING_PAGE_QUERY,
-} from "../domain/landingPage/LandingPage";
-import styles from "./pageLayout.module.scss";
-
-const DEFAULT_HEADER_MENU_NAME =
-  process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME ?? "Hobbies Helsinki Header FI";
+} from "../domain/search/landingPage/LandingPage";
+import { DEFAULT_LANGUAGE } from "../constants";
+import Navigation from "../common-events/components/navigation/Navigation";
 
 export default function HomePage() {
   const router = useRouter();
-  const currentPage = router.pathname;
 
-  const language = getQlLanguage(router.locale ?? router.defaultLocale);
+  const language = getQlLanguage(
+    router.locale ?? router.defaultLocale ?? DEFAULT_LANGUAGE
+  );
   const { data } = useQuery(LANDING_PAGE_QUERY, {
     variables: {
       languageCode: language,
@@ -29,19 +28,10 @@ export default function HomePage() {
   });
 
   return (
-    <Page
+    <RHHCApolloPage
       uri="/"
-      className={styles.pageLayout}
-      navigation={
-        <Navigation
-          menuName={DEFAULT_HEADER_MENU_NAME}
-          onTitleClick={() => {
-            // eslint-disable-next-line no-console
-          }}
-          getIsItemActive={({ path }) => path === currentPage}
-          getPathnameForLanguage={() => currentPage}
-        />
-      }
+      className="pageLayout"
+      navigation={<Navigation />}
       content={<LandingPageMainContent page={data?.landingPage} />}
       footer={<footer>TODO: footer</footer>}
     />
@@ -50,24 +40,22 @@ export default function HomePage() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ cmsClient }) => {
+    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
     await cmsClient.query({
       query: LANDING_PAGE_QUERY,
       variables: {
-        languageCode: getQlLanguage(context.locale ?? context.defaultLocale),
+        languageCode: getQlLanguage(locale),
       },
     });
 
     return {
       props: {
-        ...(await serverSideTranslationsWithCommon(
-          getLocaleOrError(context.locale),
-          [
-            "home_page",
-            "landing_page_search_form",
-            "collection_count_label",
-            "hardcoded_shortcuts",
-          ]
-        )),
+        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+          "home_page",
+          "landing_page_search_form",
+          "collection_count_label",
+          "hardcoded_shortcuts",
+        ])),
       },
     };
   });

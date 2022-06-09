@@ -9,8 +9,11 @@ import MobileDateSelector from "../../common/components/mobileDateSelector/Mobil
 import SearchAutosuggest from "../../common-events/components/search/SearchAutosuggest";
 import SearchLabel from "../../common-events/components/search/searchLabel/SearchLabel";
 import { AutosuggestMenuOption } from "../../common/types";
-import { EVENT_DEFAULT_SEARCH_FILTERS } from "../eventSearch/constants";
-import { getEventCategoryOptions, getSearchQuery } from "../eventSearch/utils";
+import { EVENT_DEFAULT_SEARCH_FILTERS } from "../search/eventSearch/constants";
+import {
+  getEventCategoryOptions,
+  getSearchQuery,
+} from "../search/eventSearch/utils";
 import useLocale from "../../common/hooks/useLocale";
 import useRouter from "../i18n/router/useRouter";
 import styles from "./landingPageSearch.module.scss";

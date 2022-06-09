@@ -1,7 +1,6 @@
 import React, { useMemo } from "react";
 import createDOMPurify from "dompurify";
 import parse, { domToReact } from "html-react-parser";
-import { Element } from "domhandler/lib/node";
 
 import Text from "../text/Text";
 

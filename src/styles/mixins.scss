@@ -1,0 +1,29 @@
+// **** Mixins
+@mixin placeholder($_color) {
+  /* Chrome/Opera/Safari */
+  &::-webkit-input-placeholder {
+    color: $_color;
+  }
+  /* Firefox 19+ */
+  &::-moz-placeholder {
+    color: $_color;
+  }
+  /* IE 10+ */
+  &:-ms-input-placeholder {
+    color: $_color;
+  }
+  /* Firefox 18- */
+  &:-moz-placeholder {
+    color: $_color;
+  }
+}
+
+// Helsinki logo
+@mixin helsinki-logo($lang: 'fi') {
+  background-image: url('../icons/svg/helsinki-fi.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
+  @if $lang == 'sv' {
+    background-image: url('../icons/svg/helsinki-sv.svg');
+  }
+}

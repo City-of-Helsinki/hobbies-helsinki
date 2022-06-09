@@ -16,12 +16,12 @@ import isEmpty from "lodash/isEmpty";
 //   QueryEventListArgs,
 // } from "../../../src/generated/graphql";
 
-import { FilterType } from "../../common/components/filterButton/types";
-import buildQueryFromObject from "../../common/utils/buildQueryFromObject";
-import { formatDate } from "../../common/utils/dateUtils";
-import getUrlParamAsArray from "../../common/utils/getUrlParamAsArray";
-import { DATE_TYPES } from "../../constants";
-import { Locale } from "../../types";
+import { FilterType } from "../../../common/components/filterButton/types";
+import buildQueryFromObject from "../../../common/utils/buildQueryFromObject";
+import { formatDate } from "../../../common/utils/dateUtils";
+import getUrlParamAsArray from "../../../common/utils/getUrlParamAsArray";
+import { DATE_TYPES } from "../../../constants";
+import { Locale } from "../../../types";
 import {
   EVENT_CATEGORIES,
   EVENT_SEARCH_FILTERS,

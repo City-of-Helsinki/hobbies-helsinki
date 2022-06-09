@@ -39,7 +39,7 @@ export function createCmsApolloClient() {
   });
 }
 
-export default function initializeCmsApollo(initialState = null) {
+export default function initializeCmsApollo(initialState = {}) {
   return initializeApolloClient<
     NormalizedCacheObject,
     ApolloClient<NormalizedCacheObject>

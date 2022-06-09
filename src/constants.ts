@@ -64,3 +64,6 @@ export const FEEDBACK_LINKS = {
   en: "https://www.hel.fi/helsinki/en/administration/participate/feedback",
   sv: "https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback",
 };
+
+export const DEFAULT_HEADER_MENU_NAME =
+  process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME ?? "Hobbies Helsinki Header FI";

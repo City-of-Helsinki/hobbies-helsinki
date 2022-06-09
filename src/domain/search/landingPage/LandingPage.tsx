@@ -1,13 +1,13 @@
 import { gql } from "@apollo/client";
 import { useTranslation } from "next-i18next";
 
-import Hero from "../../common/components/hero/Hero";
-import HeroImage from "../../common/components/hero/HeroImage";
-import SearchShortcuts from "../../common/components/searchShortcuts/SearchShortcuts";
-import Section from "../../common/components/section/Section";
-import LandingPageSearch from "../landingPageSearch/LandingPageSearch";
-import getCurrentSeason from "../season/getCurrentSeason";
-import shortcuts from "../shortcuts/shortcutsData";
+import Hero from "../../../common/components/hero/Hero";
+import HeroImage from "../../../common/components/hero/HeroImage";
+import SearchShortcuts from "../../../common/components/searchShortcuts/SearchShortcuts";
+import Section from "../../../common/components/section/Section";
+import LandingPageSearch from "../../landingPageSearch/LandingPageSearch";
+import getCurrentSeason from "../../season/getCurrentSeason";
+import shortcuts from "../../shortcuts/shortcutsData";
 import styles from "./landingPage.module.scss";
 
 export const LANDING_PAGE_QUERY = gql`
