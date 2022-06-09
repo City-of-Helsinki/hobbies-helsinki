@@ -1,5 +1,6 @@
 import React from "react";
 
+import { EventTypeId } from "../../nextApi/graphql/generated/graphql";
 import { Filters, SearchCategoryOption } from "./types";
 
 // Page size of the event list
@@ -58,8 +59,7 @@ export enum EVENT_SEARCH_FILTERS {
 }
 
 export const CATEGORY_CATALOG = {
-  //TODO: Use EventTypeId
-  ["general"]: {
+  [EventTypeId.Course]: {
     default: [EVENT_CATEGORIES.SPORT, EVENT_CATEGORIES.NATURE],
   },
 };

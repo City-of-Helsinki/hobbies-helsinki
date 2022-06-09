@@ -9,19 +9,16 @@ import {
 import { TFunction } from "i18next";
 import isEmpty from "lodash/isEmpty";
 
-// TODO: get from graphql
-// import {
-//   EventTypeId,
-//   Meta,
-//   QueryEventListArgs,
-// } from "../../../src/generated/graphql";
-
 import { FilterType } from "../../../common/components/filterButton/types";
 import buildQueryFromObject from "../../../common/utils/buildQueryFromObject";
 import { formatDate } from "../../../common/utils/dateUtils";
 import getUrlParamAsArray from "../../../common/utils/getUrlParamAsArray";
 import { DATE_TYPES } from "../../../constants";
 import { Locale } from "../../../types";
+import {
+  EventTypeId,
+  QueryEventListArgs,
+} from "../../nextApi/graphql/generated/graphql";
 import {
   EVENT_CATEGORIES,
   EVENT_SEARCH_FILTERS,
@@ -39,8 +36,6 @@ import {
   SearchCategoryType,
 } from "./types";
 
-// TODO: get from graphql
-type QueryEventListArgs = any;
 export const MIN_AGE = 0;
 export const MAX_AGE = 99;
 
@@ -64,8 +59,7 @@ export const getCategoryOptions = (
 
 export const getEventCategoryOptions = (
   t: TFunction,
-  // TODO: Use EventTypeId when graphql schema is available
-  categories: EVENT_CATEGORIES[] = CATEGORY_CATALOG["general"].default
+  categories: EVENT_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
 ): CategoryExtendedOption[] =>
   categories
     .map((category) =>
@@ -240,8 +234,7 @@ export const getEventSearchVariables = ({
     startsAfter,
     superEventType,
     suitableFor,
-    // TODO: Use EventTypeId.General when graphql schema is available
-    eventType: ["general"],
+    eventType: [EventTypeId.Course],
   };
 };
 
