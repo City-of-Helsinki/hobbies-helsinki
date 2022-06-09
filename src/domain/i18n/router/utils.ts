@@ -1,6 +1,7 @@
 import { UrlObject } from "url";
 
 import qs from "query-string";
+import { NextRouter } from "next/router";
 
 import i18nRoutes from "../../../../i18nRoutes.config";
 import { Locale } from "../../../types";
@@ -75,7 +76,7 @@ const queryToString = (
 };
 
 export function stringifyUrlObject(url: UrlObject): string {
-  const usedQueryParts = [];
+  const usedQueryParts: string[] = [];
   const pathname = url.pathname
     ?.split("/")
     .map((part) => {
@@ -91,7 +92,10 @@ export function stringifyUrlObject(url: UrlObject): string {
     })
     .join("/");
 
-  const search = url.search ?? queryToString(url.query, usedQueryParts) ?? "";
+  const search =
+    url.search ??
+    queryToString(url.query === null ? undefined : url.query, usedQueryParts) ??
+    "";
 
   return `${pathname}${search}`;
 }
@@ -103,3 +107,33 @@ export function getLocaleOrError(locale: string): Locale {
 
   return locale as Locale;
 }
+
+/**
+ * If removeList is empty, the function removes all params from url.
+ * @param {*} router
+ * @param {*} removeList
+ */
+export const removeQueryParamsFromRouter = (
+  router: NextRouter,
+  removeList: string[] = []
+) => {
+  const queryObject = { ...router.query };
+
+  if (removeList.length > 0) {
+    removeList.forEach((param) => delete router.query[param]);
+  } else {
+    // Remove all
+    Object.keys(queryObject).forEach((param) => delete queryObject[param]);
+  }
+  router.replace(
+    {
+      pathname: router.pathname,
+      query: router.query,
+    },
+    undefined,
+    /**
+     * Do not refresh the page
+     */
+    { shallow: true }
+  );
+};
