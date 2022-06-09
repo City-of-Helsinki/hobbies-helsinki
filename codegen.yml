@@ -1,15 +1,12 @@
 overwrite: true
+schema: ${NEXT_PUBLIC_NEXT_API_GRAPHQL_ENDPOINT}
+documents: "./src/domain/**/query.ts"
 generates:
-  ./src/domain/nextApi/graphql/__generated__.ts:
-    documents: ./src/domain/nextApi/graphql/*.{mutation,query,fragment}.graphql
-    schema: ${NEXT_PUBLIC_NEXT_API_GRAPHQL_ENDPOINT}
+  ./src/domain/nextApi/graphql/generated/graphql.tsx:
     plugins:
-      - typescript
-      - typescript-operations
-      - typescript-react-apollo
-    config:
-      withHooks: true
-      withComponent: false
-      flattenSelectionSet: true
-
-
+      - "typescript"
+      - "typescript-operations"
+      - "typescript-react-apollo"
+  ./graphql.schema.json:
+    plugins:
+      - "introspection"
