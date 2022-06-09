@@ -14,6 +14,7 @@ import useLocale from "../../../common/hooks/useLocale";
 import { AutosuggestMenuOption } from "../../../common/types";
 import useRouter from "../../i18n/router/useRouter";
 import { getI18nPath } from "../../i18n/router/utils";
+import PlaceSelector from "../../place/placeSelector/PlaceSelector";
 import {
   EVENT_DEFAULT_SEARCH_FILTERS,
   EVENT_SEARCH_FILTERS,
@@ -308,9 +309,9 @@ const AdvancedSearch: React.FC<Props> = ({
                   />
                 </div>
                 <div>
-                  {/* <PlaceSelector
+                  <PlaceSelector
                     checkboxName="placesCheckboxes"
-                    icon={<IconHome aria-hidden />}
+                    icon={<></>}
                     inputValue={placeInput}
                     name="places"
                     onChange={setSelectedPlaces}
@@ -320,7 +321,8 @@ const AdvancedSearch: React.FC<Props> = ({
                     showSelectAll={true}
                     title={t("eventSearch.search.titleDropdownPlace")}
                     value={selectedPlaces}
-                  /> */}
+                    t={t}
+                  />
                 </div>
               </div>
               <div className={styles.buttonWrapper}>

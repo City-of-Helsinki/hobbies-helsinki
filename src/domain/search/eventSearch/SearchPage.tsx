@@ -1,18 +1,16 @@
+import { useTranslation } from "next-i18next";
 import React from "react";
-import { useTranslation } from "react-i18next";
-import { useHistory, useLocation, useParams } from "react-router";
+
 import { scroller } from "react-scroll";
 import { toast } from "react-toastify";
+import useLocale from "../../../common/hooks/useLocale";
 
-import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
-import SrOnly from "../../common/components/srOnly/SrOnly";
 import {
   QueryEventListArgs,
   useEventListQuery,
   useLandingPagesQuery,
 } from "../../generated/graphql";
-import useIsSmallScreen from "../../hooks/useIsSmallScreen";
-import useLocale from "../../hooks/useLocale";
+
 import MainContent from "../app/layout/MainContent";
 import PageWrapper from "../app/layout/PageWrapper";
 import { getLargeEventCardId } from "../event/EventUtils";
@@ -33,9 +31,6 @@ const SearchPage: React.FC<{
 }> = ({ SearchComponent, pageTitle }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const history = useHistory();
-  const location = useLocation();
-  const params = useParams<{ place?: string }>();
   const [isFetchingMore, setIsFetchingMore] = React.useState(false);
   const isSmallScreen = useIsSmallScreen();
 
