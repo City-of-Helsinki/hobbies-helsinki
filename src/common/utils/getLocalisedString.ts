@@ -4,9 +4,9 @@ import { Locale } from "../../types";
 // TODO: Get from graphql schema
 export type LocalizedObject = {
   __typename?: "LocalizedObject";
-  fi?: string;
-  sv?: string;
-  en?: string;
+  fi?: string | null;
+  sv?: string | null;
+  en?: string | null;
 };
 
 /**

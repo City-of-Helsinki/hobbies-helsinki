@@ -1,0 +1,15 @@
+overwrite: true
+generates:
+  ./src/domain/nextApi/graphql/__generated__.ts:
+    documents: ./src/domain/nextApi/graphql/*.{mutation,query,fragment}.graphql
+    schema: ${NEXT_PUBLIC_NEXT_API_GRAPHQL_ENDPOINT}
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+    config:
+      withHooks: true
+      withComponent: false
+      flattenSelectionSet: true
+
+

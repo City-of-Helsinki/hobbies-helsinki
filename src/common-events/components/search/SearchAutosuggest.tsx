@@ -13,6 +13,7 @@ import { AutosuggestMenuOption } from "../../../common/types";
 import getLocalisedString from "../../../common/utils/getLocalisedString";
 import AutosuggestMenu from "./AutosuggestMenu";
 import styles from "./searchAutosuggest.module.scss";
+import { useKeywordListQuery } from "../../../domain/nextApi/graphql/generated/graphql";
 
 export interface SearchAutosuggestProps {
   name: string;
@@ -35,18 +36,14 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const internalInputValue = useDebounce(searchValue, 300);
 
-  // const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
-  //   skip: !internalInputValue,
-  //   variables: {
-  //     hasUpcomingEvents: true,
-  //     pageSize: 5,
-  //     text: internalInputValue,
-  //   },
-  // });
-
-  // TODO: Load with query
-  const keywordsData = [];
-  const loadingKeywords = false;
+  const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
+    skip: !internalInputValue,
+    variables: {
+      hasUpcomingEvents: true,
+      pageSize: 5,
+      text: internalInputValue,
+    },
+  });
 
   const [autoSuggestItems, setAutoSuggestItems] = React.useState<
     AutosuggestMenuOption[]

@@ -1,0 +1,44 @@
+@import "breakpoints";
+
+.searchResultListContainer {
+  background-color: var(--color-black-5);
+  padding: var(--spacing-xl) 0;
+}
+
+.betaResultNotification {
+  line-height: 1.8rem;
+}
+
+.count {
+  font-size: var(--fontsize-body-l);
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+
+  @include respond_above(sm) {
+    text-align: left;
+  }
+
+  @include respond_above(md) {
+    margin-top: 0;
+    margin-bottom: 2rem;
+  }
+}
+
+.searchResultWrapper {
+  display: grid;
+  grid-row-gap: var(--spacing-xs);
+  max-width: 1120px;
+  margin: auto;
+
+  .eventListWrapper {
+    .loadMoreWrapper {
+      margin-top: 1.5rem;
+
+      @include respond_above(sm) {
+        margin-top: 0;
+      }
+    }
+  }
+}
