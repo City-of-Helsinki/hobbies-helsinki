@@ -41,7 +41,7 @@ const Search: React.FC = () => {
 
   const goToSearchPage = (search: string) => {
     router.push({
-      pathname: getI18nPath("/events", locale),
+      pathname: getI18nPath("/search", locale),
       search,
     });
   };
@@ -131,7 +131,7 @@ const Search: React.FC = () => {
           </div>
         </div>
         <div className={styles.linkRow}>
-          <Link color="white" href={getI18nPath("/events", locale)}>
+          <Link color="white" href={getI18nPath("/search", locale)}>
             {t("home.search.linkAdvancedSearch")}
           </Link>
         </div>

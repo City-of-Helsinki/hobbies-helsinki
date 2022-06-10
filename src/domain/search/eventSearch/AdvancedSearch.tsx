@@ -3,6 +3,7 @@ import { Button, IconLocation, IconSearch } from "hds-react";
 import uniq from "lodash/uniq";
 import { useTranslation } from "next-i18next";
 import React, { FormEvent } from "react";
+import qs from "query-string";
 
 import Container from "../../../common-events/components/layout/Container";
 import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
@@ -43,8 +44,8 @@ const AdvancedSearch: React.FC<Props> = ({
   const router = useRouter();
   const params: { place?: string } = router.query;
   const searchParams = React.useMemo(
-    () => new URLSearchParams(router.asPath),
-    [router.asPath]
+    () => new URLSearchParams(qs.stringify(router.query)),
+    [router.query]
   );
 
   const [categoryInput, setCategoryInput] = React.useState("");
@@ -116,7 +117,10 @@ const AdvancedSearch: React.FC<Props> = ({
     };
     const search = getSearchQuery(filters);
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   // Initialize fields when page is loaded
@@ -168,7 +172,10 @@ const AdvancedSearch: React.FC<Props> = ({
     setSelectedTexts(text);
     setAutosuggestInput("");
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
     scrollToResultList();
   };
 
@@ -180,7 +187,10 @@ const AdvancedSearch: React.FC<Props> = ({
       onlyChildrenEvents: e.target.checked,
     });
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   const handleOnlyEveningEventChange = (
@@ -191,7 +201,10 @@ const AdvancedSearch: React.FC<Props> = ({
       onlyEveningEvents: e.target.checked,
     });
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   const handleOnlyRemoteEventChange = (
@@ -202,7 +215,10 @@ const AdvancedSearch: React.FC<Props> = ({
       onlyRemoteEvents: e.target.checked,
     });
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   const handleIsFreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -211,7 +227,10 @@ const AdvancedSearch: React.FC<Props> = ({
       isFree: e.target.checked,
     });
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   const clearInputValues = () => {
@@ -224,7 +243,10 @@ const AdvancedSearch: React.FC<Props> = ({
   const clearFilters = () => {
     const search = getSearchQuery(EVENT_DEFAULT_SEARCH_FILTERS);
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
 
     clearInputValues();
   };
