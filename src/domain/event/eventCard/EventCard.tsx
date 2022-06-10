@@ -48,13 +48,13 @@ const EventCard: React.FC<Props> = ({ event }) => {
     t("event.eventCard.isFree")
   );
 
-  const handleLinkClick = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = ev.target;
+  // const handleLinkClick = (ev: React.MouseEvent<HTMLAnchorElement>) => {
+  //   const target = ev.target;
 
-    if (button.current?.contains(target as Node)) {
-      ev.preventDefault();
-    }
-  };
+  //   if (button.current?.contains(target as Node)) {
+  //     ev.preventDefault();
+  //   }
+  // };
 
   const goToEventPage = () => {
     router.push(eventUrl);
@@ -84,7 +84,6 @@ const EventCard: React.FC<Props> = ({ event }) => {
       })}
       id={getEventCardId(id)}
       data-testid={event.id}
-      onClick={handleLinkClick}
       href={eventUrl}
     >
       <div>

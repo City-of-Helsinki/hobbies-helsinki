@@ -38,6 +38,7 @@ const SearchPage: React.FC<{
 
   const eventFilters = React.useMemo(() => {
     const searchParams = new URLSearchParams(router.asPath);
+    console.debug("searchParams", searchParams);
     const variables: QueryEventListArgs = getEventSearchVariables({
       include: ["keywords", "location"],
       language: locale,
@@ -60,6 +61,7 @@ const SearchPage: React.FC<{
     ssr: false,
     variables: eventFilters,
   });
+  console.debug("eventsData", eventsData, "isLoadingEvents", isLoadingEvents);
 
   const eventsList = eventsData?.eventList;
 
