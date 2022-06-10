@@ -2,14 +2,17 @@ import React from "react";
 import { GetStaticPropsContext } from "next";
 import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
-import { Page as RHHCApolloPage } from "react-helsinki-headless-cms/apollo";
+import {
+  Page as RHHCApolloPage,
+  PageContent as RHHCApolloPageContent,
+} from "react-helsinki-headless-cms/apollo";
 
 import getHobbiesStaticProps from "../domain/app/getHobbiesStaticProps";
 import serverSideTranslationsWithCommon from "../domain/i18n/serverSideTranslationsWithCommon";
 import { getLocaleOrError } from "../domain/i18n/router/utils";
 import { getQlLanguage } from "../common/apollo/utils";
 import {
-  LandingPageMainContent,
+  LandingPageContentLayout,
   LANDING_PAGE_QUERY,
 } from "../domain/search/landingPage/LandingPage";
 import { DEFAULT_LANGUAGE } from "../constants";
@@ -32,7 +35,16 @@ export default function HomePage() {
       uri="/"
       className="pageLayout"
       navigation={<Navigation />}
-      content={<LandingPageMainContent page={data?.landingPage} />}
+      content={
+        <RHHCApolloPageContent
+          breadcrumbs={[
+            { title: "Root", link: "/" },
+            { title: "Nested", link: "/nested" },
+          ]}
+          landingPage={data.landingPage}
+          PageContentLayoutComponent={LandingPageContentLayout}
+        />
+      }
       footer={<footer>TODO: footer</footer>}
     />
   );
