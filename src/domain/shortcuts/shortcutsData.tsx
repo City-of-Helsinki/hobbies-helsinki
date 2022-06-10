@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Season } from "../season/seasonConstants";
+import { Season } from "../../common-events/domain/season/seasonConstants";
 
 const shortcuts = [
   {

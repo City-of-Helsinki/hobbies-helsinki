@@ -8,7 +8,7 @@ import HeroImage from "../../../common/components/hero/HeroImage";
 import SearchShortcuts from "../../../common/components/searchShortcuts/SearchShortcuts";
 import Section from "../../../common/components/section/Section";
 import LandingPageSearch from "../../landingPageSearch/LandingPageSearch";
-import getCurrentSeason from "../../season/getCurrentSeason";
+import getCurrentSeason from "../../../common-events/domain/season/getCurrentSeason";
 import shortcuts from "../../shortcuts/shortcutsData";
 import styles from "./landingPage.module.scss";
 
