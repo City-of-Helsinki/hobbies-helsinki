@@ -2,6 +2,7 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 import { scroller } from "react-scroll";
 import { toast } from "react-toastify";
+import qs from "query-string";
 
 import eventsApolloClient from "../../clients/eventsApolloClient";
 import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
@@ -37,8 +38,7 @@ const SearchPage: React.FC<{
   const isSmallScreen = useIsSmallScreen();
 
   const eventFilters = React.useMemo(() => {
-    const searchParams = new URLSearchParams(router.asPath);
-    console.debug("searchParams", searchParams);
+    const searchParams = new URLSearchParams(qs.stringify(router.query));
     const variables: QueryEventListArgs = getEventSearchVariables({
       include: ["keywords", "location"],
       language: locale,
@@ -49,7 +49,7 @@ const SearchPage: React.FC<{
       superEventType: ["umbrella", "none"],
     });
     return variables;
-  }, [locale, router.asPath, params.place]);
+  }, [locale, router.query, params.place]);
 
   const {
     data: eventsData,
@@ -61,7 +61,6 @@ const SearchPage: React.FC<{
     ssr: false,
     variables: eventFilters,
   });
-  console.debug("eventsData", eventsData, "isLoadingEvents", isLoadingEvents);
 
   const eventsList = eventsData?.eventList;
 
