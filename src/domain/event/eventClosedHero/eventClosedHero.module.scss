@@ -11,7 +11,7 @@ $heroHeightDesktop: 39.3125rem;
   text-align: center;
   box-sizing: border-box;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     min-height: $heroHeightDesktop;
     padding-top: 10.375rem;
     padding-bottom: 14rem;

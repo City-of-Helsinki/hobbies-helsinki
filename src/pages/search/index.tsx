@@ -39,33 +39,12 @@ export default function Search() {
     }
   }, [scrollTo]);
 
-  // const scrollToResultList = () => {
-  //   if (isSmallScreen) {
-  //     scroller.scrollTo("resultList", {
-  //       delay: 0,
-  //       duration: 1000,
-  //       offset: -50,
-  //       smooth: true,
-  //     });
-  //   }
-  // };
-
   return (
     <RHHCApolloPage
       uri="/search"
       className="pageLayout"
       navigation={<Navigation />}
       content={
-        // <>
-        //   <AdvancedSearch
-        //     scrollToResultList={scrollToResultList}
-        //     data-testid="searchContainer"
-        //   />
-        //   <Section variant="contained">
-        //     <Koros className={styles.koros} />
-        //     <div>TODO: Search results</div>
-        //   </Section>
-        // </>
         <SearchPage
           SearchComponent={AdvancedSearch}
           pageTitle={"eventSearch.title"}

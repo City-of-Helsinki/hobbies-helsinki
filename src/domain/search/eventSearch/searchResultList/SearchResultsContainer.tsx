@@ -1,8 +1,9 @@
 import classNames from "classnames";
-import { Container } from "hds-react";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
+// TODO: Replace with Container from HDS
+import Container from "../../../../common-events/components/layout/Container";
 import ResultsInfoContainer from "./ResultsInfo";
 import styles from "./searchResultList.module.scss";
 

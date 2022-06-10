@@ -5,7 +5,6 @@ import {
   AUTOSUGGEST_KEYWORD_BLACK_LIST,
   AUTOSUGGEST_TYPES,
 } from "../../../constants";
-// import { useKeywordListQuery } from '../../../generated/graphql';
 import useDebounce from "../../../common/hooks/useDebounce";
 import useKeyboardNavigation from "../../../common/hooks/useDropdownKeyboardNavigation";
 import useLocale from "../../../common/hooks/useLocale";
@@ -14,6 +13,7 @@ import getLocalisedString from "../../../common/utils/getLocalisedString";
 import AutosuggestMenu from "./AutosuggestMenu";
 import styles from "./searchAutosuggest.module.scss";
 import { useKeywordListQuery } from "../../../domain/nextApi/graphql/generated/graphql";
+import eventsApolloClient from "../../../domain/clients/eventsApolloClient";
 
 export interface SearchAutosuggestProps {
   name: string;
@@ -37,6 +37,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
   const internalInputValue = useDebounce(searchValue, 300);
 
   const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
+    client: eventsApolloClient,
     skip: !internalInputValue,
     variables: {
       hasUpcomingEvents: true,

@@ -14,12 +14,12 @@ import {
   useEventListQuery,
 } from "../../nextApi/graphql/generated/graphql";
 import { EVENT_SORT_OPTIONS, PAGE_SIZE } from "./constants";
-import styles from "./eventSearchPage.module.scss";
 import SearchResultsContainer from "./searchResultList/SearchResultsContainer";
 import { getEventSearchVariables, getNextPage } from "./utils";
 import { removeQueryParamsFromRouter } from "../../i18n/router/utils";
 import { getLargeEventCardId } from "../../event/EventUtils";
 import EventList from "../../eventList/EventList";
+import styles from "./eventSearchPage.module.scss";
 
 const SearchPage: React.FC<{
   SearchComponent: React.FC<{
@@ -121,7 +121,7 @@ const SearchPage: React.FC<{
   }, []);
 
   return (
-    <div>
+    <div className={styles.eventSearchPageWrapper}>
       <SrOnly as="h1">{t(pageTitle)}</SrOnly>
       <SearchComponent
         scrollToResultList={scrollToResultList}

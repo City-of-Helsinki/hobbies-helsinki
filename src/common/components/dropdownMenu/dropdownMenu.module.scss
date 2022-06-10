@@ -10,7 +10,7 @@
     box-sizing: border-box;
   }
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     position: absolute;
     top: 100%;
     left: 0;
@@ -19,7 +19,7 @@
   }
 
   .dropdownMenuWrapper {
-    @include respond_above(sm) {
+    @include respond_above(s) {
       max-height: 18.35rem;
       overflow: auto;
     }

@@ -18,14 +18,14 @@ $buttonWidth: 180px;
 
     margin-bottom: var(--spacing-xs);
 
-    @include respond-above(sm) {
+    @include respond-above(s) {
       grid-template-columns: 1fr $buttonWidth;
       grid-gap: var(--spacing-xs);
 
       margin-bottom: var(--spacing-xs);
     }
 
-    @include respond-above(md) {
+    @include respond-above(m) {
       grid-gap: var(--spacing-xs);
     }
   }
@@ -38,21 +38,21 @@ $buttonWidth: 180px;
     display: grid;
     grid-gap: var(--spacing-xs);
 
-    @include respond-above(sm) {
+    @include respond-above(s) {
       grid-template-columns: 1fr 1fr;
     }
 
-    @include respond-above(md) {
+    @include respond-above(m) {
       grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
   .autoSuggestRow {
-    @include respond-above(sm) {
+    @include respond-above(s) {
       grid-template-columns: 1fr;
     }
 
-    @include respond-above(md) {
+    @include respond-above(m) {
       div:first-child {
         grid-column: 1 / 4;
       }
@@ -66,7 +66,7 @@ $buttonWidth: 180px;
       display: flex;
       align-items: center;
     }
-    @include respond-above(sm) {
+    @include respond-above(s) {
       margin-top: 0;
     }
   }
@@ -81,7 +81,7 @@ $buttonWidth: 180px;
   font-weight: 500;
   line-height: normal;
 
-  @include respond-below(sm) {
+  @include respond-below(s) {
     display: none;
   }
 }

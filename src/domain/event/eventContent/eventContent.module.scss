@@ -9,7 +9,7 @@ $logoWidth: 5.5rem;
   .contentWrapper {
     display: grid;
 
-    @include respond_above(sm) {
+    @include respond_above(s) {
       grid-template-columns: $logoWidth 1fr 1fr;
 
       .infoColumn {
@@ -31,7 +31,7 @@ $logoWidth: 5.5rem;
   font-weight: 600;
   margin: 2rem 0 1rem;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     font-size: var(--fontsize-heading-l);
   }
 }

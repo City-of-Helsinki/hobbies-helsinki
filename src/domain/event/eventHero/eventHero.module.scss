@@ -8,7 +8,7 @@ $logoWidth: 5.5rem;
   background: var(--color-white);
   height: auto;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     background: var(--hero-background-color, var(--color-copper-light));
   }
 }
@@ -20,7 +20,7 @@ $logoWidth: 5.5rem;
   min-height: $heroHeight;
   position: relative;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     min-height: $heroHeight;
     grid-template-columns: $logoWidth 1fr 1fr;
     grid-template-rows: unset;
@@ -29,7 +29,7 @@ $logoWidth: 5.5rem;
   .backButtonWrapper {
     padding: var(--spacing-m);
 
-    @include respond_below(sm) {
+    @include respond_below(s) {
       padding: var(--spacing-s) 0 0 var(--spacing-s);
       position: absolute;
     }
@@ -42,7 +42,7 @@ $logoWidth: 5.5rem;
     background-size: cover;
     background-repeat: no-repeat;
 
-    @include respond_below(sm) {
+    @include respond_below(s) {
       margin: 0 (0 - var(--spacing-m));
     }
   }
@@ -62,14 +62,14 @@ $logoWidth: 5.5rem;
     display: flex;
     flex-direction: column;
 
-    @include respond_above(sm) {
+    @include respond_above(s) {
       padding: var(--spacing-xl);
       width: unset;
     }
 
     .categoryWrapper {
       order: 1;
-      @include respond_below(sm) {
+      @include respond_below(s) {
         margin-top: -1.0625rem;
         padding: 0 var(--spacing-s);
       }
@@ -98,7 +98,7 @@ $logoWidth: 5.5rem;
       line-height: 2rem;
       color: var(--color-black-70);
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         color: var(--color-black);
       }
     }
@@ -131,7 +131,7 @@ $logoWidth: 5.5rem;
   .buttonWrapperMobile {
     margin-top: 1rem;
 
-    @include respond_above(sm) {
+    @include respond_above(s) {
       display: none;
     }
   }
