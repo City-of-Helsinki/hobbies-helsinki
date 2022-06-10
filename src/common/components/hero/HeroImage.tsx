@@ -14,7 +14,7 @@ function HeroImage({ desktopImageUri, withDecoration = true }: Props) {
         className={styles.image}
         style={{ backgroundImage: `url(${desktopImageUri})` }}
       />
-      {withDecoration && <Koros />}
+      {withDecoration && <Koros className={styles.koros} />}
     </div>
   );
 }
