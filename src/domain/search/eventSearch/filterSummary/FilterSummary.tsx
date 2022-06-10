@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
+import qs from "query-string";
 
 import useDivisionOptions from "../../../../common-events/hooks/useDivisionOptions";
 import FilterButton from "../../../../common/components/filterButton/FilterButton";
@@ -30,7 +31,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
   const { t } = useTranslation();
   const locale = useLocale();
   const router = useRouter();
-  const searchParams = new URLSearchParams(router.asPath);
+  const searchParams = new URLSearchParams(qs.stringify(router.query));
   const {
     categories,
     dateTypes,
@@ -83,7 +84,10 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       suitableFor: getSuitableForFilterValue(suitableFor, type) ?? [],
     });
 
-    router.push(`${getI18nPath("/search", locale)}${search}`);
+    router.push({
+      pathname: getI18nPath("/search", locale),
+      search,
+    });
   };
 
   const hasFilters =
