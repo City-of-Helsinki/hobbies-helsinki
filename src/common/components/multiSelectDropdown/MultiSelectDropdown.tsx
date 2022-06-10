@@ -319,7 +319,6 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
           );
         })}
       </DropdownMenu>
-      )
     </div>
   );
 };

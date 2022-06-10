@@ -1,0 +1,33 @@
+@import "breakpoints";
+
+.container {
+  display: grid;
+  grid-row: span;
+  place-content: flex-start;
+
+  & > * {
+    grid-column: 2;
+  }
+}
+
+@include respond-below(s) {
+  .container {
+    grid-template-columns: 0.75rem 1fr 0.75rem;
+
+    & > * {
+      max-width: calc(100vw - 1.5rem);
+    }
+  }
+}
+
+@include respond-between(s, xl) {
+  .container {
+    grid-template-columns: 1fr 10fr 1fr;
+  }
+}
+
+@include respond-above(xl) {
+  .container {
+    grid-template-columns: 1fr 91.875rem 1fr;
+  }
+}

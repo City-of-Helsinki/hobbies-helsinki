@@ -9,7 +9,7 @@
   display: grid;
   height: 100%;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     grid-template-columns: 4fr 5fr;
   }
 
@@ -27,7 +27,7 @@
       display: flex;
       align-self: flex-end;
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         display: none;
       }
     }
@@ -44,7 +44,7 @@
       order: 1;
       padding-bottom: var(--spacing-s);
 
-      @include respond_below(sm) {
+      @include respond_below(s) {
         display: none;
       }
     }
@@ -55,7 +55,7 @@
       margin-bottom: var(--spacing-2-xs);
       font-weight: 500;
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         order: 3;
         font-weight: normal;
       }
@@ -70,7 +70,7 @@
       color: var(color-black);
       text-decoration: none;
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         order: 2;
       }
     }
@@ -82,7 +82,7 @@
       margin-bottom: var(--spacing-2-xs);
       color: var(color-black-80);
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         order: 3;
       }
     }
@@ -94,7 +94,7 @@
       margin-bottom: var(--spacing-2-xs);
       color: var(color-black-80);
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         order: 4;
       }
     }
@@ -106,7 +106,7 @@
       margin-bottom: var(--spacing-3-xs);
       color: var(color-black-80);
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         order: 5;
       }
     }
@@ -117,7 +117,7 @@
       flex-wrap: wrap;
       margin-top: auto;
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         justify-content: flex-end;
       }
 
@@ -132,7 +132,7 @@
           margin-left: var(--spacing-3-xs);
         }
 
-        @include respond_above(sm) {
+        @include respond_above(s) {
           flex: none;
         }
 

@@ -16,11 +16,11 @@
   margin-bottom: 1.5rem;
   text-align: center;
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     text-align: left;
   }
 
-  @include respond_above(md) {
+  @include respond_above(m) {
     margin-top: 0;
     margin-bottom: 2rem;
   }
@@ -36,7 +36,7 @@
     .loadMoreWrapper {
       margin-top: 1.5rem;
 
-      @include respond_above(sm) {
+      @include respond_above(s) {
         margin-top: 0;
       }
     }

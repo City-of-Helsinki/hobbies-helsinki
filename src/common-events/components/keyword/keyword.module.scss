@@ -16,14 +16,14 @@
     background-color: var(--color-black-80);
     color: var(--color-white);
 
-    @include respond_above(sm) {
+    @include respond_above(s) {
       background-color: var(--color-summer-medium-light);
       color: var(--color-black);
     }
   }
 
   &.hideOnMobile {
-    @include respond_below(sm) {
+    @include respond_below(s) {
       display: none;
     }
   }

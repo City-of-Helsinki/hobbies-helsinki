@@ -16,12 +16,12 @@
   margin: 0;
   grid-gap: var(--spacing-xs);
 
-  @include respond_above(sm) {
+  @include respond_above(s) {
     grid-template-columns: 1fr 1fr;
     grid-gap: 1.75rem 3rem;
   }
 
-  @include respond_above(md) {
+  @include respond_above(m) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
   }
 }

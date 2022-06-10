@@ -1,9 +1,10 @@
 import classNames from "classnames";
-import { Button, Container, IconLocation, IconSearch } from "hds-react";
+import { Button, IconLocation, IconSearch } from "hds-react";
 import uniq from "lodash/uniq";
 import { useTranslation } from "next-i18next";
 import React, { FormEvent } from "react";
 
+import Container from "../../../common-events/components/layout/Container";
 import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
 import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
 import useDivisionOptions from "../../../common-events/hooks/useDivisionOptions";
@@ -21,12 +22,12 @@ import {
   MAPPED_PLACES,
 } from "./constants";
 import FilterSummary from "./filterSummary/FilterSummary";
-import styles from "./search.module.scss";
 import {
   getEventCategoryOptions,
   getSearchFilters,
   getSearchQuery,
 } from "./utils";
+import styles from "./search.module.scss";
 
 interface Props {
   scrollToResultList: () => void;
