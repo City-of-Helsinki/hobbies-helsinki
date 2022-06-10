@@ -19,7 +19,7 @@ import SearchResultsContainer from "./searchResultList/SearchResultsContainer";
 import { getEventSearchVariables, getNextPage } from "./utils";
 import { removeQueryParamsFromRouter } from "../../i18n/router/utils";
 import { getLargeEventCardId } from "../../event/EventUtils";
-import EventList from "../../eventList/EventList";
+import EventList from "../../../common-events/components/eventList/EventList";
 import styles from "./eventSearchPage.module.scss";
 
 const SearchPage: React.FC<{

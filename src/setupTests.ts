@@ -3,7 +3,7 @@ import { TextEncoder, TextDecoder } from "util";
 import "@testing-library/jest-dom/extend-expect";
 import { loadEnvConfig } from "@next/env";
 
-import { server } from "./domain/mocks/server";
+import { server } from "./tests/mocks/server";
 import "./tests/initI18n";
 
 loadEnvConfig(process.cwd());

@@ -3,11 +3,11 @@ import { Button } from "hds-react";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
-import BasicEventCard from "../event/eventCard/EventCard";
+import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
+import BasicEventCard from "../../../domain/event/eventCard/EventCard";
 // import LargeEventCard from "../event/eventCard/LargeEventCard";
-import { EventFields } from "../event/types";
-import { EventFieldsFragment } from "../nextApi/graphql/generated/graphql";
+import { EventFields } from "../../../domain/event/types";
+import { EventFieldsFragment } from "../../../domain/nextApi/graphql/generated/graphql";
 import styles from "./eventList.module.scss";
 
 const eventCardsMap = {
