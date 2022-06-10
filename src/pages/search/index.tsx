@@ -1,19 +1,14 @@
 import React, { useRef } from "react";
 import { GetStaticPropsContext } from "next";
-// import { Koros } from "hds-react";
 import { useEffect } from "react";
 import { Page as RHHCApolloPage } from "react-helsinki-headless-cms/apollo";
-// import { scroller } from "react-scroll";
 
 import getHobbiesStaticProps from "../../domain/app/getHobbiesStaticProps";
 import useRouter from "../../domain/i18n/router/useRouter";
 import serverSideTranslationsWithCommon from "../../domain/i18n/serverSideTranslationsWithCommon";
 import { getLocaleOrError } from "../../domain/i18n/router/utils";
-// import Section from "../../common/components/section/Section";
-// import styles from "./search.module.scss";
 import { DEFAULT_LANGUAGE } from "../../constants";
 import AdvancedSearch from "../../domain/search/eventSearch/AdvancedSearch";
-// import useIsSmallScreen from "../../common/hooks/useIsSmallScreen";
 import Navigation from "../../common-events/components/navigation/Navigation";
 import SearchPage from "../../domain/search/eventSearch/SearchPage";
 
@@ -21,7 +16,6 @@ export default function Search() {
   const router = useRouter();
   const scrollTo = router.query?.scrollTo;
   const listRef = useRef<HTMLUListElement | null>(null);
-  // const isSmallScreen = useIsSmallScreen();
 
   useEffect(() => {
     const listElement = listRef.current;
