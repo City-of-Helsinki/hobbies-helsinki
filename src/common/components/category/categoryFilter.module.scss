@@ -1,4 +1,6 @@
 .categoryFilter {
+  max-width: 25vh;
+  overflow: hidden;
   a {
     display: flex;
     align-items: center;
@@ -28,6 +30,7 @@
     span {
       flex: 1 1 0%;
       text-align: left;
+      text-overflow: ellipsis;
     }
 
     &:focus {
