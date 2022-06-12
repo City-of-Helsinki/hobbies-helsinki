@@ -1,7 +1,14 @@
 import classNames from "classnames";
+import { useRouter } from "next/router";
 import { Button, IconLinkExternal } from "hds-react";
+import { useTranslation } from "next-i18next";
 import React from "react";
+import Link from "next/link";
 
+import testImage from "../../../common-events/utils/testImage";
+import useLocale from "../../../common/hooks/useLocale";
+import { addParamsToQueryString } from "../../../common/utils/queryString";
+import { getI18nPath } from "../../i18n/router/utils";
 import EventKeywords from "../eventKeywords/EventKeywords";
 import LocationText from "../eventLocation/EventLocationText";
 import EventName from "../eventName/EventName";
@@ -14,6 +21,8 @@ import {
   isEventFree,
 } from "../EventUtils";
 import { EventFields } from "../types";
+import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
+import buttonStyles from "../../../common/components/button/button.module.scss";
 import styles from "./largeEventCard.module.scss";
 
 interface Props {
@@ -22,13 +31,13 @@ interface Props {
 
 const LargeEventCard: React.FC<Props> = ({ event }) => {
   const { t } = useTranslation();
-  const { push } = useHistory();
+  const router = useRouter();
   const [showBackupImage, setShowBackupImage] = React.useState(false);
-  const { search, pathname } = useLocation();
   const locale = useLocale();
   const button = React.useRef<HTMLDivElement>(null);
 
   const {
+    id,
     endTime,
     imageUrl,
     name,
@@ -42,13 +51,11 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
   const audienceAge = getAudienceAgeText(t, audienceMinAge, audienceMaxAge);
 
   const eventClosed = isEventClosed(event);
-  const queryString = addParamsToQueryString(search, {
-    returnPath: pathname,
+  const queryString = addParamsToQueryString(router.asPath, {
+    returnPath: router.pathname,
   });
-  const eventUrl = `/${locale}${ROUTES.EVENT.replace(
-    ":id",
-    event.id
-  )}${queryString}`;
+  const eventUrl = `${getI18nPath("/event", locale)}/${event.id}${queryString}`;
+
   const showBuyButton = !eventClosed && !!offerInfoUrl && !isEventFree(event);
 
   const goToBuyTicketsPage = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -57,15 +64,9 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
     window.open(offerInfoUrl);
   };
 
-  const handleLinkClick = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-    const target = ev.target;
-    if (button.current?.contains(target as Node)) {
-      ev.preventDefault();
-    }
-  };
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const goToEventPage = (ev: React.MouseEvent<HTMLButtonElement>) => {
-    push(eventUrl);
+    router.push(eventUrl);
   };
 
   React.useEffect(() => {
@@ -87,94 +88,96 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
       aria-label={t("event.eventCard.ariaLabelLink", {
         name,
       })}
-      className={classNames(styles.eventCard, {
-        [styles.eventClosed]: eventClosed,
-      })}
-      id={getLargeEventCardId(event.id)}
+      id={getLargeEventCardId(id)}
       data-testid={event.id}
-      onClick={handleLinkClick}
-      to={eventUrl}
+      href={eventUrl}
     >
-      {/* INFO WRAPPER. Re-order info wrapper and text wrapper on css */}
-      <div className={styles.infoWrapper}>
-        <div className={styles.eventName}>
-          <EventName event={event} />
-        </div>
-        <div className={styles.eventDateAndTime}>
-          {!!startTime &&
-            getDateRangeStr({
-              start: startTime,
-              end: endTime,
-              locale,
-              includeTime: true,
-              timeAbbreviation: t("commons.timeAbbreviation"),
-            })}
-        </div>
-        <div className={styles.eventLocation}>
-          <LocationText
-            event={event}
-            showDistrict={false}
-            showLocationName={true}
-          />
-        </div>
-        {audienceAge && (
-          <div className={styles.eventAudienceAge}>{audienceAge}</div>
-        )}
-        <div className={styles.eventPrice}>
-          {getEventPrice(event, locale, t("event.eventCard.isFree"))}
-        </div>
-        <div className={styles.keywordWrapperDesktop}>
-          <EventKeywords
-            event={event}
-            hideKeywordsOnMobile={true}
-            showIsFree={true}
-          />
-        </div>
-        <div className={styles.buttonWrapper}>
-          <div>
-            {showBuyButton && (
-              <Button
-                aria-label={t("event.eventCard.ariaLabelBuyTickets")}
-                iconRight={<IconLinkExternal aria-hidden />}
-                fullWidth
-                onClick={goToBuyTicketsPage}
-                size="small"
-                variant="success"
-              >
-                {t("event.eventCard.buttonBuyTickets")}
-              </Button>
-            )}
-          </div>
-          <div ref={button}>
-            <Button
-              aria-label={t("event.eventCard.ariaLabelReadMore", { name })}
-              className={buttonStyles.buttonGray}
-              fullWidth
-              onClick={goToEventPage}
-              size="small"
-              type="button"
-            >
-              {t("event.eventCard.buttonReadMore")}
-            </Button>
-          </div>
-        </div>
-      </div>
-
-      {/* IMAGE WRAPPER */}
       <div
-        className={styles.imageWrapper}
-        style={{
-          backgroundImage: `url(${
-            showBackupImage ? placeholderImage : imageUrl
-          })`,
-        }}
+        className={classNames(styles.eventCard, {
+          [styles.eventClosed]: eventClosed,
+        })}
       >
-        <div className={styles.keywordWrapper}>
-          <EventKeywords
-            event={event}
-            hideKeywordsOnMobile={true}
-            showIsFree={true}
-          />
+        {/* INFO WRAPPER. Re-order info wrapper and text wrapper on css */}
+        <div className={styles.infoWrapper}>
+          <div className={styles.eventName}>
+            <EventName event={event} />
+          </div>
+          <div className={styles.eventDateAndTime}>
+            {!!startTime &&
+              getDateRangeStr({
+                start: startTime,
+                end: endTime,
+                locale,
+                includeTime: true,
+                timeAbbreviation: t("commons.timeAbbreviation"),
+              })}
+          </div>
+          <div className={styles.eventLocation}>
+            <LocationText
+              event={event}
+              showDistrict={false}
+              showLocationName={true}
+            />
+          </div>
+          {audienceAge && (
+            <div className={styles.eventAudienceAge}>{audienceAge}</div>
+          )}
+          <div className={styles.eventPrice}>
+            {getEventPrice(event, locale, t("event.eventCard.isFree"))}
+          </div>
+          <div className={styles.keywordWrapperDesktop}>
+            <EventKeywords
+              event={event}
+              hideKeywordsOnMobile={true}
+              showIsFree={true}
+            />
+          </div>
+          <div className={styles.buttonWrapper}>
+            <div>
+              {showBuyButton && (
+                <Button
+                  aria-label={t("event.eventCard.ariaLabelBuyTickets")}
+                  iconRight={<IconLinkExternal aria-hidden />}
+                  fullWidth
+                  onClick={goToBuyTicketsPage}
+                  size="small"
+                  variant="success"
+                >
+                  {t("event.eventCard.buttonBuyTickets")}
+                </Button>
+              )}
+            </div>
+            <div ref={button}>
+              <Button
+                aria-label={t("event.eventCard.ariaLabelReadMore", { name })}
+                className={buttonStyles.buttonGray}
+                fullWidth
+                onClick={goToEventPage}
+                size="small"
+                type="button"
+              >
+                {t("event.eventCard.buttonReadMore")}
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        {/* IMAGE WRAPPER */}
+        <div
+          className={styles.imageWrapper}
+          style={{
+            backgroundImage: `url(${
+              showBackupImage ? placeholderImage : imageUrl
+            })`,
+          }}
+        >
+          <div className={styles.keywordWrapper}>
+            <EventKeywords
+              event={event}
+              hideKeywordsOnMobile={true}
+              showIsFree={true}
+            />
+          </div>
         </div>
       </div>
     </Link>

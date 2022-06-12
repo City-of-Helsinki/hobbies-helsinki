@@ -48,14 +48,6 @@ const EventCard: React.FC<Props> = ({ event }) => {
     t("event.eventCard.isFree")
   );
 
-  // const handleLinkClick = (ev: React.MouseEvent<HTMLAnchorElement>) => {
-  //   const target = ev.target;
-
-  //   if (button.current?.contains(target as Node)) {
-  //     ev.preventDefault();
-  //   }
-  // };
-
   const goToEventPage = () => {
     router.push(eventUrl);
   };
@@ -79,14 +71,15 @@ const EventCard: React.FC<Props> = ({ event }) => {
       aria-label={t("event.eventCard.ariaLabelLink", {
         name,
       })}
-      className={classNames(styles.eventCard, {
-        [styles.eventClosed]: eventClosed,
-      })}
       id={getEventCardId(id)}
       data-testid={event.id}
       href={eventUrl}
     >
-      <div>
+      <div
+        className={classNames(styles.eventCard, {
+          [styles.eventClosed]: eventClosed,
+        })}
+      >
         {/* INFO WRAPPER. Re-order info wrapper and text wrapper on css */}
         <div className={styles.infoWrapper}>
           <div className={styles.textWrapper}>
