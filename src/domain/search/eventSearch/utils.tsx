@@ -21,13 +21,13 @@ import {
   QueryEventListArgs,
 } from "../../nextApi/graphql/generated/graphql";
 import {
-  EVENT_CATEGORIES,
+  COURSE_CATEGORIES,
   EVENT_SEARCH_FILTERS,
   EVENT_SORT_OPTIONS,
-  eventCategories,
-  MAPPED_EVENT_CATEGORIES,
+  courseCategories,
   MAPPED_PLACES,
   CATEGORY_CATALOG,
+  MAPPED_COURSE_CATEGORIES,
 } from "./constants";
 import {
   CategoryExtendedOption,
@@ -60,11 +60,11 @@ export const getCategoryOptions = (
 
 export const getEventCategoryOptions = (
   t: TFunction,
-  categories: EVENT_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
+  categories: COURSE_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
 ): CategoryExtendedOption[] =>
   categories
     .map((category) =>
-      getCategoryOptions(category, eventCategories[category], t)
+      getCategoryOptions(category, courseCategories[category], t)
     )
     .sort(sortExtendedCategoryOptions);
 
@@ -186,7 +186,7 @@ export const getEventSearchVariables = ({
   }
 
   const categoriesParamName = "keywordOrSet1";
-  const categoryMap = MAPPED_EVENT_CATEGORIES;
+  const categoryMap = MAPPED_COURSE_CATEGORIES;
 
   const getMappedPropertyValues = (
     list: string[],

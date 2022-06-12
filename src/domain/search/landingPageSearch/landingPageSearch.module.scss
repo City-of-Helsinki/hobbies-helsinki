@@ -1,0 +1,43 @@
+@import "breakpoints";
+
+.landingPageSearch {
+  margin-top: -3.5rem;
+  color: var(--color-white);
+  background-color: #464646;
+  padding: var(--spacing-l) var(--spacing-m);
+  z-index: 1;
+  position: relative;
+
+  @include respond-above(s) {
+    padding: var(--spacing-xl);
+    margin-top: -5.5rem;
+  }
+
+  h2 {
+    font-size: var(--fontsize-heading-m);
+    margin: 0;
+  }
+}
+
+.categoriesWrapper {
+  padding: 4rem 0 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 1rem 3.25rem;
+  height: fit-content;
+  align-items: center;
+
+  @include respond-below(s) {
+    display: none;
+  }
+
+  @include respond-above(m) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+
+  div:nth-child(10) {
+    @include respond-below(m) {
+      grid-column-start: 2;
+    }
+  }
+}
