@@ -1,19 +1,19 @@
-import { IconAngleDown, IconAngleUp, IconCalendarPlus } from 'hds-react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { IconAngleDown, IconAngleUp, IconCalendarPlus } from "hds-react";
+import { useTranslation } from "next-i18next";
+import React from "react";
 
-import InfoWithIcon from '../../../common/components/infoWithIcon/InfoWithIcon';
-import linkStyles from '../../../common/components/link/link.module.scss';
-import SkeletonLoader from '../../../common/components/skeletonLoader/SkeletonLoader';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import { useOtherEventTimes } from '../queryUtils';
-import { EventFields } from '../types';
-import EventList from './eventList/EventList';
-import styles from './eventList/eventList.module.scss';
+import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
+import SkeletonLoader from "../../../common-events/components/skeletonLoader/SkeletonLoader";
+import linkStyles from "../../../common/components/link/link.module.scss";
+import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
+import { useOtherEventTimes } from "../queryUtils";
+import { EventFields } from "../types";
+import EventList from "./eventList/EventList";
+import styles from "./eventList/eventList.module.scss";
 
 const EVENTS_LIST_LIMIT = 3;
 
-export const otherEventTimesListTestId = 'other-event-times-list';
+export const otherEventTimesListTestId = "other-event-times-list";
 
 const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
   const { t } = useTranslation();
@@ -49,7 +49,7 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconCalendarPlus aria-hidden />}
-        title={t('event.otherTimes.title')}
+        title={t("event.otherTimes.title")}
       >
         <EventList
           id={otherEventTimesListTestId}
@@ -63,8 +63,8 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t('event.otherTimes.buttonHide')
-              : t('event.otherTimes.buttonShow')}
+              ? t("event.otherTimes.buttonHide")
+              : t("event.otherTimes.buttonShow")}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (

@@ -3,22 +3,22 @@ import {
   IconAngleUp,
   IconCalendarPlus,
   IconLayers,
-} from 'hds-react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
+} from "hds-react";
+import { useTranslation } from "next-i18next";
+import React from "react";
 
-import InfoWithIcon from '../../../common/components/infoWithIcon/InfoWithIcon';
-import linkStyles from '../../../common/components/link/link.module.scss';
-import SkeletonLoader from '../../../common/components/skeletonLoader/SkeletonLoader';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import { useSubEvents, useSubEventsQueryVariables } from '../queryUtils';
-import { EventFields, SuperEventResponse } from '../types';
-import EventList from './eventList/EventList';
-import styles from './eventList/eventList.module.scss';
+import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
+import SkeletonLoader from "../../../common-events/components/skeletonLoader/SkeletonLoader";
+import linkStyles from "../../../common/components/link/link.module.scss";
+import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
+import { useSubEvents, useSubEventsQueryVariables } from "../queryUtils";
+import { EventFields, SuperEventResponse } from "../types";
+import EventList from "./eventList/EventList";
+import styles from "./eventList/eventList.module.scss";
 
 const EVENTS_LIST_LIMIT = 3;
-export const subEventsListTestId = 'sub-events-list';
-export const superEventTestId = 'super-event';
+export const subEventsListTestId = "sub-events-list";
+export const superEventTestId = "super-event";
 
 const SubEvents: React.FC<{ event: EventFields }> = ({ event }) => {
   const { t } = useTranslation();
@@ -73,8 +73,14 @@ const SubEvents: React.FC<{ event: EventFields }> = ({ event }) => {
    * NOTE: This means that there should never be more than 3 levels in event hierarchy.
    */
   const [title, titleIcon] = isMiddleLevelEvent
-    ? [t('event.otherTimes.title'), <IconCalendarPlus aria-hidden />]
-    : [t('event.subEvents.title'), <IconLayers aria-hidden />];
+    ? [
+        t("event.otherTimes.title"),
+        <IconCalendarPlus key={"icon-calendar´" + Math.random()} aria-hidden />,
+      ]
+    : [
+        t("event.subEvents.title"),
+        <IconLayers key={"icon-layers" + Math.random()} aria-hidden />,
+      ];
 
   return (
     <div className={styles.eventList}>
@@ -96,8 +102,8 @@ const SubEvents: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t('event.relatedEvents.buttonHide')
-              : t('event.relatedEvents.buttonShow')}
+              ? t("event.relatedEvents.buttonHide")
+              : t("event.relatedEvents.buttonShow")}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (
@@ -121,13 +127,13 @@ const SuperEvent: React.FC<{ superEvent: SuperEventResponse | undefined }> = ({
 
   if (!superEvent?.data) return null;
 
-  if (superEvent?.status === 'pending') return <SkeletonLoader />;
+  if (superEvent?.status === "pending") return <SkeletonLoader />;
 
   return (
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconLayers aria-hidden />}
-        title={t('event.superEvent.title')}
+        title={t("event.superEvent.title")}
       >
         <EventList id={superEventTestId} showName events={[superEvent.data]} />
       </InfoWithIcon>

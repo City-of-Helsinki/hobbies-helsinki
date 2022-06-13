@@ -1,13 +1,13 @@
 import { supportedLanguages } from "../../constants";
 import { LocalizedObject } from "../../domain/nextApi/graphql/generated/graphql";
-import { Locale } from "../../types";
+import { Language } from "../../types";
 
 /**
  * Check is the instance that is rendering component client (not SSR)
  */
 const getLocalizedString = (
   obj: LocalizedObject | undefined | null = {},
-  language: Locale
+  language: Language
 ): string => {
   if (obj === null) {
     return "";

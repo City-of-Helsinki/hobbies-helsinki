@@ -40,7 +40,9 @@ const EventCard: React.FC<Props> = ({ event }) => {
   const queryString = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  const eventUrl = `${getI18nPath("/event", locale)}/${event.id}${queryString}`;
+  const eventUrl = `${getI18nPath("/courses", locale)}/${
+    event.id
+  }${queryString}`;
   const eventClosed = isEventClosed(event);
   const eventPriceText = getEventPrice(
     event,

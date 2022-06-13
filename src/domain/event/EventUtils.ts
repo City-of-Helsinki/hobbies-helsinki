@@ -10,7 +10,7 @@ import {
   LocalizedObject,
   PlaceFieldsFragment,
 } from "../nextApi/graphql/generated/graphql";
-import { Locale } from "../../types";
+import { Language } from "../../types";
 import {
   EVENT_KEYWORD_BLACK_LIST,
   EVENT_LOCATIONS,
@@ -99,7 +99,7 @@ export const formatPrice = (price?: string): string => {
  */
 export const getEventPrice = (
   event: EventFieldsFragment,
-  locale: Locale,
+  locale: Language,
   isFreeText: string
 ): string => {
   return isEventFree(event)
@@ -121,7 +121,7 @@ export const getKeywordList = (
     id?: string | null;
     name?: LocalizedObject | null;
   }[] = [],
-  locale: Locale
+  locale: Language
 ): KeywordOption[] => {
   return list
     .map((listItem) => ({
@@ -181,7 +181,7 @@ export const getEventSomeImageUrl = (event: EventFieldsFragment): string => {
  */
 export const getEventDistrict = (
   event: EventFieldsFragment,
-  locale: Locale
+  locale: Language
 ): string | null => {
   const location = event.location;
   const district = location?.divisions?.find((division) =>
@@ -197,7 +197,10 @@ export const getEventDistrict = (
  * @param {string} locale
  * @return {string}
  */
-const getEventLocationFields = (event: EventFieldsFragment, locale: Locale) => {
+const getEventLocationFields = (
+  event: EventFieldsFragment,
+  locale: Language
+) => {
   const location = event.location;
   return {
     addressLocality: getLocalisedString(location?.addressLocality, locale),
@@ -229,7 +232,7 @@ export const getLocationId = (
  */
 export const getServiceMapUrl = (
   event: EventFields,
-  locale: Locale,
+  locale: Language,
   isEmbedded?: boolean
 ): string => {
   const location = event.location;
@@ -250,7 +253,7 @@ export const getServiceMapUrl = (
  */
 export const getGoogleDirectionsLink = (
   event: EventFieldsFragment,
-  locale: Locale
+  locale: Language
 ): string => {
   const { addressLocality, coordinates, postalCode, streetAddress } =
     getEventLocationFields(event, locale);
@@ -268,7 +271,7 @@ export const getGoogleDirectionsLink = (
  */
 export const getHslDirectionsLink = (
   event: EventFieldsFragment,
-  locale: Locale
+  locale: Language
 ): string => {
   const { addressLocality, coordinates, streetAddress } =
     getEventLocationFields(event, locale);
@@ -288,7 +291,7 @@ export const getHslDirectionsLink = (
  */
 const getOfferInfoUrl = (
   event: EventFieldsFragment,
-  locale: Locale
+  locale: Language
 ): string => {
   const offer = event.offers.find((item) =>
     getLocalisedString(item.infoUrl, locale)
@@ -310,7 +313,7 @@ const getRegistrationUrl = (event: EventFieldsFragment) => {
  * @return {object}
  */
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
-export const getEventFields = (event: EventFields, locale: Locale) => {
+export const getEventFields = (event: EventFields, locale: Language) => {
   const eventLocation = event.location;
   const offerInfoUrl = getOfferInfoUrl(event, locale);
   const registrationUrl = getRegistrationUrl(event);
@@ -328,7 +331,12 @@ export const getEventFields = (event: EventFields, locale: Locale) => {
     imageUrl: getEventImageUrl(event),
     infoUrl: getLocalisedString(event.infoUrl, locale),
     keywords: getKeywordList(event.keywords, locale),
-    Locales: event.inLocale
+    languages: event.inLanguage
+      .map((item: EventFields["inLanguage"][number]) =>
+        capitalize(getLocalisedString(item.name, locale))
+      )
+      .filter((e: EventFields["inLanguage"][number]) => e),
+    locales: event.inLocale
       ?.filter((e: EventFields["inLocale"][number]) => e)
       ?.map((item: EventFields["inLocale"][number]) =>
         capitalize(getLocalisedString(item.name, locale))
@@ -357,7 +365,7 @@ export const getEventFields = (event: EventFields, locale: Locale) => {
 
 export const isLocalized = (
   event: EventFieldsFragment,
-  locale: Locale
+  locale: Language
 ): boolean =>
   Boolean(
     event.name?.[locale] &&

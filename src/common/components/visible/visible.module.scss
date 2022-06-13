@@ -1,0 +1,61 @@
+@import "breakpoints";
+
+.aboveXs {
+  @include respond_below(xs) {
+    display: none !important;
+  }
+}
+
+.aboveSm {
+  @include respond_below(s) {
+    display: none !important;
+  }
+}
+
+.aboveMd {
+  @include respond_below(m) {
+    display: none !important;
+  }
+}
+
+.aboveLg {
+  @include respond_below(l) {
+    display: none !important;
+  }
+}
+
+.aboveXlg {
+  @include respond_below(xl) {
+    display: none !important;
+  }
+}
+
+.belowXs {
+  @include respond_above(xs) {
+    display: none !important;
+  }
+}
+
+.belowSm {
+  @include respond_above(s) {
+    display: none !important;
+  }
+}
+
+.belowMd {
+  @include respond_above(m) {
+    display: none !important;
+  }
+}
+
+.belowLg {
+  @include respond_above(l) {
+    display: none !important;
+  }
+}
+
+.belowXlg {
+  @include respond_above(xl) {
+    display: none !important;
+  }
+}

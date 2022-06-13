@@ -3,11 +3,11 @@ import NextLink, { LinkProps } from "next/link";
 
 import useRouter from "./useRouter";
 import { getI18nPath, stringifyUrlObject } from "./utils";
-import { Locale } from "../../../types";
+import { Language } from "../../../types";
 
 type Props = React.PropsWithChildren<Omit<LinkProps, "locale">> & {
   escape?: boolean;
-  locale?: Locale | false;
+  locale?: Language | false;
 };
 
 export default function Link({ href, escape, ...delegated }: Props) {

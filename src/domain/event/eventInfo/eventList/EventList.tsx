@@ -1,28 +1,29 @@
-import { IconArrowRight } from 'hds-react';
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { IconArrowRight } from "hds-react";
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import React from "react";
 
-import { EventFieldsFragment } from '../../../../generated/graphql';
-import useLocale from '../../../../hooks/useLocale';
-import getDateRangeStr from '../../../../util/getDateRangeStr';
-import { ROUTES } from '../../../app/routes/constants';
-import { getEventFields } from '../../EventUtils';
-import { EventFields } from '../../types';
-import styles from './eventList.module.scss';
+import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
+import useLocale from "../../../../common/hooks/useLocale";
+import Link from "../../../i18n/router/Link";
+import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
+import { getEventFields } from "../../EventUtils";
+import { EventFields } from "../../types";
+import styles from "./eventList.module.scss";
 
 const EventList: React.FC<{
   events: EventFields[];
-  showDate?: Boolean;
-  showName?: Boolean;
+  showDate?: boolean;
+  showName?: boolean;
   id: string;
 }> = ({ events, showDate = false, showName = false, id }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const { search } = useLocation();
+  const router = useRouter();
+  const search = router.asPath.split("?")[1];
 
   const getLinkUrl = (event: EventFieldsFragment) => {
-    return `/${locale}${ROUTES.EVENT.replace(':id', event.id)}${search}`;
+    return `/courses/${event.id}${search}`;
   };
 
   return (
@@ -35,23 +36,23 @@ const EventList: React.FC<{
               end: event.endTime,
               includeTime: true,
               locale,
-              timeAbbreviation: t('commons.timeAbbreviation'),
+              timeAbbreviation: t("commons.timeAbbreviation"),
             })
-          : '';
+          : "";
         return (
           <li key={event.id}>
             <Link
-              to={getLinkUrl(event)}
-              className={styles.listButton}
+              href={getLinkUrl(event)}
+              // className={styles.listButton}
               aria-label={
                 showDate
-                  ? t('event.otherTimes.buttonReadMore', {
+                  ? t("event.otherTimes.buttonReadMore", {
                       date,
                     })
-                  : t('event.relatedEvents.buttonReadMore')
+                  : t("event.relatedEvents.buttonReadMore")
               }
             >
-              <span>{`${showName ? name : ''} ${showDate ? date : ''}`}</span>
+              <span>{`${showName ? name : ""} ${showDate ? date : ""}`}</span>
               <div className={styles.arrowContainer}>
                 <IconArrowRight aria-hidden />
               </div>
