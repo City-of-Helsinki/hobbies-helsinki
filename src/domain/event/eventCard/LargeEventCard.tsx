@@ -54,7 +54,9 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
   const queryString = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  const eventUrl = `${getI18nPath("/event", locale)}/${event.id}${queryString}`;
+  const eventUrl = `${getI18nPath("/courses", locale)}/${
+    event.id
+  }${queryString}`;
 
   const showBuyButton = !eventClosed && !!offerInfoUrl && !isEventFree(event);
 

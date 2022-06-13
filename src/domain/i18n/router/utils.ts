@@ -4,7 +4,7 @@ import qs from "query-string";
 import { NextRouter } from "next/router";
 
 import i18nRoutes from "../../../../i18nRoutes.config";
-import { Locale } from "../../../types";
+import { Language } from "../../../types";
 import AppConfig from "../../../domain/app/AppConfig";
 
 // dynamic path: /venues/:id
@@ -100,12 +100,12 @@ export function stringifyUrlObject(url: UrlObject): string {
   return `${pathname}${search}`;
 }
 
-export function getLocaleOrError(locale: string): Locale {
+export function getLocaleOrError(locale: string): Language {
   if (!AppConfig.locales.includes(locale)) {
     throw Error(`Locale ${locale} is not supported`);
   }
 
-  return locale as Locale;
+  return locale as Language;
 }
 
 /**

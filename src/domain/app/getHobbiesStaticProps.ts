@@ -8,10 +8,12 @@ import {
 // import { PageDocument } from "react-helsinki-headless-cms/apollo";
 
 import AppConfig from "./AppConfig";
-import { Language } from "../../types";
+import { CmsLanguage } from "../../types";
 import { getMenuLocationFromLanguage } from "../../common/apollo/utils";
 import { staticGenerationLogger } from "../logger";
 import { createCmsApolloClient } from "../clients/cmsApolloClient";
+import { createEventsApolloClient } from "../clients/eventsApolloClient";
+import { DEFAULT_LANGUAGE } from "../../constants";
 
 const GLOBAL_QUERY = gql`
   fragment PageFragment on RootQuery {
@@ -46,6 +48,7 @@ const GLOBAL_QUERY = gql`
 
 type HobbiesContext = {
   cmsClient: ApolloClient<NormalizedCacheObject>;
+  eventsClient: ApolloClient<NormalizedCacheObject>;
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -56,10 +59,11 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
   ) => Promise<GetStaticPropsResult<P>>
 ) {
   const cmsClient = createCmsApolloClient();
+  const eventsClient = createEventsApolloClient();
 
   try {
     await getGlobalCMSData({ client: cmsClient, context });
-    const result = await tryToGetPageProps({ cmsClient });
+    const result = await tryToGetPageProps({ cmsClient, eventsClient });
     const props =
       "props" in result
         ? {
@@ -74,7 +78,8 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
       ...result,
       props,
     };
-  } catch (e) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  } catch (e: any) {
     // Generic error handling
     staticGenerationLogger.error("Error while generating a page:", e);
 
@@ -101,7 +106,7 @@ type GetGlobalCMSDataParams = {
 // Get CMS data that's required on every page
 async function getGlobalCMSData({ client, context }: GetGlobalCMSDataParams) {
   const menuLocation = getMenuLocationFromLanguage(
-    context.locale ?? context.defaultLocale
+    context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE
   );
   const queryOptions = {
     query: GLOBAL_QUERY,
@@ -121,7 +126,7 @@ async function getGlobalCMSData({ client, context }: GetGlobalCMSDataParams) {
 }
 
 function getSupportedLanguages(
-  languages: Language[],
+  languages: CmsLanguage[],
   context: GetStaticPropsContext
 ) {
   // NextJS uses locales as is in the slug. The headless CMS has a locale and
@@ -129,5 +134,5 @@ function getSupportedLanguages(
   // so, we have to provide the slug field value for NextJS when configuring its
   // i18n module. That's why we are trying to find the slug field from NextJS
   // locales.
-  return languages.filter(({ slug }) => context.locales.includes(slug));
+  return languages.filter(({ slug }) => context.locales?.includes(slug));
 }

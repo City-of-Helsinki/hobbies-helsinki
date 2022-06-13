@@ -1,35 +1,36 @@
-import React from 'react';
-import { useTranslation } from 'react-i18next';
-import { useLocation } from 'react-router';
-import { toast } from 'react-toastify';
+import { useTranslation } from "next-i18next";
+import { useRouter } from "next/router";
+import React from "react";
+import { toast } from "react-toastify";
 
+import useLocale from "../../common/hooks/useLocale";
 import {
   EventListQuery,
   EventListQueryVariables,
   EventTypeId,
   useEventListQuery,
-} from '../../generated/graphql';
-import useLocale from '../../hooks/useLocale';
+} from "../nextApi/graphql/generated/graphql";
 import {
-  EVENT_DEFAULT_SEARCH_FILTERS,
+  COURSE_DEFAULT_SEARCH_FILTERS,
   EVENT_SORT_OPTIONS,
   PAGE_SIZE,
-} from '../eventSearch/constants';
+} from "../search/eventSearch/constants";
 import {
   getEventSearchVariables,
   getNextPage,
   getSearchQuery,
-} from '../eventSearch/utils';
-import { SIMILAR_EVENTS_AMOUNT } from './constants';
-import { getEventFields, getEventIdFromUrl } from './EventUtils';
-import { EventFields } from './types';
+} from "../search/eventSearch/utils";
+import { SIMILAR_EVENTS_AMOUNT } from "./constants";
+import { getEventFields, getEventIdFromUrl } from "./EventUtils";
+import { EventFields } from "./types";
 
 const useSimilarEventsQueryVariables = (event: EventFields) => {
   const locale = useLocale();
-  const { search } = useLocation();
+  const router = useRouter();
+  const search = router.asPath.split("?")[1];
   const { keywords } = getEventFields(event, locale);
   const eventSearch = getSearchQuery({
-    ...EVENT_DEFAULT_SEARCH_FILTERS,
+    ...COURSE_DEFAULT_SEARCH_FILTERS,
     keyword: keywords.map((keyword) => keyword.id),
   });
 
@@ -37,19 +38,19 @@ const useSimilarEventsQueryVariables = (event: EventFields) => {
     // Filter by search query if exists, if not filter by event keywords
     const searchParams = new URLSearchParams(search || eventSearch);
     return getEventSearchVariables({
-      include: ['keywords', 'location'],
+      include: ["keywords", "location"],
       language: locale,
       pageSize: PAGE_SIZE,
       params: searchParams,
       sortOrder: EVENT_SORT_OPTIONS.START_TIME,
-      superEventType: ['umbrella', 'none'],
+      superEventType: ["umbrella", "none"],
     });
   }, [eventSearch, locale, search]);
 };
 
 export const useSimilarEventsQuery = (
   event: EventFields
-): { loading: boolean; data: EventListQuery['eventList']['data'] } => {
+): { loading: boolean; data: EventListQuery["eventList"]["data"] } => {
   const eventFilters = useSimilarEventsQueryVariables(event);
   const { data: eventsData, loading } = useEventListQuery({
     ssr: false,
@@ -69,17 +70,17 @@ export const useSimilarEventsQuery = (
 
 const useOtherEventTimesVariables = (event: EventFields) => {
   const superEventId = React.useMemo(
-    () => getEventIdFromUrl(event.superEvent?.internalId || '', 'event'),
+    () => getEventIdFromUrl(event.superEvent?.internalId || "", "event"),
     [event.superEvent]
   );
 
   const variables = React.useMemo(
     (): EventListQueryVariables => ({
-      include: ['in_language', 'keywords', 'location', 'audience'],
+      include: ["in_language", "keywords", "location", "audience"],
       sort: EVENT_SORT_OPTIONS.START_TIME,
-      start: 'now',
+      start: "now",
       superEvent: superEventId,
-      eventType: [EventTypeId.General],
+      eventType: [EventTypeId.Course],
     }),
     [superEventId]
   );
@@ -93,10 +94,10 @@ export const useSubEventsQueryVariables = (
   const variables = React.useMemo(
     (): EventListQueryVariables => ({
       sort: EVENT_SORT_OPTIONS.START_TIME,
-      start: 'now',
+      start: "now",
       superEvent: event.id,
-      eventType: [EventTypeId.General],
-      include: ['in_language', 'keywords', 'location', 'audience'],
+      eventType: [EventTypeId.Course],
+      include: ["in_language", "keywords", "location", "audience"],
     }),
     [event.id]
   );
@@ -132,7 +133,7 @@ export const useSubEvents = (
           },
         });
       } catch (e) {
-        toast.error(t('event.info.errorLoadMode'));
+        toast.error(t("event.info.errorLoadMode"));
       }
       setIsFetchingMore(false);
     },

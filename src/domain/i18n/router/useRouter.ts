@@ -1,7 +1,7 @@
 import { useRouter as useNextRouter } from "next/router";
 
 import { DEFAULT_LANGUAGE } from "../../../constants";
-import { Locale } from "../../../types";
+import { Language } from "../../../types";
 import { getI18nPath, stringifyUrlObject } from "./utils";
 
 export default function useRouter() {
@@ -10,8 +10,8 @@ export default function useRouter() {
 
   return {
     ...router,
-    defaultLocale: defaultLocale as Locale,
-    locale: locale as Locale,
+    defaultLocale: defaultLocale as Language,
+    locale: locale as Language,
     asPath:
       stringifyUrlObject({
         pathname: getI18nPath(router.route, locale ?? DEFAULT_LANGUAGE),

@@ -7,7 +7,7 @@ import styles from "./loadingSpinner.module.scss";
 interface Props {
   hasPadding?: boolean;
   isLoading: boolean;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }
 
 const LoadingSpinnerri: FunctionComponent<Props> = ({

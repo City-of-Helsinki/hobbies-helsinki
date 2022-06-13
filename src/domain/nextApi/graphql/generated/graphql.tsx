@@ -604,6 +604,15 @@ export type NeighborhoodListQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type NeighborhoodListQuery = { __typename?: 'Query', neighborhoodList: { __typename?: 'NeighborhoodListResponse', meta: { __typename?: 'Meta', count: number, next?: string | null, previous?: string | null }, data: Array<{ __typename?: 'Neighborhood', id: string, name: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } }> } };
 
+export type OrganizationFieldsFragment = { __typename?: 'OrganizationDetails', id?: string | null, name?: string | null };
+
+export type OrganizationDetailsQueryVariables = Exact<{
+  id: Scalars['ID'];
+}>;
+
+
+export type OrganizationDetailsQuery = { __typename?: 'Query', organizationDetails: { __typename?: 'OrganizationDetails', id?: string | null, name?: string | null } };
+
 export type PlaceFieldsFragment = { __typename?: 'Place', id?: string | null, hasUpcomingEvents?: boolean | null, internalId: string, email?: string | null, postalCode?: string | null, divisions?: Array<{ __typename?: 'Division', type: string, name?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null }> | null, infoUrl?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, name?: { __typename?: 'LocalizedObject', fi?: string | null, en?: string | null, sv?: string | null } | null, addressLocality?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, streetAddress?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, position?: { __typename?: 'PlacePosition', coordinates: Array<number> } | null, telephone?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null };
 
 export type PlaceDetailsQueryVariables = Exact<{
@@ -824,6 +833,12 @@ export const EventFieldsFragmentDoc = gql`
 ${KeywordFieldsFragmentDoc}
 ${PlaceFieldsFragmentDoc}
 ${OfferFieldsFragmentDoc}`;
+export const OrganizationFieldsFragmentDoc = gql`
+    fragment organizationFields on OrganizationDetails {
+  id
+  name
+}
+    `;
 export const EventDetailsDocument = gql`
     query EventDetails($id: ID!, $include: [String]) {
   eventDetails(id: $id, include: $include) {
@@ -997,6 +1012,41 @@ export function useNeighborhoodListLazyQuery(baseOptions?: Apollo.LazyQueryHookO
 export type NeighborhoodListQueryHookResult = ReturnType<typeof useNeighborhoodListQuery>;
 export type NeighborhoodListLazyQueryHookResult = ReturnType<typeof useNeighborhoodListLazyQuery>;
 export type NeighborhoodListQueryResult = Apollo.QueryResult<NeighborhoodListQuery, NeighborhoodListQueryVariables>;
+export const OrganizationDetailsDocument = gql`
+    query OrganizationDetails($id: ID!) {
+  organizationDetails(id: $id) {
+    ...organizationFields
+  }
+}
+    ${OrganizationFieldsFragmentDoc}`;
+
+/**
+ * __useOrganizationDetailsQuery__
+ *
+ * To run a query within a React component, call `useOrganizationDetailsQuery` and pass it any options that fit your needs.
+ * When your component renders, `useOrganizationDetailsQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useOrganizationDetailsQuery({
+ *   variables: {
+ *      id: // value for 'id'
+ *   },
+ * });
+ */
+export function useOrganizationDetailsQuery(baseOptions: Apollo.QueryHookOptions<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>(OrganizationDetailsDocument, options);
+      }
+export function useOrganizationDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>(OrganizationDetailsDocument, options);
+        }
+export type OrganizationDetailsQueryHookResult = ReturnType<typeof useOrganizationDetailsQuery>;
+export type OrganizationDetailsLazyQueryHookResult = ReturnType<typeof useOrganizationDetailsLazyQuery>;
+export type OrganizationDetailsQueryResult = Apollo.QueryResult<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>;
 export const PlaceDetailsDocument = gql`
     query PlaceDetails($id: ID!) {
   placeDetails(id: $id) {

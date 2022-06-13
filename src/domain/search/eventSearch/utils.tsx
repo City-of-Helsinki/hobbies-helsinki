@@ -14,7 +14,7 @@ import buildQueryFromObject from "../../../common/utils/buildQueryFromObject";
 import { formatDate } from "../../../common/utils/dateUtils";
 import getUrlParamAsArray from "../../../common/utils/getUrlParamAsArray";
 import { DATE_TYPES } from "../../../constants";
-import { Locale } from "../../../types";
+import { Language } from "../../../types";
 import {
   EventTypeId,
   Meta,
@@ -137,7 +137,7 @@ export const getEventSearchVariables = ({
   place,
 }: {
   include: string[];
-  language: Locale;
+  language: Language;
   pageSize: number;
   params: URLSearchParams;
   sortOrder: EVENT_SORT_OPTIONS;

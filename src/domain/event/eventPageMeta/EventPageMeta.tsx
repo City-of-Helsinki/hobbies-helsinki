@@ -1,9 +1,9 @@
-import React from 'react';
-import { Helmet } from 'react-helmet';
+import React from "react";
+import { Helmet } from "react-helmet";
 
-import useLocale from '../../../hooks/useLocale';
-import { getEventFields } from '../EventUtils';
-import { EventFields } from '../types';
+import useLocale from "../../../common/hooks/useLocale";
+import { getEventFields } from "../EventUtils";
+import { EventFields } from "../types";
 
 interface Props {
   event: EventFields;
@@ -33,7 +33,7 @@ const EventPageMeta: React.FC<Props> = ({ event }) => {
         name="keywords"
         content={keywords
           .map((keyword) => keyword.name.toLowerCase())
-          .join(', ')}
+          .join(", ")}
       />
       <meta name="twitter:card" content="summary" />
       {Object.entries(openGraphProperties).map(([property, value]) => (

@@ -3,20 +3,54 @@ import {
   ApolloLink,
   HttpLink,
   InMemoryCache,
+  NormalizedCacheObject,
 } from "@apollo/client";
 import { onError } from "@apollo/client/link/error";
 import * as Sentry from "@sentry/browser";
 import get from "lodash/get";
 
+import isClient from "../../common/utils/isClient";
+
 const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_NEXT_API_GRAPHQL_ENDPOINT;
 
+export const createEventsApolloClient = (
+  initialState: NormalizedCacheObject = {}
+): ApolloClient<NormalizedCacheObject> => {
+  const httpLink = new HttpLink({
+    uri: GRAPHQL_ENDPOINT,
+  });
+
+  const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors) {
+      graphQLErrors.forEach(({ message, locations, path }) => {
+        const errorMessage = `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`;
+        Sentry.captureMessage(errorMessage);
+      });
+    }
+
+    if (networkError) {
+      Sentry.captureMessage("Network error");
+    }
+  });
+
+  const cache = createEventsApolloCache().restore(initialState || {});
+
+  return new ApolloClient({
+    ssrMode: !isClient, // Disables forceFetch on the server (so queries are only run once)
+    // TODO: Add error link after adding Sentry to the project
+    link: ApolloLink.from([errorLink, httpLink]),
+    cache,
+  });
+};
+
 const excludeArgs =
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   (excludedArgs: string[]) => (args: Record<string, any> | null) =>
     args
       ? Object.keys(args).filter((key: string) => !excludedArgs.includes(key))
       : false;
 
-export const createApolloCache = () => {
+export const createEventsApolloCache = () => {
   const cache = new InMemoryCache({
     typePolicies: {
       Query: {
@@ -48,6 +82,7 @@ export const createApolloCache = () => {
           // See eventList keyArgs for explanation why page is filtered.
           eventsByIds: {
             keyArgs: excludeArgs(["page"]),
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             merge(existing, incoming, options) {
               return {
                 data: [...(existing?.data ?? []), ...incoming.data],
@@ -69,26 +104,6 @@ export const createApolloCache = () => {
   return cache;
 };
 
-const httpLink = new HttpLink({
-  uri: GRAPHQL_ENDPOINT,
-});
-
-const errorLink = onError(({ graphQLErrors, networkError }) => {
-  if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      const errorMessage = `[GraphQL error]: Message: ${message}, Location: ${locations}, Path: ${path}`;
-      Sentry.captureMessage(errorMessage);
-    });
-  }
-
-  if (networkError) {
-    Sentry.captureMessage("Network error");
-  }
-});
-
-const apolloClient = new ApolloClient({
-  cache: createApolloCache(),
-  link: ApolloLink.from([errorLink, httpLink]),
-});
+const apolloClient = createEventsApolloClient();
 
 export default apolloClient;
