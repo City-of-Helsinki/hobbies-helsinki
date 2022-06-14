@@ -6,6 +6,7 @@ import React from "react";
 import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
 import isClient from "../../common/utils/isClient";
 import { addParamsToQueryString } from "../../common/utils/queryString";
+import ErrorHero from "../error/ErrorHero";
 import Link from "../i18n/router/Link";
 import {
   EventDetailsDocument,
@@ -95,9 +96,14 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
               {isClient && showSimilarEvents && <SimilarEvents event={event} />}
             </>
           ) : (
-            <Link href={`/search${search}`}>
-              {t("event.notFound.linkSearchEvents")}
-            </Link>
+            <ErrorHero
+              text={t("event.notFound.text")}
+              title={t("event.notFound.title")}
+            >
+              <Link href={`/search${search}`}>
+                {t("event.notFound.linkSearchEvents")}
+              </Link>
+            </ErrorHero>
           )}
         </LoadingSpinner>
       </main>
