@@ -11,6 +11,7 @@ import { DEFAULT_LANGUAGE } from "../../constants";
 import AdvancedSearch from "../../domain/search/eventSearch/AdvancedSearch";
 import Navigation from "../../common-events/components/navigation/Navigation";
 import SearchPage from "../../domain/search/eventSearch/SearchPage";
+import FooterSection from "../../domain/footer/Footer";
 
 export default function Search() {
   const router = useRouter();
@@ -44,7 +45,7 @@ export default function Search() {
           pageTitle={"eventSearch.title"}
         />
       }
-      footer={<footer>TODO: footer</footer>}
+      footer={<FooterSection />}
     />
   );
 }
