@@ -7,9 +7,17 @@ const i18nRoutes = {
     { source: "/kurssit/:id", locale: "fi" },
     { source: "/kurser/:id", locale: "sv" },
   ],
+  "/articles/:slug": [
+    { source: "/artikkelit/:slug", locale: "fi" },
+    { source: "/artiklar/:slug", locale: "sv" },
+  ],
+  "/pages/:slug": [
+    { source: "/sivut/:slug", locale: "fi" },
+    { source: "/sidor/:slug", locale: "sv" },
+  ],
   "/accessibility": [
-    { source: "/saavutettavuusseloste", locale: "fi" },
-    { source: "/tillgänglighetsutlåtande", locale: "sv" },
+    { source: "/saavutetavuusseloste", locale: "fi" },
+    { source: "/tillgäntglighetsutlåtande", locale: "sv" },
   ],
   "/about": [
     { source: "/tietoa", locale: "fi" },
