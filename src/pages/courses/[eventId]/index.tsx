@@ -5,6 +5,7 @@ import { Page as RHHCPage } from "react-helsinki-headless-cms";
 import Navigation from "../../../common-events/components/navigation/Navigation";
 import eventsWithApollo from "../../../domain/clients/eventsWithApollo";
 import EventPageContainer from "../../../domain/event/EventPageContainer";
+import FooterSection from "../../../domain/footer/Footer";
 
 const Event: NextPage = () => {
   return (
@@ -12,7 +13,7 @@ const Event: NextPage = () => {
       className="pageLayout"
       navigation={<Navigation />}
       content={<EventPageContainer />}
-      footer={<footer>TODO: footer</footer>}
+      footer={<FooterSection />}
     />
   );
 };

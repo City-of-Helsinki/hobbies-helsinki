@@ -17,6 +17,7 @@ import {
 } from "../domain/search/landingPage/LandingPage";
 import { DEFAULT_LANGUAGE } from "../constants";
 import Navigation from "../common-events/components/navigation/Navigation";
+import FooterSection from "../domain/footer/Footer";
 
 export default function HomePage() {
   const router = useRouter();
@@ -45,7 +46,7 @@ export default function HomePage() {
           PageContentLayoutComponent={LandingPageContentLayout}
         />
       }
-      footer={<footer>TODO: footer</footer>}
+      footer={<FooterSection />}
     />
   );
 }
