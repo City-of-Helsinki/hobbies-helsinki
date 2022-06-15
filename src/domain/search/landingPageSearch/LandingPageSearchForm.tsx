@@ -3,12 +3,12 @@ import { Link } from "react-helsinki-headless-cms";
 import { TFunction } from "next-i18next";
 import classnames from "classnames";
 
-import DateSelector from "../../../common/components/dateSelector/DateSelector";
-import MobileDateSelector from "../../../common/components/mobileDateSelector/MobileDateSelector";
+import DateSelector from "../../../common-events/components/dateSelector/DateSelector";
+import MobileDateSelector from "../../../common-events/components/mobileDateSelector/MobileDateSelector";
 import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
 import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
-import { AutosuggestMenuOption } from "../../../common/types";
-import useLocale from "../../../common/hooks/useLocale";
+import { AutosuggestMenuOption } from "../../../common-events/types";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { getI18nPath } from "../../i18n/router/utils";
 import styles from "./landingPageSearchForm.module.scss";
 
@@ -93,6 +93,7 @@ export default function LandingPageSearchForm({
               onChangeEndDate={setEnd}
               onChangeStartDate={setStart}
               startDate={start}
+              t={t}
             />
           </div>
           <div className={styles.buttonWrapper}>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { getEventFields } from "../EventUtils";
 import { EventFields } from "../types";
 

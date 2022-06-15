@@ -1,13 +1,13 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import { AutosuggestMenuOption } from "../../../common/types";
+import { AutosuggestMenuOption } from "../../../common-events/types";
 import {
   CATEGORY_CATALOG,
   EVENT_DEFAULT_SEARCH_FILTERS,
 } from "../eventSearch/constants";
 import { getEventCategoryOptions, getSearchQuery } from "../eventSearch/utils";
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import useRouter from "../../i18n/router/useRouter";
 import { getI18nPath } from "../../i18n/router/utils";
 import SearchShortcuts from "./SearchShortcuts";

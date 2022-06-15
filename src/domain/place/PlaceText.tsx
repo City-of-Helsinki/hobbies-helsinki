@@ -1,7 +1,7 @@
 import React from "react";
 
-import useLocale from "../../common/hooks/useLocale";
-import getLocalisedString from "../../common/utils/getLocalisedString";
+import useLocale from "../../common-events/hooks/useLocale";
+import getLocalisedString from "../../common-events/utils/getLocalisedString";
 import { usePlaceDetailsQuery } from "../nextApi/graphql/generated/graphql";
 
 interface Props {

@@ -6,8 +6,8 @@ import React from "react";
 import Link from "next/link";
 
 import testImage from "../../../common-events/utils/testImage";
-import useLocale from "../../../common/hooks/useLocale";
-import { addParamsToQueryString } from "../../../common/utils/queryString";
+import useLocale from "../../../common-events/hooks/useLocale";
+import { addParamsToQueryString } from "../../../common-events/utils/__tests__/queryString";
 import { getI18nPath } from "../../i18n/router/utils";
 import EventKeywords from "../eventKeywords/EventKeywords";
 import LocationText from "../eventLocation/EventLocationText";
@@ -22,7 +22,7 @@ import {
 } from "../EventUtils";
 import { EventFields } from "../types";
 import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
-import buttonStyles from "../../../common/components/button/button.module.scss";
+import buttonStyles from "../../../common-events/components/button/button.module.scss";
 import styles from "./largeEventCard.module.scss";
 
 interface Props {

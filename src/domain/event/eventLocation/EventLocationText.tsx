@@ -1,7 +1,7 @@
 import React from "react";
 
 import { EventFieldsFragment } from "../../nextApi/graphql/generated/graphql";
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { getEventFields } from "../EventUtils";
 
 interface Props {

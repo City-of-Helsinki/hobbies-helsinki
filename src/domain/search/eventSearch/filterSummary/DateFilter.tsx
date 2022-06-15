@@ -1,9 +1,9 @@
 import { TFunction } from "next-i18next";
 import React from "react";
 
-import FilterButton from "../../../../common/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common/components/filterButton/types";
-import { translateValue } from "../../../../common/utils/translateUtils";
+import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
+import { FilterType } from "../../../../common-events/components/filterButton/types";
+import { translateValue } from "../../../../common-events/utils/translateUtils";
 
 export interface DateFilterProps {
   onRemove: (value: string, type: FilterType) => void;

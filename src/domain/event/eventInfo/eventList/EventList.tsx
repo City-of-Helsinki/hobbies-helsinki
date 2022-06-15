@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import React from "react";
 
 import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
-import useLocale from "../../../../common/hooks/useLocale";
+import useLocale from "../../../../common-events/hooks/useLocale";
 import Link from "../../../i18n/router/Link";
 import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
 import { getEventFields } from "../../EventUtils";

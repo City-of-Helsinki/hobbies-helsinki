@@ -1,7 +1,7 @@
 import sortBy from "lodash/sortBy";
 
-import useLocale from "../../common/hooks/useLocale";
-import getLocalisedString from "../../common/utils/getLocalisedString";
+import useLocale from "./useLocale";
+import getLocalisedString from "../utils/getLocalisedString";
 import { additionalDivisions } from "../../domain/neighborhood/additionalDivisions";
 import {
   Neighborhood,

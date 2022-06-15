@@ -7,9 +7,9 @@ import {
 } from "../../../constants";
 import useDebounce from "../../../common/hooks/useDebounce";
 import useKeyboardNavigation from "../../../common/hooks/useDropdownKeyboardNavigation";
-import useLocale from "../../../common/hooks/useLocale";
-import { AutosuggestMenuOption } from "../../../common/types";
-import getLocalisedString from "../../../common/utils/getLocalisedString";
+import useLocale from "../../hooks/useLocale";
+import { AutosuggestMenuOption } from "../../types";
+import getLocalisedString from "../../utils/getLocalisedString";
 import AutosuggestMenu from "./AutosuggestMenu";
 import styles from "./searchAutosuggest.module.scss";
 import { useKeywordListQuery } from "../../../domain/nextApi/graphql/generated/graphql";

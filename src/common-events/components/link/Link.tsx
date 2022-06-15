@@ -5,7 +5,7 @@ import React from "react";
 import { LinkProps } from "react-scroll/modules/components/Link";
 
 import RouterLink from "../../../domain/i18n/router/Link";
-import SrOnly from "../srOnly/SrOnly";
+import SrOnly from "../../../common/components/srOnly/SrOnly";
 import styles from "./link.module.scss";
 
 interface Props extends Omit<LinkProps, "size"> {

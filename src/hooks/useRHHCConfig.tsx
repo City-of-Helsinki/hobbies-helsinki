@@ -7,7 +7,7 @@ import {
   ModuleItemTypeEnum,
 } from "react-helsinki-headless-cms";
 
-import useLocale from "../common/hooks/useLocale";
+import useLocale from "../common-events/hooks/useLocale";
 import useRouter from "../domain/i18n/router/useRouter";
 import { getI18nPath } from "../domain/i18n/router/utils";
 

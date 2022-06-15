@@ -16,8 +16,8 @@ import React from "react";
 
 import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
 import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
-import useLocale from "../../../common/hooks/useLocale";
-import linkStyles from "../../../common/components/link/link.module.scss";
+import useLocale from "../../../common-events/hooks/useLocale";
+import linkStyles from "../../../common-events/components/link/link.module.scss";
 import {
   getAudienceAgeText,
   getEventFields,
@@ -30,12 +30,12 @@ import { SubEvents, SuperEvent } from "./EventsHierarchy";
 import OrganizationInfo from "./OrganizationInfo";
 import OtherEventTimes from "./OtherEventTimes";
 import Visible from "../../../common/components/visible/Visible";
-import { translateValue } from "../../../common/utils/translateUtils";
+import { translateValue } from "../../../common-events/utils/translateUtils";
 import IconDirections from "../../../assets/icons/IconDirections";
 import useTabFocusStyle from "../../../common/hooks/useTabFocusStyle";
 import getDateArray from "../../../common-events/utils/getDateArray";
 import useRouter from "../../i18n/router/useRouter";
-import Link from "../../../common/components/link/Link";
+import Link from "../../../common-events/components/link/Link";
 
 interface Props {
   event: EventFields;

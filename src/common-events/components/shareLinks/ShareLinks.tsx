@@ -3,8 +3,8 @@ import { TFunction } from "next-i18next";
 import React from "react";
 
 import LinkIcon from "../../../assets/icons/svg/link.svg";
-import isClient from "../../utils/isClient";
-import CopyButton from "../copyButton/CopyButton";
+import isClient from "../../../common/utils/isClient";
+import CopyButton from "../../../common/components/copyButton/CopyButton";
 import FacebookShareLink from "./FacebookShareLink";
 import LinkedInShareLink from "./LinkedInShareLink";
 import styles from "./shareLinks.module.scss";

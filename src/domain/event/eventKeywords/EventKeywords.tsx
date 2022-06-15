@@ -4,7 +4,7 @@ import React from "react";
 import { scrollToTop } from "react-scroll/modules/mixins/animate-scroll";
 
 import Keyword from "../../../common-events/components/keyword/Keyword";
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { DATE_TYPES } from "../../../constants";
 import { getI18nPath } from "../../i18n/router/utils";
 import { EventFieldsFragment } from "../../nextApi/graphql/generated/graphql";

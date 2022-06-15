@@ -4,7 +4,7 @@ import { TFunction } from "next-i18next";
 import React, { ChangeEvent, FunctionComponent, MutableRefObject } from "react";
 
 import { translateValue } from "../../utils/translateUtils";
-import Checkbox from "../checkbox/Checkbox";
+import Checkbox from "../../../common/components/checkbox/Checkbox";
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./dateSelectorMenu.module.scss"; // the locale you want
 

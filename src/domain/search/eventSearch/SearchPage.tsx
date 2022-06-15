@@ -8,7 +8,7 @@ import eventsApolloClient from "../../clients/eventsApolloClient";
 import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
 import SrOnly from "../../../common/components/srOnly/SrOnly";
 import useIsSmallScreen from "../../../common/hooks/useIsSmallScreen";
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import useRouter from "../../i18n/router/useRouter";
 import {
   QueryEventListArgs,
