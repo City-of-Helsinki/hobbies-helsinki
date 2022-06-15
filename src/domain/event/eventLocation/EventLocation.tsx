@@ -3,7 +3,7 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 
 import SrOnly from "../../../common/components/srOnly/SrOnly";
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { EventFieldsFragment } from "../../nextApi/graphql/generated/graphql";
 import { getEventFields, getServiceMapUrl } from "../EventUtils";
 import styles from "./eventLocation.module.scss";

@@ -4,8 +4,8 @@ import React from "react";
 
 import Container from "../../../common-events/components/layout/Container";
 import sanitizeHtml from "../../../common-events/utils/sanitizeHtml";
-import ShareLinks from "../../../common/components/shareLinks/ShareLinks";
-import useLocale from "../../../common/hooks/useLocale";
+import ShareLinks from "../../../common-events/components/shareLinks/ShareLinks";
+import useLocale from "../../../common-events/hooks/useLocale";
 import { EVENT_LOCATIONS } from "../constants";
 import EventInfo from "../eventInfo/EventInfo";
 import EventLocation from "../eventLocation/EventLocation";

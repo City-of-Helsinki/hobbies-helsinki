@@ -8,7 +8,7 @@ import {
 import { utcToZonedTime } from "date-fns-tz";
 import capitalize from "lodash/capitalize";
 
-import { formatDate } from "../../common/utils/dateUtils";
+import { formatDate } from "./dateUtils";
 import { SUPPORT_LANGUAGES } from "../../constants";
 import getTimeFormat from "./getTimeFormat";
 

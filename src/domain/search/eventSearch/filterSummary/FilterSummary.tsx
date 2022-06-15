@@ -3,11 +3,11 @@ import React from "react";
 import qs from "query-string";
 
 import useDivisionOptions from "../../../../common-events/hooks/useDivisionOptions";
-import FilterButton from "../../../../common/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common/components/filterButton/types";
-import useLocale from "../../../../common/hooks/useLocale";
-import { formatDate } from "../../../../common/utils/dateUtils";
-import { translateValue } from "../../../../common/utils/translateUtils";
+import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
+import { FilterType } from "../../../../common-events/components/filterButton/types";
+import useLocale from "../../../../common-events/hooks/useLocale";
+import { formatDate } from "../../../../common-events/utils/dateUtils";
+import { translateValue } from "../../../../common-events/utils/translateUtils";
 import useRouter from "../../../i18n/router/useRouter";
 import { getI18nPath } from "../../../i18n/router/utils";
 import {

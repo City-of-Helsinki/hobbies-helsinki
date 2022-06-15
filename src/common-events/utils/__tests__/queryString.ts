@@ -1,6 +1,6 @@
-import { supportedLanguages } from "../../constants";
-import { MAPPED_PLACES } from "../../domain/search/eventSearch/constants";
-import { assertUnreachable } from "./typescript.utils";
+import { supportedLanguages } from "../../../constants";
+import { MAPPED_PLACES } from "../../../domain/search/eventSearch/constants";
+import { assertUnreachable } from "../../../common/utils/typescript.utils";
 
 type QueryParamValue = string | string[];
 

@@ -3,7 +3,7 @@ import { TFunction } from "i18next";
 import capitalize from "lodash/capitalize";
 import sum from "lodash/sum";
 
-import getLocalisedString from "../../common/utils/getLocalisedString";
+import getLocalisedString from "../../common-events/utils/getLocalisedString";
 import { EVENT_STATUS } from "../../constants";
 import {
   EventFieldsFragment,

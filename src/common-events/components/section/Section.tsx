@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { Koros } from "hds-react";
 
 import Link from "../../../domain/i18n/router/Link";
-import Text from "../text/Text";
+import Text from "../../../common/components/text/Text";
 import SecondaryLink from "../link/SecondaryLink";
 import styles from "./section.module.scss";
 

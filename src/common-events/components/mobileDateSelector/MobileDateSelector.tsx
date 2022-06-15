@@ -1,11 +1,11 @@
 import classNames from "classnames";
 import { IconCalendar } from "hds-react";
-import { useTranslation } from "next-i18next";
+import { TFunction } from "next-i18next";
 import React from "react";
 
 import { DATE_TYPES } from "../../../constants";
 import { translateValue } from "../../utils/translateUtils";
-import ToggleButton from "../toggleButton/ToggleButton";
+import ToggleButton from "../../../common/components/toggleButton/ToggleButton";
 import styles from "./mobileDateSelector.module.scss";
 import MobileDateSelectorMenu from "./MobileDateSelectorMenu";
 
@@ -17,6 +17,7 @@ interface Props {
   onChangeEndDate: (date: Date | null) => void;
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
+  t: TFunction;
 }
 
 const MobileDateSelector: React.FC<Props> = ({
@@ -28,12 +29,11 @@ const MobileDateSelector: React.FC<Props> = ({
   onChangeEndDate,
   onChangeStartDate,
   startDate,
+  t,
 }) => {
   const closeBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const toggleBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const dateSelector = React.useRef<HTMLDivElement | null>(null);
-
-  const { t } = useTranslation();
 
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -160,6 +160,7 @@ const MobileDateSelector: React.FC<Props> = ({
           onChangeStartDate={onChangeStartDate}
           onCloseMenu={closeMenu}
           startDate={startDate}
+          t={t}
         />
       </div>
     </div>

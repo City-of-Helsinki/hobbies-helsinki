@@ -1,8 +1,8 @@
 import { TFunction } from "next-i18next";
 import React from "react";
 
-import FilterButton from "../../../../common/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common/components/filterButton/types";
+import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
+import { FilterType } from "../../../../common-events/components/filterButton/types";
 
 interface Props {
   onRemove: (value: string, type: FilterType) => void;

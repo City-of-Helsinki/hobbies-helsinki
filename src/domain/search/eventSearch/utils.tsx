@@ -9,10 +9,10 @@ import {
 import { TFunction } from "i18next";
 import isEmpty from "lodash/isEmpty";
 
-import { FilterType } from "../../../common/components/filterButton/types";
+import { FilterType } from "../../../common-events/components/filterButton/types";
 import buildQueryFromObject from "../../../common/utils/buildQueryFromObject";
-import { formatDate } from "../../../common/utils/dateUtils";
-import getUrlParamAsArray from "../../../common/utils/getUrlParamAsArray";
+import { formatDate } from "../../../common-events/utils/dateUtils";
+import getUrlParamAsArray from "../../../common-events/utils/getUrlParamAsArray";
 import { DATE_TYPES } from "../../../constants";
 import { Language } from "../../../types";
 import {

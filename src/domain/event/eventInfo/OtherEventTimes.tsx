@@ -4,7 +4,7 @@ import React from "react";
 
 import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
 import SkeletonLoader from "../../../common-events/components/skeletonLoader/SkeletonLoader";
-import linkStyles from "../../../common/components/link/link.module.scss";
+import linkStyles from "../../../common-events/components/link/link.module.scss";
 import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
 import { useOtherEventTimes } from "../queryUtils";
 import { EventFields } from "../types";

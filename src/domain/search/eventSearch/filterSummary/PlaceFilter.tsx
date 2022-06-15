@@ -1,10 +1,10 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import FilterButton from "../../../../common/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common/components/filterButton/types";
-import useLocale from "../../../../common/hooks/useLocale";
-import getLocalisedString from "../../../../common/utils/getLocalisedString";
+import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
+import { FilterType } from "../../../../common-events/components/filterButton/types";
+import useLocale from "../../../../common-events/hooks/useLocale";
+import getLocalisedString from "../../../../common-events/utils/getLocalisedString";
 import { usePlaceDetailsQuery } from "../../../nextApi/graphql/generated/graphql";
 
 interface Props {

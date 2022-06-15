@@ -3,8 +3,8 @@ import { Checkbox, IconAngleDown, IconAngleUp, TextInput } from "hds-react";
 import { TFunction } from "next-i18next";
 import React from "react";
 
-import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
-import { skipFalsyType } from "../../utils/typescript.utils";
+import SearchLabel from "../search/searchLabel/SearchLabel";
+import { skipFalsyType } from "../../../common/utils/typescript.utils";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import styles from "./rangeDropdown.module.scss";
 

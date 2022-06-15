@@ -2,10 +2,10 @@ import React from "react";
 
 import MultiSelectDropdown, {
   MultiselectDropdownProps,
-} from "../../../common/components/multiSelectDropdown/MultiSelectDropdown";
+} from "../../../common-events/components/multiSelectDropdown/MultiSelectDropdown";
 import useDebounce from "../../../common/hooks/useDebounce";
-import useLocale from "../../../common/hooks/useLocale";
-import getLocalisedString from "../../../common/utils/getLocalisedString";
+import useLocale from "../../../common-events/hooks/useLocale";
+import getLocalisedString from "../../../common-events/utils/getLocalisedString";
 import isClient from "../../../common/utils/isClient";
 import eventsApolloClient from "../../clients/eventsApolloClient";
 import { usePlaceListQuery } from "../../nextApi/graphql/generated/graphql";

@@ -1,6 +1,6 @@
 import { DateArray } from "ics";
 
-import { formatDate } from "../../common/utils/dateUtils";
+import { formatDate } from "./dateUtils";
 
 /**
  * Return date as a array of numbers. Used to convert date to a format that createEvent (ics) supports

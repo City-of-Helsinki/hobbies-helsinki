@@ -17,7 +17,7 @@ import useRHHCConfig from "../hooks/useRHHCConfig";
 
 const TopProgressBar = dynamic(
   () => {
-    return import("../common/components/topProgressBar/TopProgressBar");
+    return import("../common-events/components/topProgressBar/TopProgressBar");
   },
   { ssr: false }
 );

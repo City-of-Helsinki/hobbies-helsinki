@@ -1,7 +1,7 @@
 import { stringify } from "query-string";
 import React, { ReactNode } from "react";
 
-import isClient from "../../utils/isClient";
+import isClient from "../../../common/utils/isClient";
 
 interface Props {
   linkLabel: string;

@@ -5,7 +5,7 @@ import { PageContentLayoutProps } from "react-helsinki-headless-cms/";
 
 import Hero from "../../../common/components/hero/Hero";
 import HeroImage from "../../../common/components/hero/HeroImage";
-import Section from "../../../common/components/section/Section";
+import Section from "../../../common-events/components/section/Section";
 import LandingPageSearch from "../landingPageSearch/LandingPageSearch";
 import styles from "./landingPage.module.scss";
 

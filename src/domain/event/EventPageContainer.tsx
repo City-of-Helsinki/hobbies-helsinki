@@ -5,7 +5,7 @@ import React from "react";
 
 import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
 import isClient from "../../common/utils/isClient";
-import { addParamsToQueryString } from "../../common/utils/queryString";
+import { addParamsToQueryString } from "../../common-events/utils/__tests__/queryString";
 import ErrorHero from "../error/ErrorHero";
 import Link from "../i18n/router/Link";
 import {
@@ -15,11 +15,11 @@ import {
 import EventClosedHero from "./eventClosedHero/EventClosedHero";
 import EventContent from "./eventContent/EventContent";
 import EventHero from "./eventHero/EventHero";
-import styles from "./eventPage.module.scss";
 import EventPageMeta from "./eventPageMeta/EventPageMeta";
 import { getEventIdFromUrl, isEventClosed } from "./EventUtils";
 import SimilarEvents from "./similarEvents/SimilarEvents";
 import { SuperEventResponse } from "./types";
+import styles from "./eventPage.module.scss";
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;

@@ -2,7 +2,7 @@ import { Button } from "hds-react";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../../common-events/hooks/useLocale";
 import useRouter from "../../i18n/router/useRouter";
 import { getI18nPath } from "../../i18n/router/utils";
 import styles from "./eventClosedHero.module.scss";

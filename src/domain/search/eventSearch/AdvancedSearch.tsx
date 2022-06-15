@@ -10,10 +10,10 @@ import SearchAutosuggest from "../../../common-events/components/search/SearchAu
 import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
 // import useDivisionOptions from "../../../common-events/hooks/useDivisionOptions";
 import Checkbox from "../../../common/components/checkbox/Checkbox";
-import DateSelector from "../../../common/components/dateSelector/DateSelector";
-import MultiSelectDropdown from "../../../common/components/multiSelectDropdown/MultiSelectDropdown";
-import useLocale from "../../../common/hooks/useLocale";
-import { AutosuggestMenuOption } from "../../../common/types";
+import DateSelector from "../../../common-events/components/dateSelector/DateSelector";
+import MultiSelectDropdown from "../../../common-events/components/multiSelectDropdown/MultiSelectDropdown";
+import useLocale from "../../../common-events/hooks/useLocale";
+import { AutosuggestMenuOption } from "../../../common-events/types";
 import useRouter from "../../i18n/router/useRouter";
 import { getI18nPath } from "../../i18n/router/utils";
 import PlaceSelector from "../../place/placeSelector/PlaceSelector";
@@ -31,7 +31,7 @@ import {
   MIN_AGE,
 } from "./utils";
 import styles from "./search.module.scss";
-import RangeDropdown from "../../../common/components/rangeDropdown/RangeDropdown";
+import RangeDropdown from "../../../common-events/components/rangeDropdown/RangeDropdown";
 
 interface Props {
   scrollToResultList: () => void;

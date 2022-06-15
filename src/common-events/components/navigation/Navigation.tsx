@@ -1,6 +1,6 @@
 import { Navigation as RHHCApolloNavigation } from "react-helsinki-headless-cms/apollo";
 
-import useLocale from "../../../common/hooks/useLocale";
+import useLocale from "../../hooks/useLocale";
 import { DEFAULT_HEADER_MENU_NAME } from "../../../constants";
 import useRouter from "../../../domain/i18n/router/useRouter";
 
