@@ -12,7 +12,7 @@ const Event: NextPage = () => {
     <RHHCPage
       className="pageLayout"
       navigation={<Navigation />}
-      content={<EventPageContainer />}
+      content={<EventPageContainer showSimilarEvents={false} />}
       footer={<FooterSection />}
     />
   );
