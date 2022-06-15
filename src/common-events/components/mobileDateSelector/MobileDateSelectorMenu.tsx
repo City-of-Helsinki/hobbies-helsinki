@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { FunctionComponent, MutableRefObject } from "react";
-import { TFunction } from "next-i18next";
 
+import { UnionTFunction } from "../../types";
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./mobileDateSelectorMenu.module.scss"; // the locale you want
 
@@ -17,7 +17,7 @@ interface Props {
   onChangeStartDate: (date: Date | null) => void;
   onCloseMenu: () => void;
   startDate: Date | null;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const MobileDateSelectorMenu: FunctionComponent<Props> = ({

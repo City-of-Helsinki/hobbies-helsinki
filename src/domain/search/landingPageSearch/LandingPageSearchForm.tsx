@@ -1,19 +1,21 @@
 import { Button, IconSearch } from "hds-react";
 import { Link } from "react-helsinki-headless-cms";
-import { TFunction } from "next-i18next";
 import classnames from "classnames";
 
 import DateSelector from "../../../common-events/components/dateSelector/DateSelector";
 import MobileDateSelector from "../../../common-events/components/mobileDateSelector/MobileDateSelector";
 import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
 import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
-import { AutosuggestMenuOption } from "../../../common-events/types";
+import {
+  AutosuggestMenuOption,
+  UnionTFunction,
+} from "../../../common-events/types";
 import useLocale from "../../../common-events/hooks/useLocale";
 import { getI18nPath } from "../../i18n/router/utils";
 import styles from "./landingPageSearchForm.module.scss";
 
 export type LandingPageSearchFormProps = {
-  t: TFunction;
+  t: UnionTFunction;
   className?: string;
   dateTypes: string[];
   start: Date | null;

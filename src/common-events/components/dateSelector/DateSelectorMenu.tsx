@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { IconAngleLeft, IconAngleRight, IconCalendarPlus } from "hds-react";
-import { TFunction } from "next-i18next";
 import React, { ChangeEvent, FunctionComponent, MutableRefObject } from "react";
 
 import { translateValue } from "../../utils/translateUtils";
 import Checkbox from "../../../common/components/checkbox/Checkbox";
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./dateSelectorMenu.module.scss"; // the locale you want
+import { UnionTFunction } from "../../types";
 
 export const testIds = {
   menu: "date-selector-menu",
@@ -27,7 +27,7 @@ interface Props {
   onCloseMenu: () => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const DateSelectorMenu: FunctionComponent<Props> = ({

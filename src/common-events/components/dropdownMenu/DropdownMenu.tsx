@@ -1,13 +1,13 @@
-import { TFunction } from "next-i18next";
 import React from "react";
 
+import { UnionTFunction } from "../../types";
 import styles from "./dropdownMenu.module.scss";
 
 interface Props {
   children?: React.ReactNode;
   isOpen: boolean;
   onClear: () => void;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const DropdownMenu: React.FC<Props> = ({ children, isOpen, onClear, t }) => {

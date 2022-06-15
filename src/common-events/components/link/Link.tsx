@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { IconAngleRight, IconLinkExternal } from "hds-react";
-import { TFunction } from "next-i18next";
 import React from "react";
 import { LinkProps } from "react-scroll/modules/components/Link";
 
 import RouterLink from "../../../domain/i18n/router/Link";
 import SrOnly from "../../../common/components/srOnly/SrOnly";
 import styles from "./link.module.scss";
+import { UnionTFunction } from "../../types";
 
 interface Props extends Omit<LinkProps, "size"> {
   color?: "default" | "white";
@@ -15,7 +15,7 @@ interface Props extends Omit<LinkProps, "size"> {
   to: string;
   children?: React.ReactNode;
   className?: string;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const ALink: React.FC<Props> = ({

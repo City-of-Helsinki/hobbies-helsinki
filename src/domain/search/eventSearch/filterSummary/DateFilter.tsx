@@ -1,8 +1,8 @@
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
 import { FilterType } from "../../../../common-events/components/filterButton/types";
+import { UnionTFunction } from "../../../../common-events/types";
 import { translateValue } from "../../../../common-events/utils/translateUtils";
 
 export interface DateFilterProps {
@@ -10,7 +10,7 @@ export interface DateFilterProps {
   text?: string;
   type: "date" | "dateType";
   value: string;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const DateFilter: React.FC<DateFilterProps> = ({

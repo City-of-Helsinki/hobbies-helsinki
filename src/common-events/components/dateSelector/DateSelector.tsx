@@ -1,9 +1,9 @@
 import { IconAngleDown, IconAngleUp, IconCalendarClock } from "hds-react";
-import { TFunction } from "next-i18next";
 import React, { FunctionComponent } from "react";
 
 import { DATE_TYPES } from "../../../constants";
 import useLocale from "../../hooks/useLocale";
+import { UnionTFunction } from "../../types";
 import { formatDate } from "../../utils/dateUtils";
 import { translateValue } from "../../utils/translateUtils";
 import styles from "./dateSelector.module.scss";
@@ -26,7 +26,7 @@ export interface DateSelectorProps {
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const DateSelector: FunctionComponent<DateSelectorProps> = ({
