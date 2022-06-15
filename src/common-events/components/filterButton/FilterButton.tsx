@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import { IconCross } from "hds-react";
-import { TFunction } from "next-i18next";
 import React from "react";
 
+import { UnionTFunction } from "../../types";
 import styles from "./filterButton.module.scss";
 import { FilterType } from "./types";
 
@@ -11,7 +11,7 @@ interface Props {
   text: string;
   type: FilterType;
   value: string;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const FilterButton: React.FC<Props> = ({ onRemove, text, type, value, t }) => {

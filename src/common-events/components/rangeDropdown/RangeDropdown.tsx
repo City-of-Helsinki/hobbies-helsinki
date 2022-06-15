@@ -1,12 +1,12 @@
 import classNames from "classnames";
 import { Checkbox, IconAngleDown, IconAngleUp, TextInput } from "hds-react";
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import SearchLabel from "../search/searchLabel/SearchLabel";
 import { skipFalsyType } from "../../../common/utils/typescript.utils";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import styles from "./rangeDropdown.module.scss";
+import { UnionTFunction } from "../../types";
 
 export enum RANGE_INPUT {
   MIN = "min",
@@ -37,7 +37,7 @@ export interface RangeDropdownProps {
   showFixedValuesText?: boolean;
   title: string;
   value: string[];
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const RangeDropdown: React.FC<RangeDropdownProps> = ({

@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { IconCalendar } from "hds-react";
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import { DATE_TYPES } from "../../../constants";
@@ -8,6 +7,7 @@ import { translateValue } from "../../utils/translateUtils";
 import ToggleButton from "../../../common/components/toggleButton/ToggleButton";
 import styles from "./mobileDateSelector.module.scss";
 import MobileDateSelectorMenu from "./MobileDateSelectorMenu";
+import { UnionTFunction } from "../../types";
 
 interface Props {
   dateTypes: string[];
@@ -17,7 +17,7 @@ interface Props {
   onChangeEndDate: (date: Date | null) => void;
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const MobileDateSelector: React.FC<Props> = ({

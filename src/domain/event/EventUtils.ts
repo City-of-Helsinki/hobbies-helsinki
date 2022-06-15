@@ -1,5 +1,4 @@
 import { isPast, isThisWeek, isToday } from "date-fns";
-import { TFunction } from "i18next";
 import capitalize from "lodash/capitalize";
 import sum from "lodash/sum";
 
@@ -19,6 +18,7 @@ import {
 } from "./constants";
 import { EventFields, KeywordOption } from "./types";
 import getSecureImage from "../../common-events/utils/getSecureImage";
+import { UnionTFunction } from "../../common-events/types";
 
 export const getEventCardId = (id: string): string => `event-card_${id}`;
 
@@ -374,7 +374,7 @@ export const isLocalized = (
   );
 
 export const getAudienceAgeText = (
-  t: TFunction,
+  t: UnionTFunction,
   audienceMinAge?: string | null,
   audienceMaxAge?: string | null
 ): string => {

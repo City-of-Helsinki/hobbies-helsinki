@@ -1,13 +1,13 @@
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
 import { FilterType } from "../../../../common-events/components/filterButton/types";
+import { UnionTFunction } from "../../../../common-events/types";
 
 interface Props {
   onRemove: (value: string, type: FilterType) => void;
   text: string;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const TextFilter: React.FC<Props> = ({ onRemove, text, t }) => (

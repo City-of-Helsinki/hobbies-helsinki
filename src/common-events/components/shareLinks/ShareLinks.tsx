@@ -1,5 +1,4 @@
 import classNames from "classnames";
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import LinkIcon from "../../../assets/icons/svg/link.svg";
@@ -9,10 +8,11 @@ import FacebookShareLink from "./FacebookShareLink";
 import LinkedInShareLink from "./LinkedInShareLink";
 import styles from "./shareLinks.module.scss";
 import TwitterShareLink from "./TwitterShareLink";
+import { UnionTFunction } from "../../types";
 
 export interface ShareLinksProps {
   title: string;
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const ShareLinks: React.FC<ShareLinksProps> = ({ t, title }) => {

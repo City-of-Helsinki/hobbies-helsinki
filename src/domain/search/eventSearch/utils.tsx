@@ -6,7 +6,6 @@ import {
   startOfWeek,
   subDays,
 } from "date-fns";
-import { TFunction } from "i18next";
 import isEmpty from "lodash/isEmpty";
 
 import { FilterType } from "../../../common-events/components/filterButton/types";
@@ -36,6 +35,7 @@ import {
   SearchCategoryOption,
   SearchCategoryType,
 } from "./types";
+import { UnionTFunction } from "../../../common-events/types";
 
 export const MIN_AGE = 0;
 export const MAX_AGE = 99;
@@ -48,7 +48,7 @@ export const sortExtendedCategoryOptions = (
 export const getCategoryOptions = (
   category: SearchCategoryType,
   categoryOption: SearchCategoryOption,
-  t: TFunction
+  t: UnionTFunction
 ): CategoryExtendedOption => {
   const { icon, labelKey } = categoryOption;
   return {
@@ -59,7 +59,7 @@ export const getCategoryOptions = (
 };
 
 export const getEventCategoryOptions = (
-  t: TFunction,
+  t: UnionTFunction,
   categories: COURSE_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
 ): CategoryExtendedOption[] =>
   categories

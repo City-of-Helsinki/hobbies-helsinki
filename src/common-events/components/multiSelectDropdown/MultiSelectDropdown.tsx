@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { IconAngleDown, IconAngleUp, IconSearch } from "hds-react";
-import { TFunction } from "next-i18next";
 import React from "react";
 
 import SearchLabel from "../search/searchLabel/SearchLabel";
@@ -9,6 +8,7 @@ import Checkbox from "../../../common/components/checkbox/Checkbox";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import ScrollIntoViewWithFocus from "../../../common/components/scrollIntoViewWithFocus/ScrollIntoViewWithFocus";
 import styles from "./multiSelectDropdown.module.scss";
+import { UnionTFunction } from "../../types";
 
 const SELECT_ALL = "SELECT_ALL";
 
@@ -32,7 +32,7 @@ export interface MultiselectDropdownProps {
   showSelectAll?: boolean;
   title: string;
   value: string[];
-  t: TFunction;
+  t: UnionTFunction;
 }
 
 const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
