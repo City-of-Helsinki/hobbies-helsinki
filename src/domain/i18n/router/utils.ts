@@ -9,6 +9,7 @@ import AppConfig from "../../../domain/app/AppConfig";
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]
+// FIXME: Does not work with article URIs
 function transformDynamicPathIntoSegmentedDynamicPath(path: string): string {
   return path
     .split("/")
@@ -39,7 +40,6 @@ export function getI18nPath(route: string, locale: string): string {
   if (!i18nRewriteRuleForCurrentLocale) {
     return route;
   }
-
   return transformDynamicPathIntoSegmentedDynamicPath(
     i18nRewriteRuleForCurrentLocale.source
   );
