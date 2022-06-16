@@ -18,7 +18,7 @@ import {
 } from "react-helsinki-headless-cms/apollo";
 
 import Navigation from "../../common-events/components/navigation/Navigation";
-import { getUriID } from "../../common-events/domain/headless-cms/utils";
+import { getUriID } from "../../common-events/utils/headless-cms/headlessCmsUtils";
 import { SUPPORT_LANGUAGES } from "../../constants";
 import { createCmsApolloClient } from "../../domain/clients/cmsApolloClient";
 import FooterSection from "../../domain/footer/Footer";
