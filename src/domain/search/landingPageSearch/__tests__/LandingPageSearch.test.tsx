@@ -10,7 +10,7 @@ import {
   render,
   screen,
   userEvent,
-} from "../../../../test/testUtils";
+} from "../../../../tests/testUtils";
 import LandingPageSearch from "../LandingPageSearch";
 
 configure({ defaultHidden: true });

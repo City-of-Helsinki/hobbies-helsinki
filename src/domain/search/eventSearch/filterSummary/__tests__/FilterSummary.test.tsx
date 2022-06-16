@@ -18,7 +18,7 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../../test/testUtils";
+} from "../../../../../tests/testUtils";
 import FilterSummary from "../FilterSummary";
 
 configure({ defaultHidden: true });

@@ -1,12 +1,12 @@
-import * as React from 'react';
+import * as React from "react";
 
-import { PlaceDetailsDocument } from '../../../generated/graphql';
-import { fakePlace } from '../../../test/mockDataUtils';
-import { render, screen, waitFor } from '../../../test/testUtils';
-import PlaceText from '../PlaceText';
+import { PlaceDetailsDocument } from "../../../generated/graphql";
+import { fakePlace } from "../../../test/mockDataUtils";
+import { render, screen, waitFor } from "../../../tests/testUtils";
+import PlaceText from "../PlaceText";
 
-const placeId = 'helsinki:123';
-const name = 'Gräsan taitojen talo';
+const placeId = "helsinki:123";
+const name = "Gräsan taitojen talo";
 
 const place = fakePlace({ id: placeId, name: { fi: name } });
 const placeResponse = {
@@ -27,7 +27,7 @@ const mocks = [
   },
 ];
 
-test('matches snapshot', async () => {
+test("matches snapshot", async () => {
   const { container } = render(<PlaceText id={placeId} />, {
     mocks,
   });
