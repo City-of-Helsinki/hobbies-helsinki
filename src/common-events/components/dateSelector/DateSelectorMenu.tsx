@@ -6,7 +6,7 @@ import { translateValue } from "../../utils/translateUtils";
 import Checkbox from "../../../common/components/checkbox/Checkbox";
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./dateSelectorMenu.module.scss"; // the locale you want
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 
 export const testIds = {
   menu: "date-selector-menu",
@@ -27,7 +27,6 @@ interface Props {
   onCloseMenu: () => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
-  t: UnionTFunction;
 }
 
 const DateSelectorMenu: FunctionComponent<Props> = ({
@@ -45,8 +44,8 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
   onCloseMenu,
   startDate,
   toggleIsCustomDate,
-  t,
 }) => {
+  const { t } = useConfig();
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (dateTypes.indexOf(event.target.value) !== -1) {
       onChangeDateTypes(

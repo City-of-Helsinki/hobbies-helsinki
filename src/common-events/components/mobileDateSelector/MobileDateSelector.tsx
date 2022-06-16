@@ -7,7 +7,7 @@ import { translateValue } from "../../utils/translateUtils";
 import ToggleButton from "../../../common/components/toggleButton/ToggleButton";
 import styles from "./mobileDateSelector.module.scss";
 import MobileDateSelectorMenu from "./MobileDateSelectorMenu";
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 
 interface Props {
   dateTypes: string[];
@@ -17,7 +17,6 @@ interface Props {
   onChangeEndDate: (date: Date | null) => void;
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
-  t: UnionTFunction;
 }
 
 const MobileDateSelector: React.FC<Props> = ({
@@ -29,8 +28,8 @@ const MobileDateSelector: React.FC<Props> = ({
   onChangeEndDate,
   onChangeStartDate,
   startDate,
-  t,
 }) => {
+  const { t } = useConfig();
   const closeBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const toggleBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const dateSelector = React.useRef<HTMLDivElement | null>(null);
@@ -160,7 +159,6 @@ const MobileDateSelector: React.FC<Props> = ({
           onChangeStartDate={onChangeStartDate}
           onCloseMenu={closeMenu}
           startDate={startDate}
-          t={t}
         />
       </div>
     </div>

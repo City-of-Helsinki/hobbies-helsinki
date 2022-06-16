@@ -2,8 +2,8 @@ import { IconAngleDown, IconAngleUp, IconCalendarClock } from "hds-react";
 import React, { FunctionComponent } from "react";
 
 import { DATE_TYPES } from "../../../constants";
+import useConfig from "../../hooks/useConfig";
 import useLocale from "../../hooks/useLocale";
-import { UnionTFunction } from "../../types";
 import { formatDate } from "../../utils/dateUtils";
 import { translateValue } from "../../utils/translateUtils";
 import styles from "./dateSelector.module.scss";
@@ -26,7 +26,6 @@ export interface DateSelectorProps {
   onChangeStartDate: (date: Date | null) => void;
   startDate: Date | null;
   toggleIsCustomDate: () => void;
-  t: UnionTFunction;
 }
 
 const DateSelector: FunctionComponent<DateSelectorProps> = ({
@@ -39,8 +38,8 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
   onChangeStartDate,
   startDate,
   toggleIsCustomDate,
-  t,
 }) => {
+  const { t } = useConfig();
   const locale = useLocale();
   const backBtnRef = React.useRef<HTMLButtonElement | null>(null);
   const customDatesBtnRef = React.useRef<HTMLButtonElement | null>(null);
@@ -197,7 +196,6 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
         startDate={startDate}
         toggleIsCustomDate={handleToggleIsCustomDate}
         onCloseMenu={ensureMenuIsClosed}
-        t={t}
       />
     </div>
   );

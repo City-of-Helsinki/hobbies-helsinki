@@ -8,14 +8,14 @@ import FacebookShareLink from "./FacebookShareLink";
 import LinkedInShareLink from "./LinkedInShareLink";
 import styles from "./shareLinks.module.scss";
 import TwitterShareLink from "./TwitterShareLink";
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 
 export interface ShareLinksProps {
   title: string;
-  t: UnionTFunction;
 }
 
-const ShareLinks: React.FC<ShareLinksProps> = ({ t, title }) => {
+const ShareLinks: React.FC<ShareLinksProps> = ({ title }) => {
+  const { t } = useConfig();
   // We are using the client only accessible href. By doing this, we do not need
   // to pass the original request from the server. This same pattern was used in
   // MyHelsinki. Limitation is that sharing buttons will be re-rendered on client

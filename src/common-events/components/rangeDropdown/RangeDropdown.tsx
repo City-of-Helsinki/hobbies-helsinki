@@ -6,7 +6,6 @@ import SearchLabel from "../search/searchLabel/SearchLabel";
 import { skipFalsyType } from "../../../common/utils/typescript.utils";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import styles from "./rangeDropdown.module.scss";
-import { UnionTFunction } from "../../types";
 
 export enum RANGE_INPUT {
   MIN = "min",
@@ -37,7 +36,6 @@ export interface RangeDropdownProps {
   showFixedValuesText?: boolean;
   title: string;
   value: string[];
-  t: UnionTFunction;
 }
 
 const RangeDropdown: React.FC<RangeDropdownProps> = ({
@@ -57,7 +55,6 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   showFixedValuesText,
   title,
   value,
-  t,
 }) => {
   const [internalIsFixedValues, setInternalIsFixedValues] =
     React.useState(false);
@@ -233,7 +230,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
           )}
         </div>
       </button>
-      <DropdownMenu isOpen={isMenuOpen} onClear={handleClear} t={t}>
+      <DropdownMenu isOpen={isMenuOpen} onClear={handleClear}>
         <div className={styles.rangeInputsWrapper}>
           <TextInput
             type="number"

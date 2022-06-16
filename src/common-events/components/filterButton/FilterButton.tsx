@@ -2,19 +2,19 @@ import classNames from "classnames";
 import { IconCross } from "hds-react";
 import React from "react";
 
-import { UnionTFunction } from "../../types";
-import styles from "./filterButton.module.scss";
+import useConfig from "../../hooks/useConfig";
 import { FilterType } from "./types";
+import styles from "./filterButton.module.scss";
 
 interface Props {
   onRemove: (value: string, type: FilterType) => void;
   text: string;
   type: FilterType;
   value: string;
-  t: UnionTFunction;
 }
 
-const FilterButton: React.FC<Props> = ({ onRemove, text, type, value, t }) => {
+const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
+  const { t } = useConfig();
   const handleRemove = () => {
     onRemove(value, type);
   };

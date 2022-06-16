@@ -7,8 +7,8 @@ import useDropdownKeyboardNavigation from "../../../common/hooks/useDropdownKeyb
 import Checkbox from "../../../common/components/checkbox/Checkbox";
 import DropdownMenu from "../dropdownMenu/DropdownMenu";
 import ScrollIntoViewWithFocus from "../../../common/components/scrollIntoViewWithFocus/ScrollIntoViewWithFocus";
+import useConfig from "../../hooks/useConfig";
 import styles from "./multiSelectDropdown.module.scss";
-import { UnionTFunction } from "../../types";
 
 const SELECT_ALL = "SELECT_ALL";
 
@@ -32,7 +32,6 @@ export interface MultiselectDropdownProps {
   showSelectAll?: boolean;
   title: string;
   value: string[];
-  t: UnionTFunction;
 }
 
 const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
@@ -50,8 +49,8 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
   showSelectAll,
   title,
   value,
-  t,
 }) => {
+  const { t } = useConfig();
   const inputPlaceholderText =
     inputPlaceholder || t("commons.multiSelectDropdown.inputPlaceholder");
   const [internalInput, setInternalInput] = React.useState("");
@@ -265,7 +264,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
           )}
         </div>
       </button>
-      <DropdownMenu isOpen={isMenuOpen} onClear={handleClear} t={t}>
+      <DropdownMenu isOpen={isMenuOpen} onClear={handleClear}>
         {showSearch && (
           <div className={styles.inputWrapper}>
             <IconSearch size="s" aria-hidden />
