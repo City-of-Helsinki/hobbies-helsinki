@@ -5,7 +5,7 @@ import * as React from "react";
 import translations from "../../../../common/translation/i18n/fi.json";
 import { OrganizationDetailsDocument } from "../../../../generated/graphql";
 import { fakeOrganization } from "../../../../test/mockDataUtils";
-import { render, waitFor } from "../../../../../test/testUtils";
+import { render, waitFor } from "../../../../../tests/testUtils";
 import PublisherFilter from "../PublisherFilter";
 
 const id = "1";

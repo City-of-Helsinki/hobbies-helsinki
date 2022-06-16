@@ -1,7 +1,7 @@
 /* eslint-disable jest/no-conditional-expect */
 import React from "react";
 
-import { render, screen } from "../../../../../test/testUtils";
+import { render, screen } from "../../../../../tests/testUtils";
 import SearchResultsContainer from "../SearchResultsContainer";
 
 it.each<[number, string]>([

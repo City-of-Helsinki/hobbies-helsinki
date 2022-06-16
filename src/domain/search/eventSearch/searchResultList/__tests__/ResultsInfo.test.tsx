@@ -6,7 +6,7 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../../test/testUtils";
+} from "../../../../../tests/testUtils";
 import { Language } from "../../../../../types";
 import { ROUTES } from "../../../app/routes/constants";
 import ResultsInfo from "../ResultsInfo";

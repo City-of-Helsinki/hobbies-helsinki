@@ -8,7 +8,7 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../../test/testUtils";
+} from "../../../../../tests/testUtils";
 import PlaceFilter from "../PlaceFilter";
 
 const placeId = "helsinki:123";

@@ -10,7 +10,7 @@ import { utcToZonedTime } from "date-fns-tz";
 import { advanceTo } from "jest-date-mock";
 import React from "react";
 
-import { actWait } from "../../../../test/testUtils";
+import { actWait } from "../../../../tests/testUtils";
 import DateRangePicker, { DateRangePickerProps } from "../DateRangePicker";
 
 configure({ defaultHidden: true });

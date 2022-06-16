@@ -19,7 +19,7 @@ import {
   render,
   screen,
   userEvent,
-} from "../../../../test/testUtils";
+} from "../../../../tests/testUtils";
 import { additionalDivisions } from "../../../neighborhood/additionalDivisions";
 import Search from "../AdvancedSearch";
 
