@@ -6,16 +6,13 @@ import DateSelector from "../../../common-events/components/dateSelector/DateSel
 import MobileDateSelector from "../../../common-events/components/mobileDateSelector/MobileDateSelector";
 import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
 import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
-import {
-  AutosuggestMenuOption,
-  UnionTFunction,
-} from "../../../common-events/types";
+import { AutosuggestMenuOption } from "../../../common-events/types";
 import useLocale from "../../../common-events/hooks/useLocale";
 import { getI18nPath } from "../../../common-events/i18n/router/utils";
+import useConfig from "../../../common-events/hooks/useConfig";
 import styles from "./landingPageSearchForm.module.scss";
 
 export type LandingPageSearchFormProps = {
-  t: UnionTFunction;
   className?: string;
   dateTypes: string[];
   start: Date | null;
@@ -32,7 +29,6 @@ export type LandingPageSearchFormProps = {
 };
 
 export default function LandingPageSearchForm({
-  t,
   className,
   dateTypes,
   start,
@@ -47,6 +43,7 @@ export default function LandingPageSearchForm({
   handleSubmit,
   handleMenuOptionClick,
 }: LandingPageSearchFormProps) {
+  const { t } = useConfig();
   const locale = useLocale();
 
   return (
@@ -84,7 +81,6 @@ export default function LandingPageSearchForm({
                 onChangeStartDate={setStart}
                 startDate={start}
                 toggleIsCustomDate={toggleIsCustomDate}
-                t={t}
               />
             </div>
             <MobileDateSelector
@@ -95,7 +91,6 @@ export default function LandingPageSearchForm({
               onChangeEndDate={setEnd}
               onChangeStartDate={setStart}
               startDate={start}
-              t={t}
             />
           </div>
           <div className={styles.buttonWrapper}>

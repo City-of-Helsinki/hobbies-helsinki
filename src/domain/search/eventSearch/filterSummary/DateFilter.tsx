@@ -2,7 +2,7 @@ import React from "react";
 
 import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
 import { FilterType } from "../../../../common-events/components/filterButton/types";
-import { UnionTFunction } from "../../../../common-events/types";
+import useConfig from "../../../../common-events/hooks/useConfig";
 import { translateValue } from "../../../../common-events/utils/translateUtils";
 
 export interface DateFilterProps {
@@ -10,7 +10,6 @@ export interface DateFilterProps {
   text?: string;
   type: "date" | "dateType";
   value: string;
-  t: UnionTFunction;
 }
 
 const DateFilter: React.FC<DateFilterProps> = ({
@@ -18,15 +17,14 @@ const DateFilter: React.FC<DateFilterProps> = ({
   text,
   type,
   value,
-  t,
 }) => {
+  const { t } = useConfig();
   return (
     <FilterButton
       onRemove={onRemove}
       text={text || translateValue("commons.dateSelector.dateType", value, t)}
       type={type}
       value={value}
-      t={t}
     />
   );
 };

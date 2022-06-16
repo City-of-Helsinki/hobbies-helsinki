@@ -1,7 +1,7 @@
 import classNames from "classnames";
 import React, { FunctionComponent, MutableRefObject } from "react";
 
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 import DateRangePicker from "../dateRangePicker/DateRangePicker";
 import styles from "./mobileDateSelectorMenu.module.scss"; // the locale you want
 
@@ -17,7 +17,6 @@ interface Props {
   onChangeStartDate: (date: Date | null) => void;
   onCloseMenu: () => void;
   startDate: Date | null;
-  t: UnionTFunction;
 }
 
 const MobileDateSelectorMenu: FunctionComponent<Props> = ({
@@ -28,8 +27,8 @@ const MobileDateSelectorMenu: FunctionComponent<Props> = ({
   onChangeStartDate,
   onCloseMenu,
   startDate,
-  t,
 }) => {
+  const { t } = useConfig();
   if (!isOpen) return null;
   return (
     <div data-testid={testIds.menu} className={styles.mobileDateSelectorMenu}>

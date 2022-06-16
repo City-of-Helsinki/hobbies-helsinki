@@ -6,7 +6,7 @@ import { LinkProps as ReactScrollLinkProps } from "react-scroll/modules/componen
 import RouterLink from "../../i18n/router/Link";
 import SrOnly from "../../../common/components/srOnly/SrOnly";
 import styles from "./link.module.scss";
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 
 export interface LinkProps extends Omit<ReactScrollLinkProps, "size"> {
   color?: "default" | "white";
@@ -15,11 +15,9 @@ export interface LinkProps extends Omit<ReactScrollLinkProps, "size"> {
   to: string;
   children?: React.ReactNode;
   className?: string;
-  t: UnionTFunction;
 }
 
 const ALink: React.FC<LinkProps> = ({
-  t,
   className,
   color = "default",
   children,
@@ -28,6 +26,8 @@ const ALink: React.FC<LinkProps> = ({
   to,
   ...rest
 }) => {
+  const { t } = useConfig();
+
   const commonProps = {
     className: classNames(
       styles.link,

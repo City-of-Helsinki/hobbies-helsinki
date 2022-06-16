@@ -2,10 +2,13 @@ import React, { createContext } from "react";
 import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
 import { NextRouter } from "next/router";
 
+import { UnionTFunction } from "../types";
+
 export type Config = {
   router?: NextRouter; // TODO: Support the react-router
   navigationMenuName?: string;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
+  t: UnionTFunction;
   components: {
     A: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => JSX.Element;
     Link?: (

@@ -1,16 +1,16 @@
 import React from "react";
 
-import { UnionTFunction } from "../../types";
+import useConfig from "../../hooks/useConfig";
 import styles from "./dropdownMenu.module.scss";
 
 interface Props {
   children?: React.ReactNode;
   isOpen: boolean;
   onClear: () => void;
-  t: UnionTFunction;
 }
 
-const DropdownMenu: React.FC<Props> = ({ children, isOpen, onClear, t }) => {
+const DropdownMenu: React.FC<Props> = ({ children, isOpen, onClear }) => {
+  const { t } = useConfig();
   if (!isOpen) return null;
 
   return (
