@@ -1,16 +1,17 @@
 import { Navigation as RHHCApolloNavigation } from "react-helsinki-headless-cms/apollo";
 
 import useLocale from "../../hooks/useLocale";
-import { DEFAULT_HEADER_MENU_NAME } from "../../../constants";
-import useRouter from "../../../domain/i18n/router/useRouter";
+import useNavigationMenuNameFromConfig from "../../hooks/useNavigationMenuNameFromConfig";
+import useRouterFromConfig from "../../hooks/useRouterFromConfig";
 
 export default function Navigation() {
-  const router = useRouter();
+  const router = useRouterFromConfig();
+  const navigationMenuName = useNavigationMenuNameFromConfig();
   const locale = useLocale();
   const currentPage = router.pathname;
   return (
     <RHHCApolloNavigation
-      menuName={DEFAULT_HEADER_MENU_NAME}
+      menuName={navigationMenuName ?? ""}
       onTitleClick={() => {
         router.push("/", locale);
       }}

@@ -50,7 +50,7 @@ export default function initializeCmsApollo(initialState = {}) {
   });
 }
 
-export function useCmsApollo(initialState) {
+export function useCmsApollo(initialState: NormalizedCacheObject) {
   const store = useMemo(
     () => initializeCmsApollo(initialState),
     [initialState]

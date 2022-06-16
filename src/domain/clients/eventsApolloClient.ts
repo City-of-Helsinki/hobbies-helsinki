@@ -8,6 +8,7 @@ import {
 import { onError } from "@apollo/client/link/error";
 import * as Sentry from "@sentry/browser";
 import get from "lodash/get";
+import { useMemo } from "react";
 
 import isClient from "../../common/utils/isClient";
 
@@ -105,5 +106,14 @@ export const createEventsApolloCache = () => {
 };
 
 const apolloClient = createEventsApolloClient();
+
+export function useEventsApolloClient(initialState: NormalizedCacheObject) {
+  const store = useMemo(
+    () => createEventsApolloClient(initialState),
+    [initialState]
+  );
+
+  return store;
+}
 
 export default apolloClient;

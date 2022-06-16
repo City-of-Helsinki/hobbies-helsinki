@@ -1,14 +1,14 @@
 import classNames from "classnames";
 import { IconAngleRight, IconLinkExternal } from "hds-react";
 import React from "react";
-import { LinkProps } from "react-scroll/modules/components/Link";
+import { LinkProps as ReactScrollLinkProps } from "react-scroll/modules/components/Link";
 
 import RouterLink from "../../../domain/i18n/router/Link";
 import SrOnly from "../../../common/components/srOnly/SrOnly";
 import styles from "./link.module.scss";
 import { UnionTFunction } from "../../types";
 
-interface Props extends Omit<LinkProps, "size"> {
+export interface LinkProps extends Omit<ReactScrollLinkProps, "size"> {
   color?: "default" | "white";
   isExternal?: boolean;
   size?: "default" | "small";
@@ -18,7 +18,7 @@ interface Props extends Omit<LinkProps, "size"> {
   t: UnionTFunction;
 }
 
-const ALink: React.FC<Props> = ({
+const ALink: React.FC<LinkProps> = ({
   t,
   className,
   color = "default",

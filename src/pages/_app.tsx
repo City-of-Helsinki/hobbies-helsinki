@@ -14,6 +14,9 @@ import useRouter from "../domain/i18n/router/useRouter";
 import "../styles/globals.scss";
 import { useCmsApollo } from "../domain/clients/cmsApolloClient";
 import useRHHCConfig from "../hooks/useRHHCConfig";
+import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
+import { useEventsApolloClient } from "../domain/clients/eventsApolloClient";
+import useEventsConfig from "../hooks/useEventsConfig";
 
 const TopProgressBar = dynamic(
   () => {
@@ -41,7 +44,11 @@ function Center({ children }: { children: React.ReactNode }) {
 function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const cmsApolloClient = useCmsApollo(pageProps.initialApolloState);
+  const eventsApolloClient = useEventsApolloClient(
+    pageProps.initialApolloState
+  );
   const rhhcConfig = useRHHCConfig(cmsApolloClient);
+  const eventsConfig = useEventsConfig(eventsApolloClient);
 
   // Unset hidden visibility that was applied to hide the first server render
   // that does not include styles from HDS. HDS applies styling by injecting
@@ -63,20 +70,22 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <TopProgressBar />
       <RHHCConfigProvider config={rhhcConfig}>
-        <ApolloProvider client={cmsApolloClient}>
-          {router.isFallback ? (
-            <Center>
-              <LoadingSpinner />
-            </Center>
-          ) : pageProps.error ? (
-            <Error
-              statusCode={pageProps.error.networkError?.statusCode ?? 400}
-              title={pageProps.error.title}
-            />
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </ApolloProvider>
+        <EventsConfigProvider config={eventsConfig}>
+          <ApolloProvider client={cmsApolloClient}>
+            {router.isFallback ? (
+              <Center>
+                <LoadingSpinner />
+              </Center>
+            ) : pageProps.error ? (
+              <Error
+                statusCode={pageProps.error.networkError?.statusCode ?? 400}
+                title={pageProps.error.title}
+              />
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </ApolloProvider>
+        </EventsConfigProvider>
       </RHHCConfigProvider>
       <ToastContainer />
     </>
