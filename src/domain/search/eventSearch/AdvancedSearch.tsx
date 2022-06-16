@@ -14,8 +14,8 @@ import DateSelector from "../../../common-events/components/dateSelector/DateSel
 import MultiSelectDropdown from "../../../common-events/components/multiSelectDropdown/MultiSelectDropdown";
 import useLocale from "../../../common-events/hooks/useLocale";
 import { AutosuggestMenuOption } from "../../../common-events/types";
-import useRouter from "../../i18n/router/useRouter";
-import { getI18nPath } from "../../i18n/router/utils";
+import useRouter from "../../../common-events/i18n/router/useRouter";
+import { getI18nPath } from "../../../common-events/i18n/router/utils";
 import PlaceSelector from "../../place/placeSelector/PlaceSelector";
 import {
   EVENT_DEFAULT_SEARCH_FILTERS,

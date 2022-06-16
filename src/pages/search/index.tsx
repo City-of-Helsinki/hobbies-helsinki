@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import { Page as RHHCApolloPage } from "react-helsinki-headless-cms/apollo";
 
 import getHobbiesStaticProps from "../../domain/app/getHobbiesStaticProps";
-import useRouter from "../../domain/i18n/router/useRouter";
+import useRouter from "../../common-events/i18n/router/useRouter";
 import serverSideTranslationsWithCommon from "../../domain/i18n/serverSideTranslationsWithCommon";
-import { getLocaleOrError } from "../../domain/i18n/router/utils";
+import { getLocaleOrError } from "../../common-events/i18n/router/utils";
 import { DEFAULT_LANGUAGE } from "../../constants";
 import AdvancedSearch from "../../domain/search/eventSearch/AdvancedSearch";
 import Navigation from "../../common-events/components/navigation/Navigation";

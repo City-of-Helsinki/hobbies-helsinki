@@ -34,7 +34,7 @@ import { translateValue } from "../../../common-events/utils/translateUtils";
 import IconDirections from "../../../assets/icons/IconDirections";
 import useTabFocusStyle from "../../../common/hooks/useTabFocusStyle";
 import getDateArray from "../../../common-events/utils/getDateArray";
-import useRouter from "../../i18n/router/useRouter";
+import useRouter from "../../../common-events/i18n/router/useRouter";
 import Link from "../../../common-events/components/link/Link";
 
 interface Props {

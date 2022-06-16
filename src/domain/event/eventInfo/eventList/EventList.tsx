@@ -1,15 +1,15 @@
 import { IconArrowRight } from "hds-react";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import React from "react";
 
 import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
 import useLocale from "../../../../common-events/hooks/useLocale";
-import Link from "../../../i18n/router/Link";
+import Link from "../../../../common-events/i18n/router/Link";
 import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
 import { getEventFields } from "../../EventUtils";
 import { EventFields } from "../../types";
 import styles from "./eventList.module.scss";
+import useRouter from "../../../../common-events/i18n/router/useRouter";
 
 const EventList: React.FC<{
   events: EventFields[];

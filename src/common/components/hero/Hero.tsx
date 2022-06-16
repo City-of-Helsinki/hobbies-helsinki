@@ -1,4 +1,4 @@
-import Link from "../../../domain/i18n/router/Link";
+import Link from "../../../common-events/i18n/router/Link";
 import Text from "../text/Text";
 import HtmlToReact from "../htmlToReact/HtmlToReact";
 import styles from "./hero.module.scss";

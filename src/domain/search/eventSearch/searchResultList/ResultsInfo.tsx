@@ -1,11 +1,11 @@
 import { Button, IconSearch } from "hds-react";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import React from "react";
 
 import useLocale from "../../../../common-events/hooks/useLocale";
 import { Language } from "../../../../types";
-import { getI18nPath } from "../../../i18n/router/utils";
+import useRouter from "../../../../common-events/i18n/router/useRouter";
+import { getI18nPath } from "../../../../common-events/i18n/router/utils";
 import styles from "./resultsInfo.module.scss";
 
 const ResultsInfoContainer: React.FC<{

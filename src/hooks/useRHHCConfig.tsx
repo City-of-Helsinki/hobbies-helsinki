@@ -1,5 +1,6 @@
 import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
 import { useTranslation } from "next-i18next";
+import { NextRouter } from "next/router";
 import React from "react";
 import {
   defaultConfig as rhhcDefaultConfig,
@@ -8,17 +9,16 @@ import {
 } from "react-helsinki-headless-cms";
 
 import useLocale from "../common-events/hooks/useLocale";
-import useRouter from "../domain/i18n/router/useRouter";
-import { getI18nPath } from "../domain/i18n/router/utils";
+import { getI18nPath } from "../common-events/i18n/router/utils";
 
 const CMS_API_DOMAIN = process.env.NEXT_PUBLIC_CMS_BASE_URL
   ? new URL(process.env.NEXT_PUBLIC_CMS_BASE_URL).origin
   : null;
 
 export default function useRHHCConfig(
-  cmsApolloClient: ApolloClient<NormalizedCacheObject>
+  cmsApolloClient: ApolloClient<NormalizedCacheObject>,
+  router: NextRouter
 ) {
-  const router = useRouter();
   const { t } = useTranslation();
   const locale = useLocale();
 

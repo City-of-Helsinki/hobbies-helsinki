@@ -1,7 +1,7 @@
 import React from "react";
 
 import isClient from "../../../common/utils/isClient";
-import useRouter from "../../../domain/i18n/router/useRouter";
+import useRouter from "../../i18n/router/useRouter";
 
 export const resetFocusId = "reset-focus";
 

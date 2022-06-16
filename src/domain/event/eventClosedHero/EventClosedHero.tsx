@@ -3,8 +3,8 @@ import { useTranslation } from "next-i18next";
 import React from "react";
 
 import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../i18n/router/useRouter";
-import { getI18nPath } from "../../i18n/router/utils";
+import useRouter from "../../../common-events/i18n/router/useRouter";
+import { getI18nPath } from "../../../common-events/i18n/router/utils";
 import styles from "./eventClosedHero.module.scss";
 
 const EventClosedHero: React.FC = () => {

@@ -1,6 +1,5 @@
 import React from "react";
 import { GetStaticPropsContext } from "next";
-import { useRouter } from "next/router";
 import { useQuery } from "@apollo/client";
 import {
   ArticleQuery,
@@ -23,7 +22,7 @@ import {
 
 import getHobbiesStaticProps from "../domain/app/getHobbiesStaticProps";
 import serverSideTranslationsWithCommon from "../domain/i18n/serverSideTranslationsWithCommon";
-import { getLocaleOrError } from "../domain/i18n/router/utils";
+import { getLocaleOrError } from "../common-events/i18n/router/utils";
 import { getQlLanguage } from "../common/apollo/utils";
 import {
   LandingPageContentLayout,
@@ -32,6 +31,7 @@ import {
 import { DEFAULT_LANGUAGE } from "../constants";
 import Navigation from "../common-events/components/navigation/Navigation";
 import FooterSection from "../domain/footer/Footer";
+import useRouter from "../common-events/i18n/router/useRouter";
 
 export const getCollectionCard = (
   item: CollectionItemType,

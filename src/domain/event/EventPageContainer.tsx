@@ -1,13 +1,12 @@
 import { useApolloClient } from "@apollo/client";
 import { useTranslation } from "next-i18next";
-import { useRouter } from "next/router";
 import React from "react";
 
 import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
 import isClient from "../../common/utils/isClient";
 import { addParamsToQueryString } from "../../common-events/utils/__tests__/queryString";
 import ErrorHero from "../error/ErrorHero";
-import Link from "../i18n/router/Link";
+import Link from "../../common-events/i18n/router/Link";
 import {
   EventDetailsDocument,
   useEventDetailsQuery,
@@ -20,6 +19,7 @@ import { getEventIdFromUrl, isEventClosed } from "./EventUtils";
 import SimilarEvents from "./similarEvents/SimilarEvents";
 import { SuperEventResponse } from "./types";
 import styles from "./eventPage.module.scss";
+import useRouter from "../../common-events/i18n/router/useRouter";
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
