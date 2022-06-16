@@ -19,7 +19,7 @@ import buttonStyles from "../../../common-events/components/button/button.module
 import IconButton from "../../../common/components/iconButton/IconButton";
 import Visible from "../../../common/components/visible/Visible";
 import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../i18n/router/useRouter";
+import useRouter from "../../../common-events/i18n/router/useRouter";
 import EventKeywords from "../eventKeywords/EventKeywords";
 import LocationText from "../eventLocation/EventLocationText";
 import EventName from "../eventName/EventName";

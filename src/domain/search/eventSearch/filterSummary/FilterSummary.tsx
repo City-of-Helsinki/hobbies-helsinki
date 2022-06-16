@@ -8,8 +8,8 @@ import { FilterType } from "../../../../common-events/components/filterButton/ty
 import useLocale from "../../../../common-events/hooks/useLocale";
 import { formatDate } from "../../../../common-events/utils/dateUtils";
 import { translateValue } from "../../../../common-events/utils/translateUtils";
-import useRouter from "../../../i18n/router/useRouter";
-import { getI18nPath } from "../../../i18n/router/utils";
+import useRouter from "../../../../common-events/i18n/router/useRouter";
+import { getI18nPath } from "../../../../common-events/i18n/router/utils";
 import {
   getSearchFilters,
   getSearchQuery,

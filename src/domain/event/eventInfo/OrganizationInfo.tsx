@@ -5,7 +5,7 @@ import React from "react";
 import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
 import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
 import useLocale from "../../../common-events/hooks/useLocale";
-import Link from "../../i18n/router/Link";
+import Link from "../../../common-events/i18n/router/Link";
 import {
   EventFieldsFragment,
   useOrganizationDetailsQuery,

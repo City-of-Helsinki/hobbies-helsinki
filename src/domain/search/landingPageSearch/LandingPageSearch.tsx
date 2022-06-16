@@ -8,8 +8,8 @@ import {
 } from "../eventSearch/constants";
 import { getEventCategoryOptions, getSearchQuery } from "../eventSearch/utils";
 import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../i18n/router/useRouter";
-import { getI18nPath } from "../../i18n/router/utils";
+import useRouter from "../../../common-events/i18n/router/useRouter";
+import { getI18nPath } from "../../../common-events/i18n/router/utils";
 import SearchShortcuts from "./SearchShortcuts";
 import LandingPageSearchForm from "./LandingPageSearchForm";
 import styles from "./landingPageSearch.module.scss";

@@ -3,7 +3,7 @@ import React, { FunctionComponent } from "react";
 
 import CategoryFilter from "../../common-events/components/category/CategoryFilter";
 import useLocale from "../../common-events/hooks/useLocale";
-import { getI18nPath } from "../i18n/router/utils";
+import { getI18nPath } from "../../common-events/i18n/router/utils";
 import {
   CATEGORY_CATALOG,
   COURSE_DEFAULT_SEARCH_FILTERS,

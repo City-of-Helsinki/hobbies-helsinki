@@ -11,7 +11,7 @@ import {
   UnionTFunction,
 } from "../../../common-events/types";
 import useLocale from "../../../common-events/hooks/useLocale";
-import { getI18nPath } from "../../i18n/router/utils";
+import { getI18nPath } from "../../../common-events/i18n/router/utils";
 import styles from "./landingPageSearchForm.module.scss";
 
 export type LandingPageSearchFormProps = {

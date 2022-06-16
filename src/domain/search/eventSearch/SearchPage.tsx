@@ -9,7 +9,7 @@ import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
 import SrOnly from "../../../common/components/srOnly/SrOnly";
 import useIsSmallScreen from "../../../common/hooks/useIsSmallScreen";
 import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../i18n/router/useRouter";
+import useRouter from "../../../common-events/i18n/router/useRouter";
 import {
   QueryEventListArgs,
   useEventListQuery,
@@ -17,7 +17,7 @@ import {
 import { EVENT_SORT_OPTIONS, PAGE_SIZE } from "./constants";
 import SearchResultsContainer from "./searchResultList/SearchResultsContainer";
 import { getEventSearchVariables, getNextPage } from "./utils";
-import { removeQueryParamsFromRouter } from "../../i18n/router/utils";
+import { removeQueryParamsFromRouter } from "../../../common-events/i18n/router/utils";
 import { getLargeEventCardId } from "../../event/EventUtils";
 import EventList from "../../../common-events/components/eventList/EventList";
 import styles from "./eventSearchPage.module.scss";
