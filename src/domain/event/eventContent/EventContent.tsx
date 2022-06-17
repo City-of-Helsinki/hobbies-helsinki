@@ -19,7 +19,7 @@ interface Props {
 }
 
 const EventContent: React.FC<Props> = ({ event, superEvent }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation(["common", "event", "eventSearch"]);
   const locale = useLocale();
   const { description, photographerName } = getEventFields(event, locale);
 
