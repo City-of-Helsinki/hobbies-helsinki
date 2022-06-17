@@ -10,7 +10,7 @@ const twitterShareUrl = "https://twitter.com/share";
 const TwitterShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
   const { t } = useTranslation();
   const queryParameters = { url: sharedLink };
-  const linkLabel = t("commons.shareLink.shareOnTwitter");
+  const linkLabel = t("common:shareLink.shareOnTwitter");
 
   return (
     <ShareLinkBase

@@ -25,7 +25,7 @@ const SimilarEvents: React.FC<Props> = ({ event }) => {
         {events?.length && (
           <Container>
             <h2 className={styles.similarEventsTitle}>
-              {t("event.similarEvents.title")}
+              {t("event:similarEvents.title")}
             </h2>
             <div
               className={styles.similarEventList}

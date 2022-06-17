@@ -1,4 +1,4 @@
-import { useApolloClient } from "@apollo/client";
+// import { useApolloClient } from "@apollo/client";
 import { useTranslation } from "next-i18next";
 import React from "react";
 
@@ -20,6 +20,7 @@ import SimilarEvents from "./similarEvents/SimilarEvents";
 import { SuperEventResponse } from "./types";
 import styles from "./eventPage.module.scss";
 import useRouter from "../../common-events/i18n/router/useRouter";
+import { useEventsApolloClient } from "../clients/eventsApolloClient";
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -28,7 +29,8 @@ export interface EventPageContainerProps {
 const EventPageContainer: React.FC<EventPageContainerProps> = ({
   showSimilarEvents = true,
 }) => {
-  const apolloClient = useApolloClient();
+  // const apolloClient = useApolloClient();
+  const eventsApolloClient = useEventsApolloClient({});
   const { t } = useTranslation();
   const router = useRouter();
   const search = addParamsToQueryString(router.asPath, {
@@ -42,6 +44,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
     status: "pending",
   });
   const { data: eventData, loading } = useEventDetailsQuery({
+    client: eventsApolloClient,
     variables: {
       id: eventId,
       include: ["in_language", "keywords", "location", "audience"],
@@ -61,7 +64,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
     }
     async function getSuperEventData() {
       try {
-        const { data } = await apolloClient.query({
+        const { data } = await eventsApolloClient.query({
           query: EventDetailsDocument,
           variables: {
             id: superEventId,
@@ -73,7 +76,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
         setSuperEvent({ data: null, status: "resolved" });
       }
     }
-  }, [apolloClient, event, superEventId]);
+  }, [eventsApolloClient, event, superEventId]);
 
   const eventClosed = !event || isEventClosed(event);
   return (
@@ -97,11 +100,11 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
             </>
           ) : (
             <ErrorHero
-              text={t("event.notFound.text")}
-              title={t("event.notFound.title")}
+              text={t("event:notFound.text")}
+              title={t("event:notFound.title")}
             >
               <Link href={`/search${search}`}>
-                {t("event.notFound.linkSearchEvents")}
+                {t("event:notFound.linkSearchEvents")}
               </Link>
             </ErrorHero>
           )}

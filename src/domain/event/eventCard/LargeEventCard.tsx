@@ -87,7 +87,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <Link
-      aria-label={t("event.eventCard.ariaLabelLink", {
+      aria-label={t("event:eventCard.ariaLabelLink", {
         name,
       })}
       id={getLargeEventCardId(id)}
@@ -111,7 +111,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
                 end: endTime,
                 locale,
                 includeTime: true,
-                timeAbbreviation: t("commons.timeAbbreviation"),
+                timeAbbreviation: t("common:timeAbbreviation"),
               })}
           </div>
           <div className={styles.eventLocation}>
@@ -125,7 +125,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
             <div className={styles.eventAudienceAge}>{audienceAge}</div>
           )}
           <div className={styles.eventPrice}>
-            {getEventPrice(event, locale, t("event.eventCard.isFree"))}
+            {getEventPrice(event, locale, t("event:eventCard.isFree"))}
           </div>
           <div className={styles.keywordWrapperDesktop}>
             <EventKeywords
@@ -138,27 +138,27 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
             <div>
               {showBuyButton && (
                 <Button
-                  aria-label={t("event.eventCard.ariaLabelBuyTickets")}
+                  aria-label={t("event:eventCard.ariaLabelBuyTickets")}
                   iconRight={<IconLinkExternal aria-hidden />}
                   fullWidth
                   onClick={goToBuyTicketsPage}
                   size="small"
                   variant="success"
                 >
-                  {t("event.eventCard.buttonBuyTickets")}
+                  {t("event:eventCard.buttonBuyTickets")}
                 </Button>
               )}
             </div>
             <div ref={button}>
               <Button
-                aria-label={t("event.eventCard.ariaLabelReadMore", { name })}
+                aria-label={t("event:eventCard.ariaLabelReadMore", { name })}
                 className={buttonStyles.buttonGray}
                 fullWidth
                 onClick={goToEventPage}
                 size="small"
                 type="button"
               >
-                {t("event.eventCard.buttonReadMore")}
+                {t("event:eventCard.buttonReadMore")}
               </Button>
             </div>
           </div>

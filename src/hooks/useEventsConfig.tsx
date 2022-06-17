@@ -11,7 +11,7 @@ export default function useEventsConfig(
   eventsApolloClient: ApolloClient<NormalizedCacheObject>
 ): Config {
   const router = useRouter();
-  const { t } = useTranslation();
+  const { t } = useTranslation("common");
 
   const eventsConfig = React.useMemo(() => {
     return {

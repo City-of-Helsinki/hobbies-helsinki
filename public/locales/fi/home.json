@@ -1,0 +1,61 @@
+{
+  "category": {
+    "culture": "Kulttuuri ja taide",
+    "dance": "Tanssi",
+    "food": "Ruoka",
+    "influence": "Osallistu ja vaikuta",
+    "misc": "Muut",
+    "movie": "Elokuva",
+    "museum": "Museot",
+    "music": "Musiikki",
+    "nature": "Luonto ja ulkoilu",
+    "sport": "Liikunta ja urheilu",
+    "theatre": "Teatteri",
+    "courses": {
+      "movieAndMedia": "Elokuva ja media",
+      "languages": "Kielet",
+      "literature": "Kirjallisuus ja sanataide",
+      "artsAndCulture": "Kulttuuri ja taide",
+      "visualArts": "Kuvataide",
+      "handicrafts": "Kädentaidot",
+      "sport": "Liikunta ja ulkoilu",
+      "music": "Musiikki",
+      "games": "Pelit",
+      "food": "Ruoka",
+      "dance": "Tanssi",
+      "theatre": "Teatteri"
+    }
+  },
+  "hobby": {
+    "clubs": "Kerhot",
+    "courses": "Kurssit",
+    "camps": "Leirit",
+    "trips": "Retket",
+    "workshops": "Työpajat",
+    "onlineStudies": "Verkkoopetus"
+  },
+  "collections": {
+    "title": "Suosittelemme"
+  },
+  "notFound": {
+    "text": "Syystä tai toisesta hakemaasi kotisivua ei löydy.",
+    "title": "Oho, nyt iski 404!"
+  },
+  "search": {
+    "popularCategories": "Suosituimmat kategoriat",
+    "placeholder": "Kirjoita hakusana",
+    "showPopularCategories": "Näytä suosituimmat kategoriat",
+    "hidePopularCategories": "Piilota suosituimmat kategoriat"
+  },
+  "eventSearch": {
+    "linkAdvancedSearch": "Tarkennettu haku",
+    "buttonSearch": "Hae",
+    "placeholder": "Kirjoita hakusana, esim. rock tai jooga",
+    "title": "Löydä tapahtumia"
+  },
+  "courseSearch": {
+    "buttonSearch": "Hae",
+    "placeholder": "Kirjoita hakusana, esim. ranska tai ruoanlaitto",
+    "title": "Löydä harrastuksia"
+  }
+}

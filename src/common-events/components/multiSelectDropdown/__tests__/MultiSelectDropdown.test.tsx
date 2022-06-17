@@ -284,7 +284,7 @@ test("should call onChange with empty array when clicking select all checkbox", 
 
   userEvent.click(
     screen.queryByRole("checkbox", {
-      name: translations.commons.multiSelectDropdown.selectAll,
+      name: translations.common:multiSelectDropdown.selectAll,
     })
   );
   expect(onChange).toBeCalledWith([]);

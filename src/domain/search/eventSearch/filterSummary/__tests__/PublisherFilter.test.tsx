@@ -45,7 +45,7 @@ it("calls onRemove callback when remove button is clicked", async () => {
 
   userEvent.click(
     screen.getByRole("button", {
-      name: translations.commons.filter.ariaButtonRemove.replace(
+      name: translations.common:filter.ariaButtonRemove.replace(
         "{{filter}}",
         name
       ),
@@ -73,7 +73,7 @@ it("should return null if place doesn't exist", async () => {
 
   await waitFor(() => {
     expect(
-      screen.queryByText(translations.commons.loading)
+      screen.queryByText(translations.common:loading)
     ).not.toBeInTheDocument();
   });
 

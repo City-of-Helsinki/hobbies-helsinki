@@ -255,13 +255,13 @@ const AdvancedSearch: React.FC<Props> = ({
               <div className={classNames(styles.row, styles.autoSuggestRow)}>
                 <div>
                   <SearchLabel color="black" htmlFor="search">
-                    {t("eventSearch.search.labelSearchField")}
+                    {t("eventSearch:search.labelSearchField")}
                   </SearchLabel>
                   <SearchAutosuggest
                     name="search"
                     onChangeSearchValue={setAutosuggestInput}
                     onOptionClick={handleMenuOptionClick}
-                    placeholder={t("eventSearch.search.placeholder")}
+                    placeholder={t("eventSearch:search.placeholder")}
                     searchValue={autosuggestInput}
                   />
                 </div>
@@ -279,9 +279,8 @@ const AdvancedSearch: React.FC<Props> = ({
                     options={categories}
                     setInputValue={setCategoryInput}
                     showSearch={false}
-                    title={t("eventSearch.search.titleDropdownCategory")}
+                    title={t("eventSearch:search.titleDropdownCategory")}
                     value={selectedCategories}
-                    t={t}
                   />
                 </div>
                 <div className={styles.dateSelectorWrapper}>
@@ -295,7 +294,6 @@ const AdvancedSearch: React.FC<Props> = ({
                     onChangeStartDate={setStart}
                     startDate={start}
                     toggleIsCustomDate={toggleIsCustomDate}
-                    t={t}
                   />
                 </div>
                 {/* <div>
@@ -306,13 +304,12 @@ const AdvancedSearch: React.FC<Props> = ({
                     name="division"
                     onChange={setSelectedDivisions}
                     options={divisionOptions}
-                    selectAllText={t("eventSearch.search.selectAllDivisions")}
+                    selectAllText={t("eventSearch:search.selectAllDivisions")}
                     setInputValue={setDivisionInput}
                     showSearch={true}
                     showSelectAll={true}
-                    title={t("eventSearch.search.titleDropdownDivision")}
+                    title={t("eventSearch:search.titleDropdownDivision")}
                     value={selectedDivisions}
-                    t={t}
                   />
                 </div> */}
                 <div>
@@ -322,13 +319,12 @@ const AdvancedSearch: React.FC<Props> = ({
                     inputValue={placeInput}
                     name="places"
                     onChange={setSelectedPlaces}
-                    selectAllText={t("eventSearch.search.selectAllPlaces")}
+                    selectAllText={t("eventSearch:search.selectAllPlaces")}
                     setInputValue={setPlaceInput}
                     showSearch={true}
                     showSelectAll={true}
-                    title={t("eventSearch.search.titleDropdownPlace")}
+                    title={t("eventSearch:search.titleDropdownPlace")}
                     value={selectedPlaces}
-                    t={t}
                   />
                 </div>
                 <div>
@@ -336,20 +332,19 @@ const AdvancedSearch: React.FC<Props> = ({
                     icon={<IconCake aria-hidden />}
                     rangeIcon={<IconArrowRight aria-hidden />}
                     minInputValue={minAgeInput}
-                    minInputLabel={t("courseSearch.search.ageLimitMin")}
+                    minInputLabel={t("courseSearch:search.ageLimitMin")}
                     minInputStartValue={MIN_AGE.toString()}
                     minInputFixedValue={"18"}
                     maxInputValue={maxAgeInput}
-                    maxInputLabel={t("courseSearch.search.ageLimitMax")}
+                    maxInputLabel={t("courseSearch:search.ageLimitMax")}
                     maxInputEndValue={MAX_AGE.toString()}
                     name="ageLimitValues"
                     onChange={handleSetAgeValues}
                     fixedValuesText={t(
-                      "courseSearch.search.showOnlyAdultCourses"
+                      "courseSearch:search.showOnlyAdultCourses"
                     )}
-                    title={t("courseSearch.search.ageLimitValues")}
+                    title={t("courseSearch:search.ageLimitValues")}
                     value={[minAgeInput, maxAgeInput]}
-                    t={t}
                   />
                 </div>
               </div>
@@ -360,7 +355,7 @@ const AdvancedSearch: React.FC<Props> = ({
                   variant="success"
                   type="submit"
                 >
-                  {t("eventSearch.search.buttonSearch")}
+                  {t("eventSearch:search.buttonSearch")}
                 </Button>
               </div>
             </div>
@@ -371,7 +366,7 @@ const AdvancedSearch: React.FC<Props> = ({
                     className={styles.checkbox}
                     checked={onlyChildrenEvents}
                     id={EVENT_SEARCH_FILTERS.ONLY_CHILDREN_EVENTS}
-                    label={t("eventSearch.search.checkboxOnlyChildrenEvents")}
+                    label={t("eventSearch:search.checkboxOnlyChildrenEvents")}
                     onChange={handleOnlyChildrenEventChange}
                   />
                 </div> */}
@@ -380,7 +375,7 @@ const AdvancedSearch: React.FC<Props> = ({
                     className={styles.checkbox}
                     checked={isFree}
                     id={EVENT_SEARCH_FILTERS.IS_FREE}
-                    label={t("eventSearch.search.checkboxIsFree")}
+                    label={t("eventSearch:search.checkboxIsFree")}
                     onChange={handleIsFreeChange}
                   />
                 </div>

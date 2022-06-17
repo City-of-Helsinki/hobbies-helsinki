@@ -49,7 +49,7 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconCalendarPlus aria-hidden />}
-        title={t("event.otherTimes.title")}
+        title={t("event:otherTimes.title")}
       >
         <EventList
           id={otherEventTimesListTestId}
@@ -63,8 +63,8 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t("event.otherTimes.buttonHide")
-              : t("event.otherTimes.buttonShow")}
+              ? t("event:otherTimes.buttonHide")
+              : t("event:otherTimes.buttonShow")}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (

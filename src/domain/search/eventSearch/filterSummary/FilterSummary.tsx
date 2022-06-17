@@ -108,21 +108,15 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       data-testid={filterSummaryContainerTestId}
     >
       {text.map((item, index) => (
-        <TextFilter
-          key={index}
-          text={item}
-          onRemove={handleFilterRemove}
-          t={t}
-        />
+        <TextFilter key={index} text={item} onRemove={handleFilterRemove} />
       ))}
       {categories.map((category) => (
         <FilterButton
           key={category}
           onRemove={handleFilterRemove}
-          text={translateValue("home.category.", category, t)}
+          text={translateValue("home:category.", category, t)}
           type="category"
           value={category}
-          t={t}
         />
       ))}
       {publisher && (
@@ -135,7 +129,6 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
           text={getNeighorhoodName(division)}
           type="division"
           value={division}
-          t={t}
         />
       ))}
       {places.map((place) => (
@@ -148,7 +141,6 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
           text={dateText}
           type="date"
           value="date"
-          t={t}
         />
       )}
       {dateTypes.map((dateType) => (
@@ -157,11 +149,10 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
           onRemove={handleFilterRemove}
           type="dateType"
           value={dateType}
-          t={t}
         />
       ))}
       <button className={styles.clearButton} onClick={onClear} type="button">
-        {t("eventSearch.buttonClearFilters")}
+        {t("eventSearch:buttonClearFilters")}
       </button>
     </div>
   );

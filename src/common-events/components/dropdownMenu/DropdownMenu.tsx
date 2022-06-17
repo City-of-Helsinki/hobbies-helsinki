@@ -17,7 +17,7 @@ const DropdownMenu: React.FC<Props> = ({ children, isOpen, onClear }) => {
     <div className={styles.dropdownMenu}>
       <div className={styles.dropdownMenuWrapper}>{children}</div>
       <button className={styles.btnClear} onClick={onClear} type="button">
-        {t<string>("commons.dropdown.menu.buttonClear")}
+        {t<string>("common:dropdown.menu.buttonClear")}
       </button>
     </div>
   );

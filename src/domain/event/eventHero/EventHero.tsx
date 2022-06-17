@@ -59,7 +59,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
   const eventPriceText = getEventPrice(
     event,
     locale,
-    t("event.hero.offers.isFree")
+    t("event:hero.offers.isFree")
   );
   const showKeywords = Boolean(today || thisWeek || keywords.length);
   const returnParam = extractLatestReturnPath(search);
@@ -106,7 +106,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
           <div className={styles.backButtonWrapper}>
             <IconButton
               role="link"
-              ariaLabel={t("event.hero.ariaLabelBackButton")}
+              ariaLabel={t("event:hero.ariaLabelBackButton")}
               backgroundColor="white"
               icon={<IconArrowLeft aria-hidden />}
               onClick={() => goBack(returnParam)}
@@ -156,7 +156,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                           end: eventEndTime,
                           locale,
                           includeTime: true,
-                          timeAbbreviation: t("commons.timeAbbreviation"),
+                          timeAbbreviation: t("common:timeAbbreviation"),
                         })}
                       </InfoWithIcon>
                     )
@@ -172,12 +172,12 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                 {showBuyButton && (
                   <Visible above="s" className={styles.buyButtonWrapper}>
                     <Button
-                      aria-label={t("event.hero.ariaLabelBuyTickets")}
+                      aria-label={t("event:hero.ariaLabelBuyTickets")}
                       onClick={goToBuyTicketsPage}
                       iconRight={<IconLinkExternal aria-hidden />}
                       variant="success"
                     >
-                      {t("event.hero.buttonBuyTickets")}
+                      {t("event:hero.buttonBuyTickets")}
                     </Button>
                   </Visible>
                 )}
@@ -185,10 +185,10 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                   <Visible className={styles.registrationButtonWrapper}>
                     <Button
                       className={buttonStyles.buttonCoatBlue}
-                      aria-label={t("event.hero.ariaLabelEnrol")}
+                      aria-label={t("event:hero.ariaLabelEnrol")}
                       onClick={() => window.open(registrationUrl)}
                     >
-                      {t("event.hero.buttonEnrol")}
+                      {t("event:hero.buttonEnrol")}
                     </Button>
                   </Visible>
                 )}

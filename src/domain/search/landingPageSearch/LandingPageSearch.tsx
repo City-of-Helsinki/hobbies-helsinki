@@ -72,7 +72,6 @@ const Search: React.FC = () => {
     <>
       <LandingPageSearchForm
         className={styles.landingPageSearch}
-        t={t}
         dateTypes={dateTypes}
         start={start}
         setStart={setStart}

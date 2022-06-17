@@ -129,10 +129,9 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     return {
       props: {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "home_page",
-          "landing_page_search_form",
-          "collection_count_label",
-          "hardcoded_shortcuts",
+          "common",
+          "home",
+          "eventSearch",
         ])),
       },
     };

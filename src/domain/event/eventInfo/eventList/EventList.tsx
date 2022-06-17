@@ -36,7 +36,7 @@ const EventList: React.FC<{
               end: event.endTime,
               includeTime: true,
               locale,
-              timeAbbreviation: t("commons.timeAbbreviation"),
+              timeAbbreviation: t("common:timeAbbreviation"),
             })
           : "";
         return (
@@ -46,10 +46,10 @@ const EventList: React.FC<{
               // className={styles.listButton}
               aria-label={
                 showDate
-                  ? t("event.otherTimes.buttonReadMore", {
+                  ? t("event:otherTimes.buttonReadMore", {
                       date,
                     })
-                  : t("event.relatedEvents.buttonReadMore")
+                  : t("event:relatedEvents.buttonReadMore")
               }
             >
               <span>{`${showName ? name : ""} ${showDate ? date : ""}`}</span>

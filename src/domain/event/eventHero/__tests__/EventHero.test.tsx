@@ -210,7 +210,7 @@ test("should show event dates if super event is defined", () => {
     end: mockEvent.endTime,
     locale: "fi",
     includeTime: true,
-    timeAbbreviation: translations.commons.timeAbbreviation,
+    timeAbbreviation: translations.common:timeAbbreviation,
   });
 
   expect(screen.getByText(dateStr)).toBeInTheDocument();

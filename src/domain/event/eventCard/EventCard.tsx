@@ -47,7 +47,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
   const eventPriceText = getEventPrice(
     event,
     locale,
-    t("event.eventCard.isFree")
+    t("event:eventCard.isFree")
   );
 
   const goToEventPage = () => {
@@ -70,7 +70,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <Link
-      aria-label={t("event.eventCard.ariaLabelLink", {
+      aria-label={t("event:eventCard.ariaLabelLink", {
         name,
       })}
       id={getEventCardId(id)}
@@ -96,7 +96,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
                   locale,
                   includeWeekday: false,
                   includeTime: true,
-                  timeAbbreviation: t("commons.timeAbbreviation"),
+                  timeAbbreviation: t("common:timeAbbreviation"),
                 })}
             </div>
             <div className={styles.eventLocation}>
@@ -119,7 +119,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
           <div className={styles.buttonWrapper}>
             <div ref={button}>
               <IconButton
-                ariaLabel={t("event.eventCard.ariaLabelLink", {
+                ariaLabel={t("event:eventCard.ariaLabelLink", {
                   name,
                 })}
                 icon={<IconArrowRight aria-hidden />}

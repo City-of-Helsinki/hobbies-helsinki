@@ -128,7 +128,7 @@ const MobileDateSelector: React.FC<Props> = ({
             key={dateType}
             isSelected={dateTypes.indexOf(dateType) !== -1}
             onClick={handleClickButton}
-            text={translateValue("commons.dateSelector.dateType", dateType, t)}
+            text={translateValue("common:dateSelector.dateType", dateType, t)}
             value={dateType}
           />
         );
@@ -148,7 +148,7 @@ const MobileDateSelector: React.FC<Props> = ({
           isSelected={!!endDate || !!startDate}
           onClick={toggleMenu}
           testId={"open-date-selector-button"}
-          text={t("commons.dateSelector.menu.buttonCustom")}
+          text={t("common:dateSelector.menu.buttonCustom")}
           value={"customDate"}
         />
         <MobileDateSelectorMenu

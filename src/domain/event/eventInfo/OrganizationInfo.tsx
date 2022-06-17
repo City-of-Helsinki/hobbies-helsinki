@@ -32,7 +32,7 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
       {provider && (
         <InfoWithIcon
           icon={<IconFaceSmile />}
-          title={t("event.info.labelOrganizer")}
+          title={t("event:info.labelOrganizer")}
         >
           <div>{provider}</div>
         </InfoWithIcon>
@@ -40,14 +40,14 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
       {publisher && (
         <InfoWithIcon
           icon={<IconLayers />}
-          title={t("event.info.labelPublisher")}
+          title={t("event:info.labelPublisher")}
         >
           <LoadingSpinner hasPadding={false} isLoading={loading}>
             {organizationName && (
               <>
                 <div>{organizationName}</div>
                 <Link href={`/search/?publisher=${publisher}`}>
-                  {t(`event.info.linkSearchByPublisher`)}
+                  {t(`event:info.linkSearchByPublisher`)}
                 </Link>
               </>
             )}

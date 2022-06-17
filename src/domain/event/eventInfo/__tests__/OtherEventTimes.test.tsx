@@ -119,7 +119,7 @@ const getDateRangeStrProps = (event: EventDetails) => ({
   end: event.endTime,
   locale: "fi",
   includeTime: true,
-  timeAbbreviation: translations.commons.timeAbbreviation,
+  timeAbbreviation: translations.common:timeAbbreviation,
 });
 
 describe("events", () => {

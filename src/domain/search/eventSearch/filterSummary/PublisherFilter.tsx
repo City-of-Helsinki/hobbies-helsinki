@@ -19,10 +19,9 @@ const PublisherFilter: React.FC<Props> = ({ id, onRemove }) => {
   return loading ? (
     <FilterButton
       onRemove={onRemove}
-      text={t("commons.loading")}
+      text={t("common:loading")}
       type="publisher"
       value={id}
-      t={t}
     />
   ) : data && data.organizationDetails.name ? (
     <FilterButton
@@ -30,7 +29,6 @@ const PublisherFilter: React.FC<Props> = ({ id, onRemove }) => {
       text={data.organizationDetails.name}
       type="publisher"
       value={id}
-      t={t}
     />
   ) : null;
 };

@@ -36,7 +36,7 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
             {description && (
               <>
                 <h2 className={styles.descriptionTitle}>
-                  {t("event.description.title")}
+                  {t("event:description.title")}
                 </h2>
                 <div
                   className={styles.description}
@@ -46,14 +46,14 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
                 />
                 {photographerName && (
                   <p>
-                    {t("commons.photographerText", {
+                    {t("common:photographerText", {
                       photographer: photographerName,
                     })}
                   </p>
                 )}
               </>
             )}
-            <ShareLinks t={t} title={t("event.shareLinks.title")} />
+            <ShareLinks title={t("event:shareLinks.title")} />
             <div
               className={classNames(
                 styles.horizontalDivider,

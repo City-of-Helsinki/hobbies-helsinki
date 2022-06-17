@@ -1,4 +1,72 @@
 {
-  "site_name": "Hobbies Helsinki",
-  "opens_in_new_tab": "Opens in a new tab"
+  "appName": "Hobbies Helsinki",
+  "opens_in_new_tab": "Opens in a new tab",
+
+  "notification": {
+    "labelClose": "Close notification"
+  },
+  "autosuggest": {
+    "menu": {
+      "ariaButtonClose": "Close menu",
+      "info": "You can also search by the keyword you entered",
+      "title": "Search suggestions"
+    }
+  },
+  "category": {
+    "ariaButtonRemove": "Remove category: {{category}}"
+  },
+  "dateSelector": {
+    "dateTypeAll": "At any day",
+    "dateTypeThisWeek": "This week",
+    "dateTypeToday": "Today",
+    "dateTypeTomorrow": "Tomorrow",
+    "dateTypeWeekend": "This weekend",
+    "infoDate": "dd.mm.yyyy",
+    "labelEndDate": "End date",
+    "labelStartDate": "Start date",
+    "errorEndDateBeforeStartDate": "The start date must be before the end date",
+    "errorDateFormat": "Date must be in format dd.mm.yyyy",
+    "menu": {
+      "buttonBack": "Back",
+      "buttonClose": "Close",
+      "buttonCustom": "Select dates"
+    },
+    "title": "Select dates",
+    "accessibility": {
+      "chooseDayPrefix": "Choose",
+      "nextMonth": "Next month",
+      "previousMonth": "Previous month"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "buttonClear": "Clear selection"
+    }
+  },
+  "filter": {
+    "ariaButtonRemove": "Remove filter: {{filter}}"
+  },
+  "linkSkipToContent": "Skip to content",
+  "loading": "Loading...",
+  "multiSelectDropdown": {
+    "inputPlaceholder": "Write search word",
+    "selectAll": "Select all"
+  },
+  "preview": "Preview",
+  "shareLink": {
+    "shareOnFacebook": "Share on Facebook - Opens in a new tab.",
+    "shareOnTwitter": "Share on Twitter - Opens in a new tab.",
+    "shareOnLinkedIn": "Share on LinkedIn - Opens in a new tab"
+  },
+  "shareLinks": {
+    "buttonCopyLink": "Copy link address",
+    "messageLinkCopySuccess": "Link copied into clipboard"
+  },
+  "srOnly": {
+    "opensInANewTab": "Opens in a new tab"
+  },
+  "yearsShort": "y",
+  "supriseMe": "I'm Feeling Lucky",
+  "timeAbbreviation": "at",
+  "photographerText": "Image: {{photographer}}"
 }
