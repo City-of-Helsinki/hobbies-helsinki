@@ -1,4 +1,72 @@
 {
-  "site_name": "Hobbyer Helsingfors",
-  "opens_in_new_tab": "Öppnas i ett nytt mellanblad"
+  "appName": "Hobbyer Helsingfors",
+  "opens_in_new_tab": "Öppnas i ett nytt mellanblad",
+
+  "notification": {
+    "labelClose": "Stäng anmälan"
+  },
+  "autosuggest": {
+    "menu": {
+      "ariaButtonClose": "Stäng menyn",
+      "info": "Du kan också leta med sökordet du angav",
+      "title": "Sökförslag"
+    }
+  },
+  "category": {
+    "ariaButtonRemove": "Radera kategori: {{category}}"
+  },
+  "dateSelector": {
+    "dateTypeAll": "När som helst",
+    "dateTypeThisWeek": "Denna vecka",
+    "dateTypeToday": "I dag",
+    "dateTypeTomorrow": "I morgon",
+    "dateTypeWeekend": "På veckoslutet",
+    "infoDate": "dd.mm.åååå",
+    "labelEndDate": "Slutdatum",
+    "labelStartDate": "Startdatum",
+    "errorEndDateBeforeStartDate": "Startdatumet måste vara före slutdatumet",
+    "errorDateFormat": "Datum bör skrivas i formatet dd.mm.åååå",
+    "menu": {
+      "buttonBack": "Tillbaka",
+      "buttonClose": "Stäng",
+      "buttonCustom": "Välj datum"
+    },
+    "title": "Välj tidpunkt",
+    "accessibility": {
+      "chooseDayPrefix": "Välja",
+      "nextMonth": "Nästa månad",
+      "previousMonth": "Förra månaden"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "buttonClear": "Töm valda"
+    }
+  },
+  "filter": {
+    "ariaButtonRemove": "Ta bort filter: {{filter}}"
+  },
+  "linkSkipToContent": "Gå till innehållet",
+  "loading": "Laddning...",
+  "multiSelectDropdown": {
+    "inputPlaceholder": "Skriv sökord",
+    "selectAll": "Välj alla"
+  },
+  "preview": "Förhandsvisning",
+  "shareLink": {
+    "shareOnFacebook": "Dela på Facebook - Öppnas i en ny flik",
+    "shareOnTwitter": "Dela på Twitter - Öppnas i en ny flik",
+    "shareOnLinkedIn": "Dela på LinkedIn - Öppnas i en ny flik"
+  },
+  "shareLinks": {
+    "buttonCopyLink": "Kopiera länk adress",
+    "messageLinkCopySuccess": "Länk kopierad till urklipp"
+  },
+  "srOnly": {
+    "opensInANewTab": "Öppnas i en ny flik"
+  },
+  "yearsShort": "år",
+  "supriseMe": "Jag har tur",
+  "timeAbbreviation": "kl.",
+  "photographerText": "Foto: {{photographer}}"
 }

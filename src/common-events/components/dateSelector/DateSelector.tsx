@@ -139,7 +139,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
 
     const dateTypeLabels = dateTypes
       .sort(sortDateTypes)
-      .map((val) => translateValue("commons.dateSelector.dateType", val, t));
+      .map((val) => translateValue("common:dateSelector.dateType", val, t));
 
     if (dateTypeLabels.length > 1) {
       return `${dateTypeLabels[0]} + ${dateTypeLabels.length - 1}`;
@@ -159,7 +159,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
       <button
         aria-haspopup="true"
         aria-expanded={isMenuOpen}
-        aria-label={t<string>("commons.dateSelector.title")}
+        aria-label={t<string>("common:dateSelector.title")}
         className={styles.button}
         onClick={toggleMenu}
         type="button"
@@ -169,7 +169,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
         </div>
         <div className={styles.info}>
           <div className={styles.buttonTextWrapper}>
-            {selectedText || t<string>("commons.dateSelector.title")}
+            {selectedText || t<string>("common:dateSelector.title")}
           </div>
         </div>
         <div className={styles.arrowWrapper}>

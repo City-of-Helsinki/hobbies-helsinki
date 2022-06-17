@@ -47,14 +47,14 @@ it("should render event content fields", () => {
     { role: "heading", name: translations.event.info.labelPrice },
     { role: "heading", name: translations.event.description.title },
     { role: "heading", name: translations.event.shareLinks.title },
-    { role: "button", name: translations.commons.shareLinks.buttonCopyLink },
-    { role: "button", name: translations.commons.shareLink.shareOnFacebook },
-    { role: "button", name: translations.commons.shareLink.shareOnTwitter },
-    { role: "button", name: translations.commons.shareLink.shareOnLinkedIn },
+    { role: "button", name: translations.common:shareLinks.buttonCopyLink },
+    { role: "button", name: translations.common:shareLink.shareOnFacebook },
+    { role: "button", name: translations.common:shareLink.shareOnTwitter },
+    { role: "button", name: translations.common:shareLink.shareOnLinkedIn },
     { role: "heading", name: translations.event.location.title },
     {
       role: "link",
-      name: `${translations.event.location.openMap} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.location.openMap} ${translations.common:srOnly.opensInANewTab}`,
     },
   ];
   itemsByRole.forEach(({ role, name }) => {
@@ -75,11 +75,11 @@ it("should render event content fields", () => {
   const itemsAllByRole = [
     {
       role: "link",
-      name: `${translations.event.location.directionsGoogle} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.location.directionsGoogle} ${translations.common:srOnly.opensInANewTab}`,
     },
     {
       role: "link",
-      name: `${translations.event.location.directionsHSL} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.location.directionsHSL} ${translations.common:srOnly.opensInANewTab}`,
     },
   ];
 

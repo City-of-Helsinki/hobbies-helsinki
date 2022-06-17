@@ -20,7 +20,7 @@ const EventName: React.FC<Props> = ({ event }) => {
     <>
       {isCancelled && (
         <span className={styles.eventCancelled}>
-          {t("event.eventCancelled")}
+          {t("event:eventCancelled")}
           {": "}
         </span>
       )}

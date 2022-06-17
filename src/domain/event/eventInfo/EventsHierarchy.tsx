@@ -74,11 +74,11 @@ const SubEvents: React.FC<{ event: EventFields }> = ({ event }) => {
    */
   const [title, titleIcon] = isMiddleLevelEvent
     ? [
-        t("event.otherTimes.title"),
+        t("event:otherTimes.title"),
         <IconCalendarPlus key={"icon-calendar´" + Math.random()} aria-hidden />,
       ]
     : [
-        t("event.subEvents.title"),
+        t("event:subEvents.title"),
         <IconLayers key={"icon-layers" + Math.random()} aria-hidden />,
       ];
 
@@ -102,8 +102,8 @@ const SubEvents: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t("event.relatedEvents.buttonHide")
-              : t("event.relatedEvents.buttonShow")}
+              ? t("event:relatedEvents.buttonHide")
+              : t("event:relatedEvents.buttonShow")}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (
@@ -133,7 +133,7 @@ const SuperEvent: React.FC<{ superEvent: SuperEventResponse | undefined }> = ({
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconLayers aria-hidden />}
-        title={t("event.superEvent.title")}
+        title={t("event:superEvent.title")}
       >
         <EventList id={superEventTestId} showName events={[superEvent.data]} />
       </InfoWithIcon>

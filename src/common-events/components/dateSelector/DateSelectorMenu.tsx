@@ -74,7 +74,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
                 checked={dateTypes.indexOf(option) !== -1}
                 id={`name_${option}`}
                 label={translateValue(
-                  "commons.dateSelector.dateType",
+                  "common:dateSelector.dateType",
                   option,
                   t
                 )}
@@ -97,7 +97,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconCalendarPlus aria-hidden />
         <div className={styles.buttonText}>
-          {t<string>("commons.dateSelector.menu.buttonCustom")}
+          {t<string>("common:dateSelector.menu.buttonCustom")}
         </div>
         <IconAngleRight aria-hidden />
       </button>
@@ -112,7 +112,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconAngleLeft aria-hidden />
         <div className={styles.buttonText}>
-          {t<string>("commons.dateSelector.menu.buttonBack")}
+          {t<string>("common:dateSelector.menu.buttonBack")}
         </div>
       </button>
 
@@ -134,7 +134,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
         type="button"
       >
         <div className={styles.buttonText}>
-          {t<string>("commons.dateSelector.menu.buttonClose")}
+          {t<string>("common:dateSelector.menu.buttonClose")}
         </div>
       </button>
     </div>

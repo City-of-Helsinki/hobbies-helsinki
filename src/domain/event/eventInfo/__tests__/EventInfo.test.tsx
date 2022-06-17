@@ -40,7 +40,7 @@ const getDateRangeStrProps = (event: EventDetails) => ({
   end: event.endTime,
   locale: "fi",
   includeTime: true,
-  timeAbbreviation: translations.commons.timeAbbreviation,
+  timeAbbreviation: translations.common:timeAbbreviation,
 });
 
 it("should render event info fields", async () => {
@@ -57,16 +57,16 @@ it("should render event info fields", async () => {
     { role: "heading", name: translations.event.info.labelOrganizer },
     {
       role: "link",
-      name: `${translations.event.info.extlinkFacebook} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.info.extlinkFacebook} ${translations.common:srOnly.opensInANewTab}`,
     },
     { role: "heading", name: translations.event.info.labelDirections },
     {
       role: "link",
-      name: `${translations.event.location.directionsGoogle} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.location.directionsGoogle} ${translations.common:srOnly.opensInANewTab}`,
     },
     {
       role: "link",
-      name: `${translations.event.location.directionsHSL} ${translations.commons.srOnly.opensInANewTab}`,
+      name: `${translations.event.location.directionsHSL} ${translations.common:srOnly.opensInANewTab}`,
     },
     { role: "heading", name: translations.event.info.labelPrice },
   ];

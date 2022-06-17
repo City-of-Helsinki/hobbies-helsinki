@@ -1,0 +1,15 @@
+{
+  "menuToggleAriaLabel": "Valikko",
+  "skipToContentLabel": "Siirry sisältöön",
+  "changeLanguage": "Valitse kieli, Select language, Andra språk",
+  "languages": {
+    "en": "In English",
+    "fi": "Suomeksi",
+    "sv": "På svenska"
+  },
+  "searchCollections": "Suosittelemme",
+  "searchEvents": "Tapahtumakalenteri",
+  "searchHobbies": "Harrastukset",
+  "titleAriaLabel": "Tapahtumat Helsinki etusivu",
+  "linkAbout": "Tietoa palvelusta"
+}

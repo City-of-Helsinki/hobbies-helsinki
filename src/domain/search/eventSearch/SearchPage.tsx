@@ -79,7 +79,7 @@ const SearchPage: React.FC<{
           },
         });
       } catch (e) {
-        toast.error(t("eventSearch.errorLoadMode"));
+        toast.error(t("eventSearch:errorLoadMode"));
       }
     }
     setIsFetchingMore(false);
@@ -135,8 +135,8 @@ const SearchPage: React.FC<{
       >
         <SrOnly aria-live="polite" aria-atomic={true}>
           {isLoadingEvents
-            ? t("eventSearch.ariaLiveLoading")
-            : t("eventSearch.ariaLiveSearchReady", {
+            ? t("eventSearch:ariaLiveLoading")
+            : t("eventSearch:ariaLiveSearchReady", {
                 count: eventsList?.meta.count,
               })}
         </SrOnly>

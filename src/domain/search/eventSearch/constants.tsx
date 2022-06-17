@@ -301,51 +301,51 @@ export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
   {
     [COURSE_CATEGORIES.MOVIE]: {
       icon: <IconMovies />,
-      labelKey: "home.category.courses.movieAndMedia",
+      labelKey: "home:category.courses.movieAndMedia",
     },
     [COURSE_CATEGORIES.LANGUAGES]: {
       icon: <IconLanguages />,
-      labelKey: "home.category.courses.languages",
+      labelKey: "home:category.courses.languages",
     },
     [COURSE_CATEGORIES.LITERATURE]: {
       icon: <IconLiterature />,
-      labelKey: "home.category.courses.literature",
+      labelKey: "home:category.courses.literature",
     },
     [COURSE_CATEGORIES.ARTS_AND_CULTURE]: {
       icon: <IconArt />,
-      labelKey: "home.category.courses.artsAndCulture",
+      labelKey: "home:category.courses.artsAndCulture",
     },
     [COURSE_CATEGORIES.VISUAL_ARTS]: {
       icon: <IconArt />,
-      labelKey: "home.category.courses.visualArts",
+      labelKey: "home:category.courses.visualArts",
     },
     [COURSE_CATEGORIES.HANDICRAFTS]: {
       icon: <IconCraft />,
-      labelKey: "home.category.courses.handicrafts",
+      labelKey: "home:category.courses.handicrafts",
     },
     [COURSE_CATEGORIES.SPORT]: {
       icon: <IconSports />,
-      labelKey: "home.category.courses.sport",
+      labelKey: "home:category.courses.sport",
     },
     [COURSE_CATEGORIES.MUSIC]: {
       icon: <IconMusic />,
-      labelKey: "home.category.courses.music",
+      labelKey: "home:category.courses.music",
     },
     [COURSE_CATEGORIES.GAMES]: {
       icon: <IconGames />,
-      labelKey: "home.category.courses.games",
+      labelKey: "home:category.courses.games",
     },
     [COURSE_CATEGORIES.FOOD]: {
       icon: <IconFood />,
-      labelKey: "home.category.courses.food",
+      labelKey: "home:category.courses.food",
     },
     [COURSE_CATEGORIES.DANCE]: {
       icon: <IconDance />,
-      labelKey: "home.category.courses.dance",
+      labelKey: "home:category.courses.dance",
     },
     [COURSE_CATEGORIES.THEATRE]: {
       icon: <IconTheatre />,
-      labelKey: "home.category.courses.theatre",
+      labelKey: "home:category.courses.theatre",
     },
   };
 

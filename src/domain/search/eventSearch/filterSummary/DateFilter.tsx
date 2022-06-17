@@ -22,7 +22,7 @@ const DateFilter: React.FC<DateFilterProps> = ({
   return (
     <FilterButton
       onRemove={onRemove}
-      text={text || translateValue("commons.dateSelector.dateType", value, t)}
+      text={text || translateValue("common:dateSelector.dateType", value, t)}
       type={type}
       value={value}
     />

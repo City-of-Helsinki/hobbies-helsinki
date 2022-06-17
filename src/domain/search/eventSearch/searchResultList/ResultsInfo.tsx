@@ -24,7 +24,7 @@ const ResultsInfoContainer: React.FC<{
     <>
       {!isFinnish && (
         <Button variant="success" onClick={goToFinnishSearch}>
-          {t("eventSearch.searchNotification.buttons.labelSearchInFinnish")}
+          {t("eventSearch:searchNotification.buttons.labelSearchInFinnish")}
         </Button>
       )}
     </>
@@ -33,7 +33,7 @@ const ResultsInfoContainer: React.FC<{
   if (resultsCount === 0) {
     return (
       <ResultsInfo
-        bigText={t(`eventSearch.searchNotification.noResultsTitle`)}
+        bigText={t(`eventSearch:searchNotification.noResultsTitle`)}
         actionsSection={<ActionButtons />}
       />
     );
@@ -42,7 +42,7 @@ const ResultsInfoContainer: React.FC<{
   if (resultsCount < 5) {
     return (
       <ResultsInfo
-        bigText={t(`eventSearch.searchNotification.fewResultsTitle`)}
+        bigText={t(`eventSearch:searchNotification.fewResultsTitle`)}
         actionsSection={<ActionButtons />}
       />
     );

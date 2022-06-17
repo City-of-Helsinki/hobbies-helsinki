@@ -25,7 +25,7 @@ const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
         type="button"
         className={styles.closeButton}
         onClick={handleRemove}
-        aria-label={t<string>("commons.filter.ariaButtonRemove", {
+        aria-label={t<string>("common:filter.ariaButtonRemove", {
           filter: text,
         })}
       >

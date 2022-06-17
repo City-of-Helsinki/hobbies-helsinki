@@ -46,7 +46,7 @@ const MobileDateSelectorMenu: FunctionComponent<Props> = ({
         onClick={onCloseMenu}
       >
         <div className={styles.buttonText}>
-          {t<string>("commons.dateSelector.menu.buttonClose")}
+          {t<string>("common:dateSelector.menu.buttonClose")}
         </div>
       </button>
     </div>

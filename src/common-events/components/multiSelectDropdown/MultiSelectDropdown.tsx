@@ -52,7 +52,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
 }) => {
   const { t } = useConfig();
   const inputPlaceholderText =
-    inputPlaceholder || t("commons.multiSelectDropdown.inputPlaceholder");
+    inputPlaceholder || t("common:multiSelectDropdown.inputPlaceholder");
   const [internalInput, setInternalInput] = React.useState("");
   const input = inputValue !== undefined ? inputValue : internalInput;
 
@@ -63,7 +63,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
   const filteredOptions = React.useMemo(() => {
     return [
       showSelectAll && {
-        text: selectAllText || t("commons.multiSelectDropdown.selectAll"),
+        text: selectAllText || t("common:multiSelectDropdown.selectAll"),
         value: SELECT_ALL,
       },
       ...options.filter((option) =>

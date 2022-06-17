@@ -68,6 +68,7 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
       "props" in result
         ? {
             initialApolloState: cmsClient.cache.extract(),
+            initialEventsApolloState: eventsClient.cache.extract(),
             ...result.props,
           }
         : undefined;

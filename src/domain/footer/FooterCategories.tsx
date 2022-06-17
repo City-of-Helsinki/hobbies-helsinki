@@ -16,7 +16,7 @@ import {
 import styles from "./footerCategories.module.scss";
 
 const FooterCategories: FunctionComponent = () => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("footer");
   const locale = useLocale();
   const route = "/courses";
 
@@ -35,7 +35,7 @@ const FooterCategories: FunctionComponent = () => {
     t,
     CATEGORY_CATALOG.Course.default
   );
-  const footerTitle = t(`footer.titleCourseCategories`);
+  const footerTitle = t(`titleCourseCategories`);
 
   return (
     <div className={styles.topFooterWrapper}>

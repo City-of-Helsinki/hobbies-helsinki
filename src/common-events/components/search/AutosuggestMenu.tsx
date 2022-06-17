@@ -28,9 +28,9 @@ const AutosuggestMenu: FunctionComponent<Props> = ({
   return (
     <div className={styles.autosuggestMenu}>
       <div className={styles.title}>
-        {t("commons.autosuggest.menu.title")}
+        {t("common:autosuggest.menu.title")}
         <button
-          aria-label={t("commons.autosuggest.menu.ariaButtonClose")}
+          aria-label={t("common:autosuggest.menu.ariaButtonClose")}
           className={styles.closeButton}
           onClick={onClose}
         >
@@ -65,7 +65,7 @@ const AutosuggestMenu: FunctionComponent<Props> = ({
         })}
       </ul>
 
-      <div className={styles.info}>{t("commons.autosuggest.menu.info")}</div>
+      <div className={styles.info}>{t("common:autosuggest.menu.info")}</div>
     </div>
   );
 };

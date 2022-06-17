@@ -40,7 +40,7 @@ const ALink: React.FC<LinkProps> = ({
   return isExternal ? (
     <a href={to} rel="noopener noreferrer" target="_blank" {...commonProps}>
       {children}
-      <SrOnly>{t<string>("commons.srOnly.opensInANewTab")}</SrOnly>
+      <SrOnly>{t<string>("common:srOnly.opensInANewTab")}</SrOnly>
       <IconLinkExternal aria-hidden />
     </a>
   ) : (

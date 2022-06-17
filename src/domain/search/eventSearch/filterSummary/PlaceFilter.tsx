@@ -22,10 +22,9 @@ const PlaceFilter: React.FC<Props> = ({ id, onRemove }) => {
   return loading ? (
     <FilterButton
       onRemove={onRemove}
-      text={t("commons.loading")}
+      text={t("common:loading")}
       type="place"
       value={id}
-      t={t}
     />
   ) : data && data.placeDetails.name ? (
     <FilterButton
@@ -33,7 +32,6 @@ const PlaceFilter: React.FC<Props> = ({ id, onRemove }) => {
       text={getLocalisedString(data.placeDetails.name, locale)}
       type="place"
       value={id}
-      t={t}
     />
   ) : null;
 };

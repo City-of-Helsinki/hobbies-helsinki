@@ -1,4 +1,72 @@
 {
-  "site_name": "Harrastukset Helsinki",
-  "opens_in_new_tab": "Avautuu uudessa välilehdessä"
+  "appName": "Harrastukset Helsinki",
+  "opens_in_new_tab": "Avautuu uudessa välilehdessä",
+
+  "notification": {
+    "labelClose": "Sulje ilmoitus"
+  },
+  "autosuggest": {
+    "menu": {
+      "ariaButtonClose": "Sulje valikko",
+      "info": "Voit myös etsiä kirjoittamallasi hakusanalla",
+      "title": "Hakuehdotuksia"
+    }
+  },
+  "category": {
+    "ariaButtonRemove": "Poista kategoria: {{category}}"
+  },
+  "dateSelector": {
+    "dateTypeAll": "Koska tahansa",
+    "dateTypeThisWeek": "Tällä viikolla",
+    "dateTypeToday": "Tänään",
+    "dateTypeTomorrow": "Huomenna",
+    "dateTypeWeekend": "Viikonloppuna",
+    "infoDate": "pp.kk.vvvv",
+    "labelEndDate": "Loppumispäivä",
+    "labelStartDate": "Alkamispäivä",
+    "errorEndDateBeforeStartDate": "Alkamispäivän on oltava ennen loppumispäivää",
+    "errorDateFormat": "Päivämäärän on oltava muotoa pp.kk.vvvv",
+    "menu": {
+      "buttonBack": "Takaisin",
+      "buttonClose": "Sulje",
+      "buttonCustom": "Valitse päivät"
+    },
+    "title": "Valitse ajankohta",
+    "accessibility": {
+      "chooseDayPrefix": "Valitse",
+      "nextMonth": "Seuraava kuukausi",
+      "previousMonth": "Edellinen kuukausi"
+    }
+  },
+  "dropdown": {
+    "menu": {
+      "buttonClear": "Tyhjennä valinnat"
+    }
+  },
+  "filter": {
+    "ariaButtonRemove": "Poista suodatin: {{filter}}"
+  },
+  "linkSkipToContent": "Siirry sisältöön",
+  "loading": "Ladataan...",
+  "multiSelectDropdown": {
+    "inputPlaceholder": "Kirjoita hakusana",
+    "selectAll": "Valitse kaikki"
+  },
+  "preview": "Esikatselu",
+  "shareLink": {
+    "shareOnFacebook": "Jaa Facebookissa - Avautuu uudessa välilehdessä",
+    "shareOnTwitter": "Jaa Twitterissä - Avautuu uudessa välilehdessä",
+    "shareOnLinkedIn": "Jaa LinkedInissä - Avautuu uudessa välilehdessä"
+  },
+  "shareLinks": {
+    "buttonCopyLink": "Kopioi linkin osoite",
+    "messageLinkCopySuccess": "Linkki kopioitu leikepöydälle"
+  },
+  "supriseMe": "Koeta onneasi",
+  "timeAbbreviation": "klo",
+  "srOnly": {
+    "opensInANewTab": "Avautuu uudessa välilehdessä"
+  },
+  "yearsShort": "v",
+  "photographerText": "Kuva: {{photographer}}"
 }

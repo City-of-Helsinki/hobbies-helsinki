@@ -83,7 +83,7 @@ class AppConfig {
 
 function parseEnvValue(
   value?: string,
-  defaultValue: boolean | string | number = null
+  defaultValue: boolean | string | number | null = null
 ) {
   if (!value) {
     return defaultValue;

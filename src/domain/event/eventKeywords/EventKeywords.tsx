@@ -76,21 +76,21 @@ const EventKeywords: React.FC<Props> = ({
       {today && (
         <Keyword
           color="engelLight50"
-          keyword={t("event.categories.labelToday")}
+          keyword={t("event:categories.labelToday")}
           onClick={handleClick("dateType", DATE_TYPES.TODAY)}
         />
       )}
       {!today && thisWeek && (
         <Keyword
           color="engelLight50"
-          keyword={t("event.categories.labelThisWeek")}
+          keyword={t("event:categories.labelThisWeek")}
           onClick={handleClick("dateType", DATE_TYPES.THIS_WEEK)}
         />
       )}
       {showIsFree && freeEvent && (
         <Keyword
           color="tramLight20"
-          keyword={t("event.categories.labelFree")}
+          keyword={t("event:categories.labelFree")}
           onClick={handleClick("isFree")}
         />
       )}

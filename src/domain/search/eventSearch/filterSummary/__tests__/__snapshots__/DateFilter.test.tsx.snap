@@ -40,7 +40,7 @@ exports[`matches snapshot 2`] = `
   class="filter date"
 >
   <button
-    aria-label="Poista suodatin: commons.dateSelector.dateTypeValue"
+    aria-label="Poista suodatin: common:dateSelector.dateTypeValue"
     class="closeButton"
     type="button"
   >
@@ -66,6 +66,6 @@ exports[`matches snapshot 2`] = `
       </g>
     </svg>
   </button>
-  commons.dateSelector.dateTypeValue
+  common:dateSelector.dateTypeValue
 </div>
 `;

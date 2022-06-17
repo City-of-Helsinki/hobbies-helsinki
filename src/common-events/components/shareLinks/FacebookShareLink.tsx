@@ -11,7 +11,7 @@ const FacebookShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
   const { t } = useTranslation();
 
   const queryParameters = { u: sharedLink };
-  const linkLabel = t("commons.shareLink.shareOnFacebook");
+  const linkLabel = t("common:shareLink.shareOnFacebook");
 
   return (
     <ShareLinkBase

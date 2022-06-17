@@ -133,7 +133,7 @@ export const useSubEvents = (
           },
         });
       } catch (e) {
-        toast.error(t("event.info.errorLoadMode"));
+        toast.error(t("event:info.errorLoadMode"));
       }
       setIsFetchingMore(false);
     },

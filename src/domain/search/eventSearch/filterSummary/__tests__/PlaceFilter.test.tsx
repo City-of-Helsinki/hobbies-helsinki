@@ -76,7 +76,7 @@ it("should return null if place doesn't exist", async () => {
 
   await waitFor(() => {
     expect(
-      screen.queryByText(translations.commons.loading)
+      screen.queryByText(translations.common:loading)
     ).not.toBeInTheDocument();
   });
 

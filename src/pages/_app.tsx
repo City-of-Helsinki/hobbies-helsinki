@@ -9,7 +9,7 @@ import Error from "next/error";
 import { appWithTranslation } from "next-i18next";
 import { ToastContainer } from "react-toastify";
 import { ConfigProvider as RHHCConfigProvider } from "react-helsinki-headless-cms";
-import { useRouter } from "next/router";
+import { NextRouter } from "next/router";
 
 import "../styles/globals.scss";
 import { useCmsApollo } from "../domain/clients/cmsApolloClient";
@@ -44,10 +44,10 @@ function Center({ children }: { children: React.ReactNode }) {
 function MyApp({ Component, pageProps }: AppProps) {
   const cmsApolloClient = useCmsApollo(pageProps.initialApolloState);
   const eventsApolloClient = useEventsApolloClient(
-    pageProps.initialApolloState
+    pageProps.initialEventsApolloState
   );
   const eventsConfig = useEventsConfig(eventsApolloClient);
-  const router = eventsConfig.router;
+  const router = eventsConfig.router as NextRouter;
   const rhhcConfig = useRHHCConfig(cmsApolloClient, router);
 
   // Unset hidden visibility that was applied to hide the first server render

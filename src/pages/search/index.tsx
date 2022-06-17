@@ -57,11 +57,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     return {
       props: {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "search_page",
-          "search_header",
-          "search_page_search_form",
-          "search_list",
-          "multi_select_combobox",
+          "common",
+          "home",
+          "event",
+          "eventSearch",
+          "courseSearch",
         ])),
       },
     };

@@ -10,7 +10,7 @@ const linkedInShareUrl = "https://linkedin.com/shareArticle";
 const LinkedInShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
   const { t } = useTranslation();
   const queryParameters = { url: sharedLink };
-  const linkLabel = t("commons.shareLink.shareOnLinkedIn");
+  const linkLabel = t("common:shareLink.shareOnLinkedIn");
 
   return (
     <ShareLinkBase
