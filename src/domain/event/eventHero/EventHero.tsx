@@ -37,7 +37,7 @@ export interface Props {
 }
 
 const EventHero: React.FC<Props> = ({ event, superEvent }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("event");
   const [showBackupImage, setShowBackupImage] = React.useState(false);
   const locale = useLocale();
   const router = useRouter();
@@ -177,7 +177,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                       iconRight={<IconLinkExternal aria-hidden />}
                       variant="success"
                     >
-                      {t("event:hero.buttonBuyTickets")}
+                      {t("hero.buttonBuyTickets")}
                     </Button>
                   </Visible>
                 )}
