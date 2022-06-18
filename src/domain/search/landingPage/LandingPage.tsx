@@ -67,9 +67,7 @@ export function LandingPageContentLayout({
           </Section>
         </div>
         <Koros className={styles.koros} flipHorizontal />
-        <Section color="transparent" title={t("recommended_collections_title")}>
-          {collections}
-        </Section>
+        <Section color="transparent">{collections}</Section>
       </main>
     </div>
   );

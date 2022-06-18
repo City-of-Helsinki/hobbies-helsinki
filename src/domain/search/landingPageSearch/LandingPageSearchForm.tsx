@@ -1,6 +1,7 @@
 import { Button, IconSearch } from "hds-react";
 import { Link } from "react-helsinki-headless-cms";
 import classnames from "classnames";
+import { useTranslation } from "next-i18next";
 
 import DateSelector from "../../../common-events/components/dateSelector/DateSelector";
 import MobileDateSelector from "../../../common-events/components/mobileDateSelector/MobileDateSelector";
@@ -9,7 +10,6 @@ import SearchLabel from "../../../common-events/components/search/searchLabel/Se
 import { AutosuggestMenuOption } from "../../../common-events/types";
 import useLocale from "../../../common-events/hooks/useLocale";
 import { getI18nPath } from "../../../common-events/i18n/router/utils";
-import useConfig from "../../../common-events/hooks/useConfig";
 import styles from "./landingPageSearchForm.module.scss";
 
 export type LandingPageSearchFormProps = {
@@ -43,7 +43,7 @@ export default function LandingPageSearchForm({
   handleSubmit,
   handleMenuOptionClick,
 }: LandingPageSearchFormProps) {
-  const { t } = useConfig();
+  const { t } = useTranslation();
   const locale = useLocale();
 
   return (

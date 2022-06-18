@@ -45,7 +45,9 @@
     "popularCategories": "Suosituimmat kategoriat",
     "placeholder": "Kirjoita hakusana",
     "showPopularCategories": "Näytä suosituimmat kategoriat",
-    "hidePopularCategories": "Piilota suosituimmat kategoriat"
+    "hidePopularCategories": "Piilota suosituimmat kategoriat",
+    "labelSearchField": "Mitä etsit?",
+    "title": "Tapahtumahaku"
   },
   "eventSearch": {
     "linkAdvancedSearch": "Tarkennettu haku",

@@ -1,4 +1,5 @@
-import Link from "../../../common-events/i18n/router/Link";
+import { Link, useHeadlessCmsLink } from "react-helsinki-headless-cms";
+
 import Text from "../text/Text";
 import HtmlToReact from "../htmlToReact/HtmlToReact";
 import styles from "./hero.module.scss";
@@ -13,6 +14,7 @@ type Props = {
 };
 
 function Hero({ title, description, cta }: Props) {
+  const href = useHeadlessCmsLink(cta.href);
   return (
     <div className={styles.box}>
       <span className={styles.boxHelper}>
@@ -21,7 +23,7 @@ function Hero({ title, description, cta }: Props) {
       <Text variant="h2" as="h1" className={styles.boxTitle}>
         {title}
       </Text>
-      <Link href={cta.href}>
+      <Link href={href}>
         {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
         <a className={styles.linkButton}>{cta.label}</a>
       </Link>
