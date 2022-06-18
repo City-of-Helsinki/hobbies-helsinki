@@ -31,6 +31,14 @@ const nextConfig = {
   images: {
     domains: ["harrastus.content.api.hel.fi"],
   },
+    webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ["@svgr/webpack"]
+    });
+
+    return config
+  },
   // Do not upload source map files to sentry when sentry not enabled
   // sentry: process.env.NEXT_PUBLIC_SENTRY_ENVIRONMENT
   //   ? {}
