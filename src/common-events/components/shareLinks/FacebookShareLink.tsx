@@ -19,8 +19,7 @@ const FacebookShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
       queryParameters={queryParameters}
       windowName={linkLabel}
       linkLabel={linkLabel}
-      // icon={<FacebookIcon />}
-      icon={<></>}
+      icon={<FacebookIcon />}
     />
   );
 };

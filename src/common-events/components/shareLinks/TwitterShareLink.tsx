@@ -18,8 +18,7 @@ const TwitterShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
       queryParameters={queryParameters}
       windowName={linkLabel}
       linkLabel={linkLabel}
-      // icon={<TwitterIcon />}
-      icon={<></>}
+      icon={<TwitterIcon />}
     />
   );
 };

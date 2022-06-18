@@ -18,8 +18,7 @@ const LinkedInShareLink: React.FC<ShareLinkProps> = ({ sharedLink }) => {
       queryParameters={queryParameters}
       windowName={linkLabel}
       linkLabel={linkLabel}
-      // icon={<LinkedInIcon />}
-      icon={<></>}
+      icon={<LinkedInIcon />}
     />
   );
 };
