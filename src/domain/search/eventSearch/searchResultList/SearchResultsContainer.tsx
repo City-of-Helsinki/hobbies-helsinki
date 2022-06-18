@@ -18,14 +18,14 @@ const SearchResultsContainer: React.FC<Props> = ({
   eventsCount,
   eventList,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("eventSearch");
 
   return (
     <div className={styles.searchResultListContainer}>
       <Container>
         <div className={classNames(styles.searchResultWrapper)}>
           <h2 className={styles.count}>
-            {t("eventSearch.textFoundEvents", {
+            {t("textFoundEvents", {
               count: eventsCount,
             })}
           </h2>
