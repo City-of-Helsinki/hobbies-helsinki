@@ -35,7 +35,7 @@ const FooterCategories: FunctionComponent = () => {
     t,
     CATEGORY_CATALOG.Course.default
   );
-  const footerTitle = t(`titleCourseCategories`);
+  const footerTitle = t(`titleCoursesCategories`);
 
   return (
     <div className={styles.topFooterWrapper}>
