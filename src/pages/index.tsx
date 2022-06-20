@@ -131,7 +131,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
           "common",
           "home",
-          "eventSearch",
+          "search",
         ])),
       },
     };

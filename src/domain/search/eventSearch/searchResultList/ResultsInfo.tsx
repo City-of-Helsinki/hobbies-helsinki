@@ -11,7 +11,7 @@ import styles from "./resultsInfo.module.scss";
 const ResultsInfoContainer: React.FC<{
   resultsCount: number;
 }> = ({ resultsCount }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("search");
   const router = useRouter();
   const locale = useLocale();
   const isFinnish = locale === "fi";
@@ -24,7 +24,7 @@ const ResultsInfoContainer: React.FC<{
     <>
       {!isFinnish && (
         <Button variant="success" onClick={goToFinnishSearch}>
-          {t("eventSearch:searchNotification.buttons.labelSearchInFinnish")}
+          {t("searchNotification.buttons.labelSearchInFinnish")}
         </Button>
       )}
     </>
@@ -33,7 +33,7 @@ const ResultsInfoContainer: React.FC<{
   if (resultsCount === 0) {
     return (
       <ResultsInfo
-        bigText={t(`eventSearch:searchNotification.noResultsTitle`)}
+        bigText={t(`searchNotification.noResultsTitle`)}
         actionsSection={<ActionButtons />}
       />
     );
@@ -42,7 +42,7 @@ const ResultsInfoContainer: React.FC<{
   if (resultsCount < 5) {
     return (
       <ResultsInfo
-        bigText={t(`eventSearch:searchNotification.fewResultsTitle`)}
+        bigText={t(`searchNotification.fewResultsTitle`)}
         actionsSection={<ActionButtons />}
       />
     );

@@ -18,7 +18,7 @@ const SearchResultsContainer: React.FC<Props> = ({
   eventsCount,
   eventList,
 }) => {
-  const { t } = useTranslation("eventSearch");
+  const { t } = useTranslation("search");
 
   return (
     <div className={styles.searchResultListContainer}>

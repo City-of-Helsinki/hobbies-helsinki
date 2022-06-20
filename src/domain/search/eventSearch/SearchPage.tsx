@@ -29,7 +29,7 @@ const SearchPage: React.FC<{
   }>;
   pageTitle: string;
 }> = ({ SearchComponent, pageTitle }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("search");
   const locale = useLocale();
   const router = useRouter();
   const params: { place?: string } = router.query;
@@ -79,7 +79,7 @@ const SearchPage: React.FC<{
           },
         });
       } catch (e) {
-        toast.error(t("eventSearch:errorLoadMode"));
+        toast.error(t("errorLoadMode"));
       }
     }
     setIsFetchingMore(false);
@@ -135,8 +135,8 @@ const SearchPage: React.FC<{
       >
         <SrOnly aria-live="polite" aria-atomic={true}>
           {isLoadingEvents
-            ? t("eventSearch:ariaLiveLoading")
-            : t("eventSearch:ariaLiveSearchReady", {
+            ? t("ariaLiveLoading")
+            : t("ariaLiveSearchReady", {
                 count: eventsList?.meta.count,
               })}
         </SrOnly>
