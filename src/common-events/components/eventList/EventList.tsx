@@ -34,7 +34,7 @@ const EventList: React.FC<Props> = ({
   hasNext,
   onLoadMore,
 }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("search");
   const eventsLeft = count - events.length;
   const EventCard = eventCardsMap[cardSize];
 
@@ -53,7 +53,7 @@ const EventList: React.FC<Props> = ({
         <LoadingSpinner hasPadding={!events.length} isLoading={loading}>
           {hasNext && (
             <Button onClick={onLoadMore} variant="success">
-              {t("eventSearch:buttonLoadMore", { count: eventsLeft })}
+              {t("buttonLoadMore", { count: eventsLeft })}
             </Button>
           )}
         </LoadingSpinner>

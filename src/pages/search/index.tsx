@@ -60,8 +60,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           "common",
           "home",
           "event",
-          "eventSearch",
-          "courseSearch",
+          "search",
         ])),
       },
     };

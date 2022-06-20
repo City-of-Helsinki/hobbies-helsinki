@@ -152,7 +152,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
         />
       ))}
       <button className={styles.clearButton} onClick={onClear} type="button">
-        {t("eventSearch:buttonClearFilters")}
+        {t("search:buttonClearFilters")}
       </button>
     </div>
   );
