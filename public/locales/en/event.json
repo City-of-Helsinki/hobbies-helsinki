@@ -1,0 +1,103 @@
+{
+  "categories": {
+    "labelFree": "Free",
+    "labelThisWeek": "This week",
+    "labelToday": "Today"
+  },
+  "description": {
+    "title": "Description"
+  },
+  "eventCancelled": "Event cancelled",
+  "eventCard": {
+    "ariaLabelBuyTickets": "Buy tickets - The link will open in a new window",
+    "ariaLabelLink": "Go to event: {{name}}",
+    "ariaLabelReadMore": "Read more: {{name}}",
+    "buttonBuyTickets": "Buy tickets",
+    "buttonReadMore": "Read more",
+    "dateAndTime": "{{date}}, at {{time}}",
+    "isFree": "Free"
+  },
+  "hero": {
+    "ariaLabelBackButton": "Go back to previous page",
+    "ariaLabelBuyTickets": "Buy tickets - The link will open in a new window",
+    "ariaLabelEnrol": "Enrol - The link will open in a new window",
+    "buttonBuyTickets": "Buy tickets",
+    "buttonEnrol": "Registration",
+    "buttonToHomePage": "Visit the landing page",
+    "offers": {
+      "isFree": "Free"
+    },
+    "textEventClosed": "Worry not, there are lots of ther things to do in Helsinki.",
+    "titleEventClosed": "Oh no, the event you are looking for has already ended"
+  },
+  "info": {
+    "age": "year olds",
+    "ariaLabelBuyTickets": "Buy tickets - The link will open in a new window",
+    "buttonAddToCalendar": "Add to calendar",
+    "buttonBuyTickets": "Buy tickets",
+    "directionsGoogle": "Directions (Google)",
+    "directionsHSL": "Directions (HSL)",
+    "errorLoadMore": "Failed to load events",
+    "extlinkFacebook": "Facebook",
+    "extlinkInstagram": "Instagram",
+    "extlinkTwitter": "Twitter",
+    "extlinkYoutube": "Youtube",
+    "labelAge": "Age group",
+    "labelDateAndTime": "Date and time",
+    "labelDirections": "Find your way",
+    "labelLanguages": "Languages",
+    "labelLocation": "Location",
+    "labelAudience": "Target groups",
+    "labelMinAttendeeCapacity": "Min. attendee capacity",
+    "labelMaxAttendeeCapacity": "Max. attendee capacity",
+    "labelSeatsLeft": "Seats left",
+    "labelOrganizer": "Organizer information",
+    "labelOtherInfo": "Other information",
+    "labelPrice": "Price",
+    "labelPublisher": "Publisher information",
+    "linkSearchByPublisher": "See other hobbies by publisher",
+    "linkWebPage": "Web page",
+    "offers": {
+      "isFree": "Free"
+    },
+    "openMap": "Open the map",
+    "registration": "Registration",
+    "textCalendarLinkDescription": "{{description}} Read more: {{link}}",
+    "title": "Loading event..."
+  },
+  "location": {
+    "directionsGoogle": "Directions (Google)",
+    "directionsHSL": "Directions (HSL)",
+    "mapTitle": "Location",
+    "openMap": "Open the map in a new window",
+    "title": "Location"
+  },
+  "notFound": {
+    "linkSearchEvents": "Find something to do",
+    "text": "For some reason we can't find the event you are looking for. Try searching for something else here:",
+    "title": "Oops, you got hit by a 404!"
+  },
+  "otherTimes": {
+    "buttonHide": "Hide",
+    "buttonReadMore": "Read more; {{date}}",
+    "buttonShow": "Show all",
+    "title": "Other times of the event"
+  },
+  "subEvents": {
+    "title": "Related to the event"
+  },
+  "superEvent": {
+    "title": "Related to the event"
+  },
+  "relatedEvents": {
+    "buttonHide": "Hide",
+    "buttonReadMore": "Read more",
+    "buttonShow": "Show all"
+  },
+  "shareLinks": {
+    "title": "Share Event"
+  },
+  "similarEvents": {
+    "title": "Similar events"
+  }
+}

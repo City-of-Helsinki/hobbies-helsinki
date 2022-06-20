@@ -1,0 +1,103 @@
+{
+  "categories": {
+    "labelFree": "Gratis",
+    "labelThisWeek": "Denna vecka",
+    "labelToday": "I dag"
+  },
+  "description": {
+    "title": "Beskrivning"
+  },
+  "eventCancelled": "Evenemanget inställt",
+  "eventCard": {
+    "ariaLabelBuyTickets": "Köp biljetter - Länken öppnas i ett annat fönster",
+    "ariaLabelLink": "Gå till evenemanget: {{name}}",
+    "ariaLabelReadMore": "Läs mer: {{name}}",
+    "buttonBuyTickets": "Köp biljetter",
+    "buttonReadMore": "Läs mer",
+    "dateAndTime": "{{date}}, kl. {{time}}",
+    "isFree": "Gratis"
+  },
+  "hero": {
+    "ariaLabelBackButton": "Gå tillbaka till föregående sida",
+    "ariaLabelBuyTickets": "Köp biljetter - Länken öppnas i ett annat fönster",
+    "ariaLabelEnrol": "Registrera - Länken öppnas i ett annat fönster",
+    "buttonBuyTickets": "Köp biljetter",
+    "buttonEnrol": "Registrering",
+    "buttonToHomePage": "Till framsidan",
+    "offers": {
+      "isFree": "Gratis"
+    },
+    "textEventClosed": "Oroa dig inte, det finns många andra saker du kan göra i Helsingfors.",
+    "titleEventClosed": "Äsch då, evenemanget du letar efter har redan tagit slut"
+  },
+  "info": {
+    "age": "åriga",
+    "ariaLabelBuyTickets": "Köp biljetter - Länken öppnas i ett annat fönster",
+    "buttonAddToCalendar": "Lägg till din kalender",
+    "buttonBuyTickets": "Köp biljetter",
+    "directionsGoogle": "Ruttbeskrivning (Google)",
+    "directionsHSL": "Ruttbeskrivning (HSL)",
+    "errorLoadMore": "Det gick inte att ladda evenemangen",
+    "extlinkFacebook": "Facebook",
+    "extlinkInstagram": "Instagram",
+    "extlinkTwitter": "Twitter",
+    "extlinkYoutube": "Youtube",
+    "labelAge": "Åldersgrupp",
+    "labelDateAndTime": "Datum och tid",
+    "labelDirections": "Hitta fram",
+    "labelLanguages": "Språk",
+    "labelLocation": "Plats",
+    "labelAudience": "Målgrupper",
+    "labelMinAttendeeCapacity": "Min. deltagarkapacitet",
+    "labelMaxAttendeeCapacity": "Min. deltagarkapacitet",
+    "labelSeatsLeft": "Platser kvar",
+    "labelOrganizer": "Arrangör",
+    "labelOtherInfo": "Övrig information",
+    "labelPrice": "Pris",
+    "labelPublisher": "Utgivare",
+    "linkSearchByPublisher": "Se utgivarens övriga hobbyer",
+    "linkWebPage": "Webbsida",
+    "offers": {
+      "isFree": "Gratis"
+    },
+    "openMap": "Öppna kartan",
+    "registration": "Registrering",
+    "textCalendarLinkDescription": "{{description}} Läs mer: {{link}}"
+  },
+  "location": {
+    "directionsGoogle": "Ruttbeskrivning (Google)",
+    "directionsHSL": "Ruttbeskrivning (HSL)",
+    "mapTitle": "Plats",
+    "openMap": "Öppna kartan i ett nytt fönster",
+    "title": "Plats"
+  },
+  "notFound": {
+    "linkSearchEvents": "Sök saker att göra",
+    "text": "Av en eller annan orsak så hittas inte evenemänget du letade efter. Försök istället att hitta något att göra härifrån:",
+    "title": "Oj nej, nu blev det 404!"
+  },
+  "otherTimes": {
+    "buttonHide": "Dölj",
+    "buttonReadMore": "Läs mer: {{date}}",
+    "buttonShow": "Visa alt",
+    "title": "Andra evenemangstider"
+  },
+  "subEvents": {
+    "title": "Relaterade till evenemanget"
+  },
+  "superEvent": {
+    "title": "Hör till evenemanget"
+  },
+  "relatedEvents": {
+    "buttonHide": "Dölj",
+    "buttonReadMore": "Läs mer",
+    "buttonShow": "Visa alt"
+  },
+  "shareLinks": {
+    "title": "Dela detta"
+  },
+  "similarEvents": {
+    "title": "Liknande evenemang"
+  },
+  "title": "Laddar evenemang..."
+}
