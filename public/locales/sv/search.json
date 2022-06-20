@@ -1,0 +1,52 @@
+{
+  "ariaLiveLoading": "Söker efter evenemang",
+  "ariaLiveSearchReady": "{{count}} sökresultat",
+  "buttonClearFilters": "Töm sökfilter",
+  "errorLoadMore": "Det gick inte att ladda evenemangen",
+  "search": {
+    "buttonSearch": "Sök",
+    "checkboxOnlyChildrenEvents": "Visa endast evenemang för barn",
+    "checkboxOnlyEveningEvents": "Visa endast kvällsprogram",
+    "checkboxOnlyRemoteEvents": "Visa bara avlägsna händelser",
+    "labelCategory": "Vilken typ av evenemang du letar efter?",
+    "labelDateRange": "För vilken period du letar efter?",
+    "labelDistrict": "Varifrån letar du efter??",
+    "labelTargetGroup": "Vem du letar efter?",
+    "selectAllDivisions": "Alla områden",
+    "selectAllPlaces": "Alla ställen",
+    "titleDropdownCategory": "Välj kategori",
+    "titleDropdownDivision": "Sök stadsdel eller område",
+    "titleDropdownPlace": "Sök evenemangsplats",
+    "checkboxIsFree": "Visa endast avgiftsfria",
+    "placeholder": "Ange ett sökord, t. ex. Franska eller matlagning",
+    "labelSearchField": "Vad letar du efter?",
+    "checkboxAlsoOngoingCourses": "Visa även pågående kurser",
+    "titleDropdownHobbyType": "Aktivitetsform",
+    "showOnlyAdultCourses": "Visa endast vuxenkurser",
+    "ageLimitValues": "Ålder",
+    "ageLimitMin": "Från",
+    "ageLimitMax": "Till",
+    "ageFilter": {
+      "minAge": "Från {{age}} {{yearAbbr}}",
+      "maxAge": "Till {{age}} {{yearAbbr}}",
+      "exactAge": "För en {{age}}-åring"
+    }
+  },
+  "textFoundEvents": "{{count}} sökresultat",
+  "title": "Hitta hobby",
+  "betaButtonArialLabel": "Vill du ge oss respons på utvecklingsversionen av hobbysöksidan?",
+  "betaNotificationText": "Vill du ge oss respons på utvecklingsversionen av hobbysöksidan? <a href=\"{{url}}\" target=\"_blank\" rel=\"noopener noreferrer\" aria-label=\"Gå till responsformuläret {{openInNewTab}}\">Gå till responsformuläret.</a>",
+  "betaResultsNotificationText": "Vi arbetar med att vidareutveckla webbsidan. För tillfället innehåller tjänsten enbart hobbyer för barn och unga.",
+  "buttonLoadMore": "Visa fler hobbyew ({{count}})",
+  "searchNotification": {
+    "noResultsTitle": "Tyvärr hittades inga resultat för de sökkriterier du valt.",
+    "noResultsText": "Tyvärr hittades inga resultat för de sökkriterier du valt. Kokeile muuttaa hakuehtoja tai siirry tapahtumien hakuun.",
+    "fewResultsTitle": "Med de sökvillkor du valde hittades bara några få resultat.",
+    "fewResultsText": "Med de sökvillkor du valde hittades bara några få resultat. Kokeile muuttaa hakuehtoja tai siirry tapahtumien hakuun.",
+    "changeLanguageText": "Ändra sökvillkoren eller visa resultaten på finska. Du kan också välja att söka bland evenemang. Tillsvidare finns alla svenska hobbyer inte ännu på hemsidan.",
+    "buttons": {
+      "labelSearchOtherEventType": "Sök evenemang",
+      "labelSearchInFinnish": "Visa sökresultaten på finska "
+    }
+  }
+}

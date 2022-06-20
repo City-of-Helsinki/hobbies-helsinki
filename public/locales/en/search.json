@@ -1,0 +1,49 @@
+{
+  "ariaLiveLoading": "Searching for events",
+  "ariaLiveSearchReady": "{{count}} search results",
+  "buttonClearFilters": "Clear filters",
+  "errorLoadMore": "Failed to load events",
+  "search": {
+    "buttonSearch": "Search",
+    "checkboxOnlyChildrenEvents": "Show only events for children",
+    "checkboxOnlyEveningEvents": "Show only evening events",
+    "checkboxOnlyRemoteEvents": "Show only remote events",
+    "labelCategory": "What kind of event you are looking for?",
+    "labelDateRange": "For what period you are looking for?",
+    "labelDistrict": "From where are you looking for?",
+    "labelTargetGroup": "Whom you are looking for?",
+    "selectAllDivisions": "All areas",
+    "selectAllPlaces": "All venues",
+    "titleDropdownCategory": "Select category",
+    "titleDropdownDivision": "Search area",
+    "titleDropdownPlace": "Search venue",
+    "placeholder": "Enter a keyword, eg. French or cooking",
+    "labelSearchField": "What are you looking for?",
+    "checkboxAlsoOngoingCourses": "Show also ongoing courses",
+    "checkboxIsFree": "Show only courses that are free",
+    "titleDropdownHobbyType": "Type of activity",
+    "showOnlyAdultCourses": "Show only adult courses",
+    "ageLimitValues": "Age",
+    "ageLimitMin": "From",
+    "ageLimitMax": "To",
+    "ageFilter": {
+      "minAge": "From {{age}} {{yearAbbr}}",
+      "maxAge": "To {{age}} {{yearAbbr}}",
+      "exactAge": "For a {{age}}-year-old"
+    }
+  },
+  "textFoundEvents": "{{count}} search results",
+  "title": "Find hobby",
+  "buttonLoadMore": "Show more hobbies ({{count}})",
+  "searchNotification": {
+    "noResultsTitle": "Sorry, no search results were found for the search criteria you selected.",
+    "noResultsText": "No search results were found for the search criteria you selected. Try to change search terms or change to event search.",
+    "fewResultsTitle": "Your search terms returned only a few results.",
+    "fewResultsText": "Your search terms returned only a few results. Try to change search terms or change to event search.",
+    "changeLanguageText": "Please change your search terms or display results in Finnish. You could also switch to an Events search.",
+    "buttons": {
+      "labelSearchOtherEventType": "Switch to an Events search",
+      "labelSearchInFinnish": "Display results in Finnish"
+    }
+  }
+}

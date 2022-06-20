@@ -1,0 +1,68 @@
+{
+  "category": {
+    "culture": "Kultur och konst",
+    "dance": "Dans",
+    "food": "Mat",
+    "influence": "Delta och påverka",
+    "misc": "Andra",
+    "movie": "Film",
+    "museum": "Museer",
+    "music": "Musik",
+    "nature": "Natur och friluftsliv",
+    "sport": "Motion och sport",
+    "theatre": "Teater",
+    "courses": {
+      "movieAndMedia": "Film och media",
+      "languages": "Språk",
+      "literature": "Litteratur och ordkonst",
+      "artsAndCulture": "Kultur och konst",
+      "visualArts": "Bildkonst",
+      "handicrafts": "Hantverk",
+      "sport": "Motion och friluftsliv",
+      "music": "Musik",
+      "games": "Spel",
+      "food": "Mat",
+      "dance": "Dans",
+      "theatre": "Teater"
+    }
+  },
+  "hobby": {
+    "clubs": "Klubbar",
+    "courses": "Kurser",
+    "camps": "Läger",
+    "trips": "Utfärder",
+    "workshops": "Verkstäder",
+    "onlineStudies": "Online studies"
+  },
+  "collections": {
+    "title": "Vi rekommenderar"
+  },
+  "notFound": {
+    "text": "Av en eller annan orsak så hittas inte sidan du letade efter.",
+    "title": "Oj nej, nu blev det 404!"
+  },
+  "search__DEPRECATED": {
+    "buttonSearch": "Sök",
+    "labelDateRange": "För vilken period du letar efter?",
+    "labelSearchField": "Vad letar du efter?",
+    "linkAdvancedSearch": "Avancerad sökning",
+    "placeholder": "Ange ett sökord, t. ex. rock eller yoga",
+    "title": "Sök saker att göra"
+  },
+  "search": {
+    "popularCategories": "Populära kategorier",
+    "placeholder": "Skriv sökord",
+    "showPopularCategories": "Visa de mest populära kategorierna",
+    "hidePopularCategories": "Dölj de mest populära kategorierna"
+  },
+  "eventSearch": {
+    "buttonSearch": "Sök",
+    "placeholder": "Ange ett sökord, t. ex. rock eller yoga",
+    "title": "Hitta evenemang"
+  },
+  "courseSearch": {
+    "buttonSearch": "Sök",
+    "placeholder": "Ange ett sökord, t. ex. rock eller yoga",
+    "title": "Hitta hobbyer"
+  }
+}
