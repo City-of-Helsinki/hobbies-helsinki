@@ -52,7 +52,7 @@ export default function useRHHCConfig(
     return {
       ...rhhcDefaultConfig,
       siteName: t("appName"),
-      currentLanguageCode: "fi",
+      currentLanguageCode: locale,
       apolloClient: cmsApolloClient,
       copy: {
         breadcrumbNavigationLabel: t(
