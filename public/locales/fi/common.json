@@ -65,8 +65,13 @@
   "supriseMe": "Koeta onneasi",
   "timeAbbreviation": "klo",
   "srOnly": {
-    "opensInANewTab": "Avautuu uudessa välilehdessä"
+    "opensInANewTab": "Avautuu uudessa välilehdessä",
+    "opensInAnExternalSite": "Avautuu toisella sivustolla"
   },
   "yearsShort": "v",
-  "photographerText": "Kuva: {{photographer}}"
+  "photographerText": "Kuva: {{photographer}}",
+  "breadcrumb": {
+    "breadcrumbNavigationLabel": "Leivänmurunavigointi",
+    "breadcrumbListLabel": "leivänmurut"
+  }
 }

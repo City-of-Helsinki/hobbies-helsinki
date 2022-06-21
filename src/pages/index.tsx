@@ -22,7 +22,10 @@ import {
 
 import getHobbiesStaticProps from "../domain/app/getHobbiesStaticProps";
 import serverSideTranslationsWithCommon from "../domain/i18n/serverSideTranslationsWithCommon";
-import { getLocaleOrError } from "../common-events/i18n/router/utils";
+import {
+  getI18nPath,
+  getLocaleOrError,
+} from "../common-events/i18n/router/utils";
 import { getQlLanguage } from "../common/apollo/utils";
 import {
   LandingPageContentLayout,
@@ -32,6 +35,7 @@ import { DEFAULT_LANGUAGE } from "../constants";
 import Navigation from "../common-events/components/navigation/Navigation";
 import FooterSection from "../domain/footer/Footer";
 import useRouter from "../common-events/i18n/router/useRouter";
+import useLocale from "../common-events/hooks/useLocale";
 
 export const getCollectionCard = (
   item: CollectionItemType,
@@ -80,7 +84,9 @@ export const defaultCollections = (
   });
 
 export default function HomePage() {
+  console.log("Now in homepage");
   const router = useRouter();
+  const locale = useLocale();
   const {
     utils: { getRoutedInternalHref },
   } = useConfig();
@@ -92,18 +98,14 @@ export default function HomePage() {
       languageCode: language,
     },
   });
-
   return (
     <RHHCApolloPage
-      uri="/"
+      uri={getI18nPath("/", locale)}
       className="pageLayout"
       navigation={<Navigation />}
       content={
         <RHHCApolloPageContent
-          breadcrumbs={[
-            { title: "Root", link: "/" },
-            { title: "Nested", link: "/nested" },
-          ]}
+          breadcrumbs={[]}
           landingPage={data.landingPage}
           PageContentLayoutComponent={LandingPageContentLayout}
           collections={(page) =>
@@ -119,6 +121,8 @@ export default function HomePage() {
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ cmsClient }) => {
     const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    // TODO: Stop using landing page here when the front page can be queried from the Headless CMS.
+    // The front page should be queried instead - there is no need for landing page.
     await cmsClient.query({
       query: LANDING_PAGE_QUERY,
       variables: {
@@ -129,7 +133,6 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     return {
       props: {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "common",
           "home",
           "search",
         ])),

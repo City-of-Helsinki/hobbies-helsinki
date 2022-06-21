@@ -1,6 +1,5 @@
 import { gql } from "@apollo/client";
 import { Koros } from "hds-react";
-import { useTranslation } from "next-i18next";
 import { PageContentLayoutProps } from "react-helsinki-headless-cms/";
 
 import Hero from "../../../common/components/hero/Hero";
@@ -41,7 +40,6 @@ export function LandingPageContentLayout({
 }: LandingPageProps & PageContentLayoutProps) {
   const { title, description, heroLink } = landingPage?.translation;
   const heroImage = landingPage?.desktopImage?.edges[0]?.node?.mediaItemUrl;
-  const { t } = useTranslation();
 
   return (
     <div className={styles.layout}>

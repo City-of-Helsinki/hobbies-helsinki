@@ -63,10 +63,15 @@
     "messageLinkCopySuccess": "Link copied into clipboard"
   },
   "srOnly": {
-    "opensInANewTab": "Opens in a new tab"
+    "opensInANewTab": "Opens in a new tab",
+    "opensInAnExternalSite": "Opens a different website."
   },
   "yearsShort": "y",
   "supriseMe": "I'm Feeling Lucky",
   "timeAbbreviation": "at",
-  "photographerText": "Image: {{photographer}}"
+  "photographerText": "Image: {{photographer}}",
+  "breadcrumb": {
+    "breadcrumbNavigationLabel": "Breadcrumb navigation",
+    "breadcrumbListLabel": "breadcrumbs"
+  }
 }
