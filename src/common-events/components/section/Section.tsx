@@ -14,7 +14,7 @@ type Props = {
     label: string;
     href: string;
   };
-  color?: "grey" | "white" | "transparent";
+  color?: "grey" | "white" | "blue" | "transparent";
   variant?: "default" | "contained";
   koros?: "none" | React.ComponentProps<typeof Koros>["type"];
   contentWidth?: "m" | "s";

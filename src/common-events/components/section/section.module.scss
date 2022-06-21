@@ -17,6 +17,10 @@
 
   background: var(--section-background);
 
+  &.blue {
+    --section-background: var(--color-fog-medium-light);
+  }
+
   &.white {
     --section-background: #{$color-white};
   }
