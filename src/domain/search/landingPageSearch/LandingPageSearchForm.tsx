@@ -43,32 +43,32 @@ export default function LandingPageSearchForm({
   handleSubmit,
   handleMenuOptionClick,
 }: LandingPageSearchFormProps) {
-  const { t } = useTranslation();
+  const { t } = useTranslation("home");
   const locale = useLocale();
 
   return (
     <div className={classnames(className, styles.landingPageSearch)}>
       <div className={styles.searchRow}>
         <div className={styles.titleWrapper}>
-          <h2>{t<string>("home:search.title")}</h2>
+          <h2>{t("search.title")}</h2>
         </div>
         <div className={styles.autosuggestWrapper}>
           <SearchLabel htmlFor={"search"}>
-            {t<string>("home:search.labelSearchField")}
+            {t("search.labelSearchField")}
           </SearchLabel>
 
           <SearchAutosuggest
             name="search"
             onChangeSearchValue={setAutosuggestInput}
             onOptionClick={handleMenuOptionClick}
-            placeholder={t<string>("home:search.placeholder")}
+            placeholder={t("search.placeholder")}
             searchValue={autosuggestInput}
           />
         </div>
         <div className={styles.dateAndButtonWrapper}>
           <div className={styles.dateSelectorWrapper}>
             <SearchLabel color="black" htmlFor="date" srOnly={true}>
-              {t<string>("home:search.labelDateRange")}
+              {t("search.labelDateRange")}
             </SearchLabel>
             <div className={styles.desktopDateSelector}>
               <DateSelector
@@ -100,14 +100,14 @@ export default function LandingPageSearchForm({
               onClick={handleSubmit}
               variant="success"
             >
-              {t<string>("home:eventSearch.buttonSearch")}
+              {t("eventSearch.buttonSearch")}
             </Button>
           </div>
         </div>
       </div>
       <div className={styles.linkRow}>
         <Link color="white" href={getI18nPath("/search", locale)}>
-          {t<string>("home:eventSearch.linkAdvancedSearch")}
+          {t("eventSearch.linkAdvancedSearch")}
         </Link>
       </div>
     </div>

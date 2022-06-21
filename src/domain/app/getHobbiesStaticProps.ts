@@ -83,7 +83,7 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
   } catch (e: any) {
     // Generic error handling
     staticGenerationLogger.error("Error while generating a page:", e);
-
+    console.log("e", e);
     if (isApolloError(e)) {
       return {
         props: {

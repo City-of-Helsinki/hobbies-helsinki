@@ -59,7 +59,7 @@ export default function useRHHCConfig(
           "common:breadcrumb.breadcrumbNavigationLabel"
         ),
         breadcrumbListLabel: t("common:breadcrumb.breadcrumbListLabel"),
-        menuToggleAriaLabel: t("common:menu.toggle"),
+        menuToggleAriaLabel: t("common:menu.menuToggleAriaLabel"),
         skipToContentLabel: t("common:linkSkipToContent"),
         openInExternalDomainAriaLabel: t("common:srOnly.opensInAnExternalSite"),
         openInNewTabAriaLabel: t("common:srOnly.opensInANewTab"),

@@ -63,10 +63,15 @@
     "messageLinkCopySuccess": "Länk kopierad till urklipp"
   },
   "srOnly": {
-    "opensInANewTab": "Öppnas i en ny flik"
+    "opensInANewTab": "Öppnas i en ny flik",
+    "opensInAnExternalSite": "Öppnar en annan webbplats."
   },
   "yearsShort": "år",
   "supriseMe": "Jag har tur",
   "timeAbbreviation": "kl.",
-  "photographerText": "Foto: {{photographer}}"
+  "photographerText": "Foto: {{photographer}}",
+  "breadcrumb": {
+    "breadcrumbNavigationLabel": "brödsmula navigation",
+    "breadcrumbListLabel": "brödsmula"
+  }
 }
