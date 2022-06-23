@@ -33,7 +33,7 @@ test("should render selected date types when single option is selected", () => {
   renderComponent({ dateTypes: [DATE_TYPES.TODAY] });
 
   expect(
-    screen.queryByText(translations.common:dateSelector.dateTypeToday)
+    screen.queryByText(translations.common.dateSelector.dateTypeToday)
   ).toBeInTheDocument();
 });
 
@@ -41,7 +41,7 @@ test("should render selected date types when multiple options are selected", () 
   renderComponent({ dateTypes: [DATE_TYPES.TOMORROW, DATE_TYPES.TODAY] });
 
   expect(
-    screen.queryByText(`${translations.common:dateSelector.dateTypeToday} + 1`)
+    screen.queryByText(`${translations.common.dateSelector.dateTypeToday} + 1`)
   ).toBeInTheDocument();
 });
 
@@ -53,7 +53,7 @@ test("should add date type", () => {
   });
 
   const toggleButton = screen.getByRole("button", {
-    name: translations.common:dateSelector.title,
+    name: translations.common.dateSelector.title,
   });
 
   userEvent.click(toggleButton);
@@ -61,7 +61,7 @@ test("should add date type", () => {
 
   userEvent.click(
     screen.getByRole("checkbox", {
-      name: translations.common:dateSelector.dateTypeToday,
+      name: translations.common.dateSelector.dateTypeToday,
     })
   );
 
@@ -76,14 +76,14 @@ test("should call toggleIsCustomDate function", async () => {
   });
 
   const toggleButton = screen.getByRole("button", {
-    name: translations.common:dateSelector.title,
+    name: translations.common.dateSelector.title,
   });
 
   userEvent.click(toggleButton);
   expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
 
   const customDatesButton = screen.getByRole("button", {
-    name: translations.common:dateSelector.menu.buttonCustom,
+    name: translations.common.dateSelector.menu.buttonCustom,
   });
   userEvent.click(customDatesButton);
 
@@ -98,7 +98,7 @@ test("should remove date type", () => {
   });
 
   const toggleButton = screen.getByRole("button", {
-    name: translations.common:dateSelector.title,
+    name: translations.common.dateSelector.title,
   });
 
   userEvent.click(toggleButton);
@@ -106,7 +106,7 @@ test("should remove date type", () => {
 
   userEvent.click(
     screen.getByRole("checkbox", {
-      name: translations.common:dateSelector.dateTypeToday,
+      name: translations.common.dateSelector.dateTypeToday,
     })
   );
 
@@ -118,7 +118,7 @@ describe("should open menu with", () => {
     renderComponent();
 
     const toggleButton = screen.getByRole("button", {
-      name: translations.common:dateSelector.title,
+      name: translations.common.dateSelector.title,
     });
 
     userEvent.click(toggleButton);

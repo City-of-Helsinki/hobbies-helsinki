@@ -1,8 +1,7 @@
 import { advanceTo } from "jest-date-mock";
 import React from "react";
 
-import { KeywordListDocument } from "../../../../generated/graphql";
-import { fakeKeywords } from "../../../../test/mockDataUtils";
+import { fakeKeywords } from "../../../../tests/mockDataUtils";
 import {
   act,
   actWait,
@@ -11,6 +10,7 @@ import {
   screen,
   userEvent,
 } from "../../../../tests/testUtils";
+import { KeywordListDocument } from "../../../nextApi/graphql/generated/graphql";
 import LandingPageSearch from "../LandingPageSearch";
 
 configure({ defaultHidden: true });
@@ -36,11 +36,13 @@ const mocks = [
   },
 ];
 
+const searchPath = "/fi/events";
+
 test("should route to event search page after clicking submit button", async () => {
   const { history } = render(<LandingPageSearch />, { mocks });
 
   userEvent.click(screen.getByRole("button", { name: /hae/i }));
-  expect(history.location.pathname).toBe("/fi/events");
+  expect(history.location.pathname).toBe(searchPath);
   expect(history.location.search).toBe(``);
 });
 
@@ -54,7 +56,7 @@ test("should route to event search page with correct search query after clicking
   expect(screen.getByText(/hakuehdotuksia/i)).toBeInTheDocument();
 
   act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe("/fi/events");
+  expect(history.location.pathname).toBe(searchPath);
   expect(history.location.search).toBe(`?text=${searchValue}`);
 });
 
@@ -64,19 +66,19 @@ test("should route to event search page after clicking autosuggest menu item", a
   const searchInput = screen.getByRole("textbox", { name: /mitä etsit\?/i });
   userEvent.type(searchInput, searchValue);
 
-  const option = await screen.findByRole("option", { name: /musiikkiklubit/i });
+  const option = await screen.findByRole("option", { name: /musiikki/i });
   act(() => userEvent.click(option));
-  expect(history.location.pathname).toBe("/fi/events");
-  expect(history.location.search).toBe(`?text=musiikkiklubit`);
+  expect(history.location.pathname).toBe(searchPath);
+  expect(history.location.search).toBe(`?text=music`);
 });
 
 test("should route to event search page after clicking category", async () => {
   const { history } = render(<LandingPageSearch />, { mocks });
 
-  userEvent.click(screen.getByText(/kulttuuri ja taide/i));
+  userEvent.click(screen.getByText(/liikunta ja ulkoilu/i));
 
-  expect(history.location.pathname).toBe("/fi/events");
-  expect(history.location.search).toBe("?categories=culture");
+  expect(history.location.pathname).toBe(searchPath);
+  expect(history.location.search).toBe("?categories=sport");
 });
 
 test("should route to event search page after selecting today date type and pressing submit button", async () => {
@@ -86,7 +88,7 @@ test("should route to event search page after selecting today date type and pres
   userEvent.click(screen.getByRole("checkbox", { name: /tänään/i }));
 
   act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe("/fi/events");
+  expect(history.location.pathname).toBe(searchPath);
   expect(history.location.search).toBe("?dateTypes=today");
 });
 
@@ -112,6 +114,6 @@ test("should route to event search page after selecting start date and pressing 
   await actWait();
 
   act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe("/fi/events");
+  expect(history.location.pathname).toBe(searchPath);
   expect(history.location.search).toBe("?start=2020-10-06");
 });
