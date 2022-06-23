@@ -2,7 +2,6 @@
 
 import { NormalizedCacheObject } from "@apollo/client";
 import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
-import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import {
   Breadcrumb,
   getCollections,
@@ -18,10 +17,12 @@ import {
 } from "react-helsinki-headless-cms/apollo";
 
 import Navigation from "../../common-events/components/navigation/Navigation";
+import { getLocaleOrError } from "../../common-events/i18n/router/utils";
 import { getUriID } from "../../common-events/utils/headless-cms/headlessCmsUtils";
-import { SUPPORT_LANGUAGES } from "../../constants";
+import { DEFAULT_LANGUAGE } from "../../constants";
 import { createCmsApolloClient } from "../../domain/clients/cmsApolloClient";
 import FooterSection from "../../domain/footer/Footer";
+import serverSideTranslationsWithCommon from "../../domain/i18n/serverSideTranslationsWithCommon";
 import { Language } from "../../types";
 
 const NextCmsPage: NextPage<{
@@ -74,14 +75,14 @@ export async function getStaticProps(
         revalidate: true,
       };
     }
+    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
 
     return {
       props: {
         initialApolloState: cmsClient.cache.extract(),
-        ...(await serverSideTranslations(
-          context.locale as string,
-          Object.values(SUPPORT_LANGUAGES)
-        )),
+        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+          "cms",
+        ])),
         page,
         breadcrumbs,
         collections: getCollections(page.modules ?? []),
