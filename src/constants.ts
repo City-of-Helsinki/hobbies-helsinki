@@ -6,6 +6,8 @@
 //   XLG: 1600,
 // };
 
+import { Language } from "./types";
+
 export const AUTOSUGGEST_KEYWORD_BLACK_LIST = [
   "kulke:354", // Seniorit
 ];
@@ -65,5 +67,14 @@ export const FEEDBACK_LINKS = {
   sv: "https://www.hel.fi/helsinki/sv/stad-och-forvaltning/delta/feedback",
 };
 
-export const DEFAULT_HEADER_MENU_NAME =
-  process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME ?? "Hobbies Helsinki Header FI";
+export const DEFAULT_HEADER_MENU_NAME: Record<Language, string> = {
+  fi:
+    process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME_FI ??
+    "Hobbies Helsinki Header FI",
+  en:
+    process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME_EN ??
+    "Hobbies Helsinki Header EN",
+  sv:
+    process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME_SV ??
+    "Hobbies Helsinki Header SV",
+};

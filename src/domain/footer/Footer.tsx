@@ -5,7 +5,6 @@ import React, { FunctionComponent } from "react";
 import { resetFocusId } from "../../common-events/components/resetFocus/ResetFocus";
 import styles from "./footer.module.scss";
 import FooterCategories from "./FooterCategories";
-// import FooterCategories from "./FooterCategories";
 
 const FooterSection: FunctionComponent = () => {
   const { t } = useTranslation("footer");
@@ -18,34 +17,30 @@ const FooterSection: FunctionComponent = () => {
   };
 
   return (
-    <Footer title={tCommon<string>("appName")} className={styles.footer}>
+    <Footer title={tCommon("appName")} className={styles.footer}>
       <Footer.Navigation>
-        <Footer.Item
-          as={Link}
-          label={t<string>("searchHobbies")}
-          href={"/search"}
-        />
+        <Footer.Item as={Link} label={t("searchHobbies")} href={"/search"} />
       </Footer.Navigation>
       <FooterCategories />
       <Footer.Utilities
-        backToTopLabel={t<string>("backToTop")}
+        backToTopLabel={t("backToTop")}
         onBackToTopClick={handleBackToTop}
       >
         <Footer.Item
           as={"a"}
-          href={t<string>("linkFeedbackUrl")}
-          label={t<string>("linkFeedback")}
+          href={t("linkFeedbackUrl")}
+          label={t("linkFeedback")}
         />
       </Footer.Utilities>
       <Footer.Base
-        copyrightHolder={t<string>("copyright")}
-        copyrightText={t<string>("allRightsReserved")}
+        copyrightHolder={t("copyright")}
+        copyrightText={t("allRightsReserved")}
       >
-        <Footer.Item as={Link} href={"/about"} label={t<string>("linkAbout")} />
+        <Footer.Item as={Link} href={"/about"} label={t("linkAbout")} />
         <Footer.Item
           as={Link}
           href={"/accessibility"}
-          label={t<string>("linkAccessibility")}
+          label={t("linkAccessibility")}
         />
       </Footer.Base>
     </Footer>

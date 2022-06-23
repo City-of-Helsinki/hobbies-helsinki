@@ -14,7 +14,7 @@ import { sortMenuItems } from "../../common/apollo/utils";
 
 const cmsApolloClient = new MutableReference<
   ApolloClient<NormalizedCacheObject>
->();
+>(createCmsApolloClient());
 
 export function createCmsApolloClient() {
   return new ApolloClient({

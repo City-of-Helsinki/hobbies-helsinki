@@ -17,10 +17,10 @@ export default function useEventsConfig(
     return {
       ...eventsDefaultConfig,
       t: t,
-      navigationMenuName: DEFAULT_HEADER_MENU_NAME,
+      getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
       apolloClient: eventsApolloClient,
       router,
-    };
+    } as Config;
   }, [router, eventsApolloClient, t]);
   return eventsConfig;
 }

@@ -3,6 +3,7 @@ import { useTranslation } from "next-i18next";
 import { NextRouter } from "next/router";
 import React from "react";
 import {
+  Config,
   defaultConfig as rhhcDefaultConfig,
   getUri,
   ModuleItemTypeEnum,
@@ -33,11 +34,17 @@ export default function useRHHCConfig(
       return false;
     };
     const internalHrefOrigins = CMS_API_DOMAIN ? [CMS_API_DOMAIN] : [];
-    const getRoutedInternalHref = (
-      link: string,
-      type: ModuleItemTypeEnum
-    ): string => {
+    const getRoutedInternalHref: Config["utils"]["getRoutedInternalHref"] = (
+      link,
+      type
+    ) => {
+      if (!link) {
+        return "#";
+      }
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
+      // if (uri === link) {
+      //   return link;
+      // }
 
       if (type === ModuleItemTypeEnum.Article) {
         // TODO: fix the getI18nPath for articles
@@ -47,12 +54,12 @@ export default function useRHHCConfig(
         // TODO: fix the getI18nPath for pages
         return getI18nPath("/pages", locale) + uri;
       }
-      return link ?? "#";
+      return getI18nPath(link, locale);
     };
     return {
       ...rhhcDefaultConfig,
       siteName: t("appName"),
-      currentLanguageCode: locale,
+      currentLanguageCode: locale.toUpperCase(),
       apolloClient: cmsApolloClient,
       copy: {
         breadcrumbNavigationLabel: t(
@@ -80,7 +87,7 @@ export default function useRHHCConfig(
         getRoutedInternalHref,
       },
       internalHrefOrigins,
-    };
+    } as Config;
   }, [router.basePath, t, cmsApolloClient, locale]);
   return rhhcConfig;
 }

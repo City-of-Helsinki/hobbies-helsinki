@@ -1,8 +1,4 @@
 const i18nRoutes = {
-  "/front-page": [
-    { source: "/", locale: "fi" },
-    { source: "/framsida", locale: "sv" },
-  ],
   "/search": [
     { source: "/haku", locale: "fi" },
     { source: "/sok", locale: "sv" },
