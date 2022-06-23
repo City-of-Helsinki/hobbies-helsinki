@@ -1,4 +1,5 @@
 import { UrlObject } from "url";
+import { ParsedUrlQueryInput } from "querystring";
 
 import qs from "query-string";
 import { NextRouter } from "next/router";
@@ -88,13 +89,13 @@ export function stringifyUrlObject(url: UrlObject): string {
 
       usedQueryParts.push(dynamicPartName);
 
-      return url.query?.[dynamicPartName] ?? part;
+      return (url.query as ParsedUrlQueryInput)?.[dynamicPartName] ?? part;
     })
     .join("/");
 
   const search =
     url.search ??
-    queryToString(url.query === null ? undefined : url.query, usedQueryParts) ??
+    queryToString(url.query as ParsedUrlQueryInput, usedQueryParts) ??
     "";
 
   return `${pathname}${search}`;

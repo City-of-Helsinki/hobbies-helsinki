@@ -43,7 +43,7 @@
     "react-datepicker": "^4.8.0",
     "react-dom": "18.1.0",
     "react-helmet": "^6.1.0",
-    "react-helsinki-headless-cms": "1.0.0-alpha2-canary-8154fd1",
+    "react-helsinki-headless-cms": "1.0.0-alpha2-canary-b65fe70",
     "react-scroll": "^1.8.7",
     "react-toastify": "^9.0.3",
     "sanitize-html": "^2.7.0",

@@ -21,8 +21,8 @@ type Props = {
   gap?: "xs" | "s" | "m" | "l";
   li?: React.ComponentType<ListItemProps>;
   listContainerRef?:
-    | React.RefObject<null | HTMLUListElement>
-    | ((node?: Element) => void);
+    | React.RefObject<HTMLUListElement>
+    | ((node?: Element | null) => void);
 };
 
 function List({
