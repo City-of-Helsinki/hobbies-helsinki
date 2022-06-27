@@ -34,7 +34,10 @@ jobs:
       - name: Build application
         run: yarn build
         env:
+          # TODO: start using staging CMS
+          # NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
           NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
+          NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
 
@@ -64,7 +67,10 @@ jobs:
         run: yarn test --coverage --runInBand
         env:
           TZ: Europe/Helsinki
+          # TODO: start using staging CMS
+          # NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
           NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
+          NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
       - name: Upload coverage report to Codecov

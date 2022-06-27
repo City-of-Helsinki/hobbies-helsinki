@@ -11,9 +11,10 @@ import {
 
 import useLocale from "../common-events/hooks/useLocale";
 import { getI18nPath } from "../common-events/i18n/router/utils";
+import AppConfig from "../domain/app/AppConfig";
 
-const CMS_API_DOMAIN = process.env.NEXT_PUBLIC_CMS_BASE_URL
-  ? new URL(process.env.NEXT_PUBLIC_CMS_BASE_URL).origin
+const CMS_API_DOMAIN = AppConfig.cmsGraphqlEndpoint
+  ? new URL(AppConfig.cmsGraphqlEndpoint).origin
   : null;
 
 export default function useRHHCConfig(

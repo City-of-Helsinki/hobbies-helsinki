@@ -11,14 +11,13 @@ import get from "lodash/get";
 import { useMemo } from "react";
 
 import isClient from "../../common/utils/isClient";
-
-const GRAPHQL_ENDPOINT = process.env.NEXT_PUBLIC_NEXT_API_GRAPHQL_ENDPOINT;
+import AppConfig from "../app/AppConfig";
 
 export const createEventsApolloClient = (
   initialState: NormalizedCacheObject = {}
 ): ApolloClient<NormalizedCacheObject> => {
   const httpLink = new HttpLink({
-    uri: GRAPHQL_ENDPOINT,
+    uri: AppConfig.eventsGraphqlEndpoint,
   });
 
   const errorLink = onError(({ graphQLErrors, networkError }) => {
