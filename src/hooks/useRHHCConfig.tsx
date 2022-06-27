@@ -20,7 +20,7 @@ export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
   router: NextRouter
 ) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation(["common", "cms"]);
   const locale = useLocale();
 
   const rhhcConfig = React.useMemo(() => {
