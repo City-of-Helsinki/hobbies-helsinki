@@ -17,6 +17,9 @@ jest.mock("next-i18next", () => ({
   useTranslation: jest.requireActual("react-i18next").useTranslation,
 }));
 
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
+
 // To avoid error: ReferenceError: TextEncoder is not defined
 // discusssed here: https://github.com/jsdom/jsdom/issues/2524
 global.TextEncoder = TextEncoder;

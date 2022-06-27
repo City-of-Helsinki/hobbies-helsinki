@@ -95,6 +95,7 @@
     "jest-date-mock": "^1.0.8",
     "jest-dom": "^4.0.0",
     "jest-environment-jsdom": "^28.1.0",
+    "next-router-mock": "^0.7.4",
     "prettier": "^2.6.2",
     "react-i18next": "^11.17.2",
     "ts-jest": "^28.0.3",

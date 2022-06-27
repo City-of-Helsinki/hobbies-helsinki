@@ -9,6 +9,7 @@ import {
   render,
   screen,
   userEvent,
+  within,
 } from "../../../../tests/testUtils";
 import { KeywordListDocument } from "../../../nextApi/graphql/generated/graphql";
 import LandingPageSearch from "../LandingPageSearch";
@@ -36,18 +37,17 @@ const mocks = [
   },
 ];
 
-const searchPath = "/fi/events";
+const searchPath = "/haku";
 
 test("should route to event search page after clicking submit button", async () => {
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   userEvent.click(screen.getByRole("button", { name: /hae/i }));
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe(``);
+  expect(window.location.pathname).toHaveBeenCalledWith(searchPath);
 });
 
 test("should route to event search page with correct search query after clicking submit button", async () => {
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   const searchInput = screen.getByRole("textbox", { name: /mitä etsit\?/i });
   userEvent.type(searchInput, searchValue);
@@ -56,64 +56,67 @@ test("should route to event search page with correct search query after clicking
   expect(screen.getByText(/hakuehdotuksia/i)).toBeInTheDocument();
 
   act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe(`?text=${searchValue}`);
+  expect(window.location.pathname).toBe(searchPath);
+  expect(window.location.search).toBe(`?text=${searchValue}`);
 });
 
 test("should route to event search page after clicking autosuggest menu item", async () => {
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   const searchInput = screen.getByRole("textbox", { name: /mitä etsit\?/i });
   userEvent.type(searchInput, searchValue);
 
   const option = await screen.findByRole("option", { name: /musiikki/i });
   act(() => userEvent.click(option));
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe(`?text=music`);
+  expect(window.location.pathname).toBe(searchPath);
+  expect(window.location.search).toBe(`?text=music`);
 });
 
 test("should route to event search page after clicking category", async () => {
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   userEvent.click(screen.getByText(/liikunta ja ulkoilu/i));
 
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe("?categories=sport");
+  expect(window.location.pathname).toHaveBeenCalledWith(
+    `${searchPath}?categories=sport`
+  );
 });
 
 test("should route to event search page after selecting today date type and pressing submit button", async () => {
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   userEvent.click(screen.getByRole("button", { name: /valitse ajankohta/i }));
   userEvent.click(screen.getByRole("checkbox", { name: /tänään/i }));
 
   act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe("?dateTypes=today");
+  expect(window.location.pathname).toBe(searchPath);
+  expect(window.location.search).toBe("?dateTypes=today");
 });
 
-test("should route to event search page after selecting start date and pressing submit button", async () => {
+test.only("should route to event search page after selecting start date and pressing submit button", async () => {
   advanceTo("2020-10-04");
-  const { history } = render(<LandingPageSearch />, { mocks });
+  const { router } = render(<LandingPageSearch />, { mocks });
 
   userEvent.click(screen.getByRole("button", { name: /valitse ajankohta/i }));
+  await actWait();
   userEvent.click(
     // The reason to use getAllByRole is that there is also mobile date selector with same text,
     // which is hidden using css
     screen.getAllByRole("button", { name: /valitse päivät/i })[0]
   );
-  userEvent.click(
-    screen.getAllByRole("button", { name: /valitse päivämäärä/i })[0]
-  );
-  userEvent.click(
-    screen.getByRole("button", {
-      name: /lokakuu 6/i,
-    })
-  );
-  // need to wait one useEffect cycle for date go take effect
   await actWait();
+  await act(() =>
+    userEvent.type(
+      screen.getByRole("textbox", {
+        name: /alkamispäivä/i,
+      }),
+      "06.10.2020"
+    )
+  );
 
-  act(() => userEvent.click(screen.getByRole("button", { name: /hae/i })));
-  expect(history.location.pathname).toBe(searchPath);
-  expect(history.location.search).toBe("?start=2020-10-06");
-});
+  await act(() =>
+    userEvent.click(screen.getByRole("button", { name: /hae/i }))
+  );
+  expect(router.pathname).toBe(searchPath); // TODO: remove
+  expect(router.asPath).toBe(`${searchPath}?start=2020-10-06`);
+}, 20000);
