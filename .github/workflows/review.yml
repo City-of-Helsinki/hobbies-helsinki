@@ -73,3 +73,4 @@ jobs:
           header: deployment-url
           message: |
             **Harrastus-helsinki branch is deployed to: ${{ env.CUSTOM_ENVIRONMENT_URL }}** :rocket::rocket::rocket:
+
