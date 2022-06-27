@@ -25,52 +25,20 @@ import { getI18nPath } from "../common-events/i18n/router/utils";
 
 const CMS_API_DOMAIN = "harrastukset.cms.test.domain.com";
 
-const mockRouter: NextRouter = {
-  basePath: "",
-  pathname: "/",
-  route: "/",
-  asPath: "/",
-  query: {},
-  push: jest.fn(() => Promise.resolve(true)),
-  prefetch: jest.fn(() => Promise.resolve()),
-  replace: jest.fn(() => Promise.resolve(true)),
-  back: jest.fn(() => Promise.resolve(true)),
-  reload: jest.fn(() => Promise.resolve(true)),
-  beforePopState: jest.fn(() => Promise.resolve(true)),
-  events: {
-    on: jest.fn(),
-    off: jest.fn(),
-    emit: jest.fn(),
-  },
-  isFallback: false,
-  isLocaleDomain: true,
-  isPreview: false,
-  isReady: true,
-  locale: "fi",
-  defaultLocale: "fi",
-};
-
 type Props = {
   mocks?: ReadonlyArray<MockedResponse>;
   children: React.ReactNode;
-  router?: Partial<NextRouter>;
+  router: NextRouter;
   cache?: ApolloCache<{}> | InMemoryCache;
 };
 
-const eventsConfig = {
-  ...eventsDefaultConfig,
-  t: i18n.t,
-  getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
-  apolloClient: eventsApolloClient,
-  router: mockRouter,
-} as EventsConfig;
-
 function TestProviders({ mocks, children, router, cache }: Props) {
+  console.log("TestProviders", "router", router);
   return (
     <I18nextProvider i18n={i18n}>
-      <EventsConfigProvider config={eventsConfig}>
-        <RHHCConfigProvider config={getRHHCConfig()}>
-          <RouterContext.Provider value={{ ...mockRouter, ...router }}>
+      <EventsConfigProvider config={getEventsConfig(router)}>
+        <RHHCConfigProvider config={getRHHCConfig(router)}>
+          <RouterContext.Provider value={{ ...router }}>
             <MockedProvider mocks={mocks} addTypename={false}>
               {children}
             </MockedProvider>
@@ -81,11 +49,21 @@ function TestProviders({ mocks, children, router, cache }: Props) {
   );
 }
 
-function getRHHCConfig() {
+function getEventsConfig(router: NextRouter) {
+  return {
+    ...eventsDefaultConfig,
+    t: i18n.t,
+    getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
+    apolloClient: eventsApolloClient,
+    router,
+  } as EventsConfig;
+}
+
+function getRHHCConfig(router: NextRouter) {
   const locale = DEFAULT_LANGUAGE;
   const getIsHrefExternal = (href: string) => {
     if (
-      !href?.includes(mockRouter.basePath) ||
+      !href?.includes(router.basePath) ||
       (CMS_API_DOMAIN && !href?.includes(CMS_API_DOMAIN))
     ) {
       return true;

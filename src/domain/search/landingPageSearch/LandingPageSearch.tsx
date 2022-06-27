@@ -14,6 +14,7 @@ import SearchShortcuts from "./SearchShortcuts";
 import LandingPageSearchForm from "./LandingPageSearchForm";
 import styles from "./landingPageSearch.module.scss";
 import { EventTypeId } from "../../nextApi/graphql/generated/graphql";
+import { getI18n } from "react-i18next";
 
 const Search: React.FC = () => {
   const { t } = useTranslation();
@@ -34,10 +35,16 @@ const Search: React.FC = () => {
   };
 
   const goToSearchPage = (search: string) => {
+    console.log("goToSearchPage called!..");
+    console.log("goToSearchPage", "router", router);
     router.push({
       pathname: getI18nPath("/search", locale),
       search,
     });
+    console.log(
+      "router push called!",
+      `${getI18nPath("/search", locale)}${search}`
+    );
   };
 
   const handleSubmit = () => {
