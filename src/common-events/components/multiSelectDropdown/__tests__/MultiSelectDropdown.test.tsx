@@ -8,6 +8,7 @@ import {
 import { axe } from "jest-axe";
 import React from "react";
 import wait from "waait";
+import { translations } from "../../../../tests/initI18n";
 
 import {
   arrowDownKeyPressHelper,
@@ -16,7 +17,7 @@ import {
   escKeyPressHelper,
   userEvent,
 } from "../../../../tests/testUtils";
-import translations from "../../../translation/i18n/fi.json";
+
 import MultiSelectDropdown, {
   MultiselectDropdownProps,
 } from "../MultiSelectDropdown";
@@ -107,10 +108,8 @@ test("should reset keyboard navigation position after a new search", async () =>
   arrowDownKeyPressHelper();
 
   expect(
-    (
-      screen.getByRole("checkbox", { name: options[0].text })
-        .parentElement as HTMLElement
-    ).parentElement
+    screen.getByRole("checkbox", { name: options[0].text }).parentElement!
+      .parentElement
   ).toHaveClass("dropdownItem--isFocused");
 
   // Find something, then reset the search to ensure that all results are listed
@@ -122,10 +121,7 @@ test("should reset keyboard navigation position after a new search", async () =>
   // No element should have focus
   allOptions.forEach((text) => {
     expect(
-      (
-        screen.getByRole("checkbox", { name: text })
-          .parentElement as HTMLElement
-      ).parentElement
+      screen.getByRole("checkbox", { name: text }).parentElement!.parentElement
     ).not.toHaveClass("dropdownItem--isFocused");
   });
 });
@@ -141,15 +137,15 @@ describe("ArrowUp, ArrowDown", () => {
     arrowDownKeyPressHelper();
 
     expect(
-      screen.queryByRole("checkbox", { name: options[1].text }).parentElement
-        .parentElement
+      screen.queryByRole("checkbox", { name: options[1].text })?.parentElement
+        ?.parentElement
     ).toHaveClass("dropdownItem--isFocused");
 
     arrowUpKeyPressHelper();
 
     expect(
-      screen.queryByRole("checkbox", { name: options[0].text }).parentElement
-        .parentElement
+      screen.queryByRole("checkbox", { name: options[0].text })?.parentElement
+        ?.parentElement
     ).toHaveClass("dropdownItem--isFocused");
   });
 
@@ -163,7 +159,7 @@ describe("ArrowUp, ArrowDown", () => {
 
     expect(
       screen.getByRole("checkbox", { name: options[options.length - 1].text })
-        .parentElement.parentElement
+        ?.parentElement?.parentElement
     ).toHaveClass("dropdownItem--isFocused");
   });
 
@@ -255,7 +251,7 @@ test("should call onChange when clicking checkbox", () => {
   const toggleButton = screen.getByRole("button", { name: title });
   userEvent.click(toggleButton);
 
-  userEvent.click(screen.queryByRole("checkbox", { name: options[0].text }));
+  userEvent.click(screen.queryByRole("checkbox", { name: options[0].text })!);
   expect(onChange).toBeCalledWith([options[0].value]);
 });
 
@@ -266,7 +262,7 @@ test("should uncheck option", () => {
   const toggleButton = screen.getByRole("button", { name: title });
   userEvent.click(toggleButton);
 
-  userEvent.click(screen.queryByRole("checkbox", { name: options[0].text }));
+  userEvent.click(screen.queryByRole("checkbox", { name: options[0].text })!);
   expect(onChange).toBeCalledWith([]);
 });
 
@@ -285,7 +281,7 @@ test("should call onChange with empty array when clicking select all checkbox", 
   userEvent.click(
     screen.queryByRole("checkbox", {
       name: translations.common.multiSelectDropdown.selectAll,
-    })
+    })!
   );
   expect(onChange).toBeCalledWith([]);
 });

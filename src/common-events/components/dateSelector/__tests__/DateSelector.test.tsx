@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { DATE_TYPES } from "../../../../constants";
+import { translations } from "../../../../tests/initI18n";
 import {
   arrowDownKeyPressHelper,
   arrowUpKeyPressHelper,
@@ -10,7 +11,6 @@ import {
   userEvent,
   waitFor,
 } from "../../../../tests/testUtils";
-import translations from "../../../translation/i18n/fi.json";
 import DateSelector, { DateSelectorProps } from "../DateSelector";
 import { testIds } from "../DateSelectorMenu";
 

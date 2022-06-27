@@ -9,7 +9,7 @@ import home from "../../public/locales/fi/home.json";
 import notFound from "../../public/locales/fi/notFound.json";
 import search from "../../public/locales/fi/search.json";
 
-const translation = {
+export const translations = {
   cms,
   common,
   event,
@@ -29,7 +29,7 @@ i18n.use(initReactI18next).init({
     useSuspense: false,
   },
   resources: {
-    fi: translation,
+    fi: translations,
   },
 });
 

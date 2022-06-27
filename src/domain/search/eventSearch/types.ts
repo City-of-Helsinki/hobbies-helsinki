@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 
-import { EVENT_CATEGORIES, EVENT_SEARCH_FILTERS } from './constants';
+import { COURSE_CATEGORIES, EVENT_SEARCH_FILTERS } from "./constants";
 
 export interface CategoryOption {
   icon: React.ReactElement;
   text: string;
-  value: EVENT_CATEGORIES;
+  value: COURSE_CATEGORIES;
 }
 
 export interface CategoryExtendedOption {
   icon: React.ReactElement;
   text: string;
-  value: EVENT_CATEGORIES;
+  value: COURSE_CATEGORIES;
 }
 
-export type SearchCategoryType = EVENT_CATEGORIES;
+export type SearchCategoryType = COURSE_CATEGORIES;
 
 export interface SearchCategoryOption {
   icon: React.ReactElement;
@@ -41,7 +41,7 @@ export interface Filters {
   [EVENT_SEARCH_FILTERS.SUITABLE]?: number[];
 }
 
-export type MappedFilters = Partial<Omit<Filters, 'start' | 'end'>> & {
+export type MappedFilters = Partial<Omit<Filters, "start" | "end">> & {
   [EVENT_SEARCH_FILTERS.START]?: string | null;
   [EVENT_SEARCH_FILTERS.END]?: string | null;
 };

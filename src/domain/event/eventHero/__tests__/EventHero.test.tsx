@@ -1,22 +1,23 @@
 import { advanceTo, clear } from "jest-date-mock";
 import capitalize from "lodash/capitalize";
 import * as React from "react";
+import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
 
-import translations from "../../../../common/translation/i18n/fi.json";
 import {
   EventDetails,
   EventFieldsFragment,
   OfferFieldsFragment,
-} from "../../../../generated/graphql";
+} from "../../../../domain/nextApi/graphql/generated/graphql";
+import { translations } from "../../../../tests/initI18n";
 import {
   fakeEvent,
   fakeExternalLink,
   fakeKeyword,
   fakeLocalizedObject,
   fakeOffer,
-} from "../../../../test/mockDataUtils";
+} from "../../../../tests/mockDataUtils";
 import { render, screen, userEvent } from "../../../../tests/testUtils";
-import getDateRangeStr from "../../../../util/getDateRangeStr";
+
 import EventHero, { Props as EventHeroProps } from "../EventHero";
 
 const name = "Event name";
@@ -46,7 +47,7 @@ const getFakeEvent = (overrides?: Partial<EventDetails>) => {
       name: { fi: locationName },
       streetAddress: { fi: streetAddress },
     },
-    externalLinks: null,
+    externalLinks: [],
     ...overrides,
   }) as EventFieldsFragment;
 };
@@ -145,7 +146,7 @@ test("should show buy button", () => {
         infoUrl: fakeLocalizedObject(infoUrl),
       }) as OfferFieldsFragment,
     ],
-    externalLinks: null,
+    externalLinks: [],
   });
 
   render(<EventHero event={mockEvent} />);
@@ -206,7 +207,7 @@ test("should show event dates if super event is defined", () => {
   );
 
   const dateStr = getDateRangeStr({
-    start: mockEvent.startTime,
+    start: mockEvent.startTime as string,
     end: mockEvent.endTime,
     locale: "fi",
     includeTime: true,

@@ -2,7 +2,7 @@ import React from "react";
 import Head from "next/head";
 
 import useRouter from "../../../common-events/i18n/router/useRouter";
-import { Language } from "../../../types";
+import { CmsLanguage } from "../../../types";
 
 function getLanguageAwarePath(
   locale: string,
@@ -17,7 +17,7 @@ function getLanguageAwarePath(
 }
 
 type Props = {
-  languages: Language[];
+  languages: CmsLanguage[];
 };
 
 function RouteMeta({ languages }: Props) {

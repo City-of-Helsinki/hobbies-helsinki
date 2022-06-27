@@ -84,7 +84,6 @@ export const defaultCollections = (
   });
 
 export default function HomePage() {
-  console.log("Now in homepage");
   const router = useRouter();
   const locale = useLocale();
   const {

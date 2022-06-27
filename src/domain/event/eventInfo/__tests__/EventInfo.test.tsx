@@ -1,9 +1,9 @@
 import FileSaver from "file-saver";
 import React from "react";
 
-import translations from "../../../../common/translation/i18n/fi.json";
-import { EventDetails } from "../../../../generated/graphql";
-import { fakeEvent } from "../../../../test/mockDataUtils";
+import { EventDetails } from "../../../../domain/nextApi/graphql/generated/graphql";
+import { translations } from "../../../../tests/initI18n";
+import { fakeEvent } from "../../../../tests/mockDataUtils";
 import {
   actWait,
   configure,
@@ -13,8 +13,8 @@ import {
   waitFor,
   within,
 } from "../../../../tests/testUtils";
-import getDateRangeStr from "../../../../util/getDateRangeStr";
-import { SuperEventResponse } from "../../types";
+import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
+import { EventFields, SuperEventResponse } from "../../types";
 import EventInfo from "../EventInfo";
 import { subEventsListTestId, superEventTestId } from "../EventsHierarchy";
 import {
@@ -36,7 +36,7 @@ import {
 configure({ defaultHidden: true });
 
 const getDateRangeStrProps = (event: EventDetails) => ({
-  start: event.startTime,
+  start: event.startTime!,
   end: event.endTime,
   locale: "fi",
   includeTime: true,
@@ -122,7 +122,7 @@ it("should hide other info section", () => {
       externalLinks: [],
       telephone: null,
     },
-  };
+  } as EventFields;
   render(<EventInfo event={mockEvent} />, {
     mocks,
   });
@@ -153,7 +153,7 @@ it("should hide other info section registration url from external links", () => 
       externalLinks: [],
       telephone: null,
     },
-  };
+  } as EventFields;
   render(<EventInfo event={mockEvent} />, {
     mocks,
   });
@@ -177,7 +177,7 @@ it("should hide the map link from location info if location is internet", () => 
       externalLinks: [],
       telephone: null,
     },
-  };
+  } as EventFields;
   render(<EventInfo event={mockEvent} />, {
     mocks,
   });
@@ -197,7 +197,7 @@ it("should open ticket buy page", async () => {
   userEvent.click(
     screen.queryByRole("button", {
       name: translations.event.info.ariaLabelBuyTickets,
-    })
+    })!
   );
 
   await waitFor(() => {
@@ -206,23 +206,23 @@ it("should open ticket buy page", async () => {
 });
 
 it("should create ics file succesfully", async () => {
-  FileSaver.saveAs = jest.fn();
+  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
   render(<EventInfo event={event} />, { mocks });
 
   // Event info fields
   userEvent.click(
     screen.queryByRole("button", {
       name: translations.event.info.buttonAddToCalendar,
-    })
+    })!
   );
 
   await waitFor(() => {
-    expect(FileSaver.saveAs).toBeCalled();
+    expect(saveAsSpy).toBeCalled();
   });
 });
 
 it("should create ics file succesfully when end time is not defined", async () => {
-  FileSaver.saveAs = jest.fn();
+  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
   render(<EventInfo event={{ ...event, endTime: null }} />, {
     mocks,
   });
@@ -231,11 +231,11 @@ it("should create ics file succesfully when end time is not defined", async () =
   userEvent.click(
     screen.queryByRole("button", {
       name: translations.event.info.buttonAddToCalendar,
-    })
+    })!
   );
 
   await waitFor(() => {
-    expect(FileSaver.saveAs).toBeCalled();
+    expect(saveAsSpy).toBeCalled();
   });
 });
 
@@ -307,7 +307,9 @@ describe("superEvent", () => {
     ).toBeInTheDocument();
 
     userEvent.click(
-      within(screen.getByTestId(superEventTestId)).getByText(superEvent.name.fi)
+      within(screen.getByTestId(superEventTestId)).getByText(
+        superEvent.name.fi!
+      )
     );
     expect(history.location.pathname).toBe(`/fi/events/${superEvent.id}`);
   });
@@ -349,7 +351,7 @@ describe("subEvents", () => {
     const dateStr = getDateRangeStr(getDateRangeStrProps(subEvent));
 
     userEvent.click(
-      within(eventsList).queryByText(`${subEvent.name.fi} ${dateStr}`)
+      within(eventsList).queryByText(`${subEvent.name.fi} ${dateStr}`)!
     );
     expect(history.location.pathname).toBe(`${"/fi/events/"}${subEvent.id}`);
   });

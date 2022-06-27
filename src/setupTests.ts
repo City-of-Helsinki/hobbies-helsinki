@@ -23,31 +23,31 @@ global.TextEncoder = TextEncoder;
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 global.TextDecoder = TextDecoder as any;
 
-global.IntersectionObserver = class IntersectionObserver {
-  readonly root: Element | Document | null;
-  readonly rootMargin: string;
-  readonly thresholds: ReadonlyArray<number>;
+// global.IntersectionObserver = class IntersectionObserver {
+//   readonly root: Element | Document | null;
+//   readonly rootMargin: string;
+//   readonly thresholds: ReadonlyArray<number>;
 
-  constructor() {
-    // pass
-  }
+//   constructor() {
+//     // pass
+//   }
 
-  disconnect() {
-    return null;
-  }
+//   disconnect() {
+//     return null;
+//   }
 
-  observe() {
-    return null;
-  }
+//   observe() {
+//     return null;
+//   }
 
-  takeRecords() {
-    return null;
-  }
+//   takeRecords() {
+//     return null;
+//   }
 
-  unobserve() {
-    return null;
-  }
-};
+//   unobserve() {
+//     return null;
+//   }
+// };
 
 // Mock depended services with msw
 beforeAll(() => {

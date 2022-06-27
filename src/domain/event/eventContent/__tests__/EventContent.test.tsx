@@ -1,9 +1,9 @@
 import React from "react";
 
-import translations from "../../../../common/translation/i18n/fi.json";
-import { EventFieldsFragment } from "../../../../generated/graphql";
-import { fakeEvent, fakeImage } from "../../../../test/mockDataUtils";
+import { translations } from "../../../../tests/initI18n";
+import { fakeEvent, fakeImage } from "../../../../tests/mockDataUtils";
 import { configure, render, screen } from "../../../../tests/testUtils";
+import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
 import EventContent from "../EventContent";
 
 configure({ defaultHidden: true });
@@ -91,10 +91,12 @@ it("should render event content fields", () => {
 it("should hide map if internet event", () => {
   render(
     <EventContent
-      event={{
-        ...event,
-        location: { ...event.location, id: "helsinki:internet" },
-      }}
+      event={
+        {
+          ...event,
+          location: { ...event.location, id: "helsinki:internet" },
+        } as EventFieldsFragment
+      }
     />
   );
   expect(screen.queryByText(/sijainti/i)).not.toBeInTheDocument();
