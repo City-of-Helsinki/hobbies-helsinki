@@ -16,9 +16,10 @@ import {
   EVENT_PLACEHOLDER_IMAGES,
   EVENT_SOME_IMAGE,
 } from "./constants";
-import { EventFields, KeywordOption } from "./types";
+
 import getSecureImage from "../../common-events/utils/getSecureImage";
 import { UnionTFunction } from "../../common-events/types";
+import { EventFields, KeywordOption } from "./types";
 
 export const getEventCardId = (id: string): string => `event-card_${id}`;
 
@@ -335,12 +336,7 @@ export const getEventFields = (event: EventFields, locale: Language) => {
       .map((item: EventFields["inLanguage"][number]) =>
         capitalize(getLocalisedString(item.name, locale))
       )
-      .filter((e: EventFields["inLanguage"][number]) => e),
-    locales: event.inLocale
-      ?.filter((e: EventFields["inLocale"][number]) => e)
-      ?.map((item: EventFields["inLocale"][number]) =>
-        capitalize(getLocalisedString(item.name, locale))
-      ),
+      .filter((e) => e),
     locationName: getLocalisedString(eventLocation?.name, locale),
     offerInfoUrl,
     registrationUrl,

@@ -9,7 +9,7 @@ function replaceAll(str: string, find: string, replace: string) {
 
 function unescapeDash(str?: string): string {
   if (!str) {
-    return str;
+    return str ?? "";
   }
 
   return replaceAll(str, "&#x2d;", "-");
@@ -41,7 +41,8 @@ function PageMeta({
   ...seo
 }: Props) {
   const openGraphTitle = seo.openGraphTitle ?? title;
-  const openGraphDescription = seo.openGraphDescription ?? description;
+  const openGraphDescription =
+    seo.openGraphDescription ?? description ?? undefined;
 
   return (
     <>

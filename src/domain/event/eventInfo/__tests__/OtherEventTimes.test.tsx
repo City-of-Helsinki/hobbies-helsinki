@@ -6,7 +6,6 @@ import range from "lodash/range";
 import React from "react";
 import { toast } from "react-toastify";
 
-import translations from "../../../../common/translation/i18n/fi.json";
 import {
   EventDetails,
   EventFieldsFragment,
@@ -14,20 +13,21 @@ import {
   EventListResponse,
   EventTypeId,
   Meta,
-} from "../../../../generated/graphql";
+} from "../../../../domain/nextApi/graphql/generated/graphql";
 import {
   createOtherEventTimesRequestAndResultMocks,
   createOtherEventTimesRequestThrowsErrorMocks,
-} from "../../../../test/apollo-mocks/eventListMocks";
-import { fakeEvent, fakeEvents } from "../../../../test/mockDataUtils";
+} from "../../../../tests/mocks/eventListMocks";
+import { fakeEvent, fakeEvents } from "../../../../tests/mockDataUtils";
 import {
   render,
   screen,
   userEvent,
   waitFor,
 } from "../../../../tests/testUtils";
-import getDateRangeStr from "../../../../util/getDateRangeStr";
+import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
 import OtherEventTimes from "../OtherEventTimes";
+import { translations } from "../../../../tests/initI18n";
 
 const startTime = "2020-10-01T16:00:00Z";
 const endTime = "2020-10-01T18:00:00Z";
@@ -115,7 +115,7 @@ const renderComponent = ({
 } = {}) => render(<OtherEventTimes event={event} />, { mocks });
 
 const getDateRangeStrProps = (event: EventDetails) => ({
-  start: event.startTime,
+  start: event.startTime!,
   end: event.endTime,
   locale: "fi",
   includeTime: true,
@@ -140,7 +140,7 @@ describe("events", () => {
   test("should go to event page of other event time", async () => {
     advanceTo(new Date("2020-08-11"));
     const { history } = renderComponent();
-    await testNavigation(history, "/fi/events/", generalEvent.typeId);
+    await testNavigation(history, "/fi/events/", generalEvent.typeId!);
   });
 });
 
@@ -199,7 +199,7 @@ async function testNavigation(
   userEvent.click(toggleButton);
 
   const event = otherEventsResponse.data.find((e) => e.typeId === eventTypeId);
-  const dateStr = getDateRangeStr(getDateRangeStrProps(event));
+  const dateStr = getDateRangeStr(getDateRangeStrProps(event!));
   expect(screen.getByText(dateStr)).toBeInTheDocument();
 
   userEvent.click(
@@ -211,5 +211,5 @@ async function testNavigation(
     })
   );
 
-  expect(history.location.pathname).toBe(`${url}${event.id}`);
+  expect(history.location.pathname).toBe(`${url}${event?.id}`);
 }

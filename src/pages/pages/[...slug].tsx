@@ -18,7 +18,10 @@ import {
 
 import Navigation from "../../common-events/components/navigation/Navigation";
 import { getLocaleOrError } from "../../common-events/i18n/router/utils";
-import { getUriID } from "../../common-events/utils/headless-cms/headlessCmsUtils";
+import {
+  getCmsCollectionList,
+  getUriID,
+} from "../../common-events/utils/headless-cms/headlessCmsUtils";
 import { DEFAULT_LANGUAGE } from "../../constants";
 import { createCmsApolloClient } from "../../domain/clients/cmsApolloClient";
 import FooterSection from "../../domain/footer/Footer";
@@ -36,7 +39,7 @@ const NextCmsPage: NextPage<{
       <RHHCPageContent
         page={page as PageContentProps["page"]}
         breadcrumbs={breadcrumbs}
-        // collections={getCmsCollectionList(collections)}
+        collections={collections ? getCmsCollectionList(collections) : []}
       />
     }
     footer={<FooterSection />}
