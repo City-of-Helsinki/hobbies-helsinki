@@ -8,10 +8,10 @@ class AppConfig {
     );
   }
 
-  static get unifiedSearchGraphqlEndpoint() {
+  static get eventsGraphqlEndpoint() {
     return getEnvOrError(
-      process.env.NEXT_PUBLIC_UNIFIED_SEARCH_GRAPHQL_ENDPOINT,
-      "NEXT_PUBLIC_UNIFIED_SEARCH_GRAPHQL_ENDPOINT"
+      process.env.NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT,
+      "NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT"
     );
   }
 
@@ -20,10 +20,6 @@ class AppConfig {
       process.env.NEXT_PUBLIC_APP_ORIGIN,
       "NEXT_PUBLIC_APP_ORIGIN"
     );
-  }
-
-  static get nextApiGraphqlEndpoint() {
-    return `${this.origin}/api/graphql`;
   }
 
   static get locales() {
@@ -42,11 +38,6 @@ class AppConfig {
 
   static get debug() {
     return Boolean(parseEnvValue(process.env.NEXT_PUBLIC_DEBUG));
-  }
-
-  static get isHaukiEnabled() {
-    // Hauki is not production ready; disable it by default
-    return Boolean(parseEnvValue(process.env.NEXT_PUBLIC_HAUKI_ENABLED, false));
   }
 
   static get matomoConfiguration() {
