@@ -71,11 +71,19 @@ ENV PATH $PATH:/app/node_modules/.bin
 # Use non-root user
 USER appuser
 
-# Copy build folder from stage 1
+# Copy build, production dependencies, next configs and public files
 COPY --from=staticbuilder --chown=appuser:appuser /app/.next /app/.next
 COPY --from=staticbuilder --chown=appuser:appuser /app/node_modules /app/node_modules
 COPY --from=staticbuilder --chown=appuser:appuser /app/next.config.js /app/next.config.js
 COPY --from=staticbuilder --chown=appuser:appuser /app/public /app/public
+
+# i18n configuration
+COPY --from=staticbuilder --chown=appuser:appuser /app/i18nRoutes.config.js /app/i18nRoutes.config.js
+COPY --from=staticbuilder --chown=appuser:appuser /app/next-i18next.config.js /app/next-i18next.config.js
+
+# Sentry configuration
+# COPY --from=staticbuilder --chown=appuser:appuser /app/sentry.client.config.js /app/sentry.client.config.js
+# COPY --from=staticbuilder --chown=appuser:appuser /app/sentry.server.config.js /app/sentry.server.config.js
 
 # Expose port
 EXPOSE 80
