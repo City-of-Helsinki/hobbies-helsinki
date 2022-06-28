@@ -1,15 +1,16 @@
-import React from 'react';
+import React from "react";
+import { translations } from "../../../../../tests/initI18n";
+import { fakePlace } from "../../../../../tests/mockDataUtils";
 
-import translations from '../../../../common/translation/i18n/fi.json';
-import { PlaceDetailsDocument } from '../../../../generated/graphql';
-import { fakePlace } from '../../../../test/mockDataUtils';
 import {
+  act,
   render,
   screen,
   userEvent,
   waitFor,
-} from '../../../../../tests/testUtils';
-import PlaceFilter from '../PlaceFilter';
+} from "../../../../../tests/testUtils";
+import { PlaceDetailsDocument } from "../../../../nextApi/graphql/generated/graphql";
+import PlaceFilter from "../PlaceFilter";
 
 const placeId = 'helsinki:123';
 const placeName = 'Gräsan taitojen talo';
@@ -53,7 +54,7 @@ it('calls onRemove callback when remove button is clicked', async () => {
 
   await screen.findByText(placeName);
 
-  userEvent.click(screen.getByRole('button'));
+  await act(() => userEvent.click(screen.getByRole("button")));
 
   expect(onClickMock).toHaveBeenCalled();
   expect(onClickMock).toHaveBeenCalledWith(placeId, 'place');
