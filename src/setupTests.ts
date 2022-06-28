@@ -3,8 +3,9 @@ import { TextEncoder, TextDecoder } from 'util';
 import '@testing-library/jest-dom/extend-expect';
 import { loadEnvConfig } from '@next/env';
 
-import { server } from './tests/mocks/server';
-import './tests/initI18n';
+import { server } from "./tests/mocks/server";
+import "./tests/initI18n";
+import { toHaveNoViolations } from "jest-axe";
 
 loadEnvConfig(process.cwd());
 
@@ -19,6 +20,9 @@ jest.mock('next-i18next', () => ({
 
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
+
+// Extend except with jest-axe
+expect.extend(toHaveNoViolations);
 
 // To avoid error: ReferenceError: TextEncoder is not defined
 // discusssed here: https://github.com/jsdom/jsdom/issues/2524
