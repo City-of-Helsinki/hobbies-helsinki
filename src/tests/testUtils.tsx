@@ -43,7 +43,7 @@ const customRender: CustomRender = (
     if (!Array.isArray(routes)) {
       routes = [routes];
     }
-    routes.forEach((route) => Router.router?.push(route));
+    routes.forEach((route) => Router.push(route));
   }
 
   const renderResult = render(ui, {
