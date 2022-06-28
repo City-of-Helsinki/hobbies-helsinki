@@ -29,7 +29,7 @@ const nextConfig = {
     return i18nRewriteRules;
   },
   images: {
-    domains: ["harrastus.content.api.hel.fi"],
+    domains: [new URL(process.env.NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT ?? "harrastus.content.api.hel.fi").origin],
   },
     webpack: (config) => {
     config.module.rules.push({
