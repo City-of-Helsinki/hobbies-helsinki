@@ -13,6 +13,7 @@ type CustomRender = {
     options?: {
       mocks?: MockedResponse[];
       cache?: ApolloCache<{}> | InMemoryCache;
+      routes?: string | string[];
     }
   ): CustomRenderResult;
 };
@@ -36,8 +37,15 @@ export const tabKeyPressHelper = (): boolean =>
 
 const customRender: CustomRender = (
   ui: ReactElement,
-  { mocks = [], cache = createEventsApolloCache() } = {}
+  { mocks = [], cache = createEventsApolloCache(), routes = [] } = {}
 ) => {
+  if (routes) {
+    if (!Array.isArray(routes)) {
+      routes = [routes];
+    }
+    routes.forEach((route) => Router.router?.push(route));
+  }
+
   const renderResult = render(ui, {
     wrapper: ({ children }) => (
       <TestProviders mocks={mocks} router={Router} cache={cache}>

@@ -1,12 +1,16 @@
-import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import * as React from 'react';
+import * as React from "react";
 
-import translations from '../../../../common/translation/i18n/fi.json';
-import { OrganizationDetailsDocument } from '../../../../generated/graphql';
-import { fakeOrganization } from '../../../../test/mockDataUtils';
-import { render, waitFor } from '../../../../../tests/testUtils';
-import PublisherFilter from '../PublisherFilter';
+import {
+  render,
+  waitFor,
+  act,
+  screen,
+  userEvent,
+} from "../../../../../tests/testUtils";
+import PublisherFilter from "../PublisherFilter";
+import { translations } from "../../../../../tests/initI18n";
+import { OrganizationDetailsDocument } from "../../../../nextApi/graphql/generated/graphql";
+import { fakeOrganization } from "../../../../../tests/mockDataUtils";
 
 const id = '1';
 const name = 'Organization name';
@@ -43,13 +47,15 @@ it('calls onRemove callback when remove button is clicked', async () => {
 
   await screen.findByText(name);
 
-  userEvent.click(
-    screen.getByRole('button', {
-      name: translations.common.filter.ariaButtonRemove.replace(
-        '{{filter}}',
-        name
-      ),
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole("button", {
+        name: translations.common.filter.ariaButtonRemove.replace(
+          "{{filter}}",
+          name
+        ),
+      })
+    )
   );
 
   expect(onClickMock).toHaveBeenCalled();
