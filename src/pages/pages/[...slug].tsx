@@ -94,7 +94,7 @@ export async function getStaticProps(
     };
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log('Error while generating content page', e);
+    console.error("Error while generating content page", e);
     return {
       props: {
         error: {

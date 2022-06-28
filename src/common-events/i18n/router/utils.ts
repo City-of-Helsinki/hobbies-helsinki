@@ -138,3 +138,7 @@ export const removeQueryParamsFromRouter = (
     { shallow: true }
   );
 };
+
+export function getParsedUrlQueryInput(search: string) {
+  return qs.parse(search) as ParsedUrlQueryInput;
+}
