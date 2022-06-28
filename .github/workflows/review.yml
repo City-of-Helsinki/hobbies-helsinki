@@ -22,9 +22,7 @@ env:
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.GH_SENTRY_DSN }}
   NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE: 0
   SENTRY_AUTH_TOKEN: ${{ secrets.GH_SENTRY_AUTH_TOKEN }}
-  # TODO: start using staging CMS
-  # NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
-  NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
+  NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
   NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
   NEXT_PUBLIC_MATOMO_SITE_ID: 587
   NEXT_PUBLIC_MATOMO_ENABLED: 0
