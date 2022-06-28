@@ -235,7 +235,7 @@ export const getEventSearchVariables = ({
     startsAfter,
     superEventType,
     suitableFor,
-    eventType: [EventTypeId.Course, EventTypeId.General], //TODO: Remove General type
+    eventType: [EventTypeId.Course],
   };
 };
 
