@@ -45,8 +45,10 @@ const ALink: React.FC<LinkProps> = ({
     </a>
   ) : (
     <RouterLink href={to} {...commonProps} {...rest}>
-      {children}
-      <IconAngleRight aria-hidden />
+      <>
+        {children}
+        <IconAngleRight aria-hidden />
+      </>
     </RouterLink>
   );
 };

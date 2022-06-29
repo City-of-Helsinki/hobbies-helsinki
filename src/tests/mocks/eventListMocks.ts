@@ -41,10 +41,11 @@ export const courseListBaseVariables: QueryEventListArgs = {
 export const getOtherEventsVariables = (
   superEvent: EventListQueryVariables['superEvent']
 ): EventListQueryVariables => ({
-  sort: 'start_time',
-  start: 'now',
+  include: ["in_language", "keywords", "location", "audience"],
+  sort: "start_time",
+  start: "now",
   superEvent,
-  eventType: [EventTypeId.General, EventTypeId.Course],
+  eventType: [EventTypeId.Course],
 });
 
 const createRequest = (

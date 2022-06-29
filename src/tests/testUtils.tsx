@@ -45,7 +45,6 @@ const customRender: CustomRender = (
     }
     routes.forEach((route) => Router.push(route));
   }
-
   const renderResult = render(ui, {
     wrapper: ({ children }) => (
       <TestProviders mocks={mocks} router={Router} cache={cache}>
