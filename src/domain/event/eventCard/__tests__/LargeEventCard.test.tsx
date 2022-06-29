@@ -1,175 +1,138 @@
-import userEvent from '@testing-library/user-event';
-import { axe } from 'jest-axe';
-import React from 'react';
+import userEvent from "@testing-library/user-event";
+import { axe } from "jest-axe";
+import React from "react";
+import mockRouter from "next-router-mock";
 
-import translations from '../../../../common/translation/i18n/fi.json';
-import { EventFieldsFragment } from '../../../../generated/graphql';
-import { fakeEvent } from '../../../../test/mockDataUtils';
-import { render, renderWithRoute, screen } from '../../../../tests/testUtils';
-import { ROUTES } from '../../../app/routes/constants';
-import { MAPPED_PLACES } from '../../../eventSearch/constants';
-import LargeEventCard from '../LargeEventCard';
+import { EventFieldsFragment } from "../../../../domain/nextApi/graphql/generated/graphql";
+import { translations } from "../../../../tests/initI18n";
+import { fakeEvent } from "../../../../tests/mockDataUtils";
+import { act, render, screen } from "../../../../tests/testUtils";
+import LargeEventCard from "../LargeEventCard";
 
 const renderComponent = (event: EventFieldsFragment) =>
   render(<LargeEventCard event={event} />);
 
-test('for accessibility violations', async () => {
-  const event = fakeEvent() as EventFieldsFragment;
-  const { container } = renderComponent(event);
-
-  const results = await axe(container);
-  expect(results).toHaveNoViolations();
+beforeEach(() => {
+  mockRouter.setCurrentUrl("/");
 });
 
-test('should show buy button when event has an offer', () => {
-  global.open = jest.fn();
-  const event = fakeEvent({
-    offers: [
-      {
-        infoUrl: {
-          fi: 'https://example.domain',
-        },
-      },
-    ],
-  }) as EventFieldsFragment;
-  renderComponent(event);
+describe("large event card", () => {
+  test("for accessibility violations", async () => {
+    const event = fakeEvent() as EventFieldsFragment;
+    const { container } = renderComponent(event);
 
-  const button = screen.getByRole('button', {
-    name: /osta liput - linkki avautuu uudessa ikkunassa/i,
+    const results = await axe(container);
+    expect(results).toHaveNoViolations();
   });
 
-  userEvent.click(button);
-  expect(global.open).toBeCalledWith('https://example.domain');
-});
-
-test('should hide buy button when event is free', () => {
-  const event = fakeEvent({
-    offers: [
-      {
-        infoUrl: {
-          fi: 'https://example.domain',
+  test("should show buy button when event has an offer", async () => {
+    const infoUrl = "https://example.domain";
+    global.open = jest.fn();
+    const event = fakeEvent({
+      offers: [
+        {
+          infoUrl: {
+            fi: infoUrl,
+          },
         },
-        isFree: true,
-      },
-    ],
-  }) as EventFieldsFragment;
-  renderComponent(event);
+      ],
+    }) as EventFieldsFragment;
+    renderComponent(event);
 
-  expect(
-    screen.queryByRole('button', {
+    const button = screen.getByRole("button", {
       name: /osta liput - linkki avautuu uudessa ikkunassa/i,
-    })
-  ).not.toBeInTheDocument();
-});
+    });
 
-test('should hide buy button when event is closed', () => {
-  const event = fakeEvent({
-    endTime: '2017-01-01',
-    offers: [
-      {
-        infoUrl: {
-          fi: 'https://example.domain',
+    await act(() => userEvent.click(button));
+    expect(global.open).toBeCalledWith(infoUrl);
+  });
+
+  test("should hide buy button when event is free", () => {
+    const event = fakeEvent({
+      offers: [
+        {
+          infoUrl: {
+            fi: "https://example.domain",
+          },
+          isFree: true,
         },
-      },
-    ],
-    startTime: '2017-01-01',
-  }) as EventFieldsFragment;
+      ],
+    }) as EventFieldsFragment;
+    renderComponent(event);
 
-  renderComponent(event);
+    expect(
+      screen.queryByRole("button", {
+        name: /osta liput - linkki avautuu uudessa ikkunassa/i,
+      })
+    ).not.toBeInTheDocument();
+  });
 
-  expect(
-    screen.queryByRole('button', {
-      name: /osta liput - linkki avautuu uudessa ikkunassa/i,
-    })
-  ).not.toBeInTheDocument();
-});
+  test("should hide buy button when event is closed", () => {
+    const event = fakeEvent({
+      endTime: "2017-01-01",
+      offers: [
+        {
+          infoUrl: {
+            fi: "https://example.domain",
+          },
+        },
+      ],
+      startTime: "2017-01-01",
+    }) as EventFieldsFragment;
 
-test('should go to event page by click Read more button', () => {
-  const event = fakeEvent({
-    id: '123',
-  }) as EventFieldsFragment;
+    renderComponent(event);
 
-  const { history } = renderComponent(event);
+    expect(
+      screen.queryByRole("button", {
+        name: /osta liput - linkki avautuu uudessa ikkunassa/i,
+      })
+    ).not.toBeInTheDocument();
+  });
 
-  expect(history.location.pathname).toEqual('/');
+  test("should go to event page by click Read more button", async () => {
+    const event = fakeEvent({
+      id: "123",
+    }) as EventFieldsFragment;
 
-  userEvent.click(
-    screen.getByRole('button', {
-      name: translations.event.eventCard.ariaLabelReadMore.replace(
-        '{{name}}',
-        event.name.fi
-      ),
-    })
-  );
+    const { router } = renderComponent(event);
 
-  expect(history.location.pathname).toEqual('/fi/events/123');
-});
+    expect(router.pathname).toEqual("/");
 
-test('should go to event page by clicking event card', () => {
-  const event = fakeEvent({
-    id: '123',
-  }) as EventFieldsFragment;
-
-  const { history } = renderComponent(event);
-
-  expect(history.location.pathname).toEqual('/');
-
-  userEvent.click(
-    screen.getByRole('link', {
-      name: translations.event.eventCard.ariaLabelLink.replace(
-        '{{name}}',
-        event.name.fi
-      ),
-    })
-  );
-
-  expect(history.location.pathname).toEqual('/fi/events/123');
-});
-
-describe('test all event places for modified query string', () => {
-  Object.keys(MAPPED_PLACES).forEach((place) => {
-    it(`clicking event link and button works correctly if path is /${place}`, () => {
-      const event = fakeEvent() as EventFieldsFragment;
-      const { history } = renderWithRoute(<LargeEventCard event={event} />, {
-        routes: [`/fi/${place}`],
-        path: `/fi${ROUTES.EVENT_PLACE}`,
-      });
-
-      const push = jest.spyOn(history, 'push');
-
-      userEvent.click(
-        screen.queryByRole('link', {
-          name: translations.event.eventCard.ariaLabelLink.replace(
-            '{{name}}',
-            event.name.fi
-          ),
-        })
-      );
-
-      // goBack to have the event card rendered (path need to match after url has changed)
-      history.goBack();
-
+    await act(() =>
       userEvent.click(
         screen.getByRole('button', {
           name: translations.event.eventCard.ariaLabelReadMore.replace(
-            '{{name}}',
-            event.name.fi
+            "{{name}}",
+            event.name.fi as string
           ),
         })
-      );
+      )
+    );
 
-      expect(push.mock.calls).toEqual([
-        [
-          `/fi/events/${event.id}?returnPath=${encodeURIComponent(
-            '/' + place
-          )}`,
-        ],
-        [
-          `/fi/events/${event.id}?returnPath=${encodeURIComponent(
-            '/' + place
-          )}`,
-        ],
-      ]);
-    });
+    expect(router.pathname).toEqual("/courses/123");
+  });
+
+  // Skipped, because this is not available after the Link-component is changed from react-router Link.
+  test.skip("should go to event page by clicking event card", async () => {
+    const event = fakeEvent({
+      id: "123",
+    }) as EventFieldsFragment;
+
+    const { router } = renderComponent(event);
+
+    expect(router.pathname).toEqual("/");
+
+    await act(() =>
+      userEvent.click(
+        screen.getByRole("link", {
+          name: translations.event.eventCard.ariaLabelLink.replace(
+            "{{name}}",
+            event.name.fi as string
+          ),
+        })
+      )
+    );
+
+    expect(router.pathname).toEqual("/courses/123");
   });
 });
