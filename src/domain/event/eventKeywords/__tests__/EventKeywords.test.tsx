@@ -1,19 +1,19 @@
-import { advanceTo, clear } from 'jest-date-mock';
-import capitalize from 'lodash/capitalize';
-import * as React from 'react';
+import { advanceTo, clear } from "jest-date-mock";
+import capitalize from "lodash/capitalize";
+import * as React from "react";
+import { translations } from "../../../../tests/initI18n";
 
-import translations from '../../../../common/translation/i18n/fi.json';
-import {
-  EventFieldsFragment,
-  OfferFieldsFragment,
-} from '../../../../generated/graphql';
 import {
   fakeEvent,
   fakeKeyword,
   fakeOffer,
-} from '../../../../test/mockDataUtils';
-import { render, screen, userEvent } from '../../../../tests/testUtils';
-import EventKeywords from '../EventKeywords';
+} from "../../../../tests/mockDataUtils";
+import { act, render, screen, userEvent } from "../../../../tests/testUtils";
+import {
+  EventFieldsFragment,
+  OfferFieldsFragment,
+} from "../../../nextApi/graphql/generated/graphql";
+import EventKeywords from "../EventKeywords";
 
 const startTime = '2020-06-22T07:00:00.000000Z';
 const endTime = '2020-06-22T10:00:00.000000Z';
@@ -33,25 +33,27 @@ afterAll(() => {
   clear();
 });
 
-test('should render keywords and handle click', () => {
-  const { history } = render(
+test("should render keywords and handle click", async () => {
+  const { router } = render(
     <EventKeywords event={event} showIsFree={true} showKeywords={true} />
   );
 
   keywordNames.forEach((keyword) => {
     expect(
-      screen.queryByRole('link', { name: new RegExp(keyword, 'i') })
+      screen.getByRole("link", { name: new RegExp(keyword, "i") })
     ).toBeInTheDocument();
   });
 
-  userEvent.click(
-    screen.queryByRole('link', { name: new RegExp(keywordNames[0], 'i') })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole("link", { name: new RegExp(keywordNames[0], "i") })
+    )
   );
-
-  expect(history.location.pathname).toBe('/fi/events');
-  expect(history.location.search).toBe(
-    `?text=${encodeURIComponent(capitalize(keywordNames[0]))}`
-  );
+  expect(router).toMatchObject({
+    asPath: `/haku?text=${encodeURIComponent(capitalize(keywordNames[0]))}`,
+    pathname: "/haku",
+    query: { text: capitalize(keywordNames[0]) },
+  });
 });
 
 test('should not show keywords', () => {
@@ -66,34 +68,42 @@ test('should not show keywords', () => {
   });
 });
 
-test('should render today tag and handle click', () => {
-  advanceTo('2020-06-22');
-  const { history } = render(
+test("should render today tag and handle click", async () => {
+  advanceTo("2020-06-22");
+  const { router } = render(
     <EventKeywords event={event} showIsFree={true} showKeywords={false} />
   );
-
-  userEvent.click(
-    screen.queryByRole('link', {
-      name: translations.event.categories.labelToday,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole("link", {
+        name: translations.event.categories.labelToday,
+      })
+    )
   );
-  expect(history.location.pathname).toBe('/fi/events');
-  expect(history.location.search).toBe('?dateTypes=today');
+  expect(router).toMatchObject({
+    asPath: "/haku?dateTypes=today",
+    pathname: "/haku",
+    query: { dateTypes: "today" },
+  });
 });
 
-test('should render this week tag and handle click', () => {
-  advanceTo('2020-06-23');
-  const { history } = render(
+test("should render this week tag and handle click", async () => {
+  advanceTo("2020-06-23");
+  const { router } = render(
     <EventKeywords event={event} showIsFree={true} showKeywords={false} />
   );
-
-  userEvent.click(
-    screen.queryByRole('link', {
-      name: translations.event.categories.labelThisWeek,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole("link", {
+        name: translations.event.categories.labelThisWeek,
+      })
+    )
   );
-  expect(history.location.pathname).toBe('/fi/events');
-  expect(history.location.search).toBe('?dateTypes=this_week');
+  expect(router).toMatchObject({
+    asPath: "/haku?dateTypes=this_week",
+    pathname: "/haku",
+    query: { dateTypes: "this_week" },
+  });
 });
 
 test('should hide buy button for free events', () => {
@@ -106,7 +116,7 @@ test('should hide buy button for free events', () => {
   );
 
   expect(
-    screen.queryByRole('link', {
+    screen.getByRole("link", {
       name: translations.event.categories.labelFree,
     })
   ).toBeInTheDocument();
