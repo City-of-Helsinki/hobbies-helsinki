@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react";
+import { translations } from "../../../../tests/initI18n";
 
-import translations from '../../../../common/translation/i18n/fi.json';
-import { render, screen, userEvent } from '../../../../tests/testUtils';
-import EventClosedHero from '../EventClosedHero';
+import { render, screen, userEvent } from "../../../../tests/testUtils";
+import EventClosedHero from "../EventClosedHero";
 
 it('should render all text fields', () => {
   render(<EventClosedHero />);
@@ -22,13 +22,13 @@ it('should render all text fields', () => {
   ).toBeInTheDocument();
 });
 
-it('should go to home page when clicking button', () => {
-  const { history } = render(<EventClosedHero />);
+it("should go to home page when clicking button", () => {
+  const { router } = render(<EventClosedHero />);
 
   userEvent.click(
     screen.getByRole('button', {
       name: translations.event.hero.buttonToHomePage,
     })
   );
-  expect(history.location.pathname).toBe('/fi/home');
+  expect(router.pathname).toBe("");
 });
