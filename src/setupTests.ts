@@ -10,6 +10,8 @@ import { toHaveNoViolations } from "jest-axe";
 loadEnvConfig(process.cwd());
 
 global.fetch = jest.fn();
+// mock scrollTo in order to fix: "Error: Not implemented: window.scrollTo"
+global.scrollTo = jest.fn();
 
 jest.mock('next-i18next', () => ({
   // When testing, i18n is set up with providers instead of the version that's
