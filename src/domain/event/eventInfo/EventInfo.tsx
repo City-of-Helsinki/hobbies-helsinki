@@ -96,7 +96,7 @@ const EventInfo: React.FC<Props> = ({ event, superEvent }) => {
 };
 
 const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
-  const { t } = useTranslation('event');
+  const { t } = useTranslation();
   const locale = useLocale();
   const router = useRouter();
 
@@ -128,6 +128,7 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
         startOutputType: 'local',
         title: name,
       };
+      // FIXME: When ran with Jest, this throws an error!
       createEvent(icsEvent, (error: Error | undefined, value: string) => {
         if (error) {
           Sentry.captureException(error);

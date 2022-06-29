@@ -16,18 +16,15 @@ const EVENTS_LIST_LIMIT = 3;
 export const otherEventTimesListTestId = 'other-event-times-list';
 
 const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("event");
   const [isListOpen, setIsListOpen] = React.useState(false);
 
   const { superEventId, loading, events, isFetchingMore } =
     useOtherEventTimes(event);
-
   if (!superEventId) return null;
-
   const toggleList = () => {
     setIsListOpen(!isListOpen);
   };
-
   if (loading) {
     return (
       <div
@@ -38,7 +35,6 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
       </div>
     );
   }
-
   if (events.length === 0) {
     return null;
   }
@@ -49,7 +45,7 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconCalendarPlus aria-hidden />}
-        title={t('event:otherTimes.title')}
+        title={t("otherTimes.title")}
       >
         <EventList
           id={otherEventTimesListTestId}
@@ -63,8 +59,8 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t('event:otherTimes.buttonHide')
-              : t('event:otherTimes.buttonShow')}
+              ? t("otherTimes.buttonHide")
+              : t("otherTimes.buttonShow")}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (

@@ -2,14 +2,15 @@ import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
-import useLocale from '../../../../common-events/hooks/useLocale';
-import Link from '../../../../common-events/i18n/router/Link';
-import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
-import { getEventFields } from '../../EventUtils';
-import { EventFields } from '../../types';
-import styles from './eventList.module.scss';
-import useRouter from '../../../../common-events/i18n/router/useRouter';
+import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
+import useLocale from "../../../../common-events/hooks/useLocale";
+
+import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
+import { getEventFields } from "../../EventUtils";
+import { EventFields } from "../../types";
+import styles from "./eventList.module.scss";
+import useRouter from "../../../../common-events/i18n/router/useRouter";
+import Link from "../../../../common-events/components/link/Link";
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -22,9 +23,8 @@ const EventList: React.FC<{
   const router = useRouter();
   const search = router.asPath.split('?')[1];
 
-  const getLinkUrl = (event: EventFieldsFragment) => {
-    return `/courses/${event.id}${search}`;
-  };
+  const getLinkUrl = (event: EventFieldsFragment) =>
+    `/courses/${event.id}?${search}`;
 
   return (
     <ul className={styles.timeList} data-testid={id}>
@@ -42,7 +42,7 @@ const EventList: React.FC<{
         return (
           <li key={event.id}>
             <Link
-              href={getLinkUrl(event)}
+              to={getLinkUrl(event)}
               // className={styles.listButton}
               aria-label={
                 showDate

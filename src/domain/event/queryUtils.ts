@@ -110,7 +110,7 @@ export const useSubEvents = (
   variables: EventListQueryVariables,
   superEventId: string | undefined
 ): { subEvents: EventFields[]; isFetchingMore: boolean; loading: boolean } => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("event");
   const [isFetchingMore, setIsFetchingMore] = React.useState(false);
   const {
     data: subEventsData,
@@ -133,7 +133,7 @@ export const useSubEvents = (
           },
         });
       } catch (e) {
-        toast.error(t('event:info.errorLoadMode'));
+        toast.error(t("info.errorLoadMode"));
       }
       setIsFetchingMore(false);
     },
@@ -174,6 +174,5 @@ export const useOtherEventTimes = (
     variables,
     superEventId
   );
-
   return { events: subEvents, loading, isFetchingMore, superEventId };
 };

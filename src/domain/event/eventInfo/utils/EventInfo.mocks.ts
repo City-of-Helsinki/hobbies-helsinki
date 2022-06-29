@@ -89,7 +89,7 @@ export const subEventsResponse = {
     range(1, 11).map((i) => ({
       endTime: addDays(new Date(endTime), i).toISOString(),
       startTime: addDays(new Date(startTime), i).toISOString(),
-      typeId: EventTypeId.General,
+      typeId: EventTypeId.Course,
       superEvent: { internalId: superEventInternalId },
     }))
   ),

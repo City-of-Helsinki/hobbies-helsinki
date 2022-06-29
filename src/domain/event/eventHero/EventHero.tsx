@@ -26,10 +26,12 @@ import EventName from '../eventName/EventName';
 import {
   extractLatestReturnPath,
   ReturnParams,
-} from '../eventQueryString.util';
-import { getEventFields, getEventPrice } from '../EventUtils';
-import { EventFields, SuperEventResponse } from '../types';
-import styles from './eventHero.module.scss';
+} from "../eventQueryString.util";
+import { getEventFields, getEventPrice } from "../EventUtils";
+import { EventFields, SuperEventResponse } from "../types";
+import styles from "./eventHero.module.scss";
+import { parse } from "query-string";
+import { ParsedUrlQueryInput } from "querystring";
 
 export interface Props {
   event: EventFields;
@@ -67,8 +69,10 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
   const goBack = ({ returnPath, remainingQueryString }: ReturnParams) => {
     router.push({
       pathname: `/${locale}${returnPath}`,
-      search: remainingQueryString,
-      query: { eventId: event.id },
+      query: {
+        ...(parse(remainingQueryString ?? "") as ParsedUrlQueryInput),
+        eventId: event.id,
+      },
     });
   };
 
