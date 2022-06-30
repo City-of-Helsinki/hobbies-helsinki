@@ -35,14 +35,20 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
   const search = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  const params: { eventId?: string } = router.query;
-  const eventId = params.eventId as string;
+  console.log("EventPageContainer", "router", router);
+  const eventId =
+    (router.query?.eventId as string) ?? router.pathname.split("/").pop();
 
+  console.log("eventId", eventId);
   const [superEvent, setSuperEvent] = React.useState<SuperEventResponse>({
     data: null,
     status: 'pending',
   });
-  const { data: eventData, loading } = useEventDetailsQuery({
+  const {
+    data: eventData,
+    loading,
+    error,
+  } = useEventDetailsQuery({
     client: eventsApolloClient,
     ssr: false,
     variables: {
@@ -51,12 +57,16 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
     },
   });
   const event = eventData?.eventDetails;
+  console.log("loading", loading);
+  console.log("EventPageContainer", "event load error", error);
+  console.log("eventData", eventData);
+  console.log("event", event);
   const superEventId = getEventIdFromUrl(
     event?.superEvent?.internalId ?? '',
     'event'
   );
 
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     if (superEventId) {
       getSuperEventData();
     } else if (event) {
