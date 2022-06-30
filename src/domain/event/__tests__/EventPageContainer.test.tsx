@@ -1,40 +1,41 @@
-import { advanceTo, clear } from 'jest-date-mock';
-import * as React from 'react';
+import { advanceTo, clear } from "jest-date-mock";
+import * as React from "react";
+import { translations } from "../../../tests/initI18n";
 
-import translations from '../../../common/translation/i18n/fi.json';
-import {
-  EventDetailsDocument,
-  EventFieldsFragment,
-  EventListDocument,
-} from '../../../generated/graphql';
-import {
-  createEventListRequestAndResultMocks,
-  createOtherEventTimesRequestAndResultMocks,
-} from '../../../test/apollo-mocks/eventListMocks';
 import {
   fakeEvent,
   fakeEvents,
   fakeKeyword,
   fakeLocalizedObject,
   fakeTargetGroup,
-} from '../../../test/mockDataUtils';
+} from "../../../tests/mockDataUtils";
 import {
-  renderWithRoute,
+  createEventListRequestAndResultMocks,
+  createOtherEventTimesRequestAndResultMocks,
+} from "../../../tests/mocks/eventListMocks";
+import {
+  act,
+  render,
   screen,
   userEvent,
   waitFor,
-} from '../../../tests/testUtils';
-import { ROUTES } from '../../app/routes/constants';
-import { otherEventTimesListTestId } from '../eventInfo/OtherEventTimes';
+} from "../../../tests/testUtils";
+import {
+  EventDetailsDocument,
+  EventFieldsFragment,
+  EventListDocument,
+} from "../../nextApi/graphql/generated/graphql";
+
+import { otherEventTimesListTestId } from "../eventInfo/OtherEventTimes";
 import EventPageContainer, {
   EventPageContainerProps,
 } from '../EventPageContainer';
 
-const id = '1';
-const name = 'Event title';
-const description = 'Event descirption';
-const startTime = '2020-10-05T07:00:00.000000Z';
-const endTime = '2020-10-05T10:00:00.000000Z';
+const id = "hel:123";
+const name = "Event title";
+const description = "Event descirption";
+const startTime = "2020-10-05T07:00:00.000000Z";
+const endTime = "2020-10-05T10:00:00.000000Z";
 
 const audience = ['Aikuiset', 'Lapset'];
 const keywords = [
@@ -63,7 +64,7 @@ const event = fakeEvent({
   },
 }) as EventFieldsFragment;
 
-const eventKeywordIds = event.keywords.map((keyword) => keyword.id);
+const eventKeywordIds = event.keywords.map((keyword) => keyword.id) as string[];
 
 const eventRequest = {
   query: EventDetailsDocument,
@@ -113,14 +114,13 @@ const mocks = [
   }),
 ];
 
-const testPath = ROUTES.EVENT.replace(':id', id);
+const testPath = `/courses/${id}`;
 const routes = [testPath];
 
 const renderComponent = (props?: Partial<EventPageContainerProps>) =>
-  renderWithRoute(<EventPageContainer {...props} />, {
+  render(<EventPageContainer {...props} />, {
     mocks,
     routes,
-    path: ROUTES.EVENT,
   });
 
 afterAll(() => {
@@ -183,10 +183,9 @@ it("should show error info when event doesn't exist", async () => {
     },
   ];
 
-  renderWithRoute(<EventPageContainer />, {
+  render(<EventPageContainer />, {
     mocks,
     routes,
-    path: ROUTES.EVENT,
   });
 
   await waitFor(() => {
@@ -201,8 +200,8 @@ it("should show error info when event doesn't exist", async () => {
 });
 
 describe(`SIMILAR_EVENTS feature flag`, () => {
-  it('shows similar events when flag is on', async () => {
-    advanceTo('2020-10-01');
+  it.only("shows similar events when flag is on", async () => {
+    advanceTo("2020-10-01");
     renderComponent({ showSimilarEvents: true });
     await waitFor(() => {
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
@@ -236,21 +235,21 @@ describe(`SIMILAR_EVENTS feature flag`, () => {
   });
 });
 
-it('should link to events search when clicking tags', async () => {
-  advanceTo('2020-10-01');
-  const { history } = renderComponent();
-
-  const pushSpy = jest.spyOn(history, 'push');
+it("should link to events search when clicking tags", async () => {
+  advanceTo("2020-10-01");
+  const { router } = renderComponent();
 
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
 
-  // click keyword / tag
-  userEvent.click(screen.getByRole('link', { name: 'Avouinti' }));
+  const tagLink = await screen.findByRole("link", { name: "Avouinti" });
 
-  expect(pushSpy).toHaveBeenCalledWith({
-    pathname: '/fi/events',
-    search: '?text=Avouinti',
+  // click keyword / tag
+  await act(async () => userEvent.click(tagLink));
+
+  expect(router).toMatchObject({
+    pathname: "/search",
+    asPath: "/search?text=Avouinti",
   });
 });
