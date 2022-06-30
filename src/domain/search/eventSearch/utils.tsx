@@ -34,8 +34,9 @@ import {
   MappedFilters,
   SearchCategoryOption,
   SearchCategoryType,
-} from './types';
-import { UnionTFunction } from '../../../common-events/types';
+} from "./types";
+import { UnionTFunction } from "../../../common-events/types";
+import AppConfig from "../../app/AppConfig";
 
 export const MIN_AGE = 0;
 export const MAX_AGE = 99;
@@ -235,7 +236,7 @@ export const getEventSearchVariables = ({
     startsAfter,
     superEventType,
     suitableFor,
-    eventType: [EventTypeId.Course],
+    eventType: AppConfig.supportedEventTypes,
   };
 };
 

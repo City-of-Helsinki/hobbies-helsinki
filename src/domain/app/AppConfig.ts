@@ -1,4 +1,5 @@
-import { i18n } from '../../../next-i18next.config';
+import { i18n } from "../../../next-i18next.config";
+import { EventTypeId } from "../nextApi/graphql/generated/graphql";
 
 class AppConfig {
   static get cmsGraphqlEndpoint() {
@@ -20,6 +21,10 @@ class AppConfig {
       process.env.NEXT_PUBLIC_APP_ORIGIN,
       'NEXT_PUBLIC_APP_ORIGIN'
     );
+  }
+
+  static get supportedEventTypes() {
+    return [EventTypeId.Course, EventTypeId.General];
   }
 
   static get locales() {
@@ -69,6 +74,10 @@ class AppConfig {
     }
 
     return value;
+  }
+
+  static get getShowSimilarEvents() {
+    return Boolean(parseEnvValue(process.env.NEXT_PUBLIC_SHOW_SIMILAR_EVENTS));
   }
 }
 

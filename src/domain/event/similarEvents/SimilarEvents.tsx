@@ -16,16 +16,16 @@ interface Props {
 export const similarEventsListTestId = 'similar-events-list';
 
 const SimilarEvents: React.FC<Props> = ({ event }) => {
-  const { t } = useTranslation();
+  const { t } = useTranslation("event");
   const { data: events, loading } = useSimilarEventsQuery(event);
 
   return (
     <div className={styles.similarEvents}>
       <LoadingSpinner hasPadding={false} isLoading={loading}>
-        {events?.length && (
+        {!!events?.length && (
           <Container>
             <h2 className={styles.similarEventsTitle}>
-              {t('event:similarEvents.title')}
+              {t("similarEvents.title")}
             </h2>
             <div
               className={styles.similarEventList}
