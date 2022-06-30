@@ -1,8 +1,9 @@
-import classNames from 'classnames';
-import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react';
-import { useTranslation } from 'next-i18next';
-import React, { FormEvent } from 'react';
-import qs from 'query-string';
+import classNames from "classnames";
+import { Button, IconCake, IconArrowRight, IconSearch } from "hds-react";
+import uniq from "lodash/uniq";
+import { useTranslation } from "next-i18next";
+import React, { FormEvent } from "react";
+import qs, { parse } from "query-string";
 
 import Container from '../../../common-events/components/layout/Container';
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
@@ -28,9 +29,10 @@ import {
   getSearchQuery,
   MAX_AGE,
   MIN_AGE,
-} from './utils';
-import styles from './search.module.scss';
-import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
+} from "./utils";
+import styles from "./search.module.scss";
+import RangeDropdown from "../../../common-events/components/rangeDropdown/RangeDropdown";
+import { ParsedUrlQueryInput } from "querystring";
 
 interface Props {
   scrollToResultList: () => void;
@@ -120,8 +122,8 @@ const AdvancedSearch: React.FC<Props> = ({
     const search = getSearchQuery(filters);
 
     router.push({
-      pathname: getI18nPath('/search', locale),
-      search,
+      pathname: getI18nPath("/search", locale),
+      query: parse(search) as ParsedUrlQueryInput,
     });
   };
 
@@ -175,8 +177,8 @@ const AdvancedSearch: React.FC<Props> = ({
     setSelectedTexts(text || []);
 
     router.push({
-      pathname: getI18nPath('/search', locale),
-      search,
+      pathname: getI18nPath("/search", locale),
+      query: parse(search) as ParsedUrlQueryInput,
     });
     scrollToResultList();
   };
@@ -188,8 +190,8 @@ const AdvancedSearch: React.FC<Props> = ({
     });
 
     router.push({
-      pathname: getI18nPath('/search', locale),
-      search,
+      pathname: getI18nPath("/search", locale),
+      query: parse(search) as ParsedUrlQueryInput,
     });
   };
 
@@ -206,8 +208,8 @@ const AdvancedSearch: React.FC<Props> = ({
     const search = getSearchQuery(EVENT_DEFAULT_SEARCH_FILTERS);
 
     router.push({
-      pathname: getI18nPath('/search', locale),
-      search,
+      pathname: getI18nPath("/search", locale),
+      query: parse(search) as ParsedUrlQueryInput,
     });
 
     clearInputValues();
