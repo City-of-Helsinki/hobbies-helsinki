@@ -9,19 +9,28 @@ import { toHaveNoViolations } from "jest-axe";
 
 loadEnvConfig(process.cwd());
 
+// Mock the fetch
 global.fetch = jest.fn();
+
 // mock scrollTo in order to fix: "Error: Not implemented: window.scrollTo"
 global.scrollTo = jest.fn();
 
-jest.mock('next-i18next', () => ({
+// Mock the translations module
+jest.mock("next-i18next", () => ({
   // When testing, i18n is set up with providers instead of the version that's
   // optimized for next. That's why we replace the next useTranslation with the
   // default react version.
   useTranslation: jest.requireActual('react-i18next').useTranslation,
 }));
 
-jest.mock('next/router', () => require('next-router-mock'));
-jest.mock('next/dist/client/router', () => require('next-router-mock'));
+// Mock the ICS create event that fails during the tests
+jest.mock("ics", () => {
+  createEvent: jest.fn();
+});
+
+// Mock the NextJS-router
+jest.mock("next/router", () => require("next-router-mock"));
+jest.mock("next/dist/client/router", () => require("next-router-mock"));
 
 // Extend except with jest-axe
 expect.extend(toHaveNoViolations);
