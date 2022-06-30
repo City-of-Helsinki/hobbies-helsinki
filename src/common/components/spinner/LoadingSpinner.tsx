@@ -25,7 +25,7 @@ const LoadingSpinnerri: FunctionComponent<Props> = ({
           data-testid="loading-spinner"
         >
           <div className={styles.spinner}>
-            <LoadingSpinner />
+            <LoadingSpinner multicolor />
           </div>
         </div>
       ) : (
