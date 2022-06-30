@@ -1,6 +1,7 @@
-import { FetchResult, GraphQLRequest } from '@apollo/client';
-import { MockedResponse } from '@apollo/client/testing';
-import { EventType } from '../../domain/event/types';
+import { FetchResult, GraphQLRequest } from "@apollo/client";
+import { MockedResponse } from "@apollo/client/testing";
+import AppConfig from "../../domain/app/AppConfig";
+import { EventType } from "../../domain/event/types";
 
 import {
   EventListDocument,
@@ -45,7 +46,7 @@ export const getOtherEventsVariables = (
   sort: "start_time",
   start: "now",
   superEvent,
-  eventType: [EventTypeId.Course],
+  eventType: AppConfig.supportedEventTypes,
 });
 
 const createRequest = (

@@ -2,8 +2,10 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import useLocale from '../../common-events/hooks/useLocale';
-import useRouter from '../../common-events/i18n/router/useRouter';
+import useLocale from "../../common-events/hooks/useLocale";
+import useRouter from "../../common-events/i18n/router/useRouter";
+import AppConfig from "../app/AppConfig";
+import eventsApolloClient from "../clients/eventsApolloClient";
 import {
   EventListQuery,
   EventListQueryVariables,
@@ -53,6 +55,7 @@ export const useSimilarEventsQuery = (
 ): { loading: boolean; data: EventListQuery['eventList']['data'] } => {
   const eventFilters = useSimilarEventsQueryVariables(event);
   const { data: eventsData, loading } = useEventListQuery({
+    client: eventsApolloClient,
     ssr: false,
     variables: eventFilters,
   });
@@ -80,7 +83,7 @@ const useOtherEventTimesVariables = (event: EventFields) => {
       sort: EVENT_SORT_OPTIONS.START_TIME,
       start: 'now',
       superEvent: superEventId,
-      eventType: [EventTypeId.Course],
+      eventType: AppConfig.supportedEventTypes,
     }),
     [superEventId]
   );
@@ -96,8 +99,8 @@ export const useSubEventsQueryVariables = (
       sort: EVENT_SORT_OPTIONS.START_TIME,
       start: 'now',
       superEvent: event.id,
-      eventType: [EventTypeId.Course],
-      include: ['in_language', 'keywords', 'location', 'audience'],
+      eventType: AppConfig.supportedEventTypes,
+      include: ["in_language", "keywords", "location", "audience"],
     }),
     [event.id]
   );
@@ -117,6 +120,7 @@ export const useSubEvents = (
     fetchMore,
     loading,
   } = useEventListQuery({
+    client: eventsApolloClient,
     skip: !superEventId,
     ssr: false,
     variables,
