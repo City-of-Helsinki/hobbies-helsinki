@@ -1,6 +1,6 @@
-import { useTranslation } from 'next-i18next';
-import React from 'react';
-import qs from 'query-string';
+import { useTranslation } from "next-i18next";
+import React from "react";
+import qs, { parse } from "query-string";
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
@@ -14,11 +14,13 @@ import {
   getSearchFilters,
   getSearchQuery,
   getSuitableForFilterValue,
-} from '../utils';
-import DateFilter from './DateFilter';
-import styles from './filterSummary.module.scss';
-import PlaceFilter from './PlaceFilter';
-import PublisherFilter from './PublisherFilter';
+} from "../utils";
+import DateFilter from "./DateFilter";
+import styles from "./filterSummary.module.scss";
+import PlaceFilter from "./PlaceFilter";
+import PublisherFilter from "./PublisherFilter";
+import TextFilter from "./TextFilter";
+import { ParsedUrlQueryInput } from "querystring";
 
 export const filterSummaryContainerTestId = 'filter-summary';
 
@@ -82,8 +84,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     });
 
     router.push({
-      pathname: getI18nPath('/search', locale),
-      search,
+      pathname: getI18nPath("/search", locale),
+      query: parse(search) as ParsedUrlQueryInput,
     });
   };
 
@@ -107,7 +109,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
         <FilterButton
           key={category}
           onRemove={handleFilterRemove}
-          text={translateValue('home:category.', category, t)}
+          text={translateValue("home:category.courses.", category, t)}
           type="category"
           value={category}
         />
