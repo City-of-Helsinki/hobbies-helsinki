@@ -1,6 +1,5 @@
-import { useApolloClient } from '@apollo/client';
-import { useTranslation } from 'next-i18next';
-import React from 'react';
+import { useTranslation } from "next-i18next";
+import React from "react";
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import isClient from '../../common/utils/isClient';
@@ -10,17 +9,18 @@ import Link from '../../common-events/i18n/router/Link';
 import {
   EventDetailsDocument,
   useEventDetailsQuery,
-} from '../nextApi/graphql/generated/graphql';
-import EventClosedHero from './eventClosedHero/EventClosedHero';
-import EventContent from './eventContent/EventContent';
-import EventHero from './eventHero/EventHero';
-import EventPageMeta from './eventPageMeta/EventPageMeta';
-import { getEventIdFromUrl, isEventClosed } from './EventUtils';
-import SimilarEvents from './similarEvents/SimilarEvents';
-import { SuperEventResponse } from './types';
-import styles from './eventPage.module.scss';
-import useRouter from '../../common-events/i18n/router/useRouter';
-import eventsApolloClient from '../clients/eventsApolloClient';
+} from "../nextApi/graphql/generated/graphql";
+import EventClosedHero from "./eventClosedHero/EventClosedHero";
+import EventContent from "./eventContent/EventContent";
+import EventHero from "./eventHero/EventHero";
+import EventPageMeta from "./eventPageMeta/EventPageMeta";
+import { getEventIdFromUrl, isEventClosed } from "./EventUtils";
+import SimilarEvents from "./similarEvents/SimilarEvents";
+import { SuperEventResponse } from "./types";
+import styles from "./eventPage.module.scss";
+import useRouter from "../../common-events/i18n/router/useRouter";
+import useEventsApolloClientFromConfig from "../../common-events/hooks/useEventsApolloClientFromConfig";
+import { useLazyQuery } from "@apollo/client";
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -29,64 +29,55 @@ export interface EventPageContainerProps {
 const EventPageContainer: React.FC<EventPageContainerProps> = ({
   showSimilarEvents = true,
 }) => {
-  const apolloClient = useApolloClient();
   const { t } = useTranslation();
   const router = useRouter();
   const search = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  console.log("EventPageContainer", "router", router);
   const eventId =
     (router.query?.eventId as string) ?? router.pathname.split("/").pop();
 
-  console.log("eventId", eventId);
   const [superEvent, setSuperEvent] = React.useState<SuperEventResponse>({
     data: null,
     status: 'pending',
   });
-  const {
-    data: eventData,
-    loading,
-    error,
-  } = useEventDetailsQuery({
-    client: eventsApolloClient,
+  const { data: eventData, loading } = useEventDetailsQuery({
     ssr: false,
     variables: {
       id: eventId,
       include: ['in_language', 'keywords', 'location', 'audience'],
     },
   });
+
   const event = eventData?.eventDetails;
-  console.log("loading", loading);
-  console.log("EventPageContainer", "event load error", error);
-  console.log("eventData", eventData);
-  console.log("event", event);
+
   const superEventId = getEventIdFromUrl(
     event?.superEvent?.internalId ?? '',
     'event'
   );
+  const [superEventSearch, { data: superEventData }] = useLazyQuery(
+    EventDetailsDocument,
+    {
+      variables: {
+        id: superEventId,
+        include: ["in_language", "keywords", "location", "audience"],
+      },
+    }
+  );
 
   React.useEffect(() => {
     if (superEventId) {
-      getSuperEventData();
+      superEventSearch();
+      if (superEventData) {
+        setSuperEvent({
+          data: superEventData.eventDetails,
+          status: "resolved",
+        });
+      }
     } else if (event) {
       setSuperEvent({ data: null, status: 'resolved' });
     }
-    async function getSuperEventData() {
-      try {
-        const { data } = await apolloClient.query({
-          query: EventDetailsDocument,
-          variables: {
-            id: superEventId,
-            include: ['in_language', 'keywords', 'location', 'audience'],
-          },
-        });
-        setSuperEvent({ data: data.eventDetails, status: 'resolved' });
-      } catch (e) {
-        setSuperEvent({ data: null, status: 'resolved' });
-      }
-    }
-  }, [apolloClient, event, superEventId]);
+  }, [event, superEventId]);
 
   const eventClosed = !event || isEventClosed(event);
   return (
