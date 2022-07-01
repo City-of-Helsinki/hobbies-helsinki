@@ -111,12 +111,14 @@ export const subEventsLoadMoreResponse = {
 export const getSubEventsMocks = ({
   response,
   variables,
+  superEventId,
 }: {
   response: EventListResponse;
   variables?: EventListQueryVariables;
+  superEventId?: string;
 }) =>
   createOtherEventTimesRequestAndResultMocks({
-    superEventId: event.id,
+    superEventId: superEventId ?? event.id,
     response,
     variables,
   });

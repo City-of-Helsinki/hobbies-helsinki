@@ -37,7 +37,7 @@ const superEventInternalId = `https://api.hel.fi/linkedevents/v1/event/${superEv
 
 const generalEvent = fakeEvent({
   superEvent: { internalId: superEventInternalId },
-  typeId: EventTypeId.General,
+  typeId: EventTypeId.Course,
 }) as EventFieldsFragment;
 
 const meta: Meta = {
@@ -55,7 +55,7 @@ const otherEventsResponse = {
     range(1, 11).map((i) => ({
       endTime: addDays(new Date(endTime), i).toISOString(),
       startTime: addDays(new Date(startTime), i).toISOString(),
-      typeId: EventTypeId.General,
+      typeId: EventTypeId.Course,
     }))
   ),
   meta,
@@ -190,7 +190,7 @@ async function testToaster() {
 async function testNavigation(
   history: any,
   url: string,
-  eventTypeId = EventTypeId.General
+  eventTypeId = EventTypeId.Course
 ) {
   const toggleButton = await screen.findByRole('button', {
     name: translations.event.otherTimes.buttonShow,
