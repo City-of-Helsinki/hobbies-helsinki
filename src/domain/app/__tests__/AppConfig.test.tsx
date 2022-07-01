@@ -1,6 +1,7 @@
-import AppConfig from '../AppConfig';
+import { EventTypeId } from "../../nextApi/graphql/generated/graphql";
+import AppConfig from "../AppConfig";
 
-let env;
+let env: any;
 beforeAll(() => {
   env = process.env;
 });
@@ -16,20 +17,9 @@ test.each([
     envName: 'NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT',
   },
   {
-    field: 'unifiedSearchGraphqlEndpoint',
-    mockEnvValue: 'https://localhost/unified-search/graphql',
-    envName: 'NEXT_PUBLIC_UNIFIED_SEARCH_GRAPHQL_ENDPOINT',
-  },
-  {
-    field: 'origin',
-    mockEnvValue: 'https://localhost',
-    envName: 'NEXT_PUBLIC_APP_ORIGIN',
-  },
-  {
-    field: 'nextApiGraphqlEndpoint',
-    mockEnvValue: 'https://localhost',
-    envName: 'NEXT_PUBLIC_APP_ORIGIN',
-    expectToEqual: 'https://localhost/api/graphql',
+    field: "origin",
+    mockEnvValue: "https://localhost",
+    envName: "NEXT_PUBLIC_APP_ORIGIN",
   },
 ])(
   'provides required config $field',
@@ -48,18 +38,18 @@ test.each([
 
 test.each([
   {
-    field: 'isHaukiEnabled',
-    envName: 'NEXT_PUBLIC_HAUKI_ENABLED',
-  },
-  {
-    field: 'debug',
-    envName: 'NEXT_PUBLIC_DEBUG',
+    field: "debug",
+    envName: "NEXT_PUBLIC_DEBUG",
   },
   {
     field: 'allowUnauthorizedRequests',
     envName: 'NEXT_PUBLIC_ALLOW_UNAUTHORIZED_REQUESTS',
   },
-])('provides flag config $field', ({ field, envName }) => {
+  {
+    field: "showSimilarEvents",
+    envName: "NEXT_PUBLIC_SHOW_SIMILAR_EVENTS",
+  },
+])("provides flag config $field", ({ field, envName }) => {
   // When undefined, returns false
   process.env[envName];
   expect(AppConfig[field]).toEqual(false);
@@ -121,8 +111,8 @@ test('provides configuration for Matomo', () => {
     }
   `);
 
-  process.env.NEXT_PUBLIC_MATOMO_ENABLED = '1';
-  expect(AppConfig.matomoConfiguration.disabled).toEqual(false);
+  process.env.NEXT_PUBLIC_MATOMO_ENABLED = "1";
+  expect(AppConfig.matomoConfiguration?.disabled).toEqual(false);
 });
 
 test('gives access to misc configs', () => {
@@ -134,4 +124,5 @@ test('gives access to misc configs', () => {
     ]
   `);
   expect(AppConfig.defaultLocale).toMatchInlineSnapshot(`"fi"`);
+  expect(AppConfig.supportedEventTypes).toEqual([EventTypeId.Course]);
 });

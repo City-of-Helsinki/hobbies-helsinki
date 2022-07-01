@@ -18,9 +18,7 @@ const Event: NextPage = () => {
       className="pageLayout"
       navigation={<Navigation />}
       content={
-        <EventPageContainer
-          showSimilarEvents={AppConfig.getShowSimilarEvents}
-        />
+        <EventPageContainer showSimilarEvents={AppConfig.showSimilarEvents} />
       }
       footer={<FooterSection />}
     />
