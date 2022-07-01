@@ -56,7 +56,6 @@ const SearchPage: React.FC<{
     fetchMore,
     loading: isLoadingEvents,
   } = useEventListQuery({
-    client: eventsApolloClient,
     notifyOnNetworkStatusChange: true,
     ssr: false,
     variables: eventFilters,

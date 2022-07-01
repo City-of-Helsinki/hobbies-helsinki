@@ -5,11 +5,9 @@ import { toast } from 'react-toastify';
 import useLocale from "../../common-events/hooks/useLocale";
 import useRouter from "../../common-events/i18n/router/useRouter";
 import AppConfig from "../app/AppConfig";
-import eventsApolloClient from "../clients/eventsApolloClient";
 import {
   EventListQuery,
   EventListQueryVariables,
-  EventTypeId,
   useEventListQuery,
 } from '../nextApi/graphql/generated/graphql';
 import {
@@ -55,7 +53,6 @@ export const useSimilarEventsQuery = (
 ): { loading: boolean; data: EventListQuery['eventList']['data'] } => {
   const eventFilters = useSimilarEventsQueryVariables(event);
   const { data: eventsData, loading } = useEventListQuery({
-    client: eventsApolloClient,
     ssr: false,
     variables: eventFilters,
   });
@@ -120,12 +117,10 @@ export const useSubEvents = (
     fetchMore,
     loading,
   } = useEventListQuery({
-    client: eventsApolloClient,
     skip: !superEventId,
     ssr: false,
     variables,
   });
-
   const handleLoadMore = React.useCallback(
     async (page: number) => {
       setIsFetchingMore(true);

@@ -50,7 +50,7 @@ export const getOtherEventsVariables = (
 });
 
 const createRequest = (
-  type: EventType = 'event',
+  type: EventType = "course",
   variablesOverride: EventListQueryVariables = {}
 ): GraphQLRequest => ({
   query: EventListDocument,
@@ -77,7 +77,7 @@ export type EventListMockArguments = {
 };
 
 export const createEventListRequestAndResultMocks = ({
-  type = 'event',
+  type = "course",
   variables = {},
   response,
 }: EventListMockArguments): MockedResponse => ({
@@ -86,7 +86,7 @@ export const createEventListRequestAndResultMocks = ({
 });
 
 export const createEventListRequestThrowsErrorMocks = ({
-  type = 'event',
+  type = "course",
   variables = {},
 }: EventListMockArguments = {}): MockedResponse => ({
   request: createRequest(type, variables),

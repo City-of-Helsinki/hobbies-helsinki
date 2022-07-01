@@ -24,7 +24,7 @@ class AppConfig {
   }
 
   static get supportedEventTypes() {
-    return [EventTypeId.Course, EventTypeId.General];
+    return [EventTypeId.Course];
   }
 
   static get locales() {

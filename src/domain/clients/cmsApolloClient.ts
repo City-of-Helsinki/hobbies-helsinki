@@ -2,24 +2,32 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
   ApolloClient,
-} from '@apollo/client';
-import { useMemo } from 'react';
+  HttpLink,
+  ApolloLink,
+} from "@apollo/client";
+import { useMemo } from "react";
+import fetch from "cross-fetch";
 
 import AppConfig from '../../domain/app/AppConfig';
 import {
   initializeApolloClient,
   MutableReference,
-} from '../../common/apollo/utils';
-import { sortMenuItems } from '../../common/apollo/utils';
+} from "../../common/apollo/utils";
+import { sortMenuItems } from "../../common/apollo/utils";
+import isClient from "../../common/utils/isClient";
 
 const cmsApolloClient = new MutableReference<
   ApolloClient<NormalizedCacheObject>
 >(createCmsApolloClient());
 
 export function createCmsApolloClient() {
-  return new ApolloClient({
-    ssrMode: !process.browser,
+  const httpLink = new HttpLink({
     uri: AppConfig.cmsGraphqlEndpoint,
+    fetch,
+  });
+  return new ApolloClient({
+    ssrMode: isClient,
+    link: ApolloLink.from([httpLink]),
     cache: new InMemoryCache({
       typePolicies: {
         RootQuery: {

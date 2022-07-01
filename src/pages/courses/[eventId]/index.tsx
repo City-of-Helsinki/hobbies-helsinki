@@ -1,8 +1,10 @@
-import { GetStaticPropsContext, NextPage } from 'next';
-import React from 'react';
-import { Page as RHHCPage } from 'react-helsinki-headless-cms';
+import { ApolloProvider } from "@apollo/client";
+import { GetStaticPropsContext, NextPage } from "next";
+import React from "react";
+import { Page as RHHCPage } from "react-helsinki-headless-cms";
 
 import Navigation from "../../../common-events/components/navigation/Navigation";
+import useEventsApolloClientFromConfig from "../../../common-events/hooks/useEventsApolloClientFromConfig";
 import { getLocaleOrError } from "../../../common-events/i18n/router/utils";
 import { DEFAULT_LANGUAGE } from "../../../constants";
 import AppConfig from "../../../domain/app/AppConfig";
@@ -13,12 +15,15 @@ import FooterSection from '../../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../../domain/i18n/serverSideTranslationsWithCommon';
 
 const Event: NextPage = () => {
+  const eventsApolloClient = useEventsApolloClientFromConfig();
   return (
     <RHHCPage
       className="pageLayout"
       navigation={<Navigation />}
       content={
-        <EventPageContainer showSimilarEvents={AppConfig.showSimilarEvents} />
+        <ApolloProvider client={eventsApolloClient}>
+          <EventPageContainer showSimilarEvents={AppConfig.showSimilarEvents} />
+        </ApolloProvider>
       }
       footer={<FooterSection />}
     />
