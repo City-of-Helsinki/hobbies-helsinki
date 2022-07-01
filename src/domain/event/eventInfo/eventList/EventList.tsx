@@ -10,7 +10,7 @@ import { getEventFields } from "../../EventUtils";
 import { EventFields } from "../../types";
 import styles from "./eventList.module.scss";
 import useRouter from "../../../../common-events/i18n/router/useRouter";
-import Link from "../../../../common-events/components/link/Link";
+import Link from "../../../../common-events/i18n/router/Link";
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -42,7 +42,7 @@ const EventList: React.FC<{
         return (
           <li key={event.id}>
             <Link
-              to={getLinkUrl(event)}
+              href={getLinkUrl(event)}
               // className={styles.listButton}
               aria-label={
                 showDate
@@ -52,10 +52,12 @@ const EventList: React.FC<{
                   : t('event:relatedEvents.buttonReadMore')
               }
             >
-              <span>{`${showName ? name : ''} ${showDate ? date : ''}`}</span>
-              <div className={styles.arrowContainer}>
-                <IconArrowRight aria-hidden />
-              </div>
+              <a>
+                <span>{`${showName ? name : ""} ${showDate ? date : ""}`}</span>
+                <i className={styles.arrowContainer}>
+                  <IconArrowRight aria-hidden />
+                </i>
+              </a>
             </Link>
           </li>
         );
