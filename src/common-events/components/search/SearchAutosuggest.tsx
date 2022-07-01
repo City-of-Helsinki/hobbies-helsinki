@@ -37,7 +37,6 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
   const internalInputValue = useDebounce(searchValue, 300);
 
   const { data: keywordsData, loading: loadingKeywords } = useKeywordListQuery({
-    client: eventsApolloClient,
     skip: !internalInputValue,
     variables: {
       hasUpcomingEvents: true,

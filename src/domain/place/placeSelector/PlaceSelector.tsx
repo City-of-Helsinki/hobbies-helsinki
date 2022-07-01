@@ -32,7 +32,6 @@ const PlaceSelector: React.FC<Props> = ({
   const searchValue = useDebounce(input, 300);
 
   const { data: placesData } = usePlaceListQuery({
-    client: eventsApolloClient,
     skip: !searchValue,
     variables: {
       divisions: DIVISIONS,

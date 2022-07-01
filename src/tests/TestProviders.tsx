@@ -10,17 +10,16 @@ import {
   getUri,
   ModuleItemTypeEnum,
 } from "react-helsinki-headless-cms";
-import { ApolloCache, InMemoryCache } from "@apollo/client";
+import { ApolloCache, InMemoryCache, useApolloClient } from "@apollo/client";
 
 import i18n from "./initI18n";
 import eventsDefaultConfig from "../common-events/configProvider/defaultConfig";
-import eventsApolloClient, {
-  createEventsApolloClient,
-} from '../domain/clients/eventsApolloClient';
-import { Config as EventsConfig } from '../common-events/configProvider/configContext';
-import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from '../constants';
-import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
-import { getI18nPath } from '../common-events/i18n/router/utils';
+import { createEventsApolloClient } from "../domain/clients/eventsApolloClient";
+import { Config as EventsConfig } from "../common-events/configProvider/configContext";
+import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from "../constants";
+import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
+import { getI18nPath } from "../common-events/i18n/router/utils";
+import { createCmsApolloClient } from "../domain/clients/cmsApolloClient";
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
@@ -39,15 +38,15 @@ type Props = {
 function TestProviders({ mocks, children, router, cache }: Props) {
   return (
     <I18nextProvider i18n={i18n}>
-      <EventsConfigProvider config={getEventsConfig(router)}>
-        <RHHCConfigProvider config={getRHHCConfig(router)}>
-          <RouterContext.Provider value={{ ...router, ...mockRouter }}>
-            <MockedProvider mocks={mocks} addTypename={false}>
+      <MockedProvider mocks={mocks} addTypename={false}>
+        <EventsConfigProvider config={getEventsConfig(router)}>
+          <RHHCConfigProvider config={getRHHCConfig(router)}>
+            <RouterContext.Provider value={{ ...router, ...mockRouter }}>
               {children}
-            </MockedProvider>
-          </RouterContext.Provider>
-        </RHHCConfigProvider>
-      </EventsConfigProvider>
+            </RouterContext.Provider>
+          </RHHCConfigProvider>
+        </EventsConfigProvider>
+      </MockedProvider>
     </I18nextProvider>
   );
 }
@@ -57,7 +56,7 @@ function getEventsConfig(router: NextRouter) {
     ...eventsDefaultConfig,
     t: i18n.t,
     getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
-    apolloClient: eventsApolloClient,
+    apolloClient: useApolloClient(createEventsApolloClient()),
     router,
   } as EventsConfig;
 }
@@ -101,7 +100,7 @@ function getRHHCConfig(router: NextRouter) {
     ...rhhcDefaultConfig,
     siteName: 'appName',
     currentLanguageCode: locale.toUpperCase(),
-    apolloClient: createEventsApolloClient(),
+    apolloClient: useApolloClient(createCmsApolloClient()),
     copy: {
       breadcrumbNavigationLabel: 'common:breadcrumb.breadcrumbNavigationLabel',
       breadcrumbListLabel: 'common:breadcrumb.breadcrumbListLabel',

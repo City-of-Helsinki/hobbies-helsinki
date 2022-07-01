@@ -10,7 +10,7 @@ import { toHaveNoViolations } from "jest-axe";
 loadEnvConfig(process.cwd());
 
 // Mock the fetch
-global.fetch = jest.fn();
+// global.fetch = jest.fn();
 
 // mock scrollTo in order to fix: "Error: Not implemented: window.scrollTo"
 global.scrollTo = jest.fn();
@@ -68,15 +68,15 @@ global.TextDecoder = TextDecoder as any;
 // };
 
 // Mock depended services with msw
-beforeAll(() => {
-  // Enable the mocking in tests.
-  server.listen();
-});
-afterEach(() => {
-  // Reset any runtime handlers tests may use.
-  server.resetHandlers();
-});
-afterAll(() => {
-  // Clean up once the tests are done.
-  server.close();
-});
+// beforeAll(() => {
+//   // Enable the mocking in tests.
+//   server.listen();
+// });
+// afterEach(() => {
+//   // Reset any runtime handlers tests may use.
+//   server.resetHandlers();
+// });
+// afterAll(() => {
+//   // Clean up once the tests are done.
+//   server.close();
+// });
