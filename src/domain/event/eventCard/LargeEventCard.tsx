@@ -4,13 +4,13 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import Link from 'next/link';
 
-import testImage from '../../../common-events/utils/testImage';
-import useLocale from '../../../common-events/hooks/useLocale';
-import { addParamsToQueryString } from '../../../common-events/utils/__tests__/queryString';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
-import EventKeywords from '../eventKeywords/EventKeywords';
-import LocationText from '../eventLocation/EventLocationText';
-import EventName from '../eventName/EventName';
+import testImage from "../../../common-events/utils/testImage";
+import useLocale from "../../../common-events/hooks/useLocale";
+import { addParamsToQueryString } from "../../../common-events/utils/queryString";
+import { getI18nPath } from "../../../common-events/i18n/router/utils";
+import EventKeywords from "../eventKeywords/EventKeywords";
+import LocationText from "../eventLocation/EventLocationText";
+import EventName from "../eventName/EventName";
 import {
   getAudienceAgeText,
   getEventFields,
