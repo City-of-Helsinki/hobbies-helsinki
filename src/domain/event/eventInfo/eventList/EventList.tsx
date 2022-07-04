@@ -11,6 +11,7 @@ import { EventFields } from "../../types";
 import styles from "./eventList.module.scss";
 import useRouter from "../../../../common-events/i18n/router/useRouter";
 import Link from "../../../../common-events/i18n/router/Link";
+import { getI18nPath } from "../../../../common-events/i18n/router/utils";
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -24,7 +25,9 @@ const EventList: React.FC<{
   const search = router.asPath.split('?')[1];
 
   const getLinkUrl = (event: EventFieldsFragment) =>
-    `/courses/${event.id}?${search}`;
+    getI18nPath("/courses/[id]", locale) +
+    event.id +
+    (search ? `?${search}` : "");
 
   return (
     <ul className={styles.timeList} data-testid={id}>
@@ -44,15 +47,16 @@ const EventList: React.FC<{
             <Link
               href={getLinkUrl(event)}
               // className={styles.listButton}
-              aria-label={
-                showDate
-                  ? t('event:otherTimes.buttonReadMore', {
-                      date,
-                    })
-                  : t('event:relatedEvents.buttonReadMore')
-              }
             >
-              <a>
+              <a
+                aria-label={
+                  showDate
+                    ? t("event:otherTimes.buttonReadMore", {
+                        date,
+                      })
+                    : t("event:relatedEvents.buttonReadMore")
+                }
+              >
                 <span>{`${showName ? name : ""} ${showDate ? date : ""}`}</span>
                 <i className={styles.arrowContainer}>
                   <IconArrowRight aria-hidden />
