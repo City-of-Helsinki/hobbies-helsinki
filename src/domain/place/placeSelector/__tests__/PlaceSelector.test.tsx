@@ -1,19 +1,20 @@
 import { IconStar } from 'hds-react';
 import React from 'react';
 
+import { fakePlaces } from '../../../../tests/mockDataUtils';
 import {
-  PlaceDetailsDocument,
-  PlaceListDocument,
-} from '../../../../generated/graphql';
-import { fakePlaces } from '../../../../test/mockDataUtils';
-import {
+  waitFor,
   actWait,
   render,
   screen,
   userEvent,
-  waitFor,
+  act,
 } from '../../../../tests/testUtils';
-import apolloClient from '../../../app/apollo/apolloClient';
+import apolloClient from '../../../clients/eventsApolloClient';
+import {
+  PlaceDetailsDocument,
+  PlaceListDocument,
+} from '../../../nextApi/graphql/generated/graphql';
 import PlaceSelector from '../PlaceSelector';
 
 const variables = {
@@ -67,8 +68,8 @@ const filteredPlaces = fakePlaces(
 
 const filteredPlacesResponse = { data: { placeList: filteredPlaces } };
 
-const placeId = places.data[0].id;
-const placeName = places.data[0].name.fi;
+const placeId = places.data[0].id as string;
+const placeName = places.data[0].name?.fi as string;
 const placeDetailsResponse = { data: { placeDetails: places.data[0] } };
 
 const mocks = [
@@ -110,8 +111,10 @@ test('should filter place options', async () => {
     mocks,
   });
   await actWait();
-  userEvent.click(
-    screen.getByRole('button', { name: /etsi tapahtumapaikka/i })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('button', { name: /etsi tapahtumapaikka/i })
+    )
   );
 
   userEvent.type(
