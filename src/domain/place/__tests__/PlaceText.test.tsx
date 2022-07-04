@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import { PlaceDetailsDocument } from '../../../generated/graphql';
-import { fakePlace } from '../../../test/mockDataUtils';
+import { fakePlace } from '../../../tests/mockDataUtils';
 import { render, screen, waitFor } from '../../../tests/testUtils';
+import { PlaceDetailsDocument } from '../../nextApi/graphql/generated/graphql';
 import PlaceText from '../PlaceText';
 
 const placeId = 'helsinki:123';
