@@ -1,3 +1,5 @@
+import { ParsedUrlQueryInput } from "querystring";
+
 import { useTranslation } from "next-i18next";
 import React from "react";
 import qs, { parse } from "query-string";
@@ -20,7 +22,6 @@ import styles from "./filterSummary.module.scss";
 import PlaceFilter from "./PlaceFilter";
 import PublisherFilter from "./PublisherFilter";
 import TextFilter from "./TextFilter";
-import { ParsedUrlQueryInput } from "querystring";
 
 export const filterSummaryContainerTestId = 'filter-summary';
 
