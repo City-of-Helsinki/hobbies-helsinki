@@ -11,10 +11,3 @@ test('should apply aria label', () => {
 
   expect(getByLabelText(/Jaa Facebookissa/)).toBeInTheDocument();
 });
-
-test('<FacebookShareLink /> matches snapshot', () => {
-  const sharedLink = 'https://helsinki.fi/some/';
-  const { container } = renderComponent({ sharedLink });
-
-  expect(container.firstChild).toMatchSnapshot();
-});
