@@ -4,7 +4,6 @@ import { scroller } from 'react-scroll';
 import { toast } from 'react-toastify';
 import qs from 'query-string';
 
-import eventsApolloClient from '../../clients/eventsApolloClient';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import SrOnly from '../../../common/components/srOnly/SrOnly';
 import useIsSmallScreen from '../../../common/hooks/useIsSmallScreen';
