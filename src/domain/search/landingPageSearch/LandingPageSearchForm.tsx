@@ -1,32 +1,31 @@
-import { Button, IconSearch } from "hds-react";
-import { Link } from "react-helsinki-headless-cms";
-import classnames from "classnames";
-import { useTranslation } from "next-i18next";
+import { Button, IconSearch } from 'hds-react'
+import { Link } from 'react-helsinki-headless-cms'
+import classnames from 'classnames'
+import { useTranslation } from 'next-i18next'
 
-import DateSelector from "../../../common-events/components/dateSelector/DateSelector";
-import MobileDateSelector from "../../../common-events/components/mobileDateSelector/MobileDateSelector";
-import SearchAutosuggest from "../../../common-events/components/search/SearchAutosuggest";
-import SearchLabel from "../../../common-events/components/search/searchLabel/SearchLabel";
-import { AutosuggestMenuOption } from "../../../common-events/types";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { getI18nPath } from "../../../common-events/i18n/router/utils";
-import styles from "./landingPageSearchForm.module.scss";
+import DateSelector from '../../../common-events/components/dateSelector/DateSelector'
+import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector'
+import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest'
+import { AutosuggestMenuOption } from '../../../common-events/types'
+import useLocale from '../../../common-events/hooks/useLocale'
+import { getI18nPath } from '../../../common-events/i18n/router/utils'
+import styles from './landingPageSearchForm.module.scss'
 
 export type LandingPageSearchFormProps = {
-  className?: string;
-  dateTypes: string[];
-  start: Date | null;
-  end: Date | null;
-  isCustomDate: boolean;
-  autosuggestInput: string;
-  setStart: (value: Date | null) => void;
-  setEnd: (value: Date | null) => void;
-  setAutosuggestInput: (value: string) => void;
-  handleChangeDateTypes: (value: string[]) => void;
-  toggleIsCustomDate: () => void;
-  handleSubmit: () => void;
-  handleMenuOptionClick: (option: AutosuggestMenuOption) => void;
-};
+  className?: string
+  dateTypes: string[]
+  start: Date | null
+  end: Date | null
+  isCustomDate: boolean
+  autosuggestInput: string
+  setStart: (value: Date | null) => void
+  setEnd: (value: Date | null) => void
+  setAutosuggestInput: (value: string) => void
+  handleChangeDateTypes: (value: string[]) => void
+  toggleIsCustomDate: () => void
+  handleSubmit: () => void
+  handleMenuOptionClick: (option: AutosuggestMenuOption) => void
+}
 
 export default function LandingPageSearchForm({
   className,
@@ -43,33 +42,24 @@ export default function LandingPageSearchForm({
   handleSubmit,
   handleMenuOptionClick,
 }: LandingPageSearchFormProps) {
-  const { t } = useTranslation("home");
-  const locale = useLocale();
+  const { t } = useTranslation('home')
+  const locale = useLocale()
 
   return (
     <div className={classnames(className, styles.landingPageSearch)}>
+      <h2>{t('search.title')}</h2>
       <div className={styles.searchRow}>
-        <div className={styles.titleWrapper}>
-          <h2>{t("search.title")}</h2>
-        </div>
         <div className={styles.autosuggestWrapper}>
-          <SearchLabel htmlFor={"search"}>
-            {t("search.labelSearchField")}
-          </SearchLabel>
-
           <SearchAutosuggest
             name="search"
             onChangeSearchValue={setAutosuggestInput}
             onOptionClick={handleMenuOptionClick}
-            placeholder={t("search.placeholder")}
+            placeholder={t('search.placeholder')}
             searchValue={autosuggestInput}
           />
         </div>
         <div className={styles.dateAndButtonWrapper}>
           <div className={styles.dateSelectorWrapper}>
-            <SearchLabel color="black" htmlFor="date" srOnly={true}>
-              {t("search.labelDateRange")}
-            </SearchLabel>
             <div className={styles.desktopDateSelector}>
               <DateSelector
                 dateTypes={dateTypes}
@@ -86,7 +76,7 @@ export default function LandingPageSearchForm({
             <MobileDateSelector
               dateTypes={dateTypes}
               endDate={end}
-              name={"mobile_date"}
+              name={'mobile_date'}
               onChangeDateTypes={handleChangeDateTypes}
               onChangeEndDate={setEnd}
               onChangeStartDate={setStart}
@@ -100,16 +90,16 @@ export default function LandingPageSearchForm({
               onClick={handleSubmit}
               variant="success"
             >
-              {t("eventSearch.buttonSearch")}
+              {t('eventSearch.buttonSearch')}
             </Button>
           </div>
         </div>
       </div>
       <div className={styles.linkRow}>
-        <Link color="white" href={getI18nPath("/search", locale)}>
-          {t("eventSearch.linkAdvancedSearch")}
+        <Link color="white" href={getI18nPath('/search', locale)}>
+          {t('eventSearch.linkAdvancedSearch')}
         </Link>
       </div>
     </div>
-  );
+  )
 }

@@ -1,58 +1,51 @@
 @import "breakpoints";
 
 .searchRow {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1.25rem;
-  margin-bottom: 1.25rem;
+  display: flex;
+  flex-direction: column;
   height: fit-content;
   align-items: center;
   position: relative;
 
   @include respond-above(m) {
-    grid-gap: 2.5rem;
-    grid-template-columns: 1fr 3fr 3fr;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.25rem;
+   
+    grid-template-columns: 9fr 3fr;
   }
 }
 
 .linkRow {
   float: right;
-}
-
-.titleWrapper {
-  padding-top: 0;
-
-  @include respond-above(s) {
-    padding-top: 1.3125rem;
-    min-width: 11.1rem;
+  a {
+    color: var(--color-white);
   }
 }
 
 .autosuggestWrapper {
-  align-self: flex-end;
+  width: 100%;
+  margin-bottom: 1.25rem;
 }
 
 .dateAndButtonWrapper {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-gap: 1.25rem;
-  height: fit-content;
-  align-self: flex-end;
-
-  @include respond-above(s) {
-    grid-gap: 2.5rem;
-    grid-template-columns: 2fr 2fr 1fr;
-  }
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-black);
 
   @include respond-above(m) {
-    grid-gap: 2.5rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 1.25rem;
+    height: fit-content;
     grid-template-columns: 2fr 1fr;
   }
 }
 
 .dateSelectorWrapper {
-  align-self: flex-end;
-
+  width: 100%;
+ margin-bottom: 1.25rem;
   @include respond-above(s) {
     grid-column-start: 2;
   }
@@ -68,5 +61,6 @@
 }
 
 .buttonWrapper {
-  align-self: flex-end;
+  width: 100%;
+  margin-bottom: 1.25rem;
 }
