@@ -1,9 +1,9 @@
 import { advanceTo, clear } from 'jest-date-mock';
 
-import { DATE_TYPES } from "../../../../constants";
-import { Language } from "../../../../types";
-import { EVENT_DEFAULT_SEARCH_FILTERS, EVENT_SORT_OPTIONS } from "../constants";
-import { getEventSearchVariables, getNextPage, getSearchQuery } from "../utils";
+import { DATE_TYPES } from '../../../../constants';
+import { Language } from '../../../../types';
+import { EVENT_DEFAULT_SEARCH_FILTERS, EVENT_SORT_OPTIONS } from '../constants';
+import { getEventSearchVariables, getNextPage, getSearchQuery } from '../utils';
 
 afterAll(() => {
   clear();
@@ -39,7 +39,7 @@ describe('getEventSearchVariables function', () => {
     include: [],
     language: 'fi' as Language,
     pageSize: 10,
-    sortOrder: EVENT_SORT_OPTIONS.START_TIME,
+    sortOrder: EVENT_SORT_OPTIONS.END_TIME,
     superEventType: [],
   };
 
@@ -160,8 +160,8 @@ describe('getEventSearchVariables function', () => {
     expect(localOngoingAnd).toEqual(['Rock']);
   });
 
-  it("should search localOngoing when a place given", () => {
-    const place = "tprek:7254"; // MAPPED_PLACES["annantalo"];
+  it('should search localOngoing when a place given', () => {
+    const place = 'tprek:7254'; // MAPPED_PLACES["annantalo"];
     const { allOngoingAnd, localOngoingAnd, location } =
       getEventSearchVariables({
         ...defaultParams,

@@ -1,8 +1,8 @@
-import { FetchResult, GraphQLRequest } from "@apollo/client";
-import { MockedResponse } from "@apollo/client/testing";
-import AppConfig from "../../domain/app/AppConfig";
-import { EventType } from "../../domain/event/types";
+import { FetchResult, GraphQLRequest } from '@apollo/client';
+import { MockedResponse } from '@apollo/client/testing';
 
+import AppConfig from '../../domain/app/AppConfig';
+import { EventType } from '../../domain/event/types';
 import {
   EventListDocument,
   EventListQueryVariables,
@@ -18,7 +18,7 @@ export const baseVariables = {
   isFree: undefined,
   keywordAnd: [],
   keywordNot: [],
-  keywordOrSet3: [],
+  // keywordOrSet3: [],
   language: 'fi',
   location: [],
   pageSize: 10,
@@ -34,28 +34,23 @@ export const eventListBaseVariables: QueryEventListArgs = {
   keywordOrSet1: [],
 };
 
-export const courseListBaseVariables: QueryEventListArgs = {
-  ...baseVariables,
-  keywordOrSet2: ['keyword1', 'keyword2', 'keyword3'],
-};
-
 export const getOtherEventsVariables = (
   superEvent: EventListQueryVariables['superEvent']
 ): EventListQueryVariables => ({
-  include: ["in_language", "keywords", "location", "audience"],
-  sort: "start_time",
-  start: "now",
+  include: ['in_language', 'keywords', 'location', 'audience'],
+  sort: 'end_time',
+  start: 'now',
   superEvent,
   eventType: AppConfig.supportedEventTypes,
 });
 
 const createRequest = (
-  type: EventType = "course",
+  type: EventType = 'course',
   variablesOverride: EventListQueryVariables = {}
 ): GraphQLRequest => ({
   query: EventListDocument,
   variables: {
-    ...(type === 'event' ? eventListBaseVariables : courseListBaseVariables),
+    ...eventListBaseVariables,
     ...variablesOverride,
     eventType: type === 'event' ? [EventTypeId.General] : [EventTypeId.Course],
   },
@@ -77,7 +72,7 @@ export type EventListMockArguments = {
 };
 
 export const createEventListRequestAndResultMocks = ({
-  type = "course",
+  type = 'course',
   variables = {},
   response,
 }: EventListMockArguments): MockedResponse => ({
@@ -86,7 +81,7 @@ export const createEventListRequestAndResultMocks = ({
 });
 
 export const createEventListRequestThrowsErrorMocks = ({
-  type = "course",
+  type = 'course',
   variables = {},
 }: EventListMockArguments = {}): MockedResponse => ({
   request: createRequest(type, variables),

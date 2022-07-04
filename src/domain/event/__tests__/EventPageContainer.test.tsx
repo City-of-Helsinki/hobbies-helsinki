@@ -1,41 +1,40 @@
-import { advanceTo, clear } from "jest-date-mock";
-import * as React from "react";
-import { translations } from "../../../tests/initI18n";
+import { advanceTo, clear } from 'jest-date-mock';
+import * as React from 'react';
 
+import { translations } from '../../../tests/initI18n';
 import {
   fakeEvent,
   fakeEvents,
   fakeKeyword,
   fakeLocalizedObject,
   fakeTargetGroup,
-} from "../../../tests/mockDataUtils";
+} from '../../../tests/mockDataUtils';
 import {
   createEventListRequestAndResultMocks,
   createOtherEventTimesRequestAndResultMocks,
-} from "../../../tests/mocks/eventListMocks";
+} from '../../../tests/mocks/eventListMocks';
 import {
   act,
   render,
   screen,
   userEvent,
   waitFor,
-} from "../../../tests/testUtils";
+} from '../../../tests/testUtils';
 import {
   EventDetailsDocument,
   EventFieldsFragment,
   EventListDocument,
-} from "../../nextApi/graphql/generated/graphql";
-
-import { otherEventTimesListTestId } from "../eventInfo/OtherEventTimes";
+} from '../../nextApi/graphql/generated/graphql';
+import { otherEventTimesListTestId } from '../eventInfo/OtherEventTimes';
 import EventPageContainer, {
   EventPageContainerProps,
 } from '../EventPageContainer';
 
-const id = "hel:123";
-const name = "Event title";
-const description = "Event descirption";
-const startTime = "2020-10-05T07:00:00.000000Z";
-const endTime = "2020-10-05T10:00:00.000000Z";
+const id = 'hel:123';
+const name = 'Event title';
+const description = 'Event descirption';
+const startTime = '2020-10-05T07:00:00.000000Z';
+const endTime = '2020-10-05T10:00:00.000000Z';
 
 const audience = ['Aikuiset', 'Lapset'];
 const keywords = [
@@ -153,12 +152,14 @@ it('should render info and load other events + similar events', async () => {
   );
 
   // click show other times
-  userEvent.click(screen.getByRole('button', { name: 'Näytä kaikki' }));
+  await act(() =>
+    userEvent.click(screen.getByRole('button', { name: 'Näytä kaikki' }))
+  );
 
   expect(screen.getByTestId(otherEventTimesListTestId).children).toHaveLength(
     otherEventTimesCount
   );
-});
+}, 6000);
 
 it('should show error info when event is closed', async () => {
   advanceTo('2020-10-10');
@@ -199,9 +200,9 @@ it("should show error info when event doesn't exist", async () => {
   ).toBeInTheDocument();
 });
 
-describe(`SIMILAR_EVENTS feature flag`, () => {
-  it.only("shows similar events when flag is on", async () => {
-    advanceTo("2020-10-01");
+describe.skip(`SIMILAR_EVENTS feature flag`, () => {
+  it('shows similar events when flag is on', async () => {
+    advanceTo('2020-10-01');
     renderComponent({ showSimilarEvents: true });
     await waitFor(() => {
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
@@ -235,21 +236,21 @@ describe(`SIMILAR_EVENTS feature flag`, () => {
   });
 });
 
-it("should link to events search when clicking tags", async () => {
-  advanceTo("2020-10-01");
+it('should link to events search when clicking tags', async () => {
+  advanceTo('2020-10-01');
   const { router } = renderComponent();
 
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
 
-  const tagLink = await screen.findByRole("link", { name: "Avouinti" });
+  const tagLink = await screen.findByRole('link', { name: 'Avouinti' });
 
   // click keyword / tag
   await act(async () => userEvent.click(tagLink));
 
   expect(router).toMatchObject({
-    pathname: "/search",
-    asPath: "/search?text=Avouinti",
+    pathname: '/haku',
+    asPath: '/haku?text=Avouinti',
   });
 });

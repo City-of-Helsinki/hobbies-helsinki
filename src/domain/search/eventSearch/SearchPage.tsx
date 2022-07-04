@@ -44,7 +44,7 @@ const SearchPage: React.FC<{
       pageSize: PAGE_SIZE,
       params: searchParams,
       place: params.place,
-      sortOrder: EVENT_SORT_OPTIONS.START_TIME,
+      sortOrder: EVENT_SORT_OPTIONS.END_TIME,
       superEventType: ['umbrella', 'none'],
     });
     return variables;
@@ -66,7 +66,6 @@ const SearchPage: React.FC<{
     const page = eventsData?.eventList.meta
       ? getNextPage(eventsData.eventList.meta)
       : null;
-
     setIsFetchingMore(true);
 
     if (page) {
@@ -82,7 +81,6 @@ const SearchPage: React.FC<{
     }
     setIsFetchingMore(false);
   };
-
   const scrollToResultList = () => {
     if (isSmallScreen) {
       scroller.scrollTo('resultList', {
