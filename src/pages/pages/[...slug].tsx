@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 
-import { NormalizedCacheObject } from "@apollo/client";
-import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from "next";
+import { NormalizedCacheObject } from '@apollo/client';
+import { GetStaticPropsContext, GetStaticPropsResult, NextPage } from 'next';
 import {
   Breadcrumb,
   getCollections,
@@ -9,27 +9,27 @@ import {
   PageContent as RHHCPageContent,
   Page as RHHCPage,
   PageContentProps,
-} from "react-helsinki-headless-cms";
+} from 'react-helsinki-headless-cms';
 import {
   PageDocument,
   PageQuery,
   PageQueryVariables,
-} from "react-helsinki-headless-cms/apollo";
+} from 'react-helsinki-headless-cms/apollo';
 
-import Navigation from "../../common-events/components/navigation/Navigation";
-import { getLocaleOrError } from "../../common-events/i18n/router/utils";
+import Navigation from '../../common-events/components/navigation/Navigation';
+import { getLocaleOrError } from '../../common-events/i18n/router/utils';
 import {
   getCmsCollectionList,
   getUriID,
-} from "../../common-events/utils/headless-cms/headlessCmsUtils";
-import { DEFAULT_LANGUAGE } from "../../constants";
-import { createCmsApolloClient } from "../../domain/clients/cmsApolloClient";
-import FooterSection from "../../domain/footer/Footer";
-import serverSideTranslationsWithCommon from "../../domain/i18n/serverSideTranslationsWithCommon";
-import { Language } from "../../types";
+} from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import { DEFAULT_LANGUAGE } from '../../constants';
+import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
+import FooterSection from '../../domain/footer/Footer';
+import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
+import { Language } from '../../types';
 
 const NextCmsPage: NextPage<{
-  page: PageQuery["page"];
+  page: PageQuery['page'];
   breadcrumbs: Breadcrumb[];
   collections?: CollectionType[];
 }> = ({ page, breadcrumbs, collections }) => (
@@ -37,7 +37,7 @@ const NextCmsPage: NextPage<{
     navigation={<Navigation />}
     content={
       <RHHCPageContent
-        page={page as PageContentProps["page"]}
+        page={page as PageContentProps['page']}
         breadcrumbs={breadcrumbs}
         collections={collections ? getCmsCollectionList(collections) : []}
       />
@@ -53,7 +53,7 @@ export async function getStaticPaths() {
 type ResultProps =
   | {
       initialApolloState: NormalizedCacheObject;
-      page: PageQuery["page"];
+      page: PageQuery['page'];
       breadcrumbs: Breadcrumb[];
       collections?: CollectionType[];
     }
@@ -84,7 +84,7 @@ export async function getStaticProps(
       props: {
         initialApolloState: cmsClient.cache.extract(),
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "cms",
+          'cms',
         ])),
         page,
         breadcrumbs,
@@ -94,7 +94,7 @@ export async function getStaticProps(
     };
   } catch (e) {
     // eslint-disable-next-line no-console
-    console.log("Error while generating content page", e);
+    console.log('Error while generating content page', e);
     return {
       props: {
         error: {

@@ -1,7 +1,7 @@
-import React from "react";
-import { Link, LinkProps } from "react-helsinki-headless-cms";
+import React from 'react';
+import { Link, LinkProps } from 'react-helsinki-headless-cms';
 
-import { Config } from "./configContext";
+import { Config } from './configContext';
 
 const defaultConfig: Config = {
   t: (translationKey) => translationKey,

@@ -1,26 +1,26 @@
-import { UrlObject } from "url";
-import { ParsedUrlQueryInput } from "querystring";
+import { UrlObject } from 'url';
+import { ParsedUrlQueryInput } from 'querystring';
 
-import qs from "query-string";
-import { NextRouter } from "next/router";
+import qs from 'query-string';
+import { NextRouter } from 'next/router';
 
-import i18nRoutes from "../../../../i18nRoutes.config";
-import { Language } from "../../../types";
-import AppConfig from "../../../domain/app/AppConfig";
+import i18nRoutes from '../../../../i18nRoutes.config';
+import { Language } from '../../../types';
+import AppConfig from '../../../domain/app/AppConfig';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]
 // FIXME: Does not work with article URIs
 function transformDynamicPathIntoSegmentedDynamicPath(path: string): string {
   return path
-    .split("/")
-    .map((part) => (part.startsWith(":") ? `[${part.slice(1)}]` : part))
-    .join("/");
+    .split('/')
+    .map((part) => (part.startsWith(':') ? `[${part.slice(1)}]` : part))
+    .join('/');
 }
 
 export function getI18nPath(route: string, locale: string): string {
   // English is the default language within code so it doesn't need transforming
-  if (locale === "en") {
+  if (locale === 'en') {
     return route;
   }
 
@@ -46,7 +46,7 @@ export function getI18nPath(route: string, locale: string): string {
   );
 }
 
-const isDynamic = (part: string) => part.startsWith("[") && part.endsWith("]");
+const isDynamic = (part: string) => part.startsWith('[') && part.endsWith(']');
 const parseDynamicName = (part: string) => part.slice(1, -1);
 const queryToString = (
   query: Record<string, unknown> | string | undefined,
@@ -56,7 +56,7 @@ const queryToString = (
     return;
   }
 
-  if (typeof query === "string") {
+  if (typeof query === 'string') {
     return query;
   }
 
@@ -79,7 +79,7 @@ const queryToString = (
 export function stringifyUrlObject(url: UrlObject): string {
   const usedQueryParts: string[] = [];
   const pathname = url.pathname
-    ?.split("/")
+    ?.split('/')
     .map((part) => {
       if (!isDynamic(part)) {
         return part;
@@ -91,12 +91,12 @@ export function stringifyUrlObject(url: UrlObject): string {
 
       return (url.query as ParsedUrlQueryInput)?.[dynamicPartName] ?? part;
     })
-    .join("/");
+    .join('/');
 
   const search =
     url.search ??
     queryToString(url.query as ParsedUrlQueryInput, usedQueryParts) ??
-    "";
+    '';
 
   return `${pathname}${search}`;
 }

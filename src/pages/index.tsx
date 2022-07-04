@@ -1,12 +1,12 @@
-import React from "react";
-import { GetStaticPropsContext } from "next";
-import { useQuery } from "@apollo/client";
+import React from 'react';
+import { GetStaticPropsContext } from 'next';
+import { useQuery } from '@apollo/client';
 import {
   ArticleQuery,
   Page as RHHCApolloPage,
   PageContent as RHHCApolloPageContent,
   PageQuery,
-} from "react-helsinki-headless-cms/apollo";
+} from 'react-helsinki-headless-cms/apollo';
 import {
   Card,
   CardProps,
@@ -18,49 +18,49 @@ import {
   isLayoutPage,
   ModuleItemTypeEnum,
   useConfig,
-} from "react-helsinki-headless-cms";
+} from 'react-helsinki-headless-cms';
 
-import getHobbiesStaticProps from "../domain/app/getHobbiesStaticProps";
-import serverSideTranslationsWithCommon from "../domain/i18n/serverSideTranslationsWithCommon";
+import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
+import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
 import {
   getI18nPath,
   getLocaleOrError,
-} from "../common-events/i18n/router/utils";
-import { getQlLanguage } from "../common/apollo/utils";
+} from '../common-events/i18n/router/utils';
+import { getQlLanguage } from '../common/apollo/utils';
 import {
   LandingPageContentLayout,
   LANDING_PAGE_QUERY,
-} from "../domain/search/landingPage/LandingPage";
-import { DEFAULT_LANGUAGE } from "../constants";
-import Navigation from "../common-events/components/navigation/Navigation";
-import FooterSection from "../domain/footer/Footer";
-import useRouter from "../common-events/i18n/router/useRouter";
-import useLocale from "../common-events/hooks/useLocale";
+} from '../domain/search/landingPage/LandingPage';
+import { DEFAULT_LANGUAGE } from '../constants';
+import Navigation from '../common-events/components/navigation/Navigation';
+import FooterSection from '../domain/footer/Footer';
+import useRouter from '../common-events/i18n/router/useRouter';
+import useLocale from '../common-events/hooks/useLocale';
 
 export const getCollectionCard = (
   item: CollectionItemType,
   defaultImageUrl?: string
 ): CardProps => ({
   id: item?.id,
-  title: item?.title ?? "",
-  url: item?.link ?? "#",
+  title: item?.title ?? '',
+  url: item?.link ?? '#',
   imageUrl: item?.featuredImage?.node?.mediaItemUrl || defaultImageUrl,
-  ariaLabel: item?.title ?? "",
+  ariaLabel: item?.title ?? '',
   className: undefined,
-  imageLabel: item?.featuredImage?.node?.title ?? "",
+  imageLabel: item?.featuredImage?.node?.title ?? '',
   subTitle: undefined,
-  text: getElementTextContent((item?.lead || item?.content) ?? ""),
+  text: getElementTextContent((item?.lead || item?.content) ?? ''),
   customContent: undefined,
   hasLink: true,
   withBorder: false,
   withShadow: true,
   clampText: true,
-  direction: "responsive" as CardProps["direction"],
-  target: "_self" as CardProps["target"],
+  direction: 'responsive' as CardProps['direction'],
+  target: '_self' as CardProps['target'],
 });
 
 export const defaultCollections = (
-  page: PageQuery["page"] | ArticleQuery["post"],
+  page: PageQuery['page'] | ArticleQuery['post'],
   getRoutedInternalHref: (link: string, type: ModuleItemTypeEnum) => string
 ) =>
   getCollections(page?.modules as CollectionType[])?.map((collection) => {
@@ -99,7 +99,7 @@ export default function HomePage() {
   });
   return (
     <RHHCApolloPage
-      uri={getI18nPath("/", locale)}
+      uri={getI18nPath('/', locale)}
       className="pageLayout"
       navigation={<Navigation />}
       content={
@@ -132,8 +132,8 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     return {
       props: {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "home",
-          "search",
+          'home',
+          'search',
         ])),
       },
     };

@@ -1,15 +1,15 @@
-import classNames from "classnames";
-import { IconAngleLeft, IconAngleRight, IconCalendarPlus } from "hds-react";
-import React, { ChangeEvent, FunctionComponent, MutableRefObject } from "react";
+import classNames from 'classnames';
+import { IconAngleLeft, IconAngleRight, IconCalendarPlus } from 'hds-react';
+import React, { ChangeEvent, FunctionComponent, MutableRefObject } from 'react';
 
-import { translateValue } from "../../utils/translateUtils";
-import Checkbox from "../../../common/components/checkbox/Checkbox";
-import DateRangePicker from "../dateRangePicker/DateRangePicker";
-import styles from "./dateSelectorMenu.module.scss"; // the locale you want
-import useConfig from "../../hooks/useConfig";
+import { translateValue } from '../../utils/translateUtils';
+import Checkbox from '../../../common/components/checkbox/Checkbox';
+import DateRangePicker from '../dateRangePicker/DateRangePicker';
+import styles from './dateSelectorMenu.module.scss'; // the locale you want
+import useConfig from '../../hooks/useConfig';
 
 export const testIds = {
-  menu: "date-selector-menu",
+  menu: 'date-selector-menu',
 };
 
 interface Props {
@@ -74,7 +74,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
                 checked={dateTypes.indexOf(option) !== -1}
                 id={`name_${option}`}
                 label={translateValue(
-                  "common:dateSelector.dateType",
+                  'common:dateSelector.dateType',
                   option,
                   t
                 )}
@@ -97,7 +97,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconCalendarPlus aria-hidden />
         <div className={styles.buttonText}>
-          {t<string>("common:dateSelector.menu.buttonCustom")}
+          {t<string>('common:dateSelector.menu.buttonCustom')}
         </div>
         <IconAngleRight aria-hidden />
       </button>
@@ -112,7 +112,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
       >
         <IconAngleLeft aria-hidden />
         <div className={styles.buttonText}>
-          {t<string>("common:dateSelector.menu.buttonBack")}
+          {t<string>('common:dateSelector.menu.buttonBack')}
         </div>
       </button>
 
@@ -134,7 +134,7 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
         type="button"
       >
         <div className={styles.buttonText}>
-          {t<string>("common:dateSelector.menu.buttonClose")}
+          {t<string>('common:dateSelector.menu.buttonClose')}
         </div>
       </button>
     </div>

@@ -1,12 +1,12 @@
-import { screen } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
-import * as React from "react";
-import { act } from "react-dom/test-utils";
-import wait from "waait";
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import * as React from 'react';
+import { act } from 'react-dom/test-utils';
+import wait from 'waait';
 
-import { AUTOSUGGEST_TYPES } from "../../../../constants";
-import { KeywordListDocument } from "../../../../generated/graphql";
-import { fakeKeywords } from "../../../../test/mockDataUtils";
+import { AUTOSUGGEST_TYPES } from '../../../../constants';
+import { KeywordListDocument } from '../../../../generated/graphql';
+import { fakeKeywords } from '../../../../test/mockDataUtils';
 import {
   arrowDownKeyPressHelper,
   arrowUpKeyPressHelper,
@@ -14,20 +14,20 @@ import {
   escKeyPressHelper,
   render,
   tabKeyPressHelper,
-} from "../../../../tests/testUtils";
+} from '../../../../tests/testUtils';
 import SearchAutosuggest, {
   SearchAutosuggestProps,
-} from "../SearchAutosuggest";
+} from '../SearchAutosuggest';
 
-const searchValue = "musiikk";
-const placeholder = "Placeholder text";
+const searchValue = 'musiikk';
+const placeholder = 'Placeholder text';
 
 const keywordNames = [
-  "musiikki",
-  "taidemusiikki",
-  "populaarimusiikki",
-  "musiikkiklubit",
-  "elävä musiikki",
+  'musiikki',
+  'taidemusiikki',
+  'populaarimusiikki',
+  'musiikkiklubit',
+  'elävä musiikki',
 ];
 
 const keywords = fakeKeywords(
@@ -51,7 +51,7 @@ const mocks = [
 ];
 
 const defaultProps = {
-  name: "search",
+  name: 'search',
   onChangeSearchValue: jest.fn(),
   onOptionClick: jest.fn(),
   placeholder,
@@ -60,7 +60,7 @@ const defaultProps = {
 const renderComponent = (props?: Partial<SearchAutosuggestProps>) =>
   render(<SearchAutosuggest {...defaultProps} {...props} />, { mocks });
 
-test("should close menu with esc key", async () => {
+test('should close menu with esc key', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
@@ -68,14 +68,14 @@ test("should close menu with esc key", async () => {
 
   userEvent.click(searchInput);
 
-  expect(screen.queryByRole("listbox")).toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).toBeInTheDocument();
 
   escKeyPressHelper();
 
-  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 });
 
-test("should close menu with tab key", async () => {
+test('should close menu with tab key', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
@@ -83,14 +83,14 @@ test("should close menu with tab key", async () => {
 
   userEvent.click(searchInput);
 
-  expect(screen.queryByRole("listbox")).toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).toBeInTheDocument();
 
   tabKeyPressHelper();
 
-  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 });
 
-test("should allow navigation with down arrows", async () => {
+test('should allow navigation with down arrows', async () => {
   const { getByPlaceholderText } = renderComponent();
   const searchInput = getByPlaceholderText(placeholder);
 
@@ -98,20 +98,20 @@ test("should allow navigation with down arrows", async () => {
 
   userEvent.click(searchInput);
 
-  const options = screen.getAllByRole("option");
+  const options = screen.getAllByRole('option');
 
   arrowDownKeyPressHelper();
-  expect(options[0]).toHaveClass("autosuggestOption--isFocused");
+  expect(options[0]).toHaveClass('autosuggestOption--isFocused');
   expect(options[0]).toHaveTextContent(searchValue);
 
   keywords.data.forEach((keyword, index) => {
     arrowDownKeyPressHelper();
-    expect(options[index + 1]).toHaveClass("autosuggestOption--isFocused");
+    expect(options[index + 1]).toHaveClass('autosuggestOption--isFocused');
     expect(options[index + 1]).toHaveTextContent(keyword.name.fi);
   });
 });
 
-test("should allow navigation with up arrows", async () => {
+test('should allow navigation with up arrows', async () => {
   const { getByPlaceholderText } = renderComponent();
   const searchInput = getByPlaceholderText(placeholder);
 
@@ -119,7 +119,7 @@ test("should allow navigation with up arrows", async () => {
 
   userEvent.click(searchInput);
 
-  const options = screen.getAllByRole("option");
+  const options = screen.getAllByRole('option');
 
   const reversedKeywords = [...keywords.data].reverse();
 
@@ -129,16 +129,16 @@ test("should allow navigation with up arrows", async () => {
       keyword.name.fi
     );
     expect(options[reversedKeywords.length - index]).toHaveClass(
-      "autosuggestOption--isFocused"
+      'autosuggestOption--isFocused'
     );
   });
 
   arrowUpKeyPressHelper();
-  expect(options[0]).toHaveClass("autosuggestOption--isFocused");
+  expect(options[0]).toHaveClass('autosuggestOption--isFocused');
   expect(options[0]).toHaveTextContent(searchValue);
 });
 
-test("first item should be focused when opening menu by down arrow", async () => {
+test('first item should be focused when opening menu by down arrow', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
@@ -148,17 +148,17 @@ test("first item should be focused when opening menu by down arrow", async () =>
 
   escKeyPressHelper();
 
-  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 
   arrowDownKeyPressHelper();
 
-  const options = screen.getAllByRole("option");
+  const options = screen.getAllByRole('option');
 
-  expect(options[0]).toHaveClass("autosuggestOption--isFocused");
+  expect(options[0]).toHaveClass('autosuggestOption--isFocused');
   expect(options[0]).toHaveTextContent(searchValue);
 });
 
-test("last item should be focused when opening menu by up arrow", async () => {
+test('last item should be focused when opening menu by up arrow', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
@@ -168,20 +168,20 @@ test("last item should be focused when opening menu by up arrow", async () => {
 
   escKeyPressHelper();
 
-  expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+  expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
 
   arrowUpKeyPressHelper();
 
-  const options = screen.getAllByRole("option");
+  const options = screen.getAllByRole('option');
   const lastIndex = keywords.data.length;
 
   expect(options[lastIndex]).toHaveTextContent(
     keywords.data[lastIndex - 1].name.fi
   );
-  expect(options[lastIndex]).toHaveClass("autosuggestOption--isFocused");
+  expect(options[lastIndex]).toHaveClass('autosuggestOption--isFocused');
 });
 
-test("should call onOptionClick by text is no option is selected", async () => {
+test('should call onOptionClick by text is no option is selected', async () => {
   const onEnter = jest.fn();
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);
@@ -199,7 +199,7 @@ test("should call onOptionClick by text is no option is selected", async () => {
   });
 });
 
-test("should call onOptionClick by text is first option is selected", async () => {
+test('should call onOptionClick by text is first option is selected', async () => {
   const onEnter = jest.fn();
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);
@@ -218,7 +218,7 @@ test("should call onOptionClick by text is first option is selected", async () =
   });
 });
 
-test("should call onOptionClick with option if keyword is selected", async () => {
+test('should call onOptionClick with option if keyword is selected', async () => {
   const onEnter = jest.fn();
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);

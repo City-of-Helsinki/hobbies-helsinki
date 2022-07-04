@@ -1,17 +1,17 @@
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
-import { useTranslation } from "next-i18next";
-import { NextRouter } from "next/router";
-import React from "react";
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { useTranslation } from 'next-i18next';
+import { NextRouter } from 'next/router';
+import React from 'react';
 import {
   Config,
   defaultConfig as rhhcDefaultConfig,
   getUri,
   ModuleItemTypeEnum,
-} from "react-helsinki-headless-cms";
+} from 'react-helsinki-headless-cms';
 
-import useLocale from "../common-events/hooks/useLocale";
-import { getI18nPath } from "../common-events/i18n/router/utils";
-import AppConfig from "../domain/app/AppConfig";
+import useLocale from '../common-events/hooks/useLocale';
+import { getI18nPath } from '../common-events/i18n/router/utils';
+import AppConfig from '../domain/app/AppConfig';
 
 const CMS_API_DOMAIN = AppConfig.cmsGraphqlEndpoint
   ? new URL(AppConfig.cmsGraphqlEndpoint).origin
@@ -21,7 +21,7 @@ export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
   router: NextRouter
 ) {
-  const { t } = useTranslation(["common", "cms"]);
+  const { t } = useTranslation(['common', 'cms']);
   const locale = useLocale();
 
   const rhhcConfig = React.useMemo(() => {
@@ -35,12 +35,12 @@ export default function useRHHCConfig(
       return false;
     };
     const internalHrefOrigins = CMS_API_DOMAIN ? [CMS_API_DOMAIN] : [];
-    const getRoutedInternalHref: Config["utils"]["getRoutedInternalHref"] = (
+    const getRoutedInternalHref: Config['utils']['getRoutedInternalHref'] = (
       link,
       type
     ) => {
       if (!link) {
-        return "#";
+        return '#';
       }
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
       // if (uri === link) {
@@ -49,36 +49,36 @@ export default function useRHHCConfig(
 
       if (type === ModuleItemTypeEnum.Article) {
         // TODO: fix the getI18nPath for articles
-        return getI18nPath("/articles", locale) + uri;
+        return getI18nPath('/articles', locale) + uri;
       }
       if (type === ModuleItemTypeEnum.Page) {
         // TODO: fix the getI18nPath for pages
-        return getI18nPath("/pages", locale) + uri;
+        return getI18nPath('/pages', locale) + uri;
       }
       return getI18nPath(link, locale);
     };
     return {
       ...rhhcDefaultConfig,
-      siteName: t("appName"),
+      siteName: t('appName'),
       currentLanguageCode: locale.toUpperCase(),
       apolloClient: cmsApolloClient,
       copy: {
         breadcrumbNavigationLabel: t(
-          "common:breadcrumb.breadcrumbNavigationLabel"
+          'common:breadcrumb.breadcrumbNavigationLabel'
         ),
-        breadcrumbListLabel: t("common:breadcrumb.breadcrumbListLabel"),
-        menuToggleAriaLabel: t("common:menu.menuToggleAriaLabel"),
-        skipToContentLabel: t("common:linkSkipToContent"),
-        openInExternalDomainAriaLabel: t("common:srOnly.opensInAnExternalSite"),
-        openInNewTabAriaLabel: t("common:srOnly.opensInANewTab"),
-        closeButtonLabelText: t("common:button.close"),
+        breadcrumbListLabel: t('common:breadcrumb.breadcrumbListLabel'),
+        menuToggleAriaLabel: t('common:menu.menuToggleAriaLabel'),
+        skipToContentLabel: t('common:linkSkipToContent'),
+        openInExternalDomainAriaLabel: t('common:srOnly.opensInAnExternalSite'),
+        openInNewTabAriaLabel: t('common:srOnly.opensInANewTab'),
+        closeButtonLabelText: t('common:button.close'),
         archiveSearch: {
-          searchTextPlaceholder: t("cms:archiveSearch.searchTextPlaceholder"),
-          searchButtonLabelText: t("cms:archiveSearch.searchButtonLabelText"),
+          searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
+          searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
           loadMoreButtonLabelText: t(
-            "cms:archiveSearch.loadMoreButtonLabelText"
+            'cms:archiveSearch.loadMoreButtonLabelText'
           ),
-          noResultsText: t("cms:archiveSearch.noResultsText"),
+          noResultsText: t('cms:archiveSearch.noResultsText'),
         },
       },
       utils: {

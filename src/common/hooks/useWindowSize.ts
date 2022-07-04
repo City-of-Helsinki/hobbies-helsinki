@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import isClient from "../utils/isClient";
+import isClient from '../utils/isClient';
 
 const useWindowSize = (): { heigh?: number; width?: number } => {
   const getSize = React.useCallback(() => {
@@ -20,9 +20,9 @@ const useWindowSize = (): { heigh?: number; width?: number } => {
       setWindowSize(getSize());
     };
 
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, [getSize]); // Empty array ensures that effect is only run on mount and unmount
 
   return windowSize;

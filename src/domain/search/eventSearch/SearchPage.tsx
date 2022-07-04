@@ -1,35 +1,35 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
-import { scroller } from "react-scroll";
-import { toast } from "react-toastify";
-import qs from "query-string";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
+import { scroller } from 'react-scroll';
+import { toast } from 'react-toastify';
+import qs from 'query-string';
 
-import eventsApolloClient from "../../clients/eventsApolloClient";
-import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
-import SrOnly from "../../../common/components/srOnly/SrOnly";
-import useIsSmallScreen from "../../../common/hooks/useIsSmallScreen";
-import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../../common-events/i18n/router/useRouter";
+import eventsApolloClient from '../../clients/eventsApolloClient';
+import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
+import SrOnly from '../../../common/components/srOnly/SrOnly';
+import useIsSmallScreen from '../../../common/hooks/useIsSmallScreen';
+import useLocale from '../../../common-events/hooks/useLocale';
+import useRouter from '../../../common-events/i18n/router/useRouter';
 import {
   QueryEventListArgs,
   useEventListQuery,
-} from "../../nextApi/graphql/generated/graphql";
-import { EVENT_SORT_OPTIONS, PAGE_SIZE } from "./constants";
-import SearchResultsContainer from "./searchResultList/SearchResultsContainer";
-import { getEventSearchVariables, getNextPage } from "./utils";
-import { removeQueryParamsFromRouter } from "../../../common-events/i18n/router/utils";
-import { getLargeEventCardId } from "../../event/EventUtils";
-import EventList from "../../../common-events/components/eventList/EventList";
-import styles from "./eventSearchPage.module.scss";
+} from '../../nextApi/graphql/generated/graphql';
+import { EVENT_SORT_OPTIONS, PAGE_SIZE } from './constants';
+import SearchResultsContainer from './searchResultList/SearchResultsContainer';
+import { getEventSearchVariables, getNextPage } from './utils';
+import { removeQueryParamsFromRouter } from '../../../common-events/i18n/router/utils';
+import { getLargeEventCardId } from '../../event/EventUtils';
+import EventList from '../../../common-events/components/eventList/EventList';
+import styles from './eventSearchPage.module.scss';
 
 const SearchPage: React.FC<{
   SearchComponent: React.FC<{
     scrollToResultList: () => void;
-    "data-testid"?: string;
+    'data-testid'?: string;
   }>;
   pageTitle: string;
 }> = ({ SearchComponent, pageTitle }) => {
-  const { t } = useTranslation("search");
+  const { t } = useTranslation('search');
   const locale = useLocale();
   const router = useRouter();
   const params: { place?: string } = router.query;
@@ -40,13 +40,13 @@ const SearchPage: React.FC<{
   const eventFilters = React.useMemo(() => {
     const searchParams = new URLSearchParams(qs.stringify(router.query));
     const variables: QueryEventListArgs = getEventSearchVariables({
-      include: ["keywords", "location"],
+      include: ['keywords', 'location'],
       language: locale,
       pageSize: PAGE_SIZE,
       params: searchParams,
       place: params.place,
       sortOrder: EVENT_SORT_OPTIONS.START_TIME,
-      superEventType: ["umbrella", "none"],
+      superEventType: ['umbrella', 'none'],
     });
     return variables;
   }, [locale, router.query, params.place]);
@@ -79,7 +79,7 @@ const SearchPage: React.FC<{
           },
         });
       } catch (e) {
-        toast.error(t("errorLoadMode"));
+        toast.error(t('errorLoadMode'));
       }
     }
     setIsFetchingMore(false);
@@ -87,7 +87,7 @@ const SearchPage: React.FC<{
 
   const scrollToResultList = () => {
     if (isSmallScreen) {
-      scroller.scrollTo("resultList", {
+      scroller.scrollTo('resultList', {
         delay: 0,
         duration: 1000,
         offset: -50,
@@ -116,7 +116,7 @@ const SearchPage: React.FC<{
             : router.query.eventId
         )
       );
-      removeQueryParamsFromRouter(router, ["eventId"]);
+      removeQueryParamsFromRouter(router, ['eventId']);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -135,8 +135,8 @@ const SearchPage: React.FC<{
       >
         <SrOnly aria-live="polite" aria-atomic={true}>
           {isLoadingEvents
-            ? t("ariaLiveLoading")
-            : t("ariaLiveSearchReady", {
+            ? t('ariaLiveLoading')
+            : t('ariaLiveSearchReady', {
                 count: eventsList?.meta.count,
               })}
         </SrOnly>

@@ -1,18 +1,18 @@
-import React from "react";
+import React from 'react';
 
-import translations from "../../../../common/translation/i18n/fi.json";
-import { PlaceDetailsDocument } from "../../../../generated/graphql";
-import { fakePlace } from "../../../../test/mockDataUtils";
+import translations from '../../../../common/translation/i18n/fi.json';
+import { PlaceDetailsDocument } from '../../../../generated/graphql';
+import { fakePlace } from '../../../../test/mockDataUtils';
 import {
   render,
   screen,
   userEvent,
   waitFor,
-} from "../../../../../tests/testUtils";
-import PlaceFilter from "../PlaceFilter";
+} from '../../../../../tests/testUtils';
+import PlaceFilter from '../PlaceFilter';
 
-const placeId = "helsinki:123";
-const placeName = "Gräsan taitojen talo";
+const placeId = 'helsinki:123';
+const placeName = 'Gräsan taitojen talo';
 
 const place = fakePlace({ id: placeId, name: { fi: placeName } });
 const placeResponse = {
@@ -35,7 +35,7 @@ const mocks = [
   },
 ];
 
-test("matches snapshot", async () => {
+test('matches snapshot', async () => {
   const { container } = render(
     <PlaceFilter id={placeId} onRemove={jest.fn()} />,
     { mocks }
@@ -45,7 +45,7 @@ test("matches snapshot", async () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-it("calls onRemove callback when remove button is clicked", async () => {
+it('calls onRemove callback when remove button is clicked', async () => {
   const onClickMock = jest.fn();
   render(<PlaceFilter id={placeId} onRemove={onClickMock} />, {
     mocks,
@@ -53,17 +53,17 @@ it("calls onRemove callback when remove button is clicked", async () => {
 
   await screen.findByText(placeName);
 
-  userEvent.click(screen.getByRole("button"));
+  userEvent.click(screen.getByRole('button'));
 
   expect(onClickMock).toHaveBeenCalled();
-  expect(onClickMock).toHaveBeenCalledWith(placeId, "place");
+  expect(onClickMock).toHaveBeenCalledWith(placeId, 'place');
 });
 
 it("should return null if place doesn't exist", async () => {
   const mocks = [
     {
       request,
-      error: new Error("not found"),
+      error: new Error('not found'),
     },
   ];
 
@@ -80,5 +80,5 @@ it("should return null if place doesn't exist", async () => {
     ).not.toBeInTheDocument();
   });
 
-  expect(container.innerHTML).toBe("");
+  expect(container.innerHTML).toBe('');
 });

@@ -1,24 +1,24 @@
-import { TextEncoder, TextDecoder } from "util";
+import { TextEncoder, TextDecoder } from 'util';
 
-import "@testing-library/jest-dom/extend-expect";
-import { loadEnvConfig } from "@next/env";
+import '@testing-library/jest-dom/extend-expect';
+import { loadEnvConfig } from '@next/env';
 
-import { server } from "./tests/mocks/server";
-import "./tests/initI18n";
+import { server } from './tests/mocks/server';
+import './tests/initI18n';
 
 loadEnvConfig(process.cwd());
 
 global.fetch = jest.fn();
 
-jest.mock("next-i18next", () => ({
+jest.mock('next-i18next', () => ({
   // When testing, i18n is set up with providers instead of the version that's
   // optimized for next. That's why we replace the next useTranslation with the
   // default react version.
-  useTranslation: jest.requireActual("react-i18next").useTranslation,
+  useTranslation: jest.requireActual('react-i18next').useTranslation,
 }));
 
-jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock('next/router', () => require('next-router-mock'));
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 // To avoid error: ReferenceError: TextEncoder is not defined
 // discusssed here: https://github.com/jsdom/jsdom/issues/2524

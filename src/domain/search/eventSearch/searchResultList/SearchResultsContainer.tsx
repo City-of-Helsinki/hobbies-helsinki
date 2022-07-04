@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import { useTranslation } from "next-i18next";
-import React from "react";
+import classNames from 'classnames';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
 // TODO: Replace with Container from HDS
-import Container from "../../../../common-events/components/layout/Container";
-import ResultsInfoContainer from "./ResultsInfo";
-import styles from "./searchResultList.module.scss";
+import Container from '../../../../common-events/components/layout/Container';
+import ResultsInfoContainer from './ResultsInfo';
+import styles from './searchResultList.module.scss';
 
 interface Props {
   loading: boolean;
@@ -18,14 +18,14 @@ const SearchResultsContainer: React.FC<Props> = ({
   eventsCount,
   eventList,
 }) => {
-  const { t } = useTranslation("search");
+  const { t } = useTranslation('search');
 
   return (
     <div className={styles.searchResultListContainer}>
       <Container>
         <div className={classNames(styles.searchResultWrapper)}>
           <h2 className={styles.count}>
-            {t("textFoundEvents", {
+            {t('textFoundEvents', {
               count: eventsCount,
             })}
           </h2>

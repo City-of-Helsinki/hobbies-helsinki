@@ -1,15 +1,15 @@
 /* eslint-disable jest/no-conditional-expect */
-import React from "react";
+import React from 'react';
 
-import { render, screen } from "../../../../../tests/testUtils";
-import SearchResultsContainer from "../SearchResultsContainer";
+import { render, screen } from '../../../../../tests/testUtils';
+import SearchResultsContainer from '../SearchResultsContainer';
 
 it.each<[number, string]>([
-  [0, "Valitsemillasi hakuehdoilla ei löytynyt yhtään tapahtumaa"],
-  [1, "Hakuehdoillasi löytyi vain vähän tapahtumia."],
-  [4, "Hakuehdoillasi löytyi vain vähän tapahtumia."],
+  [0, 'Valitsemillasi hakuehdoilla ei löytynyt yhtään tapahtumaa'],
+  [1, 'Hakuehdoillasi löytyi vain vähän tapahtumia.'],
+  [4, 'Hakuehdoillasi löytyi vain vähän tapahtumia.'],
 ])(
-  "should return the proper results info text if %i %s results are found",
+  'should return the proper results info text if %i %s results are found',
   (eventsCount, infoText) => {
     render(
       <SearchResultsContainer
@@ -23,7 +23,7 @@ it.each<[number, string]>([
   }
 );
 
-it("should not return any results info if more than 5 or more results are found", async () => {
+it('should not return any results info if more than 5 or more results are found', async () => {
   render(
     <SearchResultsContainer
       eventList={<div />}
@@ -32,11 +32,11 @@ it("should not return any results info if more than 5 or more results are found"
     />
   );
 
-  expect(screen.getByText("5 hakutulosta")).toBeInTheDocument();
+  expect(screen.getByText('5 hakutulosta')).toBeInTheDocument();
 
-  ["Siirry hakemaan tapahtumia"].forEach((actionButtonText) => {
+  ['Siirry hakemaan tapahtumia'].forEach((actionButtonText) => {
     expect(
-      screen.queryByRole("button", { name: actionButtonText })
+      screen.queryByRole('button', { name: actionButtonText })
     ).not.toBeInTheDocument();
   });
 });

@@ -5,14 +5,14 @@ const getSecureImage = (imageUrl: string): string => {
     return imageUrl;
   }
   try {
-    if (imageUrl.startsWith("https://")) {
+    if (imageUrl.startsWith('https://')) {
       return imageUrl;
     } else {
       const url = new URL(imageUrl);
-      return [IMAGE_PROXY_URL, url.href].join("");
+      return [IMAGE_PROXY_URL, url.href].join('');
     }
   } catch (e) {
-    return "";
+    return '';
   }
 };
 

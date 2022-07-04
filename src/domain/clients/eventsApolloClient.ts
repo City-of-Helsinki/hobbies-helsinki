@@ -4,14 +4,14 @@ import {
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
-import * as Sentry from "@sentry/browser";
-import get from "lodash/get";
-import { useMemo } from "react";
+} from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
+import * as Sentry from '@sentry/browser';
+import get from 'lodash/get';
+import { useMemo } from 'react';
 
-import isClient from "../../common/utils/isClient";
-import AppConfig from "../app/AppConfig";
+import isClient from '../../common/utils/isClient';
+import AppConfig from '../app/AppConfig';
 
 export const createEventsApolloClient = (
   initialState: NormalizedCacheObject = {}
@@ -29,7 +29,7 @@ export const createEventsApolloClient = (
     }
 
     if (networkError) {
-      Sentry.captureMessage("Network error");
+      Sentry.captureMessage('Network error');
     }
   });
 
@@ -57,13 +57,13 @@ export const createEventsApolloCache = () => {
         fields: {
           event(_, { args, toReference }) {
             return toReference({
-              __typename: "Keyword",
+              __typename: 'Keyword',
               id: args?.id,
             });
           },
           image(_, { args, toReference }) {
             return toReference({
-              __typename: "Place",
+              __typename: 'Place',
               id: args?.id,
             });
           },
@@ -71,7 +71,7 @@ export const createEventsApolloCache = () => {
             // Only ignore page argument in caching to get fetchMore pagination working correctly
             // Other args are needed to separate different serch queries to separate caches
             // Docs: https://www.apollographql.com/docs/react/pagination/key-args/
-            keyArgs: excludeArgs(["page"]),
+            keyArgs: excludeArgs(['page']),
             merge(existing, incoming) {
               return {
                 data: [...(existing?.data ?? []), ...incoming.data],
@@ -81,7 +81,7 @@ export const createEventsApolloCache = () => {
           },
           // See eventList keyArgs for explanation why page is filtered.
           eventsByIds: {
-            keyArgs: excludeArgs(["page"]),
+            keyArgs: excludeArgs(['page']),
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             merge(existing, incoming, options) {
               return {
@@ -94,8 +94,8 @@ export const createEventsApolloCache = () => {
       },
     },
   });
-  if (typeof window !== "undefined") {
-    const state = get(window, "__APOLLO_STATE__");
+  if (typeof window !== 'undefined') {
+    const state = get(window, '__APOLLO_STATE__');
     if (state) {
       // If you have multiple clients, use `state.<client_id>`
       cache.restore(state.defaultClient);

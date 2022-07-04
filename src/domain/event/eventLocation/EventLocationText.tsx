@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { EventFieldsFragment } from "../../nextApi/graphql/generated/graphql";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { getEventFields } from "../EventUtils";
+import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { getEventFields } from '../EventUtils';
 
 interface Props {
   event: EventFieldsFragment;
@@ -28,7 +28,7 @@ const EventLocationText: React.FC<Props> = ({
       addressLocality,
     ]
       .filter((e) => e)
-      .join(", ");
+      .join(', ');
   };
   return <>{getLocationStr()}</>;
 };

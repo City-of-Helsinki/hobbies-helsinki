@@ -11,8 +11,8 @@ env:
   CONTAINER_REGISTRY_REPO: ghcr.io/city-of-helsinki/${{ github.event.repository.name }}
   REPO_NAME: ${{ github.event.repository.name }}
   KUBECONFIG_RAW: ${{ secrets.KUBECONFIG_RAW_STAGING }}
-  BUILD_ARTIFACT_FOLDER: "build_artifacts"
-  SERVICE_ARTIFACT_FOLDER: "service_artifacts"
+  BUILD_ARTIFACT_FOLDER: 'build_artifacts'
+  SERVICE_ARTIFACT_FOLDER: 'service_artifacts'
   BASE_DOMAIN: ${{ secrets.BASE_DOMAIN_STAGING }}
   SERVICE_PORT: 3000
   K8S_REQUEST_CPU: 50m
@@ -22,7 +22,7 @@ env:
   K8S_REPLICACOUNT: 2
   K8S_LIVENESS_PATH: /api/healthz
   K8S_READINESS_PATH: /api/readiness
-  NEXT_PUBLIC_SENTRY_ENVIRONMENT: "test"
+  NEXT_PUBLIC_SENTRY_ENVIRONMENT: 'test'
   NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.GH_SENTRY_DSN }}
   NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE: 1.0
   SENTRY_AUTH_TOKEN: ${{ secrets.GH_SENTRY_AUTH_TOKEN }}
@@ -37,15 +37,15 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Build
-#        uses: andersinno/kolga-build-action@v2
-# DEVOPS-424 workaround for kolga build failure
+        #        uses: andersinno/kolga-build-action@v2
+        # DEVOPS-424 workaround for kolga build failure
         uses: docker://ghcr.io/andersinno/kolga:2c6028bb7f478301d53928b0a72d5e87f58c0ac8-production
         with:
           entrypoint: /app/devops
           args: create_images
         env:
           DOCKER_IMAGE_NAME: ${{ env.REPO_NAME }}-staging
-          DOCKER_BUILD_ARG_NEXT_PUBLIC_SENTRY_ENVIRONMENT: "test"
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_SENTRY_ENVIRONMENT: 'test'
           DOCKER_BUILD_ARG_NEXT_PUBLIC_SENTRY_DSN: ${{ secrets.GH_SENTRY_DSN }}
           DOCKER_BUILD_ARG_NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE: 1.0
           DOCKER_BUILD_ARG_SENTRY_AUTH_TOKEN: ${{ secrets.GH_SENTRY_AUTH_TOKEN }}
@@ -67,7 +67,7 @@ jobs:
       - name: Deploy
         uses: andersinno/kolga-deploy-action@v2
         with:
-          track: "staging"
+          track: 'staging'
         env:
           K8S_NAMESPACE: ${{ secrets.K8S_NAMESPACE_STAGING }}
           ENVIRONMENT_URL: https://${{ secrets.ENVIRONMENT_URL_STAGING }}

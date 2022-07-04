@@ -1,5 +1,5 @@
-import { addDays } from "date-fns";
-import { range } from "lodash";
+import { addDays } from 'date-fns';
+import { range } from 'lodash';
 
 import {
   EventFieldsFragment,
@@ -8,7 +8,7 @@ import {
   EventTypeId,
   Meta,
   OrganizationDetailsDocument,
-} from "../../../nextApi/graphql/generated/graphql";
+} from '../../../nextApi/graphql/generated/graphql';
 
 import {
   fakeEvent,
@@ -17,12 +17,12 @@ import {
   fakeOffer,
   fakeOrganization,
   fakeTargetGroup,
-} from "../../../../tests/mockDataUtils";
+} from '../../../../tests/mockDataUtils';
 
-import { createOtherEventTimesRequestAndResultMocks } from "../../../../tests/mocks/eventListMocks";
+import { createOtherEventTimesRequestAndResultMocks } from '../../../../tests/mocks/eventListMocks';
 
-export const organizationId = "1";
-export const organizationName = "Organization name";
+export const organizationId = '1';
+export const organizationName = 'Organization name';
 export const organization = fakeOrganization({
   id: organizationId,
   name: organizationName,
@@ -31,24 +31,24 @@ export const organizationResponse = {
   data: { organizationDetails: organization },
 };
 
-export const superEventId = "hel:123";
+export const superEventId = 'hel:123';
 export const superEventInternalId = `https://api.hel.fi/linkedevents/v1/event/${superEventId}`;
-export const startTime = "2020-06-22T07:00:00.000000Z";
-export const endTime = "2020-06-22T10:00:00.000000Z";
-export const email = "test@email.com";
-export const telephone = "0441234567";
-export const addressLocality = "Helsinki";
-export const district = "Malmi";
-export const locationName = "Location name";
-export const streetAddress = "Test address 1";
-export const price = "12 €";
-export const targetGroups = ["lapset", "aikuiset"];
+export const startTime = '2020-06-22T07:00:00.000000Z';
+export const endTime = '2020-06-22T10:00:00.000000Z';
+export const email = 'test@email.com';
+export const telephone = '0441234567';
+export const addressLocality = 'Helsinki';
+export const district = 'Malmi';
+export const locationName = 'Location name';
+export const streetAddress = 'Test address 1';
+export const price = '12 €';
+export const targetGroups = ['lapset', 'aikuiset'];
 export const maximumAttendeeCapacity = 20;
 export const minimumAttendeeCapacity = 10;
 export const remainingAttendeeCapacity = 5;
-export const audienceMinAge = "5";
-export const audienceMaxAge = "15";
-export const organizerName = "provider organisation";
+export const audienceMinAge = '5';
+export const audienceMaxAge = '15';
+export const organizerName = 'provider organisation';
 export const event = fakeEvent({
   audienceMinAge,
   audienceMaxAge,
@@ -57,10 +57,10 @@ export const event = fakeEvent({
   provider: { fi: organizerName },
   publisher: organizationId,
   location: {
-    divisions: [{ name: { fi: district }, type: "neighborhood" }],
+    divisions: [{ name: { fi: district }, type: 'neighborhood' }],
     email,
     telephone: { fi: telephone },
-    internalId: "tprek:8740",
+    internalId: 'tprek:8740',
     addressLocality: { fi: addressLocality },
     name: { fi: locationName },
     streetAddress: { fi: streetAddress },
@@ -78,9 +78,9 @@ export const meta: Meta = {
   count: 20,
   next:
     // eslint-disable-next-line max-len
-    "https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=start_time&start=2020-08-11T03&super_event=hel:123",
+    'https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=start_time&start=2020-08-11T03&super_event=hel:123',
   previous: null,
-  __typename: "Meta",
+  __typename: 'Meta',
 };
 
 export const subEventsResponse = {

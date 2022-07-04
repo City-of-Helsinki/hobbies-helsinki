@@ -1,19 +1,19 @@
-import { IconSearch } from "hds-react";
-import React, { ChangeEvent } from "react";
+import { IconSearch } from 'hds-react';
+import React, { ChangeEvent } from 'react';
 
 import {
   AUTOSUGGEST_KEYWORD_BLACK_LIST,
   AUTOSUGGEST_TYPES,
-} from "../../../constants";
-import useDebounce from "../../../common/hooks/useDebounce";
-import useKeyboardNavigation from "../../../common/hooks/useDropdownKeyboardNavigation";
-import useLocale from "../../hooks/useLocale";
-import { AutosuggestMenuOption } from "../../types";
-import getLocalisedString from "../../utils/getLocalisedString";
-import AutosuggestMenu from "./AutosuggestMenu";
-import styles from "./searchAutosuggest.module.scss";
-import { useKeywordListQuery } from "../../../domain/nextApi/graphql/generated/graphql";
-import eventsApolloClient from "../../../domain/clients/eventsApolloClient";
+} from '../../../constants';
+import useDebounce from '../../../common/hooks/useDebounce';
+import useKeyboardNavigation from '../../../common/hooks/useDropdownKeyboardNavigation';
+import useLocale from '../../hooks/useLocale';
+import { AutosuggestMenuOption } from '../../types';
+import getLocalisedString from '../../utils/getLocalisedString';
+import AutosuggestMenu from './AutosuggestMenu';
+import styles from './searchAutosuggest.module.scss';
+import { useKeywordListQuery } from '../../../domain/nextApi/graphql/generated/graphql';
+import eventsApolloClient from '../../../domain/clients/eventsApolloClient';
 
 export interface SearchAutosuggestProps {
   name: string;
@@ -71,14 +71,14 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
     listLength: autoSuggestItems.length,
     onKeyDown: (event: KeyboardEvent) => {
       switch (event.key) {
-        case "ArrowUp":
-        case "ArrowDown":
+        case 'ArrowUp':
+        case 'ArrowDown':
           ensureMenuIsOpen();
           break;
-        case "Escape":
+        case 'Escape':
           handleCloseMenu();
           break;
-        case "Enter":
+        case 'Enter':
           const selectedItem = autoSuggestItems[focusedIndex];
 
           if (selectedItem) {
@@ -92,7 +92,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
             });
           }
           break;
-        case "Tab":
+        case 'Tab':
           ensureMenuIsClosed();
       }
     },
@@ -115,7 +115,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
         .filter((keyword) => {
           const name = getLocalisedString(keyword.name, locale).toLowerCase();
           return (
-            !AUTOSUGGEST_KEYWORD_BLACK_LIST.includes(keyword.id || "") &&
+            !AUTOSUGGEST_KEYWORD_BLACK_LIST.includes(keyword.id || '') &&
             name &&
             name !== textItem.text.toLowerCase()
           );
@@ -123,7 +123,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
         .map((keyword) => ({
           text: getLocalisedString(keyword.name, locale),
           type: AUTOSUGGEST_TYPES.KEYWORD,
-          value: keyword.id || "",
+          value: keyword.id || '',
         })) || [])
     );
 
@@ -191,13 +191,13 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
 
   React.useEffect(() => {
     setupKeyboardNav();
-    document.addEventListener("click", onDocumentClick);
-    document.addEventListener("focusin", onDocumentFocusin);
+    document.addEventListener('click', onDocumentClick);
+    document.addEventListener('focusin', onDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
       teardownKeyboardNav();
-      document.removeEventListener("click", onDocumentClick);
-      document.removeEventListener("focusin", onDocumentFocusin);
+      document.removeEventListener('click', onDocumentClick);
+      document.removeEventListener('focusin', onDocumentFocusin);
     };
   }, [
     onDocumentClick,

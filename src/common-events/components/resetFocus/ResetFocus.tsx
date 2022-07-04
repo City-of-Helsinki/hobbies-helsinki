@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-import isClient from "../../../common/utils/isClient";
-import useRouter from "../../i18n/router/useRouter";
+import isClient from '../../../common/utils/isClient';
+import useRouter from '../../i18n/router/useRouter';
 
-export const resetFocusId = "reset-focus";
+export const resetFocusId = 'reset-focus';
 
 /**
  * Ensure that browser focus is set to body when navigating using

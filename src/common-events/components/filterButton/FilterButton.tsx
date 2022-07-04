@@ -1,10 +1,10 @@
-import classNames from "classnames";
-import { IconCross } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { IconCross } from 'hds-react';
+import React from 'react';
 
-import useConfig from "../../hooks/useConfig";
-import { FilterType } from "./types";
-import styles from "./filterButton.module.scss";
+import useConfig from '../../hooks/useConfig';
+import { FilterType } from './types';
+import styles from './filterButton.module.scss';
 
 interface Props {
   onRemove: (value: string, type: FilterType) => void;
@@ -25,7 +25,7 @@ const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
         type="button"
         className={styles.closeButton}
         onClick={handleRemove}
-        aria-label={t<string>("common:filter.ariaButtonRemove", {
+        aria-label={t<string>('common:filter.ariaButtonRemove', {
           filter: text,
         })}
       >

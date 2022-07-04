@@ -1,11 +1,11 @@
-import { ApolloCache, InMemoryCache } from "@apollo/client/cache";
-import { MockedResponse } from "@apollo/client/testing";
-import { act, fireEvent, render, RenderResult } from "@testing-library/react";
-import React, { ReactElement } from "react";
-import wait from "waait";
-import { createEventsApolloCache } from "../domain/clients/eventsApolloClient";
-import Router, { NextRouter } from "next/router";
-import TestProviders from "./TestProviders";
+import { ApolloCache, InMemoryCache } from '@apollo/client/cache';
+import { MockedResponse } from '@apollo/client/testing';
+import { act, fireEvent, render, RenderResult } from '@testing-library/react';
+import React, { ReactElement } from 'react';
+import wait from 'waait';
+import { createEventsApolloCache } from '../domain/clients/eventsApolloClient';
+import Router, { NextRouter } from 'next/router';
+import TestProviders from './TestProviders';
 
 type CustomRender = {
   (
@@ -20,19 +20,19 @@ type CustomRender = {
 export type CustomRenderResult = RenderResult & { router: NextRouter };
 
 export const arrowUpKeyPressHelper = (): boolean =>
-  fireEvent.keyDown(document, { code: 38, key: "ArrowUp" });
+  fireEvent.keyDown(document, { code: 38, key: 'ArrowUp' });
 
 export const arrowDownKeyPressHelper = (): boolean =>
-  fireEvent.keyDown(document, { code: 40, key: "ArrowDown" });
+  fireEvent.keyDown(document, { code: 40, key: 'ArrowDown' });
 
 export const enterKeyPressHelper = (): boolean =>
-  fireEvent.keyDown(document, { code: 13, key: "Enter" });
+  fireEvent.keyDown(document, { code: 13, key: 'Enter' });
 
 export const escKeyPressHelper = (): boolean =>
-  fireEvent.keyDown(document, { code: 27, key: "Escape" });
+  fireEvent.keyDown(document, { code: 27, key: 'Escape' });
 
 export const tabKeyPressHelper = (): boolean =>
-  fireEvent.keyDown(document, { code: 9, key: "Tab" });
+  fireEvent.keyDown(document, { code: 9, key: 'Tab' });
 
 const customRender: CustomRender = (
   ui: ReactElement,
@@ -53,6 +53,6 @@ const actWait = (amount?: number): Promise<void> => act(() => wait(amount));
 export { actWait, customRender as render };
 
 // re-export everything
-export * from "@testing-library/react";
-export { render as defaultRender } from "@testing-library/react";
-export { default as userEvent } from "@testing-library/user-event";
+export * from '@testing-library/react';
+export { render as defaultRender } from '@testing-library/react';
+export { default as userEvent } from '@testing-library/user-event';

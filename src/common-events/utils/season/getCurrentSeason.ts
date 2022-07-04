@@ -1,11 +1,11 @@
-import isWithinInterval from "date-fns/isWithinInterval";
-import isAfter from "date-fns/isAfter";
-import addYears from "date-fns/addYears";
-import subYears from "date-fns/subYears";
-import startOfDay from "date-fns/startOfDay";
-import endOfDay from "date-fns/endOfDay";
+import isWithinInterval from 'date-fns/isWithinInterval';
+import isAfter from 'date-fns/isAfter';
+import addYears from 'date-fns/addYears';
+import subYears from 'date-fns/subYears';
+import startOfDay from 'date-fns/startOfDay';
+import endOfDay from 'date-fns/endOfDay';
 
-import { summerSeason, winterSeason, Season } from "./seasonConstants";
+import { summerSeason, winterSeason, Season } from './seasonConstants';
 
 type SeasonRule = {
   start: {

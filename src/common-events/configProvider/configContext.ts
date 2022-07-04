@@ -1,9 +1,9 @@
-import React, { createContext } from "react";
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
-import { NextRouter } from "next/router";
+import React, { createContext } from 'react';
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { NextRouter } from 'next/router';
 
-import { UnionTFunction } from "../types";
-import { Language } from "../../types";
+import { UnionTFunction } from '../types';
+import { Language } from '../../types';
 
 export type Config = {
   router?: NextRouter; // TODO: Support the react-router

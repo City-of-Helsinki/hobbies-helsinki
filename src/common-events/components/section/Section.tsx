@@ -1,11 +1,11 @@
-import React from "react";
-import classNames from "classnames";
-import { Koros } from "hds-react";
+import React from 'react';
+import classNames from 'classnames';
+import { Koros } from 'hds-react';
 
-import Link from "../../i18n/router/Link";
-import Text from "../../../common/components/text/Text";
-import SecondaryLink from "../link/SecondaryLink";
-import styles from "./section.module.scss";
+import Link from '../../i18n/router/Link';
+import Text from '../../../common/components/text/Text';
+import SecondaryLink from '../link/SecondaryLink';
+import styles from './section.module.scss';
 
 type Props = {
   title?: string;
@@ -14,11 +14,11 @@ type Props = {
     label: string;
     href: string;
   };
-  color?: "grey" | "white" | "blue" | "transparent";
-  variant?: "default" | "contained";
-  koros?: "none" | React.ComponentProps<typeof Koros>["type"];
-  contentWidth?: "m" | "s";
-  rowGap?: "normal" | "tight";
+  color?: 'grey' | 'white' | 'blue' | 'transparent';
+  variant?: 'default' | 'contained';
+  koros?: 'none' | React.ComponentProps<typeof Koros>['type'];
+  contentWidth?: 'm' | 's';
+  rowGap?: 'normal' | 'tight';
 };
 
 const Section = React.forwardRef<HTMLElement, Props>(
@@ -27,11 +27,11 @@ const Section = React.forwardRef<HTMLElement, Props>(
       title,
       children,
       cta,
-      color = "grey",
-      variant = "default",
-      koros = "none",
-      contentWidth = "m",
-      rowGap = "normal",
+      color = 'grey',
+      variant = 'default',
+      koros = 'none',
+      contentWidth = 'm',
+      rowGap = 'normal',
     },
     ref
   ) => {
@@ -47,11 +47,11 @@ const Section = React.forwardRef<HTMLElement, Props>(
           styles[contentWidth],
           styles[rowGap],
           {
-            [styles.hasKoros]: koros !== "none",
+            [styles.hasKoros]: koros !== 'none',
           }
         )}
       >
-        {koros !== "none" && <Koros className={styles.koros} type={koros} />}
+        {koros !== 'none' && <Koros className={styles.koros} type={koros} />}
         {!cta && title && titleComponent}
         {cta && title && (
           <header className={styles.sectionHeader}>
@@ -67,6 +67,6 @@ const Section = React.forwardRef<HTMLElement, Props>(
   }
 );
 
-Section.displayName = "Section";
+Section.displayName = 'Section';
 
 export default Section;

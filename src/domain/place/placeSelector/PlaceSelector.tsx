@@ -1,25 +1,25 @@
-import React from "react";
+import React from 'react';
 
 import MultiSelectDropdown, {
   MultiselectDropdownProps,
-} from "../../../common-events/components/multiSelectDropdown/MultiSelectDropdown";
-import useDebounce from "../../../common/hooks/useDebounce";
-import useLocale from "../../../common-events/hooks/useLocale";
-import getLocalisedString from "../../../common-events/utils/getLocalisedString";
-import isClient from "../../../common/utils/isClient";
-import eventsApolloClient from "../../clients/eventsApolloClient";
-import { usePlaceListQuery } from "../../nextApi/graphql/generated/graphql";
-import PlaceText from "../PlaceText";
+} from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
+import useDebounce from '../../../common/hooks/useDebounce';
+import useLocale from '../../../common-events/hooks/useLocale';
+import getLocalisedString from '../../../common-events/utils/getLocalisedString';
+import isClient from '../../../common/utils/isClient';
+import eventsApolloClient from '../../clients/eventsApolloClient';
+import { usePlaceListQuery } from '../../nextApi/graphql/generated/graphql';
+import PlaceText from '../PlaceText';
 
-const DIVISIONS = ["kunta:helsinki"];
+const DIVISIONS = ['kunta:helsinki'];
 
 const { getPlaceDetailsFromCache } = isClient
   ? // eslint-disable-next-line @typescript-eslint/no-require-imports
-    require("../utils")
+    require('../utils')
   : /* istanbul ignore next */
     { getPlaceDetailsFromCache: null };
 
-type Props = Omit<MultiselectDropdownProps, "options">;
+type Props = Omit<MultiselectDropdownProps, 'options'>;
 
 const PlaceSelector: React.FC<Props> = ({
   inputValue,
@@ -27,7 +27,7 @@ const PlaceSelector: React.FC<Props> = ({
   ...props
 }) => {
   const locale = useLocale();
-  const [internalInputValue, setInternalInputValue] = React.useState("");
+  const [internalInputValue, setInternalInputValue] = React.useState('');
   const input = inputValue !== undefined ? inputValue : internalInputValue;
   const searchValue = useDebounce(input, 300);
 

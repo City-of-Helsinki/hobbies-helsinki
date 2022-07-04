@@ -1,6 +1,6 @@
-import { ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 
-import { Connection, MenuItem } from "../../types";
+import { Connection, MenuItem } from '../../types';
 
 export const excludeArgs =
   (excludedArgs: string[]) => (args: Record<string, unknown> | null) =>
@@ -24,30 +24,30 @@ export function sortMenuItems(menuItemsConnection: { nodes: MenuItem[] }) {
 
 export function getQlLanguage(language: string) {
   return {
-    fi: "FI",
-    sv: "SV",
-    en: "EN",
+    fi: 'FI',
+    sv: 'SV',
+    en: 'EN',
   }[language];
 }
 
 export function getUnifiedSearchLanguage(language: string) {
   return {
-    fi: "FINNISH",
-    sv: "SWEDISH",
-    en: "ENGLISH",
+    fi: 'FINNISH',
+    sv: 'SWEDISH',
+    en: 'ENGLISH',
   }[language];
 }
 
 export function getMenuLocationFromLanguage(language: string) {
   switch (language) {
-    case "fi":
-      return "PRIMARY";
-    case "sv":
-      return "PRIMARY___SV";
-    case "en":
-      return "PRIMARY___EN";
+    case 'fi':
+      return 'PRIMARY';
+    case 'sv':
+      return 'PRIMARY___SV';
+    case 'en':
+      return 'PRIMARY___EN';
     default:
-      return "PRIMARY";
+      return 'PRIMARY';
   }
 }
 
@@ -98,7 +98,7 @@ export function initializeApolloClient<
   }
 
   // For SSG and SSR always create a new Apollo Client
-  if (typeof window === "undefined") {
+  if (typeof window === 'undefined') {
     return _apolloClient;
   }
 

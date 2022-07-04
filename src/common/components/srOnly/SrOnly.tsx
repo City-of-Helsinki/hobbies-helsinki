@@ -1,16 +1,16 @@
-import classNames from "classnames";
-import React, { AriaAttributes } from "react";
+import classNames from 'classnames';
+import React, { AriaAttributes } from 'react';
 
-import styles from "./srOnly.module.scss";
+import styles from './srOnly.module.scss';
 
 interface Props extends AriaAttributes {
-  as?: "div" | "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "span";
+  as?: 'div' | 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'span';
   className?: string;
   children: React.ReactNode;
 }
 
 const SrOnly: React.FC<Props> = ({
-  as: Tag = "div",
+  as: Tag = 'div',
   children,
   className,
   ...rest

@@ -1,19 +1,19 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import Container from "../../../common-events/components/layout/Container";
-import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
+import Container from '../../../common-events/components/layout/Container';
+import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 // Use same page size as on event search page
-import EventCard from "../eventCard/EventCard";
-import { useSimilarEventsQuery } from "../queryUtils";
-import { EventFields } from "../types";
-import styles from "./similarEvents.module.scss";
+import EventCard from '../eventCard/EventCard';
+import { useSimilarEventsQuery } from '../queryUtils';
+import { EventFields } from '../types';
+import styles from './similarEvents.module.scss';
 
 interface Props {
   event: EventFields;
 }
 
-export const similarEventsListTestId = "similar-events-list";
+export const similarEventsListTestId = 'similar-events-list';
 
 const SimilarEvents: React.FC<Props> = ({ event }) => {
   const { t } = useTranslation();
@@ -25,7 +25,7 @@ const SimilarEvents: React.FC<Props> = ({ event }) => {
         {events?.length && (
           <Container>
             <h2 className={styles.similarEventsTitle}>
-              {t("event:similarEvents.title")}
+              {t('event:similarEvents.title')}
             </h2>
             <div
               className={styles.similarEventList}

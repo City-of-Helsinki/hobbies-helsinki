@@ -1,17 +1,17 @@
-import classNames from "classnames";
-import { useTranslation } from "next-i18next";
-import React from "react";
+import classNames from 'classnames';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import Container from "../../../common-events/components/layout/Container";
-import sanitizeHtml from "../../../common-events/utils/sanitizeHtml";
-import ShareLinks from "../../../common-events/components/shareLinks/ShareLinks";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { EVENT_LOCATIONS } from "../constants";
-import EventInfo from "../eventInfo/EventInfo";
-import EventLocation from "../eventLocation/EventLocation";
-import { getEventFields } from "../EventUtils";
-import { EventFields, SuperEventResponse } from "../types";
-import styles from "./eventContent.module.scss";
+import Container from '../../../common-events/components/layout/Container';
+import sanitizeHtml from '../../../common-events/utils/sanitizeHtml';
+import ShareLinks from '../../../common-events/components/shareLinks/ShareLinks';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { EVENT_LOCATIONS } from '../constants';
+import EventInfo from '../eventInfo/EventInfo';
+import EventLocation from '../eventLocation/EventLocation';
+import { getEventFields } from '../EventUtils';
+import { EventFields, SuperEventResponse } from '../types';
+import styles from './eventContent.module.scss';
 
 interface Props {
   event: EventFields;
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const EventContent: React.FC<Props> = ({ event, superEvent }) => {
-  const { t } = useTranslation(["common", "event", "eventSearch"]);
+  const { t } = useTranslation(['common', 'event', 'eventSearch']);
   const locale = useLocale();
   const { description, photographerName } = getEventFields(event, locale);
 
@@ -36,7 +36,7 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
             {description && (
               <>
                 <h2 className={styles.descriptionTitle}>
-                  {t("event:description.title")}
+                  {t('event:description.title')}
                 </h2>
                 <div
                   className={styles.description}
@@ -46,14 +46,14 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
                 />
                 {photographerName && (
                   <p>
-                    {t("common:photographerText", {
+                    {t('common:photographerText', {
                       photographer: photographerName,
                     })}
                   </p>
                 )}
               </>
             )}
-            <ShareLinks title={t("event:shareLinks.title")} />
+            <ShareLinks title={t('event:shareLinks.title')} />
             <div
               className={classNames(
                 styles.horizontalDivider,

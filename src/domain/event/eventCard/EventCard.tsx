@@ -1,27 +1,27 @@
-import classNames from "classnames";
-import { IconArrowRight } from "hds-react";
-import { useTranslation } from "next-i18next";
-import Link from "next/link";
-import React from "react";
+import classNames from 'classnames';
+import { IconArrowRight } from 'hds-react';
+import { useTranslation } from 'next-i18next';
+import Link from 'next/link';
+import React from 'react';
 
-import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
-import testImage from "../../../common-events/utils/testImage";
-import IconButton from "../../../common/components/iconButton/IconButton";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { addParamsToQueryString } from "../../../common-events/utils/__tests__/queryString";
-import { getI18nPath } from "../../../common-events/i18n/router/utils";
-import EventKeywords from "../eventKeywords/EventKeywords";
-import LocationText from "../eventLocation/EventLocationText";
-import EventName from "../eventName/EventName";
+import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
+import testImage from '../../../common-events/utils/testImage';
+import IconButton from '../../../common/components/iconButton/IconButton';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { addParamsToQueryString } from '../../../common-events/utils/__tests__/queryString';
+import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import EventKeywords from '../eventKeywords/EventKeywords';
+import LocationText from '../eventLocation/EventLocationText';
+import EventName from '../eventName/EventName';
 import {
   getEventCardId,
   getEventFields,
   getEventPrice,
   isEventClosed,
-} from "../EventUtils";
-import { EventFields } from "../types";
-import styles from "./eventCard.module.scss";
-import useRouter from "../../../common-events/i18n/router/useRouter";
+} from '../EventUtils';
+import { EventFields } from '../types';
+import styles from './eventCard.module.scss';
+import useRouter from '../../../common-events/i18n/router/useRouter';
 
 interface Props {
   event: EventFields;
@@ -40,14 +40,14 @@ const EventCard: React.FC<Props> = ({ event }) => {
   const queryString = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  const eventUrl = `${getI18nPath("/courses", locale)}/${
+  const eventUrl = `${getI18nPath('/courses', locale)}/${
     event.id
   }${queryString}`;
   const eventClosed = isEventClosed(event);
   const eventPriceText = getEventPrice(
     event,
     locale,
-    t("event:eventCard.isFree")
+    t('event:eventCard.isFree')
   );
 
   const goToEventPage = () => {
@@ -70,7 +70,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <Link
-      aria-label={t("event:eventCard.ariaLabelLink", {
+      aria-label={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getEventCardId(id)}
@@ -96,7 +96,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
                   locale,
                   includeWeekday: false,
                   includeTime: true,
-                  timeAbbreviation: t("common:timeAbbreviation"),
+                  timeAbbreviation: t('common:timeAbbreviation'),
                 })}
             </div>
             <div className={styles.eventLocation}>
@@ -119,7 +119,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
           <div className={styles.buttonWrapper}>
             <div ref={button}>
               <IconButton
-                ariaLabel={t("event:eventCard.ariaLabelLink", {
+                ariaLabel={t('event:eventCard.ariaLabelLink', {
                   name,
                 })}
                 icon={<IconArrowRight aria-hidden />}

@@ -1,16 +1,16 @@
-import classNames from "classnames";
-import { IconAngleDown, IconAngleUp, IconSearch } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { IconAngleDown, IconAngleUp, IconSearch } from 'hds-react';
+import React from 'react';
 
-import SearchLabel from "../search/searchLabel/SearchLabel";
-import useDropdownKeyboardNavigation from "../../../common/hooks/useDropdownKeyboardNavigation";
-import Checkbox from "../../../common/components/checkbox/Checkbox";
-import DropdownMenu from "../dropdownMenu/DropdownMenu";
-import ScrollIntoViewWithFocus from "../../../common/components/scrollIntoViewWithFocus/ScrollIntoViewWithFocus";
-import useConfig from "../../hooks/useConfig";
-import styles from "./multiSelectDropdown.module.scss";
+import SearchLabel from '../search/searchLabel/SearchLabel';
+import useDropdownKeyboardNavigation from '../../../common/hooks/useDropdownKeyboardNavigation';
+import Checkbox from '../../../common/components/checkbox/Checkbox';
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
+import ScrollIntoViewWithFocus from '../../../common/components/scrollIntoViewWithFocus/ScrollIntoViewWithFocus';
+import useConfig from '../../hooks/useConfig';
+import styles from './multiSelectDropdown.module.scss';
 
-const SELECT_ALL = "SELECT_ALL";
+const SELECT_ALL = 'SELECT_ALL';
 
 export type Option = {
   text: string;
@@ -52,8 +52,8 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
 }) => {
   const { t } = useConfig();
   const inputPlaceholderText =
-    inputPlaceholder || t("common:multiSelectDropdown.inputPlaceholder");
-  const [internalInput, setInternalInput] = React.useState("");
+    inputPlaceholder || t('common:multiSelectDropdown.inputPlaceholder');
+  const [internalInput, setInternalInput] = React.useState('');
   const input = inputValue !== undefined ? inputValue : internalInput;
 
   const dropdown = React.useRef<HTMLDivElement | null>(null);
@@ -63,7 +63,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
   const filteredOptions = React.useMemo(() => {
     return [
       showSelectAll && {
-        text: selectAllText || t("common:multiSelectDropdown.selectAll"),
+        text: selectAllText || t('common:multiSelectDropdown.selectAll'),
         value: SELECT_ALL,
       },
       ...options.filter((option) =>
@@ -93,17 +93,17 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
     onKeyDown: (event: KeyboardEvent) => {
       switch (event.key) {
         // Close menu on ESC key
-        case "Escape":
+        case 'Escape':
           setIsMenuOpen(false);
           setFocusToToggleButton();
           break;
-        case "ArrowUp":
+        case 'ArrowUp':
           ensureDropdownIsOpen();
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           ensureDropdownIsOpen();
           break;
-        case "Enter":
+        case 'Enter':
           if (isToggleButtonFocused()) {
             handleToggleButtonClick();
           }
@@ -169,13 +169,13 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
 
   React.useEffect(() => {
     setupKeyboardNav();
-    document.addEventListener("click", handleDocumentClick);
-    document.addEventListener("focusin", handleDocumentFocusin);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('focusin', handleDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
       teardownKeyboardNav();
-      document.removeEventListener("click", handleDocumentClick);
-      document.removeEventListener("focusin", handleDocumentFocusin);
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('focusin', handleDocumentFocusin);
     };
   }, [handleDocumentClick, setupKeyboardNav, teardownKeyboardNav]);
 
@@ -195,7 +195,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
 
   const handleClear = React.useCallback(() => {
     onChange([]);
-    handleInputValueChange("");
+    handleInputValueChange('');
   }, [handleInputValueChange, onChange]);
 
   const handleValueChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -234,7 +234,7 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
 
   React.useEffect(() => {
     if (!isMenuOpen) {
-      handleInputValueChange("");
+      handleInputValueChange('');
     }
   }, [handleInputValueChange, isMenuOpen]);
 
@@ -299,8 +299,8 @@ const MultiSelectDropdown: React.FC<MultiselectDropdownProps> = ({
           return (
             <ScrollIntoViewWithFocus
               className={classNames(styles.dropdownItem, {
-                [styles["dropdownItem--first"]]: index === 0,
-                [styles["dropdownItem--isFocused"]]: isFocused,
+                [styles['dropdownItem--first']]: index === 0,
+                [styles['dropdownItem--isFocused']]: isFocused,
               })}
               key={option.value}
               isFocused={isFocused}

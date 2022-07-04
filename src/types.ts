@@ -1,13 +1,13 @@
-export type Language = "en" | "fi" | "sv";
+export type Language = 'en' | 'fi' | 'sv';
 
 export type OptionType = {
   label: string;
   value: string;
 };
 
-export type Breakpoint = "xs" | "s" | "m" | "l" | "xl";
+export type Breakpoint = 'xs' | 's' | 'm' | 'l' | 'xl';
 
-export type LandingPageTextColor = "BLACK" | "WHITE";
+export type LandingPageTextColor = 'BLACK' | 'WHITE';
 
 export type CmsLanguage = {
   id: string;

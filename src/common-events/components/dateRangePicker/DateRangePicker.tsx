@@ -1,25 +1,25 @@
-import isBefore from "date-fns/isBefore";
-import isValidDate from "date-fns/isValid";
-import fi from "date-fns/locale/fi";
-import sv from "date-fns/locale/sv";
-import { DateInput } from "hds-react";
-import { useTranslation } from "next-i18next";
-import React from "react";
-import { registerLocale } from "react-datepicker";
+import isBefore from 'date-fns/isBefore';
+import isValidDate from 'date-fns/isValid';
+import fi from 'date-fns/locale/fi';
+import sv from 'date-fns/locale/sv';
+import { DateInput } from 'hds-react';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
+import { registerLocale } from 'react-datepicker';
 
-import useLocale from "../../hooks/useLocale";
+import useLocale from '../../hooks/useLocale';
 import {
   formatDate,
   isValidDateString,
   parseDate,
-} from "../../utils/dateUtils";
-import styles from "./datePicker.module.scss";
+} from '../../utils/dateUtils';
+import styles from './datePicker.module.scss';
 
-registerLocale("fi", fi);
-registerLocale("sv", sv);
+registerLocale('fi', fi);
+registerLocale('sv', sv);
 
 const initDate = (date: Date | null): string => {
-  return date ? formatDate(date) : "";
+  return date ? formatDate(date) : '';
 };
 
 export interface DateRangePickerProps {
@@ -46,7 +46,7 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
   const { t } = useTranslation();
   const locale = useLocale();
-  const helperText = t("common:dateSelector.infoDate");
+  const helperText = t('common:dateSelector.infoDate');
 
   const internalStartDate = parseDate(internalStartDateString);
   const internalEndDate = parseDate(internalEndDateString);
@@ -60,8 +60,8 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
   React.useEffect(() => {
     if (!startDate && !endDate) {
-      setInternalStartDateString("");
-      setInternalEndDateString("");
+      setInternalStartDateString('');
+      setInternalEndDateString('');
     }
   }, [startDate, endDate]);
 
@@ -131,12 +131,12 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         helperText={!errors.startDateIsInvalid ? helperText : undefined}
         minDate={new Date()}
         initialMonth={new Date()}
-        label={t("common:dateSelector.labelStartDate")}
+        label={t('common:dateSelector.labelStartDate')}
         language={locale}
         onChange={(date) => setInternalStartDateString(date)}
         errorText={
           errors.startDateIsInvalid
-            ? t("common:dateSelector.errorDateFormat")
+            ? t('common:dateSelector.errorDateFormat')
             : undefined
         }
       />
@@ -153,14 +153,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         }
         minDate={new Date()}
         initialMonth={startDate ?? new Date()}
-        label={t("common:dateSelector.labelEndDate")}
+        label={t('common:dateSelector.labelEndDate')}
         language={locale}
         onChange={(date) => setInternalEndDateString(date)}
         errorText={
           endDateIsBeforeStartDate
-            ? t("common:dateSelector.errorEndDateBeforeStartDate")
+            ? t('common:dateSelector.errorEndDateBeforeStartDate')
             : errors.endDateIsInvalid
-            ? t("common:dateSelector.errorDateFormat")
+            ? t('common:dateSelector.errorDateFormat')
             : undefined
         }
       />
