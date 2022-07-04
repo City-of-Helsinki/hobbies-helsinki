@@ -1,11 +1,11 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
 
-import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
-import isClient from '../../common/utils/isClient';
-import { addParamsToQueryString } from '../../common-events/utils/__tests__/queryString';
-import ErrorHero from '../error/ErrorHero';
-import Link from '../../common-events/i18n/router/Link';
+import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
+import isClient from "../../common/utils/isClient";
+import { addParamsToQueryString } from "../../common-events/utils/queryString";
+import ErrorHero from "../error/ErrorHero";
+import Link from "../../common-events/i18n/router/Link";
 import {
   EventDetailsDocument,
   useEventDetailsQuery,
