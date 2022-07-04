@@ -2,9 +2,9 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import useLocale from "../../common-events/hooks/useLocale";
-import useRouter from "../../common-events/i18n/router/useRouter";
-import AppConfig from "../app/AppConfig";
+import useLocale from '../../common-events/hooks/useLocale';
+import useRouter from '../../common-events/i18n/router/useRouter';
+import AppConfig from '../app/AppConfig';
 import {
   EventListQuery,
   EventListQueryVariables,
@@ -42,7 +42,7 @@ const useSimilarEventsQueryVariables = (event: EventFields) => {
       language: locale,
       pageSize: PAGE_SIZE,
       params: searchParams,
-      sortOrder: EVENT_SORT_OPTIONS.START_TIME,
+      sortOrder: EVENT_SORT_OPTIONS.END_TIME,
       superEventType: ['umbrella', 'none'],
     });
   }, [eventSearch, locale, search]);
@@ -56,7 +56,6 @@ export const useSimilarEventsQuery = (
     ssr: false,
     variables: eventFilters,
   });
-
   // To display only certain amount of events.
   // Always fetch data by using same page size to get events from cache
   const data =
@@ -77,7 +76,7 @@ const useOtherEventTimesVariables = (event: EventFields) => {
   const variables = React.useMemo(
     (): EventListQueryVariables => ({
       include: ['in_language', 'keywords', 'location', 'audience'],
-      sort: EVENT_SORT_OPTIONS.START_TIME,
+      sort: EVENT_SORT_OPTIONS.END_TIME,
       start: 'now',
       superEvent: superEventId,
       eventType: AppConfig.supportedEventTypes,
@@ -93,11 +92,11 @@ export const useSubEventsQueryVariables = (
 ): { superEventId: string | undefined; variables: EventListQueryVariables } => {
   const variables = React.useMemo(
     (): EventListQueryVariables => ({
-      sort: EVENT_SORT_OPTIONS.START_TIME,
+      sort: EVENT_SORT_OPTIONS.END_TIME,
       start: 'now',
       superEvent: event.id,
       eventType: AppConfig.supportedEventTypes,
-      include: ["in_language", "keywords", "location", "audience"],
+      include: ['in_language', 'keywords', 'location', 'audience'],
     }),
     [event.id]
   );
@@ -110,7 +109,7 @@ export const useSubEvents = (
   variables: EventListQueryVariables,
   superEventId: string | undefined
 ): { subEvents: EventFields[]; isFetchingMore: boolean; loading: boolean } => {
-  const { t } = useTranslation("event");
+  const { t } = useTranslation('event');
   const [isFetchingMore, setIsFetchingMore] = React.useState(false);
   const {
     data: subEventsData,
@@ -145,7 +144,7 @@ export const useSubEvents = (
           // },
         });
       } catch (e) {
-        toast.error(t("info.errorLoadMode"));
+        toast.error(t('info.errorLoadMode'));
       }
       setIsFetchingMore(false);
     },

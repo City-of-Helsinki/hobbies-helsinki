@@ -34,9 +34,9 @@ import {
   MappedFilters,
   SearchCategoryOption,
   SearchCategoryType,
-} from "./types";
-import { UnionTFunction } from "../../../common-events/types";
-import AppConfig from "../../app/AppConfig";
+} from './types';
+import { UnionTFunction } from '../../../common-events/types';
+import AppConfig from '../../app/AppConfig';
 
 export const MIN_AGE = 0;
 export const MAX_AGE = 99;
@@ -154,7 +154,7 @@ export const getEventSearchVariables = ({
     keywordNot,
     onlyChildrenEvents,
     onlyEveningEvents,
-    onlyRemoteEvents,
+    // onlyRemoteEvents,
     places,
     publisher,
     text,
@@ -215,15 +215,15 @@ export const getEventSearchVariables = ({
       return { allOngoing: true };
     }
   };
-  const divisionParam = hasLocation && { division: divisions.sort() };
+  // const divisionParam = hasLocation && { division: divisions.sort() };
 
   return {
     ...getSearchParam(),
-    ...divisionParam,
+    // ...divisionParam,
     end,
     include,
     isFree: isFree || undefined,
-    internetBased: onlyRemoteEvents || undefined,
+    // internetBased: onlyRemoteEvents || undefined,
     [categoriesParamName]: [...(keyword ?? []), ...mappedCategories],
     keywordAnd,
     keywordNot,
@@ -299,12 +299,12 @@ export const getSearchFilters = (searchParams: URLSearchParams): Filters => {
       searchParams,
       EVENT_SEARCH_FILTERS.KEYWORD_NOT
     ),
-    onlyChildrenEvents:
-      searchParams.get(EVENT_SEARCH_FILTERS.ONLY_CHILDREN_EVENTS) === 'true',
-    onlyEveningEvents:
-      searchParams.get(EVENT_SEARCH_FILTERS.ONLY_EVENING_EVENTS) === 'true',
-    onlyRemoteEvents:
-      searchParams.get(EVENT_SEARCH_FILTERS.ONLY_REMOTE_EVENTS) === 'true',
+    // onlyChildrenEvents:
+    //   searchParams.get(EVENT_SEARCH_FILTERS.ONLY_CHILDREN_EVENTS) === 'true',
+    // onlyEveningEvents:
+    //   searchParams.get(EVENT_SEARCH_FILTERS.ONLY_EVENING_EVENTS) === 'true',
+    // onlyRemoteEvents:
+    //   searchParams.get(EVENT_SEARCH_FILTERS.ONLY_REMOTE_EVENTS) === 'true',
     places: getUrlParamAsArray(searchParams, EVENT_SEARCH_FILTERS.PLACES),
     publisher: searchParams.get(EVENT_SEARCH_FILTERS.PUBLISHER),
     start,

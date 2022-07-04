@@ -1,11 +1,11 @@
 /* eslint-disable no-console */
-import { MockedResponse } from "@apollo/client/testing";
-import { addDays } from "date-fns";
-import { advanceTo, clear } from "jest-date-mock";
-import range from "lodash/range";
-import React from "react";
-import { toast } from "react-toastify";
-import { NextRouter } from "next/router";
+import { MockedResponse } from '@apollo/client/testing';
+import { addDays } from 'date-fns';
+import { advanceTo, clear } from 'jest-date-mock';
+import range from 'lodash/range';
+import React from 'react';
+import { toast } from 'react-toastify';
+import { NextRouter } from 'next/router';
 
 import {
   EventDetails,
@@ -26,12 +26,10 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../tests/testUtils";
-import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
-import OtherEventTimes from "../OtherEventTimes";
-import { translations } from "../../../../tests/initI18n";
-import { getI18nPath } from "../../../../common-events/i18n/router/utils";
-import { DEFAULT_LANGUAGE } from "../../../../constants";
+} from '../../../../tests/testUtils';
+import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
+import OtherEventTimes from '../OtherEventTimes';
+import { translations } from '../../../../tests/initI18n';
 
 const startTime = '2020-10-01T16:00:00Z';
 const endTime = '2020-10-01T18:00:00Z';
@@ -48,7 +46,7 @@ const meta: Meta = {
   count: 20,
   next:
     // eslint-disable-next-line max-len
-    'https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=start_time&start=2020-08-11T03&super_event=hel:123',
+    'https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=end_time&start=2020-08-11T03&super_event=hel:123',
   previous: null,
   __typename: 'Meta',
 };
@@ -142,11 +140,11 @@ describe('events', () => {
     await testToaster();
   });
 
-  test("should go to event page of other event time", async () => {
-    advanceTo(new Date("2020-08-11"));
+  test('should go to event page of other event time', async () => {
+    advanceTo(new Date('2020-08-11'));
     const { router } = renderComponent();
     // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-    await testNavigation(router, "/kurssit/");
+    await testNavigation(router, '/kurssit/');
   });
 });
 
@@ -197,7 +195,7 @@ async function testToaster() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 async function testNavigation(router: NextRouter, url: string) {
-  const toggleButton = await screen.findByRole("button", {
+  const toggleButton = await screen.findByRole('button', {
     name: translations.event.otherTimes.buttonShow,
   });
 
@@ -210,9 +208,9 @@ async function testNavigation(router: NextRouter, url: string) {
 
   await act(() =>
     userEvent.click(
-      screen.getByRole("link", {
+      screen.getByRole('link', {
         name: translations.event.otherTimes.buttonReadMore.replace(
-          "{{date}}",
+          '{{date}}',
           dateStr
         ),
       })

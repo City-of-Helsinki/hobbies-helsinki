@@ -9,7 +9,6 @@ import {
   Meta,
   OrganizationDetailsDocument,
 } from '../../../nextApi/graphql/generated/graphql';
-
 import {
   fakeEvent,
   fakeEvents,
@@ -18,7 +17,6 @@ import {
   fakeOrganization,
   fakeTargetGroup,
 } from '../../../../tests/mockDataUtils';
-
 import { createOtherEventTimesRequestAndResultMocks } from '../../../../tests/mocks/eventListMocks';
 
 export const organizationId = '1';
@@ -78,7 +76,7 @@ export const meta: Meta = {
   count: 20,
   next:
     // eslint-disable-next-line max-len
-    'https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=start_time&start=2020-08-11T03&super_event=hel:123',
+    'https://api.hel.fi/linkedevents/v1/event/?include=keyword,location&page=2&sort=end_time&start=2020-08-11T03&super_event=hel:123',
   previous: null,
   __typename: 'Meta',
 };
