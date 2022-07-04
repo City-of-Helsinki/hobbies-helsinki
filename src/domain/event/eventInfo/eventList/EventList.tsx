@@ -24,8 +24,7 @@ const EventList: React.FC<{
   const search = router.asPath.split('?')[1];
 
   const getLinkUrl = (event: EventFieldsFragment) =>
-    getI18nPath("/courses/[id]", locale) +
-    event.id +
+    getI18nPath("/courses/[id]", locale).replace("[id]", event.id) +
     (search ? `?${search}` : "");
 
   return (

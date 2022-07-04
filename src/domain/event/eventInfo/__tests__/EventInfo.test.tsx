@@ -31,7 +31,6 @@ import {
   organizerName,
   price,
   streetAddress,
-  subEventsLoadMoreResponse,
   subEventsResponse,
   superEventInternalId,
   telephone,
@@ -43,6 +42,7 @@ beforeEach(() => {
 configure({ defaultHidden: true });
 
 const getDateRangeStrProps = (event: EventDetails) => ({
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   start: event.startTime!,
   end: event.endTime,
   locale: 'fi',
@@ -202,9 +202,9 @@ it('should open ticket buy page', async () => {
 
   // Event info fields
   userEvent.click(
-    screen.queryByRole('button', {
+    screen.getByRole("button", {
       name: translations.event.info.ariaLabelBuyTickets,
-    })!
+    })
   );
 
   await waitFor(() => {
@@ -219,9 +219,9 @@ it.skip("should create ics file succesfully", async () => {
   // Event info fields
   await act(() =>
     userEvent.click(
-      screen.queryByRole("button", {
+      screen.getByRole("button", {
         name: translations.event.info.buttonAddToCalendar,
-      })!
+      })
     )
   );
 
@@ -238,9 +238,9 @@ it.skip("should create ics file succesfully when end time is not defined", async
 
   // Event info fields
   userEvent.click(
-    screen.queryByRole('button', {
+    screen.getByRole("button", {
       name: translations.event.info.buttonAddToCalendar,
-    })!
+    })
   );
 
   await waitFor(() => {
@@ -250,7 +250,7 @@ it.skip("should create ics file succesfully when end time is not defined", async
 
 it('should hide audience age info on single event page', async () => {
   render(<EventInfo event={event} />, {
-    routes: [`/courses`],
+    routes: [`/kurssit`],
   });
 
   await waitFor(() => {
@@ -260,7 +260,7 @@ it('should hide audience age info on single event page', async () => {
 
 it('should show formatted audience age info on signle event page if max age is not specified', async () => {
   render(<EventInfo event={{ ...event, audienceMaxAge: null }} />, {
-    routes: [`/courses`],
+    routes: [`/kurssit`],
   });
 
   await waitFor(() => {
@@ -274,7 +274,7 @@ it('should hide audience age info on single event page if min and max ages are n
       event={{ ...event, audienceMinAge: null, audienceMaxAge: null }}
     />,
     {
-      routes: [`/courses`],
+      routes: [`/kurssit`],
     }
   );
 
@@ -319,11 +319,12 @@ describe('superEvent', () => {
     await act(() =>
       userEvent.click(
         within(screen.getByTestId(superEventTestId)).getByText(
+          // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
           superEvent.name.fi!
         )
       )
     );
-    expect(router.pathname).toBe(`/courses/${superEvent.id}`);
+    expect(router.pathname).toBe(`/kurssit/${superEvent.id}`);
   });
 
   it('should should not render super event title when super event is not given', async () => {
@@ -365,12 +366,13 @@ describe('subEvents', () => {
 
     await act(() =>
       userEvent.click(
-        within(eventsList).queryByText(`${subEvent.name.fi} ${dateStr}`)!
+        within(eventsList).getByText(`${subEvent.name.fi} ${dateStr}`)
       )
     );
-    expect(router.pathname).toBe(`/courses/${subEvent.id}`);
+    expect(router.pathname).toBe(`/kurssit/${subEvent.id}`);
   });
 
+  // eslint-disable-next-line max-len
   it("should render subEvents with other times title when the event is a middle level event in event hierarchy", async () => {
     const middleAsSuperEventMock = getSubEventsMocks({
       variables: {
