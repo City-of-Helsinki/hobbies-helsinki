@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import React from 'react';
 
 import { EVENT_STATUS } from '../../../../constants';
-import { EventFieldsFragment } from '../../../../generated/graphql';
-import { fakeEvent } from '../../../../test/mockDataUtils';
+import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
+import { fakeEvent } from '../../../../tests/mockDataUtils';
 import EventName from '../EventName';
 
 const eventName = 'Event name fi';
