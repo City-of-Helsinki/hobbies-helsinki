@@ -12,9 +12,3 @@ test('should apply aria label', () => {
   expect(getByLabelText(/Jaa Twitterissä/)).toBeInTheDocument();
 });
 
-test('<TwitterShareLink /> matches snapshot', () => {
-  const sharedLink = 'https://helsinki.fi/some/';
-  const { container } = renderComponent({ sharedLink });
-
-  expect(container.firstChild).toMatchSnapshot();
-});
