@@ -94,7 +94,7 @@ describe("getEventImageUrl function", () => {
   it("should return event placeholder image if image is not defined", () => {
     const event = fakeEvent({
       id: "helsinki:221",
-      images: [fakeImage({ url: undefined })],
+      images: [fakeImage({ url: "" })],
     }) as EventFieldsFragment;
     expect(getEventImageUrl(event)).toBe(
       "/images/activities_placeholder_imgB.jpg"
@@ -106,7 +106,7 @@ describe("getEventSomeImageUrl function", () => {
   it("should return default placeholder image if image is not defined", () => {
     const event = fakeEvent({
       id: "helsinki:221",
-      images: [fakeImage({ url: undefined })],
+      images: [fakeImage({ url: "" })],
     }) as EventFieldsFragment;
     expect(getEventSomeImageUrl(event)).toBe(
       "/images/activities_SoMe-share.jpg"

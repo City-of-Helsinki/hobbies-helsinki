@@ -4,7 +4,6 @@ import React from 'react';
 
 import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
 import useLocale from "../../../../common-events/hooks/useLocale";
-
 import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
 import { getEventFields } from "../../EventUtils";
 import { EventFields } from "../../types";
