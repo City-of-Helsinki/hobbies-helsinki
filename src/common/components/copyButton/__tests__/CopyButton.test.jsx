@@ -1,7 +1,6 @@
-import { act, render, screen } from '@testing-library/react';
+import { act, fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 
-import { userEvent } from '../../../../test/testUtils';
 import CopyButton from '../CopyButton';
 
 // `copy-to-clipboard` is not jsdom compatible so we are replacing it with a
@@ -24,13 +23,13 @@ test('should show success message when copying succeeds that displays for 4 seco
 
   renderComponent();
 
-  userEvent.click(screen.getByLabelText(testLabel));
+  fireEvent.click(screen.getByLabelText(testLabel));
 
   expect(screen.queryByText(testMessage)).toBeInTheDocument();
 
   // Fast forwards by 4s
   act(() => {
-    jest.advanceTimersByTime(4000);
+  jest.advanceTimersByTime(4000);
   });
 
   expect(screen.queryByText(testMessage)).not.toBeInTheDocument();
@@ -45,7 +44,7 @@ test('should add success class for 4s after a successful copy', () => {
     successClass: testSuccessClass,
   });
 
-  userEvent.click(screen.getByLabelText(testLabel));
+  fireEvent.click(screen.getByLabelText(testLabel));
   expect(screen.getByLabelText(testLabel)).toHaveClass(
     testClass,
     testSuccessClass
