@@ -1,9 +1,9 @@
-import { TextEncoder, TextDecoder } from 'util';
+/* eslint-disable @typescript-eslint/no-require-imports */
+import "@testing-library/jest-dom/extend-expect";
+import { TextEncoder, TextDecoder } from "util";
 
-import '@testing-library/jest-dom/extend-expect';
-import { loadEnvConfig } from '@next/env';
-
-import { server } from "./tests/mocks/server";
+import { loadEnvConfig } from "@next/env";
+// import { server } from "./tests/mocks/server";
 import "./tests/initI18n";
 import { toHaveNoViolations } from "jest-axe";
 
