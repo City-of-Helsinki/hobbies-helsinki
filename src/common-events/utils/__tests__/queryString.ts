@@ -1,6 +1,6 @@
-import { supportedLanguages } from "../../../constants";
-import { MAPPED_PLACES } from "../../../domain/search/eventSearch/constants";
-import { assertUnreachable } from "../../../common/utils/typescript.utils";
+import { supportedLanguages } from '../../../constants';
+import { MAPPED_PLACES } from '../../../domain/search/eventSearch/constants';
+import { assertUnreachable } from '../../../common/utils/typescript.utils';
 
 type QueryParamValue = string | string[];
 
@@ -11,10 +11,10 @@ export type QueryParams = {
 
 export type QueryParam = keyof QueryParams;
 
-const langPathRegExp = new RegExp(`/(${supportedLanguages.join("|")})`);
+const langPathRegExp = new RegExp(`/(${supportedLanguages.join('|')})`);
 
 const stripLanguageFromPath = (path: string) =>
-  path.replace(langPathRegExp, "");
+  path.replace(langPathRegExp, '');
 
 const getParamValue = ({
   param,
@@ -24,12 +24,12 @@ const getParamValue = ({
   value: string;
 }) => {
   switch (param) {
-    case "places":
+    case 'places':
       return MAPPED_PLACES[value];
-    case "returnPath":
+    case 'returnPath':
       return stripLanguageFromPath(value);
     default:
-      return assertUnreachable(param, "Unknown query parameter");
+      return assertUnreachable(param, 'Unknown query parameter');
   }
 };
 
@@ -48,5 +48,5 @@ export const addParamsToQueryString = (
       searchParams.append(param, getParamValue({ param, value: values }));
     }
   });
-  return "?" + searchParams.toString();
+  return '?' + searchParams.toString();
 };

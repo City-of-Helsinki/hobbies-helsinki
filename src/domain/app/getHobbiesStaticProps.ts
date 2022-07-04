@@ -1,19 +1,19 @@
-import { GetStaticPropsContext, GetStaticPropsResult } from "next";
+import { GetStaticPropsContext, GetStaticPropsResult } from 'next';
 import {
   isApolloError,
   gql,
   ApolloClient,
   NormalizedCacheObject,
-} from "@apollo/client";
+} from '@apollo/client';
 // import { PageDocument } from "react-helsinki-headless-cms/apollo";
 
-import AppConfig from "./AppConfig";
-import { CmsLanguage } from "../../types";
-import { getMenuLocationFromLanguage } from "../../common/apollo/utils";
-import { staticGenerationLogger } from "../logger";
-import { createCmsApolloClient } from "../clients/cmsApolloClient";
-import { createEventsApolloClient } from "../clients/eventsApolloClient";
-import { DEFAULT_LANGUAGE } from "../../constants";
+import AppConfig from './AppConfig';
+import { CmsLanguage } from '../../types';
+import { getMenuLocationFromLanguage } from '../../common/apollo/utils';
+import { staticGenerationLogger } from '../logger';
+import { createCmsApolloClient } from '../clients/cmsApolloClient';
+import { createEventsApolloClient } from '../clients/eventsApolloClient';
+import { DEFAULT_LANGUAGE } from '../../constants';
 
 const GLOBAL_QUERY = gql`
   fragment PageFragment on RootQuery {
@@ -65,7 +65,7 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
     await getGlobalCMSData({ client: cmsClient, context });
     const result = await tryToGetPageProps({ cmsClient, eventsClient });
     const props =
-      "props" in result
+      'props' in result
         ? {
             initialApolloState: cmsClient.cache.extract(),
             initialEventsApolloState: eventsClient.cache.extract(),
@@ -82,8 +82,8 @@ export default async function getHobbiesStaticProps<P = Record<string, any>>(
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (e: any) {
     // Generic error handling
-    staticGenerationLogger.error("Error while generating a page:", e);
-    console.log("e", e);
+    staticGenerationLogger.error('Error while generating a page:', e);
+    console.log('e', e);
     if (isApolloError(e)) {
       return {
         props: {

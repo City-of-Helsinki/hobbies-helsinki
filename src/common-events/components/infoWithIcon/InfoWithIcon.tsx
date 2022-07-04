@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 
-import styles from "./infoWithIcon.module.scss";
+import styles from './infoWithIcon.module.scss';
 
 interface Props {
   icon: React.ReactElement;

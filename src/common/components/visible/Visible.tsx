@@ -1,9 +1,9 @@
-import classNames from "classnames";
-import capitalize from "lodash/capitalize";
-import React from "react";
+import classNames from 'classnames';
+import capitalize from 'lodash/capitalize';
+import React from 'react';
 
-import { Breakpoint } from "../../../types";
-import styles from "./visible.module.scss";
+import { Breakpoint } from '../../../types';
+import styles from './visible.module.scss';
 
 interface Props {
   above?: Breakpoint;

@@ -1,6 +1,6 @@
-import { Koros } from "hds-react";
+import { Koros } from 'hds-react';
 
-import styles from "./heroImage.module.scss";
+import styles from './heroImage.module.scss';
 
 type Props = {
   desktopImageUri: string;

@@ -2,15 +2,15 @@ import {
   InMemoryCache,
   NormalizedCacheObject,
   ApolloClient,
-} from "@apollo/client";
-import { useMemo } from "react";
+} from '@apollo/client';
+import { useMemo } from 'react';
 
-import AppConfig from "../../domain/app/AppConfig";
+import AppConfig from '../../domain/app/AppConfig';
 import {
   initializeApolloClient,
   MutableReference,
-} from "../../common/apollo/utils";
-import { sortMenuItems } from "../../common/apollo/utils";
+} from '../../common/apollo/utils';
+import { sortMenuItems } from '../../common/apollo/utils';
 
 const cmsApolloClient = new MutableReference<
   ApolloClient<NormalizedCacheObject>

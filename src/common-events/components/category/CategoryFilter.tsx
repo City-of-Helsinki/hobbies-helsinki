@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import * as CSS from "csstype";
-import { IconAngleRight } from "hds-react";
-import Link from "next/link";
-import React, { FunctionComponent } from "react";
+import classNames from 'classnames';
+import * as CSS from 'csstype';
+import { IconAngleRight } from 'hds-react';
+import Link from 'next/link';
+import React, { FunctionComponent } from 'react';
 
-import { Category } from "../../types";
-import styles from "./categoryFilter.module.scss";
+import { Category } from '../../types';
+import styles from './categoryFilter.module.scss';
 
 interface Props extends Category {
   className?: string;

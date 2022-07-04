@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import { Koros } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { Koros } from 'hds-react';
+import React from 'react';
 
-import Icon404 from "../../assets/icons/Icon404";
-import Container from "../../common-events/components/layout/Container";
-import isTestEnv from "../../common/utils/isTestEnv";
-import styles from "./errorHero.module.scss";
+import Icon404 from '../../assets/icons/Icon404';
+import Container from '../../common-events/components/layout/Container';
+import isTestEnv from '../../common/utils/isTestEnv';
+import styles from './errorHero.module.scss';
 
 interface Props {
   children: React.ReactNode;

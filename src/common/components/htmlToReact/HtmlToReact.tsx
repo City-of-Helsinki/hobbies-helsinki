@@ -1,14 +1,14 @@
-import React, { useMemo } from "react";
-import createDOMPurify from "dompurify";
-import parse, { domToReact } from "html-react-parser";
+import React, { useMemo } from 'react';
+import createDOMPurify from 'dompurify';
+import parse, { domToReact } from 'html-react-parser';
 
-import Text from "../text/Text";
+import Text from '../text/Text';
 
 function getIsomorphicDOMPurifier() {
   if (!process.browser) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports
-    const { JSDOM } = require("jsdom");
-    const { window } = new JSDOM("");
+    const { JSDOM } = require('jsdom');
+    const { window } = new JSDOM('');
 
     return createDOMPurify(window);
   }
@@ -40,7 +40,7 @@ export default function HtmlToReact({
     () =>
       getIsomorphicDOMPurifier().sanitize(dirty, {
         USE_PROFILES: { html: true },
-        ALLOWED_TAGS: ["b", "q", "p", "h2"],
+        ALLOWED_TAGS: ['b', 'q', 'p', 'h2'],
       }),
     [dirty]
   );
@@ -49,11 +49,11 @@ export default function HtmlToReact({
     <>
       {parse(clean, {
         replace: (domNode) => {
-          if ("attribs" in domNode && domNode.name === "p") {
+          if ('attribs' in domNode && domNode.name === 'p') {
             return <P>{domToReact(domNode.children)}</P>;
           }
 
-          if ("attribs" in domNode && domNode.name === "h2") {
+          if ('attribs' in domNode && domNode.name === 'h2') {
             return <H2>{domToReact(domNode.children)}</H2>;
           }
 

@@ -1,13 +1,13 @@
-import classNames from "classnames";
-import { IconCalendar } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { IconCalendar } from 'hds-react';
+import React from 'react';
 
-import { DATE_TYPES } from "../../../constants";
-import { translateValue } from "../../utils/translateUtils";
-import ToggleButton from "../../../common/components/toggleButton/ToggleButton";
-import styles from "./mobileDateSelector.module.scss";
-import MobileDateSelectorMenu from "./MobileDateSelectorMenu";
-import useConfig from "../../hooks/useConfig";
+import { DATE_TYPES } from '../../../constants';
+import { translateValue } from '../../utils/translateUtils';
+import ToggleButton from '../../../common/components/toggleButton/ToggleButton';
+import styles from './mobileDateSelector.module.scss';
+import MobileDateSelectorMenu from './MobileDateSelectorMenu';
+import useConfig from '../../hooks/useConfig';
 
 interface Props {
   dateTypes: string[];
@@ -81,15 +81,15 @@ const MobileDateSelector: React.FC<Props> = ({
       if (!isDateSelectorFocused()) return;
 
       switch (event.key) {
-        case "ArrowUp":
+        case 'ArrowUp':
           ensureMenuIsOpen();
           event.preventDefault();
           break;
-        case "ArrowDown":
+        case 'ArrowDown':
           ensureMenuIsOpen();
           event.preventDefault();
           break;
-        case "Escape":
+        case 'Escape':
           setIsMenuOpen(false);
           toggleBtnRef.current?.focus();
 
@@ -101,14 +101,14 @@ const MobileDateSelector: React.FC<Props> = ({
   );
 
   React.useEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-    document.addEventListener("keydown", handleDocumentKeyDown);
-    document.addEventListener("focusin", handleDocumentFocusin);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleDocumentKeyDown);
+    document.addEventListener('focusin', handleDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
-      document.removeEventListener("keydown", handleDocumentKeyDown);
-      document.removeEventListener("focusin", handleDocumentFocusin);
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('keydown', handleDocumentKeyDown);
+      document.removeEventListener('focusin', handleDocumentFocusin);
     };
   }, [handleDocumentClick, handleDocumentFocusin, handleDocumentKeyDown]);
 
@@ -128,7 +128,7 @@ const MobileDateSelector: React.FC<Props> = ({
             key={dateType}
             isSelected={dateTypes.indexOf(dateType) !== -1}
             onClick={handleClickButton}
-            text={translateValue("common:dateSelector.dateType", dateType, t)}
+            text={translateValue('common:dateSelector.dateType', dateType, t)}
             value={dateType}
           />
         );
@@ -147,9 +147,9 @@ const MobileDateSelector: React.FC<Props> = ({
           }
           isSelected={!!endDate || !!startDate}
           onClick={toggleMenu}
-          testId={"open-date-selector-button"}
-          text={t("common:dateSelector.menu.buttonCustom")}
-          value={"customDate"}
+          testId={'open-date-selector-button'}
+          text={t('common:dateSelector.menu.buttonCustom')}
+          value={'customDate'}
         />
         <MobileDateSelectorMenu
           closeBtnRef={closeBtnRef}

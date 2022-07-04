@@ -1,30 +1,30 @@
-import { axe } from "jest-axe";
-import React from "react";
+import { axe } from 'jest-axe';
+import React from 'react';
 
-import translations from "../../../../common/translation/i18n/fi.json";
+import translations from '../../../../common/translation/i18n/fi.json';
 import {
   NeighborhoodListDocument,
   OrganizationDetailsDocument,
   PlaceDetailsDocument,
-} from "../../../../generated/graphql";
+} from '../../../../generated/graphql';
 import {
   fakeNeighborhoods,
   fakeOrganization,
   fakePlace,
-} from "../../../../test/mockDataUtils";
+} from '../../../../test/mockDataUtils';
 import {
   configure,
   render,
   screen,
   userEvent,
   waitFor,
-} from "../../../../../tests/testUtils";
-import FilterSummary from "../FilterSummary";
+} from '../../../../../tests/testUtils';
+import FilterSummary from '../FilterSummary';
 
 configure({ defaultHidden: true });
 
-const neighborhoodId = "arabia";
-const neighborhoodName = "Arabia";
+const neighborhoodId = 'arabia';
+const neighborhoodName = 'Arabia';
 const neighborhoods = fakeNeighborhoods(10, [
   {
     id: neighborhoodId,
@@ -37,16 +37,16 @@ const neighborhoodsResponse = {
   },
 };
 
-const organizationId = "1";
-const organizationName = "Organization name";
+const organizationId = '1';
+const organizationName = 'Organization name';
 const organization = fakeOrganization({
   id: organizationId,
   name: organizationName,
 });
 const organizationResponse = { data: { organizationDetails: organization } };
 
-const placeId = "helsinki:123";
-const placeName = "Gräsan taitojen talo";
+const placeId = 'helsinki:123';
+const placeName = 'Gräsan taitojen talo';
 
 const place = fakePlace({ id: placeId, name: { fi: placeName } });
 const placeResponse = {
@@ -94,14 +94,14 @@ interface UrlParams {
 }
 
 const urlParams: UrlParams = {
-  categories: "movie",
-  dateTypes: "today",
+  categories: 'movie',
+  dateTypes: 'today',
   divisions: neighborhoodId,
-  end: "2020-08-23",
+  end: '2020-08-23',
   places: placeId,
   publisher: organizationId,
-  start: "2020-08-20",
-  text: "jazz",
+  start: '2020-08-20',
+  text: 'jazz',
 };
 
 type UrlParamKeys = keyof UrlParams;
@@ -111,7 +111,7 @@ const routes = [
   `/fi/events?categories=${urlParams.categories}&dateTypes=today&divisions=${urlParams.divisions}&end=${urlParams.end}&places=${urlParams.places}&publisher=${urlParams.publisher}&start=${urlParams.start}&text=${urlParams.text}`,
 ];
 
-it("test for accessibility violations", async () => {
+it('test for accessibility violations', async () => {
   const { container } = render(<FilterSummary onClear={jest.fn()} />, {
     mocks,
     routes,
@@ -124,7 +124,7 @@ it("test for accessibility violations", async () => {
   expect(results).toHaveNoViolations();
 });
 
-it("calls onClear callback when clear button is clicked", async () => {
+it('calls onClear callback when clear button is clicked', async () => {
   const onClear = jest.fn();
   render(<FilterSummary onClear={onClear} />, {
     mocks,
@@ -136,14 +136,14 @@ it("calls onClear callback when clear button is clicked", async () => {
   });
 
   userEvent.click(
-    screen.getByRole("button", {
+    screen.getByRole('button', {
       name: translations.eventSearch.buttonClearFilters,
     })
   );
   expect(onClear).toBeCalledTimes(1);
 });
 
-it("routes to correct url after deleting filters", async () => {
+it('routes to correct url after deleting filters', async () => {
   const { history } = render(<FilterSummary onClear={jest.fn()} />, {
     mocks,
     routes,
@@ -154,22 +154,22 @@ it("routes to correct url after deleting filters", async () => {
   });
 
   const items: { button: string; params: UrlParamKeys[] }[] = [
-    { button: "Poista suodatin: Tänään", params: ["dateTypes"] },
+    { button: 'Poista suodatin: Tänään', params: ['dateTypes'] },
     {
-      button: "Poista suodatin: 20.8.2020 - 23.8.2020",
-      params: ["end", "start"],
+      button: 'Poista suodatin: 20.8.2020 - 23.8.2020',
+      params: ['end', 'start'],
     },
-    { button: "Poista suodatin: Elokuva", params: ["categories"] },
+    { button: 'Poista suodatin: Elokuva', params: ['categories'] },
     {
       button: `Poista suodatin: ${neighborhoodName}`,
-      params: ["divisions"],
+      params: ['divisions'],
     },
-    { button: `Poista suodatin: ${placeName}`, params: ["places"] },
+    { button: `Poista suodatin: ${placeName}`, params: ['places'] },
     {
       button: `Poista suodatin: ${organizationName}`,
-      params: ["publisher"],
+      params: ['publisher'],
     },
-    { button: "Poista suodatin: jazz", params: ["text"] },
+    { button: 'Poista suodatin: jazz', params: ['text'] },
   ];
 
   items.forEach((item) => {
@@ -180,7 +180,7 @@ it("routes to correct url after deleting filters", async () => {
     });
 
     userEvent.click(
-      screen.getByRole("button", {
+      screen.getByRole('button', {
         name: item.button,
       })
     );

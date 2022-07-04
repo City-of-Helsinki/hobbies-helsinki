@@ -1,17 +1,17 @@
-import classNames from "classnames";
-import { Checkbox, IconAngleDown, IconAngleUp, TextInput } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { Checkbox, IconAngleDown, IconAngleUp, TextInput } from 'hds-react';
+import React from 'react';
 
-import SearchLabel from "../search/searchLabel/SearchLabel";
-import { skipFalsyType } from "../../../common/utils/typescript.utils";
-import DropdownMenu from "../dropdownMenu/DropdownMenu";
-import styles from "./rangeDropdown.module.scss";
+import SearchLabel from '../search/searchLabel/SearchLabel';
+import { skipFalsyType } from '../../../common/utils/typescript.utils';
+import DropdownMenu from '../dropdownMenu/DropdownMenu';
+import styles from './rangeDropdown.module.scss';
 
 export enum RANGE_INPUT {
-  MIN = "min",
-  MAX = "max",
+  MIN = 'min',
+  MAX = 'max',
   //for initial values from query string
-  ALL = "all",
+  ALL = 'all',
 }
 
 export type Option = {
@@ -41,14 +41,14 @@ export interface RangeDropdownProps {
 const RangeDropdown: React.FC<RangeDropdownProps> = ({
   icon,
   rangeIcon,
-  minInputValue = "",
+  minInputValue = '',
   minInputLabel,
-  minInputStartValue = "",
-  minInputFixedValue = "",
-  maxInputValue = "",
+  minInputStartValue = '',
+  minInputFixedValue = '',
+  maxInputValue = '',
   maxInputLabel,
-  maxInputEndValue = "",
-  maxInputFixedValue = "",
+  maxInputEndValue = '',
+  maxInputFixedValue = '',
   name,
   onChange,
   fixedValuesText,
@@ -145,7 +145,7 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
     setIsMenuOpen(!isMenuOpen);
     if (!isMenuOpen) {
       //validate initial values
-      handleInputBlur(RANGE_INPUT.ALL, "");
+      handleInputBlur(RANGE_INPUT.ALL, '');
     }
   };
 
@@ -159,12 +159,12 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   };
 
   React.useEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-    document.addEventListener("focusin", handleDocumentFocusin);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('focusin', handleDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
-      document.removeEventListener("focusin", handleDocumentFocusin);
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('focusin', handleDocumentFocusin);
     };
   }, [handleDocumentClick]);
 
@@ -175,19 +175,19 @@ const RangeDropdown: React.FC<RangeDropdownProps> = ({
   const handleToggleButtonKeyDown = (
     event: React.KeyboardEvent<HTMLButtonElement>
   ) => {
-    if (event.key === "ArrowDown") {
+    if (event.key === 'ArrowDown') {
       event.preventDefault();
       setIsMenuOpen(true);
-    } else if (event.key === "ArrowUp") {
+    } else if (event.key === 'ArrowUp') {
       event.preventDefault();
       setIsMenuOpen(false);
-    } else if (event.key === "Escape") {
+    } else if (event.key === 'Escape') {
       setIsMenuOpen(false);
     }
   };
 
   const handleClear = React.useCallback(() => {
-    onChange("", "");
+    onChange('', '');
     setInternalIsFixedValues(false);
   }, [onChange]);
 

@@ -1,11 +1,11 @@
 import {
   initializeApolloClient,
   MutableReference,
-} from "../../../common/apollo/utils";
+} from '../../../common/apollo/utils';
 
-describe("client utils", () => {
-  describe("initializeApolloClient", () => {
-    it("should mutate references used for caching the client", () => {
+describe('client utils', () => {
+  describe('initializeApolloClient', () => {
+    it('should mutate references used for caching the client', () => {
       let mutableCache = new MutableReference();
 
       initializeApolloClient({

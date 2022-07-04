@@ -1,25 +1,25 @@
-import { isPast, isThisWeek, isToday } from "date-fns";
-import capitalize from "lodash/capitalize";
-import sum from "lodash/sum";
+import { isPast, isThisWeek, isToday } from 'date-fns';
+import capitalize from 'lodash/capitalize';
+import sum from 'lodash/sum';
 
-import getLocalisedString from "../../common-events/utils/getLocalisedString";
-import { EVENT_STATUS } from "../../constants";
+import getLocalisedString from '../../common-events/utils/getLocalisedString';
+import { EVENT_STATUS } from '../../constants';
 import {
   EventFieldsFragment,
   LocalizedObject,
   PlaceFieldsFragment,
-} from "../nextApi/graphql/generated/graphql";
-import { Language } from "../../types";
+} from '../nextApi/graphql/generated/graphql';
+import { Language } from '../../types';
 import {
   EVENT_KEYWORD_BLACK_LIST,
   EVENT_LOCATIONS,
   EVENT_PLACEHOLDER_IMAGES,
   EVENT_SOME_IMAGE,
-} from "./constants";
+} from './constants';
 
-import getSecureImage from "../../common-events/utils/getSecureImage";
-import { UnionTFunction } from "../../common-events/types";
-import { EventFields, KeywordOption } from "./types";
+import getSecureImage from '../../common-events/utils/getSecureImage';
+import { UnionTFunction } from '../../common-events/types';
+import { EventFields, KeywordOption } from './types';
 
 export const getEventCardId = (id: string): string => `event-card_${id}`;
 
@@ -60,9 +60,9 @@ export const isEventFree = (event: EventFieldsFragment): boolean => {
  */
 export const getEventIdFromUrl = (
   url: string,
-  type: "event" = "event"
+  type: 'event' = 'event'
 ): string | undefined => {
-  return url.match(new RegExp(`/(?:${type}s?)/([^/?]*)`, "i"))?.[1];
+  return url.match(new RegExp(`/(?:${type}s?)/([^/?]*)`, 'i'))?.[1];
 };
 
 export const getEventIdsFromUrls = (urls: string[]): { eventIds: string[] } => {
@@ -84,7 +84,7 @@ export const getEventIdsFromUrls = (urls: string[]): { eventIds: string[] } => {
  */
 export const formatPrice = (price?: string): string => {
   if (!price) {
-    return "";
+    return '';
   }
 
   const priceRegex = /^\d+([/\-.,]\d+)?$/;
@@ -114,7 +114,7 @@ export const getEventPrice = (
         )
         .filter((e) => e)
         .sort()
-        .join(", ");
+        .join(', ');
 };
 
 export const getKeywordList = (
@@ -126,8 +126,8 @@ export const getKeywordList = (
 ): KeywordOption[] => {
   return list
     .map((listItem) => ({
-      id: listItem.id || "",
-      name: capitalize(listItem.name?.[locale] || "").trim(),
+      id: listItem.id || '',
+      name: capitalize(listItem.name?.[locale] || '').trim(),
     }))
     .filter(
       (listItem, index, arr) =>
@@ -186,7 +186,7 @@ export const getEventDistrict = (
 ): string | null => {
   const location = event.location;
   const district = location?.divisions?.find((division) =>
-    ["district", "neighborhood"].includes(division.type)
+    ['district', 'neighborhood'].includes(division.type)
   );
 
   return getLocalisedString(district?.name, locale);
@@ -221,7 +221,7 @@ const getEventLocationFields = (
 export const getLocationId = (
   location?: PlaceFieldsFragment | null
 ): string => {
-  return location?.id ? location?.id.split(":").slice(1).join() : "";
+  return location?.id ? location?.id.split(':').slice(1).join() : '';
 };
 
 /**
@@ -240,10 +240,10 @@ export const getServiceMapUrl = (
   const locationId = getLocationId(location);
   if (location?.id !== EVENT_LOCATIONS.INTERNET) {
     return `https://palvelukartta.hel.fi/${locale}${
-      isEmbedded ? "/embed" : ""
+      isEmbedded ? '/embed' : ''
     }/unit/${locationId}`;
   }
-  return "";
+  return '';
 };
 
 /**
@@ -260,8 +260,8 @@ export const getGoogleDirectionsLink = (
     getEventLocationFields(event, locale);
 
   return `https://www.google.com/maps/dir//${streetAddress},+${postalCode}+${addressLocality}/@${coordinates.join(
-    ","
-  )}`.replace(/\s/g, "+");
+    ','
+  )}`.replace(/\s/g, '+');
 };
 
 /**
@@ -280,7 +280,7 @@ export const getHslDirectionsLink = (
   return `https://reittiopas.hsl.fi/%20/${encodeURIComponent(
     streetAddress
   )},%20${encodeURIComponent(addressLocality)}::${coordinates.join(
-    ","
+    ','
   )}?locale=${locale}`;
 };
 
@@ -303,7 +303,7 @@ const getOfferInfoUrl = (
 
 const getRegistrationUrl = (event: EventFieldsFragment) => {
   return event.externalLinks?.find((externalLink) => {
-    return externalLink.name === "registration";
+    return externalLink.name === 'registration';
   })?.link;
 };
 
@@ -333,7 +333,7 @@ export const getEventFields = (event: EventFields, locale: Language) => {
     infoUrl: getLocalisedString(event.infoUrl, locale),
     keywords: getKeywordList(event.keywords, locale),
     languages: event.inLanguage
-      .map((item: EventFields["inLanguage"][number]) =>
+      .map((item: EventFields['inLanguage'][number]) =>
         capitalize(getLocalisedString(item.name, locale))
       )
       .filter((e) => e),
@@ -342,7 +342,7 @@ export const getEventFields = (event: EventFields, locale: Language) => {
     registrationUrl,
     placeholderImage: getEventPlaceholderImageUrl(event),
     provider: getLocalisedString(event.provider, locale),
-    publisher: event.publisher || "",
+    publisher: event.publisher || '',
     shortDescription: getLocalisedString(event.shortDescription, locale),
     someImageUrl: getEventSomeImageUrl(event),
     startTime,
@@ -375,10 +375,10 @@ export const getAudienceAgeText = (
   audienceMaxAge?: string | null
 ): string => {
   if (!audienceMinAge && !audienceMaxAge) {
-    return "";
+    return '';
   }
-  const ageLimit = `${audienceMinAge ?? "0"}${
-    audienceMaxAge ? `-${audienceMaxAge}` : "+"
+  const ageLimit = `${audienceMinAge ?? '0'}${
+    audienceMaxAge ? `-${audienceMaxAge}` : '+'
   }`;
-  return `${ageLimit} -${t("event:info.age")}`;
+  return `${ageLimit} -${t('event:info.age')}`;
 };

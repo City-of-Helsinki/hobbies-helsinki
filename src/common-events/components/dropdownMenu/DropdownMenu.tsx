@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import useConfig from "../../hooks/useConfig";
-import styles from "./dropdownMenu.module.scss";
+import useConfig from '../../hooks/useConfig';
+import styles from './dropdownMenu.module.scss';
 
 interface Props {
   children?: React.ReactNode;
@@ -17,7 +17,7 @@ const DropdownMenu: React.FC<Props> = ({ children, isOpen, onClear }) => {
     <div className={styles.dropdownMenu}>
       <div className={styles.dropdownMenuWrapper}>{children}</div>
       <button className={styles.btnClear} onClick={onClear} type="button">
-        {t<string>("common:dropdown.menu.buttonClear")}
+        {t<string>('common:dropdown.menu.buttonClear')}
       </button>
     </div>
   );

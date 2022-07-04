@@ -4,33 +4,33 @@ import {
   CollectionItemType,
   CollectionType,
   getElementTextContent,
-} from "react-helsinki-headless-cms";
-import { DEFAULT_LANGUAGE } from "../../../constants";
-import { Language } from "../../../types";
-import { getI18nPath } from "../../i18n/router/utils";
+} from 'react-helsinki-headless-cms';
+import { DEFAULT_LANGUAGE } from '../../../constants';
+import { Language } from '../../../types';
+import { getI18nPath } from '../../i18n/router/utils';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
-  if (!slugs) return "/";
+  if (!slugs) return '/';
   if (locale === DEFAULT_LANGUAGE) {
-    return `/${slugs.join("/")}/`;
+    return `/${slugs.join('/')}/`;
   }
-  return `/${locale}/${slugs.join("/")}/`;
+  return `/${locale}/${slugs.join('/')}/`;
 };
 
 export const getSlugFromUri = (uri?: string | null): string[] | null => {
-  const uriWithoutLang = stripLocaleFromUri(uri ?? "");
+  const uriWithoutLang = stripLocaleFromUri(uri ?? '');
   if (uriWithoutLang) {
-    return uriWithoutLang.split("/").filter((i) => i);
+    return uriWithoutLang.split('/').filter((i) => i);
   }
   return null;
 };
 
 export const stripLocaleFromUri = (uri: string): string => {
-  return uri.replace(/^\/(en|sv|fi)(?![a-z0-9])/i, "");
+  return uri.replace(/^\/(en|sv|fi)(?![a-z0-9])/i, '');
 };
 
 export const removeTrailingSlash = (uri: string): string => {
-  return uri.replace(/\/$/, "");
+  return uri.replace(/\/$/, '');
 };
 
 // '/segment1/segment2/' -> ['/segment1/', '/segment1/segment2/']
@@ -39,7 +39,7 @@ export const removeTrailingSlash = (uri: string): string => {
 export const uriToBreadcrumbs = (uri: string): string[] => {
   return slugsToUriSegments(
     stripLocaleFromUri(uri)
-      .split("/")
+      .split('/')
       // Filter out empty strings
       .filter((i) => i)
   );
@@ -47,7 +47,7 @@ export const uriToBreadcrumbs = (uri: string): string[] => {
 
 export const slugsToUriSegments = (slugs: string[]): string[] => {
   return slugs.map((slug, index) => {
-    return `/${slugs.slice(0, index + 1).join("/")}/`;
+    return `/${slugs.slice(0, index + 1).join('/')}/`;
   });
 };
 
@@ -65,14 +65,14 @@ export function getCmsCollectionList(collections: CollectionType[]) {
           <Card
             key={item.id}
             {...item}
-            title={item.title ?? ""}
-            text={getElementTextContent((item.lead || item.content) ?? "")}
+            title={item.title ?? ''}
+            text={getElementTextContent((item.lead || item.content) ?? '')}
             clampText={true}
             withShadow={true}
             hasLink={true}
             url={getCollectionItemUrl(item)}
-            imageLabel={item.featuredImage?.node?.title ?? ""}
-            imageUrl={item.featuredImage?.node?.mediaItemUrl ?? ""}
+            imageLabel={item.featuredImage?.node?.title ?? ''}
+            imageUrl={item.featuredImage?.node?.mediaItemUrl ?? ''}
           />
         ) : (
           <></>
@@ -84,25 +84,25 @@ export function getCmsCollectionList(collections: CollectionType[]) {
 
 export function getCollectionItemUrl(item: CollectionItemType): string {
   if (!item) {
-    return "#";
+    return '#';
   }
-  if (item.__typename === "Post") {
+  if (item.__typename === 'Post') {
     return getCmsArticlePath(item.uri);
   }
-  if (item.__typename === "Page") {
+  if (item.__typename === 'Page') {
     return getCmsPagePath(item.uri);
   }
-  return item?.uri ?? "";
+  return item?.uri ?? '';
 }
 
 export const getCmsPagePath = (uri?: string | null): string => {
-  if (!uri) return "#";
+  if (!uri) return '#';
   const locale = stripLocaleFromUri(uri);
-  return getI18nPath("/pages", locale) + uri;
+  return getI18nPath('/pages', locale) + uri;
 };
 
 export const getCmsArticlePath = (uri?: string | null): string => {
-  if (!uri) return "#";
+  if (!uri) return '#';
   const locale = stripLocaleFromUri(uri);
-  return getI18nPath("/articles", locale) + uri;
+  return getI18nPath('/articles', locale) + uri;
 };

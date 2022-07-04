@@ -1,16 +1,16 @@
-import userEvent from "@testing-library/user-event";
-import { IconHome } from "hds-react";
-import React from "react";
+import userEvent from '@testing-library/user-event';
+import { IconHome } from 'hds-react';
+import React from 'react';
 
-import { render, screen } from "../../../../tests/testUtils";
-import CategoryFilter from "../CategoryFilter";
+import { render, screen } from '../../../../tests/testUtils';
+import CategoryFilter from '../CategoryFilter';
 
 const category = {
-  text: "text",
-  value: "value",
+  text: 'text',
+  value: 'value',
 };
 
-it("matches snapshot", () => {
+it('matches snapshot', () => {
   const { container } = render(
     <CategoryFilter
       href="/test"
@@ -23,8 +23,8 @@ it("matches snapshot", () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-it("calls onClick callback when category filter button is clicked", () => {
-  const testUrl = "/test";
+it('calls onClick callback when category filter button is clicked', () => {
+  const testUrl = '/test';
   const { history } = render(
     <CategoryFilter
       href={testUrl}
@@ -34,7 +34,7 @@ it("calls onClick callback when category filter button is clicked", () => {
     />
   );
 
-  const historyPush = jest.spyOn(history, "push");
+  const historyPush = jest.spyOn(history, 'push');
 
   expect(screen.queryByText(category.text)).toBeInTheDocument();
 

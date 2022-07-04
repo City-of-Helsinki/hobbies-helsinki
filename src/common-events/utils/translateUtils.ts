@@ -1,7 +1,7 @@
-import { camelCase, startCase } from "lodash";
+import { camelCase, startCase } from 'lodash';
 
 const toPascalCase = (str: string) =>
-  startCase(camelCase(str)).replace(/ /g, "");
+  startCase(camelCase(str)).replace(/ /g, '');
 
 /**
  * Translate a single value
@@ -14,7 +14,7 @@ export const translateValue = (
   return t(
     prefix
       ? `${prefix}${
-          prefix.endsWith(".") ? camelCase(value) : toPascalCase(value)
+          prefix.endsWith('.') ? camelCase(value) : toPascalCase(value)
         }`
       : camelCase(value)
   );
@@ -28,5 +28,5 @@ export const translateList = (
   list: string[],
   t: (s: string) => string
 ): string => {
-  return list.map((value) => translateValue(prefix, value, t)).join(", ");
+  return list.map((value) => translateValue(prefix, value, t)).join(', ');
 };

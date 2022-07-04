@@ -1,8 +1,8 @@
-import React from "react";
-import { I18nextProvider } from "react-i18next";
-import { RouterContext } from "next/dist/shared/lib/router-context";
-import { NextRouter } from "next/router";
-import { MockedProvider, MockedResponse } from "@apollo/client/testing";
+import React from 'react';
+import { I18nextProvider } from 'react-i18next';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
+import { NextRouter } from 'next/router';
+import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 // eslint-disable-next-line no-restricted-imports
 import {
   Config as RHHCConfig,
@@ -10,20 +10,20 @@ import {
   defaultConfig as rhhcDefaultConfig,
   getUri,
   ModuleItemTypeEnum,
-} from "react-helsinki-headless-cms";
+} from 'react-helsinki-headless-cms';
 
-import i18n from "./initI18n";
-import { ApolloCache, InMemoryCache } from "@apollo/client";
-import eventsDefaultConfig from "../common-events/configProvider/defaultConfig";
+import i18n from './initI18n';
+import { ApolloCache, InMemoryCache } from '@apollo/client';
+import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
 import eventsApolloClient, {
   createEventsApolloClient,
-} from "../domain/clients/eventsApolloClient";
-import { Config as EventsConfig } from "../common-events/configProvider/configContext";
-import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from "../constants";
-import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
-import { getI18nPath } from "../common-events/i18n/router/utils";
+} from '../domain/clients/eventsApolloClient';
+import { Config as EventsConfig } from '../common-events/configProvider/configContext';
+import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from '../constants';
+import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
+import { getI18nPath } from '../common-events/i18n/router/utils';
 
-const CMS_API_DOMAIN = "harrastukset.cms.test.domain.com";
+const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
 type Props = {
   mocks?: ReadonlyArray<MockedResponse>;
@@ -33,7 +33,7 @@ type Props = {
 };
 
 function TestProviders({ mocks, children, router, cache }: Props) {
-  console.log("TestProviders", "router", router);
+  console.log('TestProviders', 'router', router);
   return (
     <I18nextProvider i18n={i18n}>
       <EventsConfigProvider config={getEventsConfig(router)}>
@@ -71,12 +71,12 @@ function getRHHCConfig(router: NextRouter) {
     return false;
   };
   const internalHrefOrigins = CMS_API_DOMAIN ? [CMS_API_DOMAIN] : [];
-  const getRoutedInternalHref: RHHCConfig["utils"]["getRoutedInternalHref"] = (
+  const getRoutedInternalHref: RHHCConfig['utils']['getRoutedInternalHref'] = (
     link,
     type
   ) => {
     if (!link) {
-      return "#";
+      return '#';
     }
     const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
     // if (uri === link) {
@@ -85,33 +85,33 @@ function getRHHCConfig(router: NextRouter) {
 
     if (type === ModuleItemTypeEnum.Article) {
       // TODO: fix the getI18nPath for articles
-      return getI18nPath("/articles", locale) + uri;
+      return getI18nPath('/articles', locale) + uri;
     }
     if (type === ModuleItemTypeEnum.Page) {
       // TODO: fix the getI18nPath for pages
-      return getI18nPath("/pages", locale) + uri;
+      return getI18nPath('/pages', locale) + uri;
     }
     return getI18nPath(link, locale);
   };
 
   return {
     ...rhhcDefaultConfig,
-    siteName: "appName",
+    siteName: 'appName',
     currentLanguageCode: locale.toUpperCase(),
     apolloClient: createEventsApolloClient(),
     copy: {
-      breadcrumbNavigationLabel: "common:breadcrumb.breadcrumbNavigationLabel",
-      breadcrumbListLabel: "common:breadcrumb.breadcrumbListLabel",
-      menuToggleAriaLabel: "common:menu.menuToggleAriaLabel",
-      skipToContentLabel: "common:linkSkipToContent",
-      openInExternalDomainAriaLabel: "common:srOnly.opensInAnExternalSite",
-      openInNewTabAriaLabel: "common:srOnly.opensInANewTab",
-      closeButtonLabelText: "common:button.close",
+      breadcrumbNavigationLabel: 'common:breadcrumb.breadcrumbNavigationLabel',
+      breadcrumbListLabel: 'common:breadcrumb.breadcrumbListLabel',
+      menuToggleAriaLabel: 'common:menu.menuToggleAriaLabel',
+      skipToContentLabel: 'common:linkSkipToContent',
+      openInExternalDomainAriaLabel: 'common:srOnly.opensInAnExternalSite',
+      openInNewTabAriaLabel: 'common:srOnly.opensInANewTab',
+      closeButtonLabelText: 'common:button.close',
       archiveSearch: {
-        searchTextPlaceholder: "cms:archiveSearch.searchTextPlaceholder",
-        searchButtonLabelText: "cms:archiveSearch.searchButtonLabelText",
-        loadMoreButtonLabelText: "cms:archiveSearch.loadMoreButtonLabelText",
-        noResultsText: "cms:archiveSearch.noResultsText",
+        searchTextPlaceholder: 'cms:archiveSearch.searchTextPlaceholder',
+        searchButtonLabelText: 'cms:archiveSearch.searchButtonLabelText',
+        loadMoreButtonLabelText: 'cms:archiveSearch.loadMoreButtonLabelText',
+        noResultsText: 'cms:archiveSearch.noResultsText',
       },
     },
     utils: {

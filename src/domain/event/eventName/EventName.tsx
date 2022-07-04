@@ -1,10 +1,10 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import useLocale from "../../../common-events/hooks/useLocale";
-import { EventFieldsFragment } from "../../nextApi/graphql/generated/graphql";
-import { getEventFields, isEventCancelled } from "../EventUtils";
-import styles from "./eventName.module.scss";
+import useLocale from '../../../common-events/hooks/useLocale';
+import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
+import { getEventFields, isEventCancelled } from '../EventUtils';
+import styles from './eventName.module.scss';
 
 interface Props {
   event: EventFieldsFragment;
@@ -20,8 +20,8 @@ const EventName: React.FC<Props> = ({ event }) => {
     <>
       {isCancelled && (
         <span className={styles.eventCancelled}>
-          {t("event:eventCancelled")}
-          {": "}
+          {t('event:eventCancelled')}
+          {': '}
         </span>
       )}
       {name}

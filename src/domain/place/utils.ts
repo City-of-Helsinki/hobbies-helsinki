@@ -1,9 +1,9 @@
-import eventsApolloClient from "../clients/eventsApolloClient";
+import eventsApolloClient from '../clients/eventsApolloClient';
 import {
   Maybe,
   PlaceDetailsDocument,
   PlaceDetailsQuery,
-} from "../nextApi/graphql/generated/graphql";
+} from '../nextApi/graphql/generated/graphql';
 
 export const getPlaceDetailsFromCache = (
   id: string

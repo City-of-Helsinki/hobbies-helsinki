@@ -1,16 +1,16 @@
-import sortBy from "lodash/sortBy";
+import sortBy from 'lodash/sortBy';
 
-import useLocale from "./useLocale";
-import getLocalisedString from "../utils/getLocalisedString";
-import { additionalDivisions } from "../../domain/neighborhood/additionalDivisions";
+import useLocale from './useLocale';
+import getLocalisedString from '../utils/getLocalisedString';
+import { additionalDivisions } from '../../domain/neighborhood/additionalDivisions';
 import {
   Neighborhood,
   useNeighborhoodListQuery,
-} from "../../domain/nextApi/graphql/generated/graphql";
+} from '../../domain/nextApi/graphql/generated/graphql';
 
 export const DIVISION_BLOCKLIST = [
-  "kaupunginosa:aluemeri",
-  "kaupunginosa:ultuna",
+  'kaupunginosa:aluemeri',
+  'kaupunginosa:ultuna',
 ];
 
 type DivisionOption = {
@@ -35,7 +35,7 @@ const useDivisionOptions = (): DivisionOption[] => {
       value: neighborhood.id,
     })) ?? [];
 
-  return sortBy(neighborhoodOptionList, "text");
+  return sortBy(neighborhoodOptionList, 'text');
 };
 
 export const getFilteredNeighborhoodList = (

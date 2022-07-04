@@ -1,9 +1,9 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common-events/components/filterButton/types";
-import { useOrganizationDetailsQuery } from "../../../nextApi/graphql/generated/graphql";
+import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
+import { FilterType } from '../../../../common-events/components/filterButton/types';
+import { useOrganizationDetailsQuery } from '../../../nextApi/graphql/generated/graphql';
 
 interface Props {
   id: string;
@@ -19,7 +19,7 @@ const PublisherFilter: React.FC<Props> = ({ id, onRemove }) => {
   return loading ? (
     <FilterButton
       onRemove={onRemove}
-      text={t("common:loading")}
+      text={t('common:loading')}
       type="publisher"
       value={id}
     />

@@ -1,11 +1,11 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common-events/components/filterButton/types";
-import useLocale from "../../../../common-events/hooks/useLocale";
-import getLocalisedString from "../../../../common-events/utils/getLocalisedString";
-import { usePlaceDetailsQuery } from "../../../nextApi/graphql/generated/graphql";
+import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
+import { FilterType } from '../../../../common-events/components/filterButton/types';
+import useLocale from '../../../../common-events/hooks/useLocale';
+import getLocalisedString from '../../../../common-events/utils/getLocalisedString';
+import { usePlaceDetailsQuery } from '../../../nextApi/graphql/generated/graphql';
 
 interface Props {
   id: string;
@@ -22,7 +22,7 @@ const PlaceFilter: React.FC<Props> = ({ id, onRemove }) => {
   return loading ? (
     <FilterButton
       onRemove={onRemove}
-      text={t("common:loading")}
+      text={t('common:loading')}
       type="place"
       value={id}
     />

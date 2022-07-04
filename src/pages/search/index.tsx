@@ -1,17 +1,17 @@
-import React, { useRef } from "react";
-import { GetStaticPropsContext } from "next";
-import { useEffect } from "react";
-import { Page as RHHCApolloPage } from "react-helsinki-headless-cms/apollo";
+import React, { useRef } from 'react';
+import { GetStaticPropsContext } from 'next';
+import { useEffect } from 'react';
+import { Page as RHHCApolloPage } from 'react-helsinki-headless-cms/apollo';
 
-import getHobbiesStaticProps from "../../domain/app/getHobbiesStaticProps";
-import useRouter from "../../common-events/i18n/router/useRouter";
-import serverSideTranslationsWithCommon from "../../domain/i18n/serverSideTranslationsWithCommon";
-import { getLocaleOrError } from "../../common-events/i18n/router/utils";
-import { DEFAULT_LANGUAGE } from "../../constants";
-import AdvancedSearch from "../../domain/search/eventSearch/AdvancedSearch";
-import Navigation from "../../common-events/components/navigation/Navigation";
-import SearchPage from "../../domain/search/eventSearch/SearchPage";
-import FooterSection from "../../domain/footer/Footer";
+import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
+import useRouter from '../../common-events/i18n/router/useRouter';
+import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
+import { getLocaleOrError } from '../../common-events/i18n/router/utils';
+import { DEFAULT_LANGUAGE } from '../../constants';
+import AdvancedSearch from '../../domain/search/eventSearch/AdvancedSearch';
+import Navigation from '../../common-events/components/navigation/Navigation';
+import SearchPage from '../../domain/search/eventSearch/SearchPage';
+import FooterSection from '../../domain/footer/Footer';
 
 export default function Search() {
   const router = useRouter();
@@ -28,7 +28,7 @@ export default function Search() {
 
       if (listItemElement) {
         listItemElement.scrollIntoView({
-          block: "center",
+          block: 'center',
         });
       }
     }
@@ -42,7 +42,7 @@ export default function Search() {
       content={
         <SearchPage
           SearchComponent={AdvancedSearch}
-          pageTitle={"eventSearch.title"}
+          pageTitle={'eventSearch.title'}
         />
       }
       footer={<FooterSection />}
@@ -57,10 +57,10 @@ export async function getStaticProps(context: GetStaticPropsContext) {
     return {
       props: {
         ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          "common",
-          "home",
-          "event",
-          "search",
+          'common',
+          'home',
+          'event',
+          'search',
         ])),
       },
     };

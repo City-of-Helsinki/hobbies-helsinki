@@ -1,11 +1,11 @@
-import React from "react";
-import NextLink, { LinkProps } from "next/link";
+import React from 'react';
+import NextLink, { LinkProps } from 'next/link';
 
-import useRouter from "./useRouter";
-import { getI18nPath, stringifyUrlObject } from "./utils";
-import { Language } from "../../../types";
+import useRouter from './useRouter';
+import { getI18nPath, stringifyUrlObject } from './utils';
+import { Language } from '../../../types';
 
-type Props = React.PropsWithChildren<Omit<LinkProps, "locale">> & {
+type Props = React.PropsWithChildren<Omit<LinkProps, 'locale'>> & {
   escape?: boolean;
   locale?: Language | false;
 };
@@ -14,7 +14,7 @@ export default function Link({ href, escape, ...delegated }: Props) {
   const router = useRouter();
 
   // Use string hrefs as is
-  if (typeof href === "string") {
+  if (typeof href === 'string') {
     return <NextLink {...delegated} href={href} />;
   }
 

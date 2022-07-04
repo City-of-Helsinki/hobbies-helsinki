@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import useLocale from "../../common-events/hooks/useLocale";
-import getLocalisedString from "../../common-events/utils/getLocalisedString";
-import { usePlaceDetailsQuery } from "../nextApi/graphql/generated/graphql";
+import useLocale from '../../common-events/hooks/useLocale';
+import getLocalisedString from '../../common-events/utils/getLocalisedString';
+import { usePlaceDetailsQuery } from '../nextApi/graphql/generated/graphql';
 
 interface Props {
   id: string;

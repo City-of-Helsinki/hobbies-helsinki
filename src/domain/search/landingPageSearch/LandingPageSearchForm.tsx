@@ -1,31 +1,31 @@
-import { Button, IconSearch } from 'hds-react'
-import { Link } from 'react-helsinki-headless-cms'
-import classnames from 'classnames'
-import { useTranslation } from 'next-i18next'
+import { Button, IconSearch } from 'hds-react';
+import { Link } from 'react-helsinki-headless-cms';
+import classnames from 'classnames';
+import { useTranslation } from 'next-i18next';
 
-import DateSelector from '../../../common-events/components/dateSelector/DateSelector'
-import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector'
-import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest'
-import { AutosuggestMenuOption } from '../../../common-events/types'
-import useLocale from '../../../common-events/hooks/useLocale'
-import { getI18nPath } from '../../../common-events/i18n/router/utils'
-import styles from './landingPageSearchForm.module.scss'
+import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
+import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector';
+import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
+import { AutosuggestMenuOption } from '../../../common-events/types';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import styles from './landingPageSearchForm.module.scss';
 
 export type LandingPageSearchFormProps = {
-  className?: string
-  dateTypes: string[]
-  start: Date | null
-  end: Date | null
-  isCustomDate: boolean
-  autosuggestInput: string
-  setStart: (value: Date | null) => void
-  setEnd: (value: Date | null) => void
-  setAutosuggestInput: (value: string) => void
-  handleChangeDateTypes: (value: string[]) => void
-  toggleIsCustomDate: () => void
-  handleSubmit: () => void
-  handleMenuOptionClick: (option: AutosuggestMenuOption) => void
-}
+  className?: string;
+  dateTypes: string[];
+  start: Date | null;
+  end: Date | null;
+  isCustomDate: boolean;
+  autosuggestInput: string;
+  setStart: (value: Date | null) => void;
+  setEnd: (value: Date | null) => void;
+  setAutosuggestInput: (value: string) => void;
+  handleChangeDateTypes: (value: string[]) => void;
+  toggleIsCustomDate: () => void;
+  handleSubmit: () => void;
+  handleMenuOptionClick: (option: AutosuggestMenuOption) => void;
+};
 
 export default function LandingPageSearchForm({
   className,
@@ -42,8 +42,8 @@ export default function LandingPageSearchForm({
   handleSubmit,
   handleMenuOptionClick,
 }: LandingPageSearchFormProps) {
-  const { t } = useTranslation('home')
-  const locale = useLocale()
+  const { t } = useTranslation('home');
+  const locale = useLocale();
 
   return (
     <div className={classnames(className, styles.landingPageSearch)}>
@@ -101,5 +101,5 @@ export default function LandingPageSearchForm({
         </Link>
       </div>
     </div>
-  )
+  );
 }

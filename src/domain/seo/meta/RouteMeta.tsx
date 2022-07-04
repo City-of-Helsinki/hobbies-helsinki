@@ -1,8 +1,8 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
-import useRouter from "../../../common-events/i18n/router/useRouter";
-import { CmsLanguage } from "../../../types";
+import useRouter from '../../../common-events/i18n/router/useRouter';
+import { CmsLanguage } from '../../../types';
 
 function getLanguageAwarePath(
   locale: string,

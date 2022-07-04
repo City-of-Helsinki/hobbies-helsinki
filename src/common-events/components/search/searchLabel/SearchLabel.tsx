@@ -1,18 +1,18 @@
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
-import styles from "./searchLabel.module.scss";
+import styles from './searchLabel.module.scss';
 
 interface Props {
   children?: string;
-  color?: "white" | "black";
+  color?: 'white' | 'black';
   htmlFor: string;
   srOnly?: boolean;
 }
 
 const SearchLabel: React.FC<Props> = ({
   children,
-  color = "white",
+  color = 'white',
   htmlFor,
   srOnly = false,
 }) => {

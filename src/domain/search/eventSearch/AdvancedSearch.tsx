@@ -1,73 +1,77 @@
-import classNames from 'classnames'
-import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react'
-import { useTranslation } from 'next-i18next'
-import React, { FormEvent } from 'react'
-import qs from 'query-string'
+import classNames from 'classnames';
+import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react';
+import { useTranslation } from 'next-i18next';
+import React, { FormEvent } from 'react';
+import qs from 'query-string';
 
-import Container from '../../../common-events/components/layout/Container'
-import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest'
-import SearchLabel from '../../../common-events/components/search/searchLabel/SearchLabel'
+import Container from '../../../common-events/components/layout/Container';
+import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
+import SearchLabel from '../../../common-events/components/search/searchLabel/SearchLabel';
 // import useDivisionOptions from "../../../common-events/hooks/useDivisionOptions";
-import Checkbox from '../../../common/components/checkbox/Checkbox'
-import DateSelector from '../../../common-events/components/dateSelector/DateSelector'
-import MultiSelectDropdown from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown'
-import useLocale from '../../../common-events/hooks/useLocale'
-import { AutosuggestMenuOption } from '../../../common-events/types'
-import useRouter from '../../../common-events/i18n/router/useRouter'
-import { getI18nPath } from '../../../common-events/i18n/router/utils'
-import PlaceSelector from '../../place/placeSelector/PlaceSelector'
+import Checkbox from '../../../common/components/checkbox/Checkbox';
+import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
+import MultiSelectDropdown from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { AutosuggestMenuOption } from '../../../common-events/types';
+import useRouter from '../../../common-events/i18n/router/useRouter';
+import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import PlaceSelector from '../../place/placeSelector/PlaceSelector';
 import {
   EVENT_DEFAULT_SEARCH_FILTERS,
   EVENT_SEARCH_FILTERS,
   MAPPED_PLACES,
-} from './constants'
-import FilterSummary from './filterSummary/FilterSummary'
+} from './constants';
+import FilterSummary from './filterSummary/FilterSummary';
 import {
   getEventCategoryOptions,
   getSearchFilters,
   getSearchQuery,
   MAX_AGE,
   MIN_AGE,
-} from './utils'
-import styles from './search.module.scss'
-import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown'
+} from './utils';
+import styles from './search.module.scss';
+import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
 
 interface Props {
-  scrollToResultList: () => void
-  'data-testid'?: string
+  scrollToResultList: () => void;
+  'data-testid'?: string;
 }
 
 const AdvancedSearch: React.FC<Props> = ({
   scrollToResultList,
   'data-testid': dataTestId,
 }) => {
-  const { t } = useTranslation('search')
-  const locale = useLocale()
-  const router = useRouter()
-  const params: { place?: string } = router.query
+  const { t } = useTranslation('search');
+  const locale = useLocale();
+  const router = useRouter();
+  const params: { place?: string } = router.query;
   const searchParams = React.useMemo(
     () => new URLSearchParams(qs.stringify(router.query)),
     [router.query]
-  )
+  );
 
-  const [categoryInput, setCategoryInput] = React.useState('')
-  const [minAgeInput, setMinAgeInput] = React.useState('')
-  const [maxAgeInput, setMaxAgeInput] = React.useState('')
+  const [categoryInput, setCategoryInput] = React.useState('');
+  const [minAgeInput, setMinAgeInput] = React.useState('');
+  const [maxAgeInput, setMaxAgeInput] = React.useState('');
   // const [divisionInput, setDivisionInput] = React.useState("");
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [placeInput, setPlaceInput] = React.useState('')
+  const [placeInput, setPlaceInput] = React.useState('');
 
-  const [selectedDateTypes, setSelectedDateTypes] = React.useState<string[]>([])
+  const [selectedDateTypes, setSelectedDateTypes] = React.useState<string[]>(
+    []
+  );
   const [selectedCategories, setSelectedCategories] = React.useState<string[]>(
     []
-  )
-  const [selectedDivisions, setSelectedDivisions] = React.useState<string[]>([])
-  const [selectedPlaces, setSelectedPlaces] = React.useState<string[]>([])
-  const [start, setStart] = React.useState<Date | null>(null)
-  const [end, setEnd] = React.useState<Date | null>(null)
-  const [isCustomDate, setIsCustomDate] = React.useState<boolean>(false)
-  const [selectedTexts, setSelectedTexts] = React.useState<string[]>([])
-  const [autosuggestInput, setAutosuggestInput] = React.useState('')
+  );
+  const [selectedDivisions, setSelectedDivisions] = React.useState<string[]>(
+    []
+  );
+  const [selectedPlaces, setSelectedPlaces] = React.useState<string[]>([]);
+  const [start, setStart] = React.useState<Date | null>(null);
+  const [end, setEnd] = React.useState<Date | null>(null);
+  const [isCustomDate, setIsCustomDate] = React.useState<boolean>(false);
+  const [selectedTexts, setSelectedTexts] = React.useState<string[]>([]);
+  const [autosuggestInput, setAutosuggestInput] = React.useState('');
 
   const {
     isFree,
@@ -77,7 +81,7 @@ const AdvancedSearch: React.FC<Props> = ({
     onlyEveningEvents,
     onlyRemoteEvents,
     publisher,
-  } = getSearchFilters(searchParams)
+  } = getSearchFilters(searchParams);
 
   const searchFilters = {
     categories: selectedCategories,
@@ -94,32 +98,32 @@ const AdvancedSearch: React.FC<Props> = ({
     publisher,
     start,
     text: selectedTexts,
-  }
+  };
 
   // const divisionOptions = useDivisionOptions();
 
-  const categories = getEventCategoryOptions(t)
+  const categories = getEventCategoryOptions(t);
 
   const handleChangeDateTypes = (value: string[]) => {
-    setSelectedDateTypes(value)
-  }
+    setSelectedDateTypes(value);
+  };
 
   const toggleIsCustomDate = () => {
-    setIsCustomDate(!isCustomDate)
-  }
+    setIsCustomDate(!isCustomDate);
+  };
 
   const moveToSearchPage = () => {
     const filters = {
       ...searchFilters,
       text: [autosuggestInput],
-    }
-    const search = getSearchQuery(filters)
+    };
+    const search = getSearchQuery(filters);
 
     router.push({
       pathname: getI18nPath('/search', locale),
       search,
-    })
-  }
+    });
+  };
 
   // Initialize fields when page is loaded
   React.useEffect(() => {
@@ -131,98 +135,98 @@ const AdvancedSearch: React.FC<Props> = ({
       places,
       start: startTime,
       text,
-    } = getSearchFilters(searchParams)
+    } = getSearchFilters(searchParams);
 
-    const pathPlace = params.place && MAPPED_PLACES[params.place.toLowerCase()]
+    const pathPlace = params.place && MAPPED_PLACES[params.place.toLowerCase()];
 
     if (pathPlace) {
-      places.push(pathPlace)
+      places.push(pathPlace);
     }
 
-    setSelectedCategories(categories)
-    setSelectedDivisions(divisions)
-    setSelectedPlaces(places)
-    setSelectedTexts(text || [])
-    setEnd(endTime)
-    setStart(startTime)
+    setSelectedCategories(categories);
+    setSelectedDivisions(divisions);
+    setSelectedPlaces(places);
+    setSelectedTexts(text || []);
+    setEnd(endTime);
+    setStart(startTime);
 
     if (endTime || startTime) {
-      setIsCustomDate(true)
+      setIsCustomDate(true);
     } else {
-      setSelectedDateTypes(dateTypes)
+      setSelectedDateTypes(dateTypes);
     }
-    setAutosuggestInput(text?.toString() || '')
-  }, [searchParams, params])
+    setAutosuggestInput(text?.toString() || '');
+  }, [searchParams, params]);
 
   const handleMenuOptionClick = async (option: AutosuggestMenuOption) => {
-    const value = option.text
+    const value = option.text;
 
-    const { text } = getSearchFilters(searchParams)
+    const { text } = getSearchFilters(searchParams);
 
     if (value && !text?.includes(value)) {
-      text?.push(value)
+      text?.push(value);
     }
 
     const search = getSearchQuery({
       ...searchFilters,
       text,
-    })
+    });
 
-    setSelectedTexts(text || [])
+    setSelectedTexts(text || []);
 
     router.push({
       pathname: getI18nPath('/search', locale),
       search,
-    })
-    scrollToResultList()
-  }
+    });
+    scrollToResultList();
+  };
 
   const handleIsFreeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const search = getSearchQuery({
       ...searchFilters,
       isFree: e.target.checked,
-    })
+    });
 
     router.push({
       pathname: getI18nPath('/search', locale),
       search,
-    })
-  }
+    });
+  };
 
   const clearInputValues = () => {
-    setCategoryInput('')
+    setCategoryInput('');
     // setDivisionInput("");
-    setPlaceInput('')
-    setAutosuggestInput('')
-    setMaxAgeInput('')
-    setMinAgeInput('')
-  }
+    setPlaceInput('');
+    setAutosuggestInput('');
+    setMaxAgeInput('');
+    setMinAgeInput('');
+  };
 
   const clearFilters = () => {
-    const search = getSearchQuery(EVENT_DEFAULT_SEARCH_FILTERS)
+    const search = getSearchQuery(EVENT_DEFAULT_SEARCH_FILTERS);
 
     router.push({
       pathname: getI18nPath('/search', locale),
       search,
-    })
+    });
 
-    clearInputValues()
-  }
+    clearInputValues();
+  };
 
   const handleSubmit = (event?: FormEvent) => {
     if (event) {
-      event.preventDefault()
+      event.preventDefault();
     }
 
-    moveToSearchPage()
-    setAutosuggestInput('')
-    scrollToResultList()
-  }
+    moveToSearchPage();
+    setAutosuggestInput('');
+    scrollToResultList();
+  };
 
   const handleSetAgeValues = (minAge: string, maxAge: string) => {
-    setMinAgeInput(minAge)
-    setMaxAgeInput(maxAge)
-  }
+    setMinAgeInput(minAge);
+    setMaxAgeInput(maxAge);
+  };
 
   return (
     <div className={styles.searchContainer} data-testid={dataTestId}>
@@ -362,7 +366,7 @@ const AdvancedSearch: React.FC<Props> = ({
         </form>
       </Container>
     </div>
-  )
-}
+  );
+};
 
-export default AdvancedSearch
+export default AdvancedSearch;

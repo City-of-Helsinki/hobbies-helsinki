@@ -10,15 +10,15 @@ export type ReturnParams = {
  */
 export const extractLatestReturnPath = (queryString: string): ReturnParams => {
   const searchParams = new URLSearchParams(queryString);
-  const returnPaths = searchParams.getAll("returnPath");
+  const returnPaths = searchParams.getAll('returnPath');
   // latest path is the last item, it can be popped. If empty, defaults to /events
-  const extractedPath = returnPaths.pop() ?? "/search";
+  const extractedPath = returnPaths.pop() ?? '/search';
   // there is no support to delete all but extracted item from same parameter list. This is a workaround to it:
   // 1) delete all first
-  searchParams.delete("returnPath");
+  searchParams.delete('returnPath');
   // 2) then append all except latest
   returnPaths.forEach((returnPath) =>
-    searchParams.append("returnPath", returnPath)
+    searchParams.append('returnPath', returnPath)
   );
   return {
     returnPath: extractedPath,

@@ -1,4 +1,4 @@
-import classNames from "classnames";
+import classNames from 'classnames';
 import {
   Button,
   IconArrowLeft,
@@ -6,30 +6,30 @@ import {
   IconLinkExternal,
   IconLocation,
   IconTicket,
-} from "hds-react";
-import { useTranslation } from "next-i18next";
-import React from "react";
+} from 'hds-react';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import InfoWithIcon from "../../../common-events/components/infoWithIcon/InfoWithIcon";
-import Container from "../../../common-events/components/layout/Container";
-import SkeletonLoader from "../../../common-events/components/skeletonLoader/SkeletonLoader";
-import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
-import testImage from "../../../common-events/utils/testImage";
-import buttonStyles from "../../../common-events/components/button/button.module.scss";
-import IconButton from "../../../common/components/iconButton/IconButton";
-import Visible from "../../../common/components/visible/Visible";
-import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../../common-events/i18n/router/useRouter";
-import EventKeywords from "../eventKeywords/EventKeywords";
-import LocationText from "../eventLocation/EventLocationText";
-import EventName from "../eventName/EventName";
+import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
+import Container from '../../../common-events/components/layout/Container';
+import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
+import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
+import testImage from '../../../common-events/utils/testImage';
+import buttonStyles from '../../../common-events/components/button/button.module.scss';
+import IconButton from '../../../common/components/iconButton/IconButton';
+import Visible from '../../../common/components/visible/Visible';
+import useLocale from '../../../common-events/hooks/useLocale';
+import useRouter from '../../../common-events/i18n/router/useRouter';
+import EventKeywords from '../eventKeywords/EventKeywords';
+import LocationText from '../eventLocation/EventLocationText';
+import EventName from '../eventName/EventName';
 import {
   extractLatestReturnPath,
   ReturnParams,
-} from "../eventQueryString.util";
-import { getEventFields, getEventPrice } from "../EventUtils";
-import { EventFields, SuperEventResponse } from "../types";
-import styles from "./eventHero.module.scss";
+} from '../eventQueryString.util';
+import { getEventFields, getEventPrice } from '../EventUtils';
+import { EventFields, SuperEventResponse } from '../types';
+import styles from './eventHero.module.scss';
 
 export interface Props {
   event: EventFields;
@@ -37,11 +37,11 @@ export interface Props {
 }
 
 const EventHero: React.FC<Props> = ({ event, superEvent }) => {
-  const { t } = useTranslation("event");
+  const { t } = useTranslation('event');
   const [showBackupImage, setShowBackupImage] = React.useState(false);
   const locale = useLocale();
   const router = useRouter();
-  const search = router.asPath.split("?")[1];
+  const search = router.asPath.split('?')[1];
 
   const {
     endTime: eventEndTime,
@@ -59,7 +59,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
   const eventPriceText = getEventPrice(
     event,
     locale,
-    t("event:hero.offers.isFree")
+    t('event:hero.offers.isFree')
   );
   const showKeywords = Boolean(today || thisWeek || keywords.length);
   const returnParam = extractLatestReturnPath(search);
@@ -91,12 +91,12 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
   }, [imageUrl]);
 
   const startTime =
-    superEvent?.status === "pending"
-      ? ""
+    superEvent?.status === 'pending'
+      ? ''
       : superEvent?.data?.startTime || eventStartTime;
   const endTime =
-    superEvent?.status === "pending"
-      ? ""
+    superEvent?.status === 'pending'
+      ? ''
       : superEvent?.data?.endTime || eventEndTime;
 
   return (
@@ -106,7 +106,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
           <div className={styles.backButtonWrapper}>
             <IconButton
               role="link"
-              ariaLabel={t("event:hero.ariaLabelBackButton")}
+              ariaLabel={t('event:hero.ariaLabelBackButton')}
               backgroundColor="white"
               icon={<IconArrowLeft aria-hidden />}
               onClick={() => goBack(returnParam)}
@@ -133,7 +133,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
               )}
               <div className={styles.additionalInfo}>
                 <Visible above="s" className={styles.location}>
-                  <InfoWithIcon icon={<IconLocation aria-hidden />} title={""}>
+                  <InfoWithIcon icon={<IconLocation aria-hidden />} title={''}>
                     <LocationText
                       event={event}
                       showDistrict={false}
@@ -142,21 +142,21 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                   </InfoWithIcon>
                 </Visible>
                 <Visible above="s" className={styles.start}>
-                  {superEvent?.status === "pending" ? (
+                  {superEvent?.status === 'pending' ? (
                     <SkeletonLoader />
                   ) : (
                     (startTime !== eventStartTime ||
                       endTime !== eventEndTime) && (
                       <InfoWithIcon
                         icon={<IconCalendarClock aria-hidden />}
-                        title={""}
+                        title={''}
                       >
                         {getDateRangeStr({
-                          start: eventStartTime || "",
+                          start: eventStartTime || '',
                           end: eventEndTime,
                           locale,
                           includeTime: true,
-                          timeAbbreviation: t("common:timeAbbreviation"),
+                          timeAbbreviation: t('common:timeAbbreviation'),
                         })}
                       </InfoWithIcon>
                     )
@@ -164,7 +164,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                 </Visible>
                 {eventPriceText && (
                   <Visible above="s" className={styles.price}>
-                    <InfoWithIcon icon={<IconTicket aria-hidden />} title={""}>
+                    <InfoWithIcon icon={<IconTicket aria-hidden />} title={''}>
                       {eventPriceText}
                     </InfoWithIcon>
                   </Visible>
@@ -172,12 +172,12 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                 {showBuyButton && (
                   <Visible above="s" className={styles.buyButtonWrapper}>
                     <Button
-                      aria-label={t("event:hero.ariaLabelBuyTickets")}
+                      aria-label={t('event:hero.ariaLabelBuyTickets')}
                       onClick={goToBuyTicketsPage}
                       iconRight={<IconLinkExternal aria-hidden />}
                       variant="success"
                     >
-                      {t("hero.buttonBuyTickets")}
+                      {t('hero.buttonBuyTickets')}
                     </Button>
                   </Visible>
                 )}
@@ -185,10 +185,10 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                   <Visible className={styles.registrationButtonWrapper}>
                     <Button
                       className={buttonStyles.buttonCoatBlue}
-                      aria-label={t("event:hero.ariaLabelEnrol")}
+                      aria-label={t('event:hero.ariaLabelEnrol')}
                       onClick={() => window.open(registrationUrl)}
                     >
-                      {t("event:hero.buttonEnrol")}
+                      {t('event:hero.buttonEnrol')}
                     </Button>
                   </Visible>
                 )}

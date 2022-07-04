@@ -1,9 +1,9 @@
-import { render, screen } from "../../../../tests/utils";
-import Link from "../Link";
+import { render, screen } from '../../../../tests/utils';
+import Link from '../Link';
 
-describe("<Link />", () => {
-  it("should retain current pathname if none is provided in href object", () => {
-    const label = "Test Link";
+describe('<Link />', () => {
+  it('should retain current pathname if none is provided in href object', () => {
+    const label = 'Test Link';
 
     render(
       <Link
@@ -17,12 +17,12 @@ describe("<Link />", () => {
       </Link>,
       undefined,
       {
-        pathname: "/search",
+        pathname: '/search',
       }
     );
 
     expect(
-      screen.getByRole("link", {
+      screen.getByRole('link', {
         name: label,
       }).href
     ).toMatchInlineSnapshot(`"http://localhost/search?isOpenNow=true"`);

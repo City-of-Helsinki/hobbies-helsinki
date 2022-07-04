@@ -1,26 +1,26 @@
-import React from "react";
-import "nprogress/nprogress.css";
-import { ApolloProvider } from "@apollo/client";
-import type { AppProps } from "next/app";
-import { useEffect } from "react";
-import dynamic from "next/dynamic";
-import { LoadingSpinner } from "hds-react";
-import Error from "next/error";
-import { appWithTranslation } from "next-i18next";
-import { ToastContainer } from "react-toastify";
-import { ConfigProvider as RHHCConfigProvider } from "react-helsinki-headless-cms";
-import { NextRouter } from "next/router";
+import React from 'react';
+import 'nprogress/nprogress.css';
+import { ApolloProvider } from '@apollo/client';
+import type { AppProps } from 'next/app';
+import { useEffect } from 'react';
+import dynamic from 'next/dynamic';
+import { LoadingSpinner } from 'hds-react';
+import Error from 'next/error';
+import { appWithTranslation } from 'next-i18next';
+import { ToastContainer } from 'react-toastify';
+import { ConfigProvider as RHHCConfigProvider } from 'react-helsinki-headless-cms';
+import { NextRouter } from 'next/router';
 
-import "../styles/globals.scss";
-import { useCmsApollo } from "../domain/clients/cmsApolloClient";
-import useRHHCConfig from "../hooks/useRHHCConfig";
-import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
-import { useEventsApolloClient } from "../domain/clients/eventsApolloClient";
-import useEventsConfig from "../hooks/useEventsConfig";
+import '../styles/globals.scss';
+import { useCmsApollo } from '../domain/clients/cmsApolloClient';
+import useRHHCConfig from '../hooks/useRHHCConfig';
+import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
+import { useEventsApolloClient } from '../domain/clients/eventsApolloClient';
+import useEventsConfig from '../hooks/useEventsConfig';
 
 const TopProgressBar = dynamic(
   () => {
-    return import("../common-events/components/topProgressBar/TopProgressBar");
+    return import('../common-events/components/topProgressBar/TopProgressBar');
   },
   { ssr: false }
 );
@@ -29,11 +29,11 @@ function Center({ children }: { children: React.ReactNode }) {
   return (
     <div
       style={{
-        width: "100vw",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
+        width: '100vw',
+        height: '100vh',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
       }}
     >
       {children}
@@ -61,7 +61,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       const body = document?.body;
 
       if (body) {
-        body.style.visibility = "unset";
+        body.style.visibility = 'unset';
       }
     }, 10);
   }, []);

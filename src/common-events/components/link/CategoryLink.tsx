@@ -1,11 +1,11 @@
-import { UrlObject } from "url";
+import { UrlObject } from 'url';
 
-import classNames from "classnames";
-import { IconAngleRight } from "hds-react";
-import React from "react";
+import classNames from 'classnames';
+import { IconAngleRight } from 'hds-react';
+import React from 'react';
 
-import Link from "../../i18n/router/Link";
-import styles from "./categoryLink.module.scss";
+import Link from '../../i18n/router/Link';
+import styles from './categoryLink.module.scss';
 
 type Props = {
   className?: string;

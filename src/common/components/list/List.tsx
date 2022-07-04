@@ -1,7 +1,7 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
-import styles from "./list.module.scss";
+import styles from './list.module.scss';
 
 type ListItemProps = {
   className?: string;
@@ -11,14 +11,14 @@ type ListItemProps = {
 type Props = {
   items: React.ReactElement[];
   variant?:
-    | "default"
-    | "collection-grid"
-    | "searchResult"
-    | "grid-3"
-    | "grid-2"
-    | "fixed-grid-4"
-    | "column";
-  gap?: "xs" | "s" | "m" | "l";
+    | 'default'
+    | 'collection-grid'
+    | 'searchResult'
+    | 'grid-3'
+    | 'grid-2'
+    | 'fixed-grid-4'
+    | 'column';
+  gap?: 'xs' | 's' | 'm' | 'l';
   li?: React.ComponentType<ListItemProps>;
   listContainerRef?:
     | React.RefObject<HTMLUListElement>
@@ -27,12 +27,12 @@ type Props = {
 
 function List({
   items,
-  variant = "default",
+  variant = 'default',
   li: Li,
   listContainerRef,
   gap,
 }: Props) {
-  const ListElement = Li ?? "li";
+  const ListElement = Li ?? 'li';
   return (
     <ul
       ref={listContainerRef}

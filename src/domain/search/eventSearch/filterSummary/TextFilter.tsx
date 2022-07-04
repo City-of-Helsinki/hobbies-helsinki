@@ -1,7 +1,7 @@
-import React from "react";
+import React from 'react';
 
-import FilterButton from "../../../../common-events/components/filterButton/FilterButton";
-import { FilterType } from "../../../../common-events/components/filterButton/types";
+import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
+import { FilterType } from '../../../../common-events/components/filterButton/types';
 
 interface Props {
   onRemove: (value: string, type: FilterType) => void;

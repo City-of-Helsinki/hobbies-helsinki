@@ -1,34 +1,34 @@
-import { advanceTo, clear } from "jest-date-mock";
-import capitalize from "lodash/capitalize";
-import * as React from "react";
-import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
+import { advanceTo, clear } from 'jest-date-mock';
+import capitalize from 'lodash/capitalize';
+import * as React from 'react';
+import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
 
 import {
   EventDetails,
   EventFieldsFragment,
   OfferFieldsFragment,
-} from "../../../../domain/nextApi/graphql/generated/graphql";
-import { translations } from "../../../../tests/initI18n";
+} from '../../../../domain/nextApi/graphql/generated/graphql';
+import { translations } from '../../../../tests/initI18n';
 import {
   fakeEvent,
   fakeExternalLink,
   fakeKeyword,
   fakeLocalizedObject,
   fakeOffer,
-} from "../../../../tests/mockDataUtils";
-import { render, screen, userEvent } from "../../../../tests/testUtils";
+} from '../../../../tests/mockDataUtils';
+import { render, screen, userEvent } from '../../../../tests/testUtils';
 
-import EventHero, { Props as EventHeroProps } from "../EventHero";
+import EventHero, { Props as EventHeroProps } from '../EventHero';
 
-const name = "Event name";
-const startTime = "2020-06-22T07:00:00.000000Z";
-const endTime = "2020-06-22T10:00:00.000000Z";
-const shortDescription = "Event description";
-const locationName = "Location name";
-const streetAddress = "Test address 1";
-const addressLocality = "Helsinki";
+const name = 'Event name';
+const startTime = '2020-06-22T07:00:00.000000Z';
+const endTime = '2020-06-22T10:00:00.000000Z';
+const shortDescription = 'Event description';
+const locationName = 'Location name';
+const streetAddress = 'Test address 1';
+const addressLocality = 'Helsinki';
 
-const keywordNames = ["keyword 1", "keyword 2"];
+const keywordNames = ['keyword 1', 'keyword 2'];
 const keywords = keywordNames.map((name) =>
   fakeKeyword({ name: { fi: name } })
 );
@@ -39,10 +39,10 @@ const getFakeEvent = (overrides?: Partial<EventDetails>) => {
     keywords,
     startTime,
     endTime,
-    publisher: "",
+    publisher: '',
     shortDescription: { fi: shortDescription },
     location: {
-      internalId: "tprek:8740",
+      internalId: 'tprek:8740',
       addressLocality: { fi: addressLocality },
       name: { fi: locationName },
       streetAddress: { fi: streetAddress },
@@ -60,30 +60,30 @@ const renderComponent = (props?: Partial<EventHeroProps>) => {
   return render(<EventHero event={getFakeEvent()} {...props} />);
 };
 
-test("should render event name, description and location", () => {
+test('should render event name, description and location', () => {
   renderComponent();
 
-  expect(screen.queryByRole("heading", { name })).toBeInTheDocument();
+  expect(screen.queryByRole('heading', { name })).toBeInTheDocument();
   expect(screen.queryByText(shortDescription)).toBeInTheDocument();
   expect(
     screen.queryByText(
-      [locationName, streetAddress, addressLocality].join(", ")
+      [locationName, streetAddress, addressLocality].join(', ')
     )
   ).toBeInTheDocument();
 });
 
-test("should go to event list", () => {
+test('should go to event list', () => {
   const { history } = renderComponent();
 
   userEvent.click(
-    screen.getByRole("link", {
+    screen.getByRole('link', {
       name: translations.event.hero.ariaLabelBackButton,
     })
   );
-  expect(history.location.pathname).toBe("/fi/events");
+  expect(history.location.pathname).toBe('/fi/events');
 });
 
-test("should render keywords", () => {
+test('should render keywords', () => {
   renderComponent();
 
   keywordNames.forEach((keyword) => {
@@ -91,54 +91,54 @@ test("should render keywords", () => {
   });
 });
 
-test("should render today tag", () => {
-  advanceTo("2020-06-22");
+test('should render today tag', () => {
+  advanceTo('2020-06-22');
   renderComponent();
 
   expect(
-    screen.queryByRole("link", {
+    screen.queryByRole('link', {
       name: translations.event.categories.labelToday,
     })
   ).toBeInTheDocument();
   expect(
-    screen.queryByRole("link", {
+    screen.queryByRole('link', {
       name: translations.event.categories.labelThisWeek,
     })
   ).not.toBeInTheDocument();
 });
 
-test("should render this week tag", () => {
-  advanceTo("2020-06-23");
+test('should render this week tag', () => {
+  advanceTo('2020-06-23');
   renderComponent();
 
   expect(
-    screen.queryByRole("link", {
+    screen.queryByRole('link', {
       name: translations.event.categories.labelToday,
     })
   ).not.toBeInTheDocument();
   expect(
-    screen.queryByRole("link", {
+    screen.queryByRole('link', {
       name: translations.event.categories.labelThisWeek,
     })
   ).toBeInTheDocument();
 });
 
-test("should hide buy button for free events", () => {
+test('should hide buy button for free events', () => {
   const mockEvent = getFakeEvent({
     offers: [fakeOffer({ isFree: true }) as OfferFieldsFragment],
   });
   render(<EventHero event={mockEvent} />);
 
   expect(
-    screen.queryByRole("button", {
-      name: new RegExp(translations.event.hero.buttonBuyTickets, "i"),
+    screen.queryByRole('button', {
+      name: new RegExp(translations.event.hero.buttonBuyTickets, 'i'),
     })
   ).not.toBeInTheDocument();
 });
 
-test("should show buy button", () => {
+test('should show buy button', () => {
   global.open = jest.fn();
-  const infoUrl = "https://test.url";
+  const infoUrl = 'https://test.url';
   const mockEvent = getFakeEvent({
     offers: [
       fakeOffer({
@@ -153,27 +153,27 @@ test("should show buy button", () => {
 
   // shouldn't be rendred when externalLinks are not present
   expect(
-    screen.queryByRole("button", {
-      name: new RegExp(translations.event.hero.buttonEnrol, "i"),
+    screen.queryByRole('button', {
+      name: new RegExp(translations.event.hero.buttonEnrol, 'i'),
     })
   ).not.toBeInTheDocument();
 
   userEvent.click(
-    screen.getByRole("button", {
-      name: new RegExp(translations.event.hero.buttonBuyTickets, "i"),
+    screen.getByRole('button', {
+      name: new RegExp(translations.event.hero.buttonBuyTickets, 'i'),
     })
   );
   expect(global.open).toHaveBeenCalledWith(infoUrl);
 });
 
-test("Register button should be visible and clickable", () => {
+test('Register button should be visible and clickable', () => {
   global.open = jest.fn();
-  const registrationUrl = "https://harrastushaku.fi/register/13290";
+  const registrationUrl = 'https://harrastushaku.fi/register/13290';
   const mockEvent = getFakeEvent({
     externalLinks: [
       fakeExternalLink({
         link: registrationUrl,
-        name: "registration",
+        name: 'registration',
       }),
     ],
   });
@@ -185,7 +185,7 @@ test("Register button should be visible and clickable", () => {
   ).toBeInTheDocument();
 
   userEvent.click(
-    screen.getByRole("button", {
+    screen.getByRole('button', {
       name: translations.event.hero.ariaLabelEnrol,
     })
   );
@@ -193,23 +193,23 @@ test("Register button should be visible and clickable", () => {
   expect(global.open).toBeCalledWith(registrationUrl);
 });
 
-test("should show event dates if super event is defined", () => {
+test('should show event dates if super event is defined', () => {
   const mockEvent = getFakeEvent();
   const mockSuperEvent = getFakeEvent({
-    startTime: "2020-06-22T07:00:00.000000Z",
-    endTime: "2025-06-26T07:00:00.000000Z",
+    startTime: '2020-06-22T07:00:00.000000Z',
+    endTime: '2025-06-26T07:00:00.000000Z',
   });
   render(
     <EventHero
       event={mockEvent}
-      superEvent={{ data: mockSuperEvent, status: "resolved" }}
+      superEvent={{ data: mockSuperEvent, status: 'resolved' }}
     />
   );
 
   const dateStr = getDateRangeStr({
     start: mockEvent.startTime as string,
     end: mockEvent.endTime,
-    locale: "fi",
+    locale: 'fi',
     includeTime: true,
     timeAbbreviation: translations.common.timeAbbreviation,
   });

@@ -1,4 +1,4 @@
-@import "breakpoints";
+@import 'breakpoints';
 
 .searchRow {
   display: flex;
@@ -11,7 +11,7 @@
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 1.25rem;
-   
+
     grid-template-columns: 9fr 3fr;
   }
 }
@@ -45,7 +45,7 @@
 
 .dateSelectorWrapper {
   width: 100%;
- margin-bottom: 1.25rem;
+  margin-bottom: 1.25rem;
   @include respond-above(s) {
     grid-column-start: 2;
   }

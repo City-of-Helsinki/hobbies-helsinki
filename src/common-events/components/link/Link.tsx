@@ -1,17 +1,17 @@
-import classNames from "classnames";
-import { IconAngleRight, IconLinkExternal } from "hds-react";
-import React from "react";
-import { LinkProps as ReactScrollLinkProps } from "react-scroll/modules/components/Link";
+import classNames from 'classnames';
+import { IconAngleRight, IconLinkExternal } from 'hds-react';
+import React from 'react';
+import { LinkProps as ReactScrollLinkProps } from 'react-scroll/modules/components/Link';
 
-import RouterLink from "../../i18n/router/Link";
-import SrOnly from "../../../common/components/srOnly/SrOnly";
-import styles from "./link.module.scss";
-import useConfig from "../../hooks/useConfig";
+import RouterLink from '../../i18n/router/Link';
+import SrOnly from '../../../common/components/srOnly/SrOnly';
+import styles from './link.module.scss';
+import useConfig from '../../hooks/useConfig';
 
-export interface LinkProps extends Omit<ReactScrollLinkProps, "size"> {
-  color?: "default" | "white";
+export interface LinkProps extends Omit<ReactScrollLinkProps, 'size'> {
+  color?: 'default' | 'white';
   isExternal?: boolean;
-  size?: "default" | "small";
+  size?: 'default' | 'small';
   to: string;
   children?: React.ReactNode;
   className?: string;
@@ -19,10 +19,10 @@ export interface LinkProps extends Omit<ReactScrollLinkProps, "size"> {
 
 const ALink: React.FC<LinkProps> = ({
   className,
-  color = "default",
+  color = 'default',
   children,
   isExternal = false,
-  size = "default",
+  size = 'default',
   to,
   ...rest
 }) => {
@@ -40,7 +40,7 @@ const ALink: React.FC<LinkProps> = ({
   return isExternal ? (
     <a href={to} rel="noopener noreferrer" target="_blank" {...commonProps}>
       {children}
-      <SrOnly>{t<string>("common:srOnly.opensInANewTab")}</SrOnly>
+      <SrOnly>{t<string>('common:srOnly.opensInANewTab')}</SrOnly>
       <IconLinkExternal aria-hidden />
     </a>
   ) : (

@@ -1,9 +1,9 @@
-import FileSaver from "file-saver";
-import React from "react";
+import FileSaver from 'file-saver';
+import React from 'react';
 
-import { EventDetails } from "../../../../domain/nextApi/graphql/generated/graphql";
-import { translations } from "../../../../tests/initI18n";
-import { fakeEvent } from "../../../../tests/mockDataUtils";
+import { EventDetails } from '../../../../domain/nextApi/graphql/generated/graphql';
+import { translations } from '../../../../tests/initI18n';
+import { fakeEvent } from '../../../../tests/mockDataUtils';
 import {
   actWait,
   configure,
@@ -12,11 +12,11 @@ import {
   userEvent,
   waitFor,
   within,
-} from "../../../../tests/testUtils";
-import getDateRangeStr from "../../../../common-events/utils/getDateRangeStr";
-import { EventFields, SuperEventResponse } from "../../types";
-import EventInfo from "../EventInfo";
-import { subEventsListTestId, superEventTestId } from "../EventsHierarchy";
+} from '../../../../tests/testUtils';
+import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
+import { EventFields, SuperEventResponse } from '../../types';
+import EventInfo from '../EventInfo';
+import { subEventsListTestId, superEventTestId } from '../EventsHierarchy';
 import {
   addressLocality,
   email,
@@ -32,43 +32,43 @@ import {
   subEventsResponse,
   superEventInternalId,
   telephone,
-} from "../utils/EventInfo.mocks";
+} from '../utils/EventInfo.mocks';
 configure({ defaultHidden: true });
 
 const getDateRangeStrProps = (event: EventDetails) => ({
   start: event.startTime!,
   end: event.endTime,
-  locale: "fi",
+  locale: 'fi',
   includeTime: true,
   timeAbbreviation: translations.common.timeAbbreviation,
 });
 
-it("should render event info fields", async () => {
+it('should render event info fields', async () => {
   render(<EventInfo event={event} />, { mocks });
   await actWait();
 
   const itemsByRole = [
-    { role: "heading", name: translations.event.info.labelDateAndTime },
-    { role: "heading", name: translations.event.info.labelLocation },
-    { role: "heading", name: translations.event.info.labelLanguages },
-    { role: "heading", name: translations.event.info.labelOtherInfo },
-    { role: "heading", name: translations.event.info.labelAudience },
-    { role: "heading", name: translations.event.info.labelPublisher },
-    { role: "heading", name: translations.event.info.labelOrganizer },
+    { role: 'heading', name: translations.event.info.labelDateAndTime },
+    { role: 'heading', name: translations.event.info.labelLocation },
+    { role: 'heading', name: translations.event.info.labelLanguages },
+    { role: 'heading', name: translations.event.info.labelOtherInfo },
+    { role: 'heading', name: translations.event.info.labelAudience },
+    { role: 'heading', name: translations.event.info.labelPublisher },
+    { role: 'heading', name: translations.event.info.labelOrganizer },
     {
-      role: "link",
+      role: 'link',
       name: `${translations.event.info.extlinkFacebook} ${translations.common.srOnly.opensInANewTab}`,
     },
-    { role: "heading", name: translations.event.info.labelDirections },
+    { role: 'heading', name: translations.event.info.labelDirections },
     {
-      role: "link",
+      role: 'link',
       name: `${translations.event.location.directionsGoogle} ${translations.common.srOnly.opensInANewTab}`,
     },
     {
-      role: "link",
+      role: 'link',
       name: `${translations.event.location.directionsHSL} ${translations.common.srOnly.opensInANewTab}`,
     },
-    { role: "heading", name: translations.event.info.labelPrice },
+    { role: 'heading', name: translations.event.info.labelPrice },
   ];
 
   itemsByRole.forEach(({ role, name }) => {
@@ -76,7 +76,7 @@ it("should render event info fields", async () => {
   });
 
   const itemsByText = [
-    "Ma 22.6.2020, klo 10.00 – 13.00",
+    'Ma 22.6.2020, klo 10.00 – 13.00',
     addressLocality,
     locationName,
     streetAddress,
@@ -92,7 +92,7 @@ it("should render event info fields", async () => {
   });
 });
 
-it("should hide the organizer section when the organizer name is not given", async () => {
+it('should hide the organizer section when the organizer name is not given', async () => {
   const mockEvent = {
     ...event,
     provider: null,
@@ -100,18 +100,18 @@ it("should hide the organizer section when the organizer name is not given", asy
   render(<EventInfo event={mockEvent} />, { mocks });
   await actWait();
   expect(
-    screen.queryByRole("heading", {
+    screen.queryByRole('heading', {
       name: translations.event.info.labelPublisher,
     })
   ).toBeInTheDocument();
   expect(
-    screen.queryByRole("heading", {
+    screen.queryByRole('heading', {
       name: translations.event.info.labelOrganizer,
     })
   ).not.toBeInTheDocument();
 });
 
-it("should hide other info section", () => {
+it('should hide other info section', () => {
   const mockEvent = {
     ...event,
     externalLinks: [],
@@ -129,7 +129,7 @@ it("should hide other info section", () => {
 
   // Event info fields
   expect(
-    screen.queryByRole("heading", {
+    screen.queryByRole('heading', {
       name: translations.event.info.labelOtherInfo,
     })
   ).not.toBeInTheDocument();
@@ -137,13 +137,13 @@ it("should hide other info section", () => {
   expect(screen.queryByText(telephone)).not.toBeInTheDocument();
 });
 
-it("should hide other info section registration url from external links", () => {
+it('should hide other info section registration url from external links', () => {
   const mockEvent = {
     ...event,
     externalLinks: [
       {
-        name: "registration",
-        link: "https://harrastushaku.fi/register/14302",
+        name: 'registration',
+        link: 'https://harrastushaku.fi/register/14302',
       },
     ],
     infoUrl: null,
@@ -159,20 +159,20 @@ it("should hide other info section registration url from external links", () => 
   });
 
   expect(
-    screen.queryByRole("button", {
+    screen.queryByRole('button', {
       name: translations.event.info.registration,
     })
   ).not.toBeInTheDocument();
 });
 
-it("should hide the map link from location info if location is internet", () => {
+it('should hide the map link from location info if location is internet', () => {
   const mockEvent = {
     ...event,
     externalLinks: [],
     infoUrl: null,
     location: {
       ...event.location,
-      id: "helsinki:internet",
+      id: 'helsinki:internet',
       email: null,
       externalLinks: [],
       telephone: null,
@@ -183,19 +183,19 @@ it("should hide the map link from location info if location is internet", () => 
   });
 
   expect(
-    screen.queryByRole("button", {
+    screen.queryByRole('button', {
       name: translations.event.info.openMap,
     })
   ).not.toBeInTheDocument();
 });
 
-it("should open ticket buy page", async () => {
+it('should open ticket buy page', async () => {
   global.open = jest.fn();
   render(<EventInfo event={event} />, { mocks });
 
   // Event info fields
   userEvent.click(
-    screen.queryByRole("button", {
+    screen.queryByRole('button', {
       name: translations.event.info.ariaLabelBuyTickets,
     })!
   );
@@ -205,13 +205,13 @@ it("should open ticket buy page", async () => {
   });
 });
 
-it("should create ics file succesfully", async () => {
-  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
+it('should create ics file succesfully', async () => {
+  const saveAsSpy = jest.spyOn(FileSaver, 'saveAs');
   render(<EventInfo event={event} />, { mocks });
 
   // Event info fields
   userEvent.click(
-    screen.queryByRole("button", {
+    screen.queryByRole('button', {
       name: translations.event.info.buttonAddToCalendar,
     })!
   );
@@ -221,15 +221,15 @@ it("should create ics file succesfully", async () => {
   });
 });
 
-it("should create ics file succesfully when end time is not defined", async () => {
-  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
+it('should create ics file succesfully when end time is not defined', async () => {
+  const saveAsSpy = jest.spyOn(FileSaver, 'saveAs');
   render(<EventInfo event={{ ...event, endTime: null }} />, {
     mocks,
   });
 
   // Event info fields
   userEvent.click(
-    screen.queryByRole("button", {
+    screen.queryByRole('button', {
       name: translations.event.info.buttonAddToCalendar,
     })!
   );
@@ -239,7 +239,7 @@ it("should create ics file succesfully when end time is not defined", async () =
   });
 });
 
-it("should hide audience age info on single event page", async () => {
+it('should hide audience age info on single event page', async () => {
   render(<EventInfo event={event} />, {
     routes: [`/fi/events`],
   });
@@ -249,7 +249,7 @@ it("should hide audience age info on single event page", async () => {
   });
 });
 
-it("should show formatted audience age info on signle event page if max age is not specified", async () => {
+it('should show formatted audience age info on signle event page if max age is not specified', async () => {
   render(<EventInfo event={{ ...event, audienceMaxAge: null }} />, {
     routes: [`/fi/events`],
   });
@@ -259,7 +259,7 @@ it("should show formatted audience age info on signle event page if max age is n
   });
 });
 
-it("should hide audience age info on single event page if min and max ages are not specified", async () => {
+it('should hide audience age info on single event page if min and max ages are not specified', async () => {
   render(
     <EventInfo
       event={{ ...event, audienceMinAge: null, audienceMaxAge: null }}
@@ -274,24 +274,24 @@ it("should hide audience age info on single event page if min and max ages are n
   });
 });
 
-describe("OrganizationInfo", () => {
-  it("should show event type related providers link text in events info", async () => {
+describe('OrganizationInfo', () => {
+  it('should show event type related providers link text in events info', async () => {
     render(<EventInfo event={event} />, { mocks });
     await actWait();
     expect(
-      screen.queryByText("Katso julkaisijan muut tapahtumat")
+      screen.queryByText('Katso julkaisijan muut tapahtumat')
     ).toBeInTheDocument();
   });
 });
 
-describe("superEvent", () => {
-  it("should render super event title and link when super event is given", async () => {
+describe('superEvent', () => {
+  it('should render super event title and link when super event is given', async () => {
     const superEvent = fakeEvent({
       superEvent: { internalId: superEventInternalId },
     });
     const superEventResponse = {
       data: superEvent,
-      status: "resolved",
+      status: 'resolved',
     } as SuperEventResponse;
     const { history } = render(
       <EventInfo event={event} superEvent={superEventResponse} />,
@@ -301,7 +301,7 @@ describe("superEvent", () => {
     );
     await actWait();
     expect(
-      screen.queryByRole("heading", {
+      screen.queryByRole('heading', {
         name: translations.event.superEvent.title,
       })
     ).toBeInTheDocument();
@@ -314,35 +314,35 @@ describe("superEvent", () => {
     expect(history.location.pathname).toBe(`/fi/events/${superEvent.id}`);
   });
 
-  it("should should not render super event title when super event is not given", async () => {
+  it('should should not render super event title when super event is not given', async () => {
     render(<EventInfo event={event} />, {
       mocks,
     });
     await actWait();
 
     expect(
-      screen.queryByRole("heading", {
+      screen.queryByRole('heading', {
         name: translations.event.superEvent.title,
       })
     ).not.toBeInTheDocument();
   });
 });
 
-describe("subEvents", () => {
-  it("should render sub events title and content when sub events are given", async () => {
+describe('subEvents', () => {
+  it('should render sub events title and content when sub events are given', async () => {
     render(<EventInfo event={event} />, {
       mocks: mocksWithSubEvents,
     });
     await actWait();
     expect(
-      screen.queryByRole("heading", {
+      screen.queryByRole('heading', {
         name: translations.event.subEvents.title,
       })
     ).toBeInTheDocument();
     await testSubEvents();
   });
 
-  it("should navigate to sub events page when it is clicked", async () => {
+  it('should navigate to sub events page when it is clicked', async () => {
     const { history } = render(<EventInfo event={event} />, {
       mocks: mocksWithSubEvents,
     });
@@ -353,26 +353,26 @@ describe("subEvents", () => {
     userEvent.click(
       within(eventsList).queryByText(`${subEvent.name.fi} ${dateStr}`)!
     );
-    expect(history.location.pathname).toBe(`${"/fi/events/"}${subEvent.id}`);
+    expect(history.location.pathname).toBe(`${'/fi/events/'}${subEvent.id}`);
   });
 
-  it("should render subEvents with other times title when the event is a middle level event in event hierarchy", async () => {
+  it('should render subEvents with other times title when the event is a middle level event in event hierarchy', async () => {
     render(
       <EventInfo
         event={Object.assign({}, event, {
-          superEvent: { internalId: "super:123" },
-          subEvents: [{ internalId: "sub:123" }],
+          superEvent: { internalId: 'super:123' },
+          subEvents: [{ internalId: 'sub:123' }],
         })}
       />,
       {
         mocks: mocksWithSubEvents,
       }
     );
-    await screen.findByRole("heading", {
+    await screen.findByRole('heading', {
       name: translations.event.otherTimes.title,
     });
     expect(
-      screen.queryByRole("heading", {
+      screen.queryByRole('heading', {
         name: translations.event.subEvents.title,
       })
     ).not.toBeInTheDocument();
@@ -381,7 +381,7 @@ describe("subEvents", () => {
   async function testSubEvents() {
     await waitFor(() => {
       expect(
-        screen.queryByTestId("skeleton-loader-wrapper")
+        screen.queryByTestId('skeleton-loader-wrapper')
       ).not.toBeInTheDocument();
     });
     subEventsResponse.data.slice(0, 3).forEach((event) => {
@@ -396,7 +396,7 @@ describe("subEvents", () => {
       screen.queryByText(`${event.name.fi} ${fourthDateStr}`)
     ).not.toBeInTheDocument();
 
-    const toggleButton = await screen.findByRole("button", {
+    const toggleButton = await screen.findByRole('button', {
       name: translations.event.relatedEvents.buttonShow,
     });
 

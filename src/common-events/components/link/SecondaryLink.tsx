@@ -1,8 +1,8 @@
-import React from "react";
-import { IconAngleRight } from "hds-react";
-import classNames from "classnames";
+import React from 'react';
+import { IconAngleRight } from 'hds-react';
+import classNames from 'classnames';
 
-import styles from "./secondaryLink.module.scss";
+import styles from './secondaryLink.module.scss';
 
 type Props = React.HTMLProps<HTMLAnchorElement>;
 
@@ -20,6 +20,6 @@ const SecondaryLink = React.forwardRef<HTMLAnchorElement, Props>(
   }
 );
 
-SecondaryLink.displayName = "SecondaryLink";
+SecondaryLink.displayName = 'SecondaryLink';
 
 export default SecondaryLink;

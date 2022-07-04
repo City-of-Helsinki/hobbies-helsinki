@@ -1,8 +1,8 @@
-import React from "react";
+import React from 'react';
 
-import { createEventsApolloClient } from "../domain/clients/eventsApolloClient";
-import useEventsConfig from "../hooks/useEventsConfig";
-import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
+import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
+import useEventsConfig from '../hooks/useEventsConfig';
+import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 
 const withEvents = (WrappedComponent: any) => {
   return function WithEvents(props: any) {

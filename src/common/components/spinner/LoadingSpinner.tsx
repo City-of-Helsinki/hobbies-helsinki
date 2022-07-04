@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import { LoadingSpinner } from "hds-react";
-import React, { FunctionComponent } from "react";
+import classNames from 'classnames';
+import { LoadingSpinner } from 'hds-react';
+import React, { FunctionComponent } from 'react';
 
-import styles from "./loadingSpinner.module.scss";
+import styles from './loadingSpinner.module.scss';
 
 interface Props {
   hasPadding?: boolean;

@@ -1,36 +1,36 @@
-import { useTranslation } from 'next-i18next'
-import React from 'react'
-import qs from 'query-string'
+import { useTranslation } from 'next-i18next';
+import React from 'react';
+import qs from 'query-string';
 
-import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions'
-import FilterButton from '../../../../common-events/components/filterButton/FilterButton'
-import { FilterType } from '../../../../common-events/components/filterButton/types'
-import useLocale from '../../../../common-events/hooks/useLocale'
-import { formatDate } from '../../../../common-events/utils/dateUtils'
-import { translateValue } from '../../../../common-events/utils/translateUtils'
-import useRouter from '../../../../common-events/i18n/router/useRouter'
-import { getI18nPath } from '../../../../common-events/i18n/router/utils'
+import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
+import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
+import { FilterType } from '../../../../common-events/components/filterButton/types';
+import useLocale from '../../../../common-events/hooks/useLocale';
+import { formatDate } from '../../../../common-events/utils/dateUtils';
+import { translateValue } from '../../../../common-events/utils/translateUtils';
+import useRouter from '../../../../common-events/i18n/router/useRouter';
+import { getI18nPath } from '../../../../common-events/i18n/router/utils';
 import {
   getSearchFilters,
   getSearchQuery,
   getSuitableForFilterValue,
-} from '../utils'
-import DateFilter from './DateFilter'
-import styles from './filterSummary.module.scss'
-import PlaceFilter from './PlaceFilter'
-import PublisherFilter from './PublisherFilter'
+} from '../utils';
+import DateFilter from './DateFilter';
+import styles from './filterSummary.module.scss';
+import PlaceFilter from './PlaceFilter';
+import PublisherFilter from './PublisherFilter';
 
-export const filterSummaryContainerTestId = 'filter-summary'
+export const filterSummaryContainerTestId = 'filter-summary';
 
 interface Props {
-  onClear: () => void
+  onClear: () => void;
 }
 
 const FilterSummary: React.FC<Props> = ({ onClear }) => {
-  const { t } = useTranslation()
-  const locale = useLocale()
-  const router = useRouter()
-  const searchParams = new URLSearchParams(qs.stringify(router.query))
+  const { t } = useTranslation();
+  const locale = useLocale();
+  const router = useRouter();
+  const searchParams = new URLSearchParams(qs.stringify(router.query));
   const {
     categories,
     dateTypes,
@@ -44,27 +44,27 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     publisher,
     start,
     suitableFor,
-  } = getSearchFilters(searchParams)
+  } = getSearchFilters(searchParams);
 
   const dateText =
     start || end
       ? `${start ? formatDate(start) : ''} - ${
           end ? formatDate(end) : ''
         }`.trim()
-      : ''
+      : '';
 
-  const neighborhoods = useDivisionOptions()
+  const neighborhoods = useDivisionOptions();
   const getNeighorhoodName = React.useCallback(
     (id: string) => {
-      const neighborhood = neighborhoods.find((item) => item.value === id)
-      return neighborhood?.text ?? ''
+      const neighborhood = neighborhoods.find((item) => item.value === id);
+      return neighborhood?.text ?? '';
     },
     [neighborhoods]
-  )
+  );
 
   const handleFilterRemove = (value: string | number, type: FilterType) => {
     const getFilteredList = (listType: FilterType, list: string[] = []) =>
-      type === listType ? list.filter((v) => v !== value) : list
+      type === listType ? list.filter((v) => v !== value) : list;
 
     const search = getSearchQuery({
       categories: getFilteredList('category', categories),
@@ -79,13 +79,13 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       publisher: type !== 'publisher' ? publisher : null,
       start: type === 'date' ? null : start,
       suitableFor: getSuitableForFilterValue(suitableFor, type) ?? [],
-    })
+    });
 
     router.push({
       pathname: getI18nPath('/search', locale),
       search,
-    })
-  }
+    });
+  };
 
   const hasFilters =
     !!publisher ||
@@ -94,9 +94,9 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     !!dateTypes.length ||
     !!divisions.length ||
     !!places.length ||
-    !!suitableFor?.length
+    !!suitableFor?.length;
 
-  if (!hasFilters) return null
+  if (!hasFilters) return null;
 
   return (
     <div
@@ -148,7 +148,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
         {t('search:buttonClearFilters')}
       </button>
     </div>
-  )
-}
+  );
+};
 
-export default FilterSummary
+export default FilterSummary;

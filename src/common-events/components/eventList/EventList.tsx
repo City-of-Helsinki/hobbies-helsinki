@@ -1,14 +1,14 @@
-import classNames from "classnames";
-import { Button } from "hds-react";
-import { useTranslation } from "next-i18next";
-import React from "react";
+import classNames from 'classnames';
+import { Button } from 'hds-react';
+import { useTranslation } from 'next-i18next';
+import React from 'react';
 
-import LoadingSpinner from "../../../common/components/spinner/LoadingSpinner";
-import BasicEventCard from "../../../domain/event/eventCard/EventCard";
-import LargeEventCard from "../../../domain/event/eventCard/LargeEventCard";
-import { EventFields } from "../../../domain/event/types";
-import { EventFieldsFragment } from "../../../domain/nextApi/graphql/generated/graphql";
-import styles from "./eventList.module.scss";
+import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
+import BasicEventCard from '../../../domain/event/eventCard/EventCard';
+import LargeEventCard from '../../../domain/event/eventCard/LargeEventCard';
+import { EventFields } from '../../../domain/event/types';
+import { EventFieldsFragment } from '../../../domain/nextApi/graphql/generated/graphql';
+import styles from './eventList.module.scss';
 
 const eventCardsMap = {
   default: BasicEventCard,
@@ -17,7 +17,7 @@ const eventCardsMap = {
 
 interface Props {
   buttonCentered?: boolean;
-  cardSize?: "default" | "large";
+  cardSize?: 'default' | 'large';
   events: EventFieldsFragment[];
   count: number;
   loading: boolean;
@@ -27,14 +27,14 @@ interface Props {
 
 const EventList: React.FC<Props> = ({
   buttonCentered = false,
-  cardSize = "default",
+  cardSize = 'default',
   events,
   loading,
   count,
   hasNext,
   onLoadMore,
 }) => {
-  const { t } = useTranslation("search");
+  const { t } = useTranslation('search');
   const eventsLeft = count - events.length;
   const EventCard = eventCardsMap[cardSize];
 
@@ -53,7 +53,7 @@ const EventList: React.FC<Props> = ({
         <LoadingSpinner hasPadding={!events.length} isLoading={loading}>
           {hasNext && (
             <Button onClick={onLoadMore} variant="success">
-              {t("buttonLoadMore", { count: eventsLeft })}
+              {t('buttonLoadMore', { count: eventsLeft })}
             </Button>
           )}
         </LoadingSpinner>

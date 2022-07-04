@@ -1,18 +1,18 @@
-import React from "react";
-import Head from "next/head";
+import React from 'react';
+import Head from 'next/head';
 
-import RouteMeta from "./RouteMeta";
+import RouteMeta from './RouteMeta';
 
 function replaceAll(str: string, find: string, replace: string) {
-  return str.replace(new RegExp(find, "g"), replace);
+  return str.replace(new RegExp(find, 'g'), replace);
 }
 
 function unescapeDash(str?: string): string {
   if (!str) {
-    return str ?? "";
+    return str ?? '';
   }
 
-  return replaceAll(str, "&#x2d;", "-");
+  return replaceAll(str, '&#x2d;', '-');
 }
 
 export type Props = React.ComponentProps<typeof RouteMeta> & {

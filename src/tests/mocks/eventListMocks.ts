@@ -1,6 +1,6 @@
-import { FetchResult, GraphQLRequest } from "@apollo/client";
-import { MockedResponse } from "@apollo/client/testing";
-import { EventType } from "../../domain/event/types";
+import { FetchResult, GraphQLRequest } from '@apollo/client';
+import { MockedResponse } from '@apollo/client/testing';
+import { EventType } from '../../domain/event/types';
 
 import {
   EventListDocument,
@@ -8,24 +8,24 @@ import {
   EventListResponse,
   EventTypeId,
   QueryEventListArgs,
-} from "../../domain/nextApi/graphql/generated/graphql";
+} from '../../domain/nextApi/graphql/generated/graphql';
 
 export const baseVariables = {
   suitableFor: [],
-  end: "",
-  include: ["keywords", "location"],
+  end: '',
+  include: ['keywords', 'location'],
   isFree: undefined,
   keywordAnd: [],
   keywordNot: [],
   keywordOrSet3: [],
-  language: "fi",
+  language: 'fi',
   location: [],
   pageSize: 10,
   publisher: null,
-  sort: "end_time",
-  start: "now",
+  sort: 'end_time',
+  start: 'now',
   startsAfter: undefined,
-  superEventType: ["umbrella", "none"],
+  superEventType: ['umbrella', 'none'],
 };
 
 export const eventListBaseVariables: QueryEventListArgs = {
@@ -35,27 +35,27 @@ export const eventListBaseVariables: QueryEventListArgs = {
 
 export const courseListBaseVariables: QueryEventListArgs = {
   ...baseVariables,
-  keywordOrSet2: ["keyword1", "keyword2", "keyword3"],
+  keywordOrSet2: ['keyword1', 'keyword2', 'keyword3'],
 };
 
 export const getOtherEventsVariables = (
-  superEvent: EventListQueryVariables["superEvent"]
+  superEvent: EventListQueryVariables['superEvent']
 ): EventListQueryVariables => ({
-  sort: "start_time",
-  start: "now",
+  sort: 'start_time',
+  start: 'now',
   superEvent,
   eventType: [EventTypeId.General, EventTypeId.Course],
 });
 
 const createRequest = (
-  type: EventType = "event",
+  type: EventType = 'event',
   variablesOverride: EventListQueryVariables = {}
 ): GraphQLRequest => ({
   query: EventListDocument,
   variables: {
-    ...(type === "event" ? eventListBaseVariables : courseListBaseVariables),
+    ...(type === 'event' ? eventListBaseVariables : courseListBaseVariables),
     ...variablesOverride,
-    eventType: type === "event" ? [EventTypeId.General] : [EventTypeId.Course],
+    eventType: type === 'event' ? [EventTypeId.General] : [EventTypeId.Course],
   },
 });
 
@@ -69,13 +69,13 @@ const createResult = (
 
 export type EventListMockArguments = {
   type?: EventType;
-  superEventId?: EventListQueryVariables["superEvent"];
+  superEventId?: EventListQueryVariables['superEvent'];
   variables?: EventListQueryVariables;
   response?: EventListResponse;
 };
 
 export const createEventListRequestAndResultMocks = ({
-  type = "event",
+  type = 'event',
   variables = {},
   response,
 }: EventListMockArguments): MockedResponse => ({
@@ -84,11 +84,11 @@ export const createEventListRequestAndResultMocks = ({
 });
 
 export const createEventListRequestThrowsErrorMocks = ({
-  type = "event",
+  type = 'event',
   variables = {},
 }: EventListMockArguments = {}): MockedResponse => ({
   request: createRequest(type, variables),
-  error: new Error("not found"),
+  error: new Error('not found'),
 });
 
 export const createOtherEventTimesRequestAndResultMocks = ({
@@ -117,5 +117,5 @@ export const createOtherEventTimesRequestThrowsErrorMocks = ({
       ...variables,
     },
   },
-  error: new Error("not found"),
+  error: new Error('not found'),
 });

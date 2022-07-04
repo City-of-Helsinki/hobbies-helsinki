@@ -1,11 +1,11 @@
-import React from "react";
-import classNames from "classnames";
+import React from 'react';
+import classNames from 'classnames';
 
-import CategoryFilter from "../../../common-events/components/category/CategoryFilter";
-import { CategoryExtendedOption, Filters } from "../eventSearch/types";
-import { getI18nPath } from "../../../common-events/i18n/router/utils";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { getSearchQuery } from "../eventSearch/utils";
+import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
+import { CategoryExtendedOption, Filters } from '../eventSearch/types';
+import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { getSearchQuery } from '../eventSearch/utils';
 
 type SearchShortcutsProps = {
   className: string;
@@ -21,14 +21,14 @@ export default function SearchShortcuts({
   const locale = useLocale();
 
   const getCategoryLink = (category: CategoryExtendedOption) => {
-    return `${getI18nPath("/search", locale)}${getSearchQuery({
+    return `${getI18nPath('/search', locale)}${getSearchQuery({
       ...searchFilters,
       categories: [category.value],
     })}`;
   };
 
   return (
-    <div className={classNames(className, "searchShortcuts")}>
+    <div className={classNames(className, 'searchShortcuts')}>
       {categories.map((category) => {
         return (
           <CategoryFilter

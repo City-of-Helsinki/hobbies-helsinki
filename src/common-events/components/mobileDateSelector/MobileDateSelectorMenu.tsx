@@ -1,12 +1,12 @@
-import classNames from "classnames";
-import React, { FunctionComponent, MutableRefObject } from "react";
+import classNames from 'classnames';
+import React, { FunctionComponent, MutableRefObject } from 'react';
 
-import useConfig from "../../hooks/useConfig";
-import DateRangePicker from "../dateRangePicker/DateRangePicker";
-import styles from "./mobileDateSelectorMenu.module.scss"; // the locale you want
+import useConfig from '../../hooks/useConfig';
+import DateRangePicker from '../dateRangePicker/DateRangePicker';
+import styles from './mobileDateSelectorMenu.module.scss'; // the locale you want
 
 export const testIds = {
-  menu: "mobile-date-selector-menu",
+  menu: 'mobile-date-selector-menu',
 };
 
 interface Props {
@@ -46,7 +46,7 @@ const MobileDateSelectorMenu: FunctionComponent<Props> = ({
         onClick={onCloseMenu}
       >
         <div className={styles.buttonText}>
-          {t<string>("common:dateSelector.menu.buttonClose")}
+          {t<string>('common:dateSelector.menu.buttonClose')}
         </div>
       </button>
     </div>

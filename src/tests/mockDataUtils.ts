@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { faker } from "@faker-js/faker";
-import merge from "lodash/merge";
+import { faker } from '@faker-js/faker';
+import merge from 'lodash/merge';
 
-import { EXTLINK } from "../constants";
+import { EXTLINK } from '../constants';
 import {
   AboutPagesResponse,
   AccessibilityPagesResponse,
@@ -31,7 +31,7 @@ import {
   Place,
   PlaceListResponse,
   StaticPage,
-} from "../domain/nextApi/graphql/generated/graphql";
+} from '../domain/nextApi/graphql/generated/graphql';
 
 export const fakeEvents = (
   count = 1,
@@ -39,12 +39,12 @@ export const fakeEvents = (
 ): EventListResponse => ({
   data: generateNodeArray((i) => fakeEvent(events?.[i]), count),
   meta: {
-    __typename: "Meta",
+    __typename: 'Meta',
     count: count,
-    next: "",
-    previous: "",
+    next: '',
+    previous: '',
   },
-  __typename: "EventListResponse",
+  __typename: 'EventListResponse',
 });
 
 export const fakeEvent = (overrides?: Partial<EventDetails>): EventDetails => {
@@ -53,7 +53,7 @@ export const fakeEvent = (overrides?: Partial<EventDetails>): EventDetails => {
       id: `hel:${faker.datatype.uuid()}`,
       internalId: faker.datatype.uuid(),
       name: fakeLocalizedObject(),
-      publisher: "provider:123",
+      publisher: 'provider:123',
       provider: fakeLocalizedObject(),
       shortDescription: fakeLocalizedObject(),
       description: fakeLocalizedObject(),
@@ -63,24 +63,24 @@ export const fakeEvent = (overrides?: Partial<EventDetails>): EventDetails => {
       audience: [],
       keywords: [fakeKeyword()],
       location: fakePlace(),
-      startTime: "2020-07-13T05:51:05.761000Z",
+      startTime: '2020-07-13T05:51:05.761000Z',
       endTime: null,
       datePublished: null,
       externalLinks: [fakeExternalLink()],
       offers: [] as any,
       subEvents: [] as any,
-      eventStatus: "EventScheduled",
+      eventStatus: 'EventScheduled',
       superEvent: null,
-      dataSource: "hel",
-      enrolmentEndTime: "",
-      enrolmentStartTime: "",
+      dataSource: 'hel',
+      enrolmentEndTime: '',
+      enrolmentStartTime: '',
       maximumAttendeeCapacity: 10,
       minimumAttendeeCapacity: 1,
       remainingAttendeeCapacity: 5,
-      audienceMinAge: "5",
-      audienceMaxAge: "15",
+      audienceMinAge: '5',
+      audienceMaxAge: '15',
       typeId: EventTypeId.General,
-      __typename: "EventDetails",
+      __typename: 'EventDetails',
     },
     overrides
   );
@@ -96,9 +96,9 @@ export const fakeAudience = (
 export const fakeTargetGroup = (overrides?: Partial<Audience>): Audience => {
   return merge<Audience, typeof overrides>(
     {
-      __typename: "Audience",
+      __typename: 'Audience',
       id: faker.datatype.uuid(),
-      internalContext: "",
+      internalContext: '',
       internalId: faker.datatype.uuid(),
       name: fakeLocalizedObject(faker.random.word()),
     },
@@ -113,7 +113,7 @@ export const fakeExternalLink = (
     {
       link: faker.internet.url(),
       name: EXTLINK.EXTLINK_FACEBOOK,
-      __typename: "ExternalLink",
+      __typename: 'ExternalLink',
     },
     overrides
   );
@@ -122,13 +122,13 @@ export const fakeImage = (overrides?: Partial<Image>): Image =>
   merge(
     {
       id: faker.datatype.uuid(),
-      internalId: "https://api.hel.fi/linkedevents-test/v1/image/48566/",
-      license: "cc_by",
+      internalId: 'https://api.hel.fi/linkedevents-test/v1/image/48566/',
+      license: 'cc_by',
       name: faker.random.words(),
-      url: "https://api.hel.fi/linkedevents-test/media/images/test.png",
-      cropping: "59,0,503,444",
+      url: 'https://api.hel.fi/linkedevents-test/media/images/test.png',
+      cropping: '59,0,503,444',
       photographerName: faker.name.firstName(),
-      __typename: "Image",
+      __typename: 'Image',
     },
     overrides
   );
@@ -136,15 +136,15 @@ export const fakeImage = (overrides?: Partial<Image>): Image =>
 export const fakeInLanguage = (overrides?: InLanguage): InLanguage =>
   merge(
     {
-      id: "fi",
-      internalId: "https://api.hel.fi/linkedevents-test/v1/language/fi/",
+      id: 'fi',
+      internalId: 'https://api.hel.fi/linkedevents-test/v1/language/fi/',
       name: {
         en: null,
-        fi: "suomi",
+        fi: 'suomi',
         sv: null,
-        __typename: "LocalizedObject",
+        __typename: 'LocalizedObject',
       },
-      __typename: "InLanguage",
+      __typename: 'InLanguage',
     },
     overrides
   );
@@ -156,18 +156,18 @@ export const fakePlaces = (
   data: generateNodeArray((i) => fakePlace(places?.[i]), count),
   meta: {
     count: count,
-    next: "",
-    previous: "",
-    __typename: "Meta",
+    next: '',
+    previous: '',
+    __typename: 'Meta',
   },
-  __typename: "PlaceListResponse",
+  __typename: 'PlaceListResponse',
 });
 
 export const fakePlace = (overrides?: Partial<Place>): Place =>
   merge(
     {
       id: faker.datatype.uuid(),
-      internalId: "https://api.hel.fi/linkedevents-test/v1/place/tprek:15376/",
+      internalId: 'https://api.hel.fi/linkedevents-test/v1/place/tprek:15376/',
       name: fakeLocalizedObject(),
       streetAddress: fakeLocalizedObject(),
       addressLocality: fakeLocalizedObject(),
@@ -178,7 +178,7 @@ export const fakePlace = (overrides?: Partial<Place>): Place =>
       infoUrl: fakeLocalizedObject(faker.internet.url()),
       position: null,
       divisions: [],
-      __typename: "Place",
+      __typename: 'Place',
     },
     overrides
   );
@@ -189,23 +189,23 @@ export const fakeKeywords = (
 ): KeywordListResponse => ({
   data: generateNodeArray((i) => fakeKeyword(keywords?.[i]), count),
   meta: {
-    __typename: "Meta",
+    __typename: 'Meta',
     count: count,
-    next: "",
-    previous: "",
+    next: '',
+    previous: '',
   },
-  __typename: "KeywordListResponse",
+  __typename: 'KeywordListResponse',
 });
 
 export const fakeKeyword = (overrides?: Partial<Keyword>): Keyword =>
   merge(
     {
       id: faker.datatype.uuid(),
-      dataSource: "yso",
+      dataSource: 'yso',
       hasUpcomingEvents: true,
       name: fakeLocalizedObject(),
-      internalId: "https://api.hel.fi/linkedevents-test/v1/keyword/yso:p4363/",
-      __typename: "Keyword",
+      internalId: 'https://api.hel.fi/linkedevents-test/v1/keyword/yso:p4363/',
+      __typename: 'Keyword',
     },
     overrides
   );
@@ -217,7 +217,7 @@ export const fakeOffer = (overrides?: Partial<Offer>): Offer =>
       infoUrl: fakeLocalizedObject(faker.internet.url()),
       isFree: false,
       price: fakeLocalizedObject(),
-      __typename: "Offer",
+      __typename: 'Offer',
     },
     overrides
   );
@@ -231,7 +231,7 @@ export const fakeOrganization = (
       internalId: faker.datatype.uuid(),
       isAffiliated: false,
       name: faker.company.companyName(),
-      __typename: "OrganizationDetails",
+      __typename: 'OrganizationDetails',
     },
     overrides
   );
@@ -243,11 +243,11 @@ export const fakeNeighborhoods = (
   data: generateNodeArray((i) => fakeNeighborhood(neighborhoods?.[i]), count),
   meta: {
     count: count,
-    next: "",
-    previous: "",
-    __typename: "Meta",
+    next: '',
+    previous: '',
+    __typename: 'Meta',
   },
-  __typename: "NeighborhoodListResponse",
+  __typename: 'NeighborhoodListResponse',
 });
 
 export const fakeNeighborhood = (
@@ -255,9 +255,9 @@ export const fakeNeighborhood = (
 ): Neighborhood =>
   merge(
     {
-      id: "kaupunginosa:aluemeri",
+      id: 'kaupunginosa:aluemeri',
       name: fakeLocalizedObject(),
-      __typename: "Neighborhood",
+      __typename: 'Neighborhood',
     },
     overrides
   );
@@ -267,7 +267,7 @@ export const fakeLandingPages = (
   landingPages?: Partial<LandingPage>[]
 ): LandingPagesResponse => ({
   data: generateNodeArray((i) => fakeLandingPage(landingPages?.[i]), count),
-  __typename: "LandingPagesResponse",
+  __typename: 'LandingPagesResponse',
 });
 
 export const fakeLandingPage = (
@@ -282,7 +282,7 @@ export const fakeLandingPage = (
       metaInformation: fakeLocalizedObject(),
       pageTitle: fakeLocalizedObject(),
       title: fakeLocalizedObject(),
-      __typename: "LandingPage",
+      __typename: 'LandingPage',
     },
     overrides
   );
@@ -294,14 +294,14 @@ export const fakeBanner = (overrides?: Partial<BannerPage>): BannerPage =>
       buttonUrl: fakeLocalizedObject(faker.internet.url()),
       description: fakeLocalizedObject(),
       heroBackgroundImage: fakeLocalizedCmsImage(),
-      heroBackgroundImageColor: fakeLocalizedObject("BLACK"),
+      heroBackgroundImageColor: fakeLocalizedObject('BLACK'),
       heroBackgroundImageMobile: fakeLocalizedCmsImage(),
       heroTopLayerImage: fakeLocalizedCmsImage(),
       keywords: fakeLocalizedCmsKeywords(),
       socialMediaImage: fakeLocalizedCmsImage(),
       title: fakeLocalizedObject(),
-      titleAndDescriptionColor: fakeLocalizedObject("BLACK"),
-      __typename: "BannerPage",
+      titleAndDescriptionColor: fakeLocalizedObject('BLACK'),
+      __typename: 'BannerPage',
     },
     overrides
   );
@@ -311,7 +311,7 @@ export const fakeCollections = (
   collections?: Partial<CollectionDetails>[]
 ): CollectionListResponse => ({
   data: generateNodeArray((i) => fakeCollection(collections?.[i]), count),
-  __typename: "CollectionListResponse",
+  __typename: 'CollectionListResponse',
 });
 export const fakeCollection = (
   overrides?: Partial<CollectionDetails>
@@ -319,12 +319,12 @@ export const fakeCollection = (
   merge(
     {
       id: faker.datatype.uuid(),
-      boxColor: fakeLocalizedObject("FOG"),
+      boxColor: fakeLocalizedObject('FOG'),
       curatedEvents: [],
       curatedEventsTitle: fakeLocalizedObject(),
       description: fakeLocalizedObject(),
       eventListQuery: fakeLocalizedObject(
-        "https://tapahtumat.test.kuva.hel.ninja/fi/events?isFree=true&text=jooga"
+        'https://tapahtumat.test.kuva.hel.ninja/fi/events?isFree=true&text=jooga'
       ),
       expired: false,
       eventListTitle: fakeLocalizedObject(),
@@ -336,7 +336,7 @@ export const fakeCollection = (
       slug: faker.datatype.uuid(),
       socialMediaDescription: fakeLocalizedObject(),
       title: fakeLocalizedObject(),
-      __typename: "CollectionDetails",
+      __typename: 'CollectionDetails',
     },
     overrides
   );
@@ -346,7 +346,7 @@ export const fakeCmsImage = (overrides?: Partial<CmsImage>): CmsImage =>
     {
       photographerCredit: fakeLocalizedObject(faker.name.lastName()),
       url: faker.internet.url(),
-      __typename: "CmsImage",
+      __typename: 'CmsImage',
     },
     overrides
   );
@@ -359,7 +359,7 @@ export const fakeLocalizedCmsKeywords = (
       en: fakeCmsKeywords(),
       fi: fakeCmsKeywords(),
       sv: fakeCmsKeywords(),
-      __typename: "LocalizedCmsKeywords",
+      __typename: 'LocalizedCmsKeywords',
     },
     overrides
   );
@@ -375,7 +375,7 @@ export const fakeLocalizedCmsImage = (
       en: fakeCmsImage(),
       fi: fakeCmsImage(),
       sv: fakeCmsImage(),
-      __typename: "LocalizedCmsImage",
+      __typename: 'LocalizedCmsImage',
     },
     overrides
   );
@@ -385,7 +385,7 @@ export const fakeAboutPages = (
   aboutPages?: Partial<StaticPage>[]
 ): AboutPagesResponse => ({
   data: generateNodeArray((i) => fakeStaticPage(aboutPages?.[i]), count),
-  __typename: "AboutPagesResponse",
+  __typename: 'AboutPagesResponse',
 });
 
 export const fakeAccessibilityPages = (
@@ -396,7 +396,7 @@ export const fakeAccessibilityPages = (
     (i) => fakeStaticPage(accessibilityPages?.[i]),
     count
   ),
-  __typename: "AccessibilityPagesResponse",
+  __typename: 'AccessibilityPagesResponse',
 });
 
 export const fakeStaticPage = (overrides?: Partial<StaticPage>): StaticPage =>
@@ -407,7 +407,7 @@ export const fakeStaticPage = (overrides?: Partial<StaticPage>): StaticPage =>
       headingSection: fakeLocalizedObject(),
       contentSection: fakeLocalizedObject(),
       keywords: fakeLocalizedCmsKeywords(),
-      __typename: "StaticPage",
+      __typename: 'StaticPage',
     },
     overrides
   );
@@ -426,7 +426,7 @@ const uniqueSentences = (): string => {
 };
 
 export const fakeLocalizedObject = (text?: string): LocalizedObject => ({
-  __typename: "LocalizedObject",
+  __typename: 'LocalizedObject',
   en: text || uniqueSentences(),
   sv: text || uniqueSentences(),
   fi: text || uniqueSentences(),

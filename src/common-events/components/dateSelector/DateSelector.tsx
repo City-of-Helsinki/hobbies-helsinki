@@ -1,13 +1,13 @@
-import { IconAngleDown, IconAngleUp, IconCalendarClock } from "hds-react";
-import React, { FunctionComponent } from "react";
+import { IconAngleDown, IconAngleUp, IconCalendarClock } from 'hds-react';
+import React, { FunctionComponent } from 'react';
 
-import { DATE_TYPES } from "../../../constants";
-import useConfig from "../../hooks/useConfig";
-import useLocale from "../../hooks/useLocale";
-import { formatDate } from "../../utils/dateUtils";
-import { translateValue } from "../../utils/translateUtils";
-import styles from "./dateSelector.module.scss";
-import DateSelectorMenu from "./DateSelectorMenu";
+import { DATE_TYPES } from '../../../constants';
+import useConfig from '../../hooks/useConfig';
+import useLocale from '../../hooks/useLocale';
+import { formatDate } from '../../utils/dateUtils';
+import { translateValue } from '../../utils/translateUtils';
+import styles from './dateSelector.module.scss';
+import DateSelectorMenu from './DateSelectorMenu';
 
 const dateTypeOptions = [
   DATE_TYPES.TODAY,
@@ -90,12 +90,12 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
       if (!isComponentFocused()) return;
 
       switch (event.key) {
-        case "ArrowUp":
-        case "ArrowDown":
+        case 'ArrowUp':
+        case 'ArrowDown':
           ensureMenuIsOpen();
           event.preventDefault();
           break;
-        case "Escape":
+        case 'Escape':
           ensureMenuIsClosed();
           event.preventDefault();
           break;
@@ -109,14 +109,14 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
   };
 
   React.useLayoutEffect(() => {
-    document.addEventListener("click", handleDocumentClick);
-    document.addEventListener("keydown", handleDocumentKeyDown);
-    document.addEventListener("focusin", handleDocumentFocusin);
+    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener('keydown', handleDocumentKeyDown);
+    document.addEventListener('focusin', handleDocumentFocusin);
     // Clean up event listener to prevent memory leaks
     return () => {
-      document.removeEventListener("click", handleDocumentClick);
-      document.removeEventListener("keydown", handleDocumentKeyDown);
-      document.removeEventListener("focusin", handleDocumentFocusin);
+      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener('keydown', handleDocumentKeyDown);
+      document.removeEventListener('focusin', handleDocumentFocusin);
     };
   }, [handleDocumentClick, handleDocumentFocusin, handleDocumentKeyDown]);
 
@@ -139,7 +139,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
 
     const dateTypeLabels = dateTypes
       .sort(sortDateTypes)
-      .map((val) => translateValue("common:dateSelector.dateType", val, t));
+      .map((val) => translateValue('common:dateSelector.dateType', val, t));
 
     if (dateTypeLabels.length > 1) {
       return `${dateTypeLabels[0]} + ${dateTypeLabels.length - 1}`;
@@ -159,7 +159,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
       <button
         aria-haspopup="true"
         aria-expanded={isMenuOpen}
-        aria-label={t<string>("common:dateSelector.title")}
+        aria-label={t<string>('common:dateSelector.title')}
         className={styles.button}
         onClick={toggleMenu}
         type="button"
@@ -169,7 +169,7 @@ const DateSelector: FunctionComponent<DateSelectorProps> = ({
         </div>
         <div className={styles.info}>
           <div className={styles.buttonTextWrapper}>
-            {selectedText || t<string>("common:dateSelector.title")}
+            {selectedText || t<string>('common:dateSelector.title')}
           </div>
         </div>
         <div className={styles.arrowWrapper}>

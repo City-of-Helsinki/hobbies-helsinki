@@ -1,14 +1,14 @@
-import classNames from "classnames";
-import React from "react";
+import classNames from 'classnames';
+import React from 'react';
 
-import LinkIcon from "../../../assets/icons/svg/link.svg";
-import isClient from "../../../common/utils/isClient";
-import CopyButton from "../../../common/components/copyButton/CopyButton";
-import FacebookShareLink from "./FacebookShareLink";
-import LinkedInShareLink from "./LinkedInShareLink";
-import styles from "./shareLinks.module.scss";
-import TwitterShareLink from "./TwitterShareLink";
-import useConfig from "../../hooks/useConfig";
+import LinkIcon from '../../../assets/icons/svg/link.svg';
+import isClient from '../../../common/utils/isClient';
+import CopyButton from '../../../common/components/copyButton/CopyButton';
+import FacebookShareLink from './FacebookShareLink';
+import LinkedInShareLink from './LinkedInShareLink';
+import styles from './shareLinks.module.scss';
+import TwitterShareLink from './TwitterShareLink';
+import useConfig from '../../hooks/useConfig';
 
 export interface ShareLinksProps {
   title: string;
@@ -22,7 +22,7 @@ const ShareLinks: React.FC<ShareLinksProps> = ({ title }) => {
   // side because href value is different
   const href = isClient
     ? `${window.location.origin}${window.location.pathname}`
-    : "";
+    : '';
 
   return (
     <div className={styles.shareSubSection}>
@@ -38,10 +38,10 @@ const ShareLinks: React.FC<ShareLinksProps> = ({ title }) => {
             successClass={styles.linkCopyButtonSuccess}
             successMessage={
               <span className={styles.successTooltip}>
-                {t<string>("common:shareLinks.messageLinkCopySuccess")}
+                {t<string>('common:shareLinks.messageLinkCopySuccess')}
               </span>
             }
-            aria-label={t("common:shareLinks.buttonCopyLink")}
+            aria-label={t('common:shareLinks.buttonCopyLink')}
           >
             <LinkIcon />
           </CopyButton>
