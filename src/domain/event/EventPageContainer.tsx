@@ -1,5 +1,6 @@
 import { useTranslation } from "next-i18next";
 import React from "react";
+import { useLazyQuery } from "@apollo/client";
 
 import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
 import isClient from "../../common/utils/isClient";
@@ -19,8 +20,6 @@ import SimilarEvents from "./similarEvents/SimilarEvents";
 import { SuperEventResponse } from "./types";
 import styles from "./eventPage.module.scss";
 import useRouter from "../../common-events/i18n/router/useRouter";
-import useEventsApolloClientFromConfig from "../../common-events/hooks/useEventsApolloClientFromConfig";
-import { useLazyQuery } from "@apollo/client";
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
