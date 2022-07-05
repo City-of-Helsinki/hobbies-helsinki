@@ -1,4 +1,4 @@
-import * as React from "react";
+import * as React from 'react';
 
 import {
   render,
@@ -6,11 +6,11 @@ import {
   act,
   screen,
   userEvent,
-} from "../../../../../tests/testUtils";
-import PublisherFilter from "../PublisherFilter";
-import { translations } from "../../../../../tests/initI18n";
-import { OrganizationDetailsDocument } from "../../../../nextApi/graphql/generated/graphql";
-import { fakeOrganization } from "../../../../../tests/mockDataUtils";
+} from '../../../../../tests/testUtils';
+import PublisherFilter from '../PublisherFilter';
+import { translations } from '../../../../../tests/initI18n';
+import { OrganizationDetailsDocument } from '../../../../nextApi/graphql/generated/graphql';
+import { fakeOrganization } from '../../../../../tests/mockDataUtils';
 
 const id = '1';
 const name = 'Organization name';
@@ -49,9 +49,9 @@ it('calls onRemove callback when remove button is clicked', async () => {
 
   await act(() =>
     userEvent.click(
-      screen.getByRole("button", {
+      screen.getByRole('button', {
         name: translations.common.filter.ariaButtonRemove.replace(
-          "{{filter}}",
+          '{{filter}}',
           name
         ),
       })

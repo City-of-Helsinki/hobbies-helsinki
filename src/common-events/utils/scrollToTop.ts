@@ -1,4 +1,4 @@
-import isClient from "../../common/utils/isClient";
+import isClient from '../../common/utils/isClient';
 
 const ScrollToTop = (): void => {
   if (isClient) {

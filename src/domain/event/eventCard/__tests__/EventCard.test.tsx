@@ -1,14 +1,14 @@
-import userEvent from "@testing-library/user-event";
-import { axe } from "jest-axe";
-import { advanceTo, clear } from "jest-date-mock";
-import React from "react";
-import mockRouter from "next-router-mock";
+import userEvent from '@testing-library/user-event';
+import { axe } from 'jest-axe';
+import { advanceTo, clear } from 'jest-date-mock';
+import React from 'react';
+import mockRouter from 'next-router-mock';
 
-import { translations } from "../../../../tests/initI18n";
-import { EventFieldsFragment } from "../../../../domain/nextApi/graphql/generated/graphql";
-import { fakeEvent, fakeKeywords } from "../../../../tests/mockDataUtils";
-import { act, render, screen } from "../../../../tests/testUtils";
-import EventCard from "../EventCard";
+import { translations } from '../../../../tests/initI18n';
+import { EventFieldsFragment } from '../../../../domain/nextApi/graphql/generated/graphql';
+import { fakeEvent, fakeKeywords } from '../../../../tests/mockDataUtils';
+import { act, render, screen } from '../../../../tests/testUtils';
+import EventCard from '../EventCard';
 
 const keywordNames = ['Keyword 1', 'Keyword 2'];
 const keywords = fakeKeywords(
@@ -41,12 +41,12 @@ afterAll(() => {
 });
 
 beforeEach(() => {
-  mockRouter.setCurrentUrl("/");
+  mockRouter.setCurrentUrl('/');
 });
 
 const renderComponent = () => render(<EventCard event={event} />);
-describe("event card", () => {
-  test("for accessibility violations", async () => {
+describe('event card', () => {
+  test('for accessibility violations', async () => {
     const { container } = renderComponent();
 
     const results = await axe(container);
@@ -54,36 +54,36 @@ describe("event card", () => {
   });
 
   // Skipped, because this is not available after the Link-component is changed from react-router Link.
-  test.skip("should go to event page by clicking event card", async () => {
-    advanceTo("2020-10-05");
+  test.skip('should go to event page by clicking event card', async () => {
+    advanceTo('2020-10-05');
     const { router } = renderComponent();
-    expect(router.pathname).toEqual("/");
+    expect(router.pathname).toEqual('/');
     await act(() =>
       userEvent.click(
-        screen.getByRole("link", {
+        screen.getByRole('link', {
           name: translations.event.eventCard.ariaLabelLink.replace(
-            "{{name}}",
+            '{{name}}',
             event.name.fi as string
           ),
         })
       )
     );
-    expect(router.pathname).toEqual("/courses/123");
+    expect(router.pathname).toEqual('/courses/123');
   });
 
-  test("should go to event page by clicking button", async () => {
+  test('should go to event page by clicking button', async () => {
     const { router } = renderComponent();
-    expect(router.pathname).toEqual("/");
+    expect(router.pathname).toEqual('/');
     await act(() =>
       userEvent.click(
-        screen.getByRole("button", {
+        screen.getByRole('button', {
           name: translations.event.eventCard.ariaLabelLink.replace(
-            "{{name}}",
+            '{{name}}',
             event.name.fi as string
           ),
         })
       )
     );
-    expect(router.pathname).toEqual("/courses/123");
+    expect(router.pathname).toEqual('/courses/123');
   });
 });

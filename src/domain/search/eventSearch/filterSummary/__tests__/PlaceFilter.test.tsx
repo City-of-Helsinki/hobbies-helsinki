@@ -1,6 +1,6 @@
-import React from "react";
-import { translations } from "../../../../../tests/initI18n";
-import { fakePlace } from "../../../../../tests/mockDataUtils";
+import React from 'react';
+import { translations } from '../../../../../tests/initI18n';
+import { fakePlace } from '../../../../../tests/mockDataUtils';
 
 import {
   act,
@@ -8,9 +8,9 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../../tests/testUtils";
-import { PlaceDetailsDocument } from "../../../../nextApi/graphql/generated/graphql";
-import PlaceFilter from "../PlaceFilter";
+} from '../../../../../tests/testUtils';
+import { PlaceDetailsDocument } from '../../../../nextApi/graphql/generated/graphql';
+import PlaceFilter from '../PlaceFilter';
 
 const placeId = 'helsinki:123';
 const placeName = 'Gräsan taitojen talo';
@@ -54,7 +54,7 @@ it('calls onRemove callback when remove button is clicked', async () => {
 
   await screen.findByText(placeName);
 
-  await act(() => userEvent.click(screen.getByRole("button")));
+  await act(() => userEvent.click(screen.getByRole('button')));
 
   expect(onClickMock).toHaveBeenCalled();
   expect(onClickMock).toHaveBeenCalledWith(placeId, 'place');

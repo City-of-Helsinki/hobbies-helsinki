@@ -1,18 +1,18 @@
-import { axe } from "jest-axe";
-import { advanceTo, clear } from "jest-date-mock";
-import React from "react";
-import mockRouter from "next-router-mock";
+import { axe } from 'jest-axe';
+import { advanceTo, clear } from 'jest-date-mock';
+import React from 'react';
+import mockRouter from 'next-router-mock';
 
 import {
   KeywordListDocument,
   NeighborhoodListDocument,
   PlaceListDocument,
-} from "../../../nextApi/graphql/generated/graphql";
+} from '../../../nextApi/graphql/generated/graphql';
 import {
   fakeKeywords,
   fakeNeighborhoods,
   fakePlaces,
-} from "../../../../tests/mockDataUtils";
+} from '../../../../tests/mockDataUtils';
 import {
   act,
   actWait,
@@ -69,8 +69,8 @@ const mocks = [
   },
 ];
 
-const pathname = "/haku";
-const search = "?text=jazz";
+const pathname = '/haku';
+const search = '?text=jazz';
 const testRoute = `${pathname}${search}`;
 const routes = [testRoute];
 
@@ -81,7 +81,7 @@ const renderComponent = () =>
   });
 
 beforeEach(() => {
-  mockRouter.setCurrentUrl("/");
+  mockRouter.setCurrentUrl('/');
 });
 
 afterAll(() => {
@@ -97,23 +97,23 @@ test('for accessibility violations', async () => {
   expect(results).toHaveNoViolations();
 }, 50000); // FIXME: Why does this take so long?
 
-test("should clear all filters and search field", async () => {
+test('should clear all filters and search field', async () => {
   const { router } = renderComponent();
 
-  expect(router).toMatchObject({ pathname, query: { text: "jazz" } });
+  expect(router).toMatchObject({ pathname, query: { text: 'jazz' } });
 
-  const searchInput = screen.getByRole("textbox", { name: /mitä etsit\?/i });
+  const searchInput = screen.getByRole('textbox', { name: /mitä etsit\?/i });
 
   await act(async () =>
-    userEvent.click(screen.getByRole("button", { name: /tyhjennä hakuehdot/i }))
+    userEvent.click(screen.getByRole('button', { name: /tyhjennä hakuehdot/i }))
   );
 
-  expect(searchInput).toHaveValue("");
+  expect(searchInput).toHaveValue('');
   expect(router).toMatchObject({ pathname, query: {} });
 });
 
 // TODO: There is a problem with the auto suggest menu options
-test.todo("should change search query after clicking autosuggest menu item");
+test.todo('should change search query after clicking autosuggest menu item');
 // test("should change search query after clicking autosuggest menu item", async () => {
 //   const { router } = renderComponent();
 
@@ -143,10 +143,10 @@ test.todo("should change search query after clicking autosuggest menu item");
 //   });
 // });
 
-test("should change search query after checking is free checkbox", async () => {
+test('should change search query after checking is free checkbox', async () => {
   const { router } = renderComponent();
 
-  const isFreeCheckbox = screen.getByRole("checkbox", {
+  const isFreeCheckbox = screen.getByRole('checkbox', {
     name: /näytä vain maksuttomat/i,
   });
 
@@ -154,35 +154,35 @@ test("should change search query after checking is free checkbox", async () => {
 
   expect(router).toMatchObject({
     pathname,
-    query: { isFree: "true", text: "jazz" },
+    query: { isFree: 'true', text: 'jazz' },
   });
 });
 
-test("should change search query after selecting today date type and pressing submit button", async () => {
+test('should change search query after selecting today date type and pressing submit button', async () => {
   const { router } = renderComponent();
 
-  const chooseDateButton = screen.getByRole("button", {
+  const chooseDateButton = screen.getByRole('button', {
     name: /valitse ajankohta/i,
   });
 
   await act(async () => userEvent.click(chooseDateButton));
   await act(async () =>
-    userEvent.click(screen.getByRole("checkbox", { name: /tänään/i }))
+    userEvent.click(screen.getByRole('checkbox', { name: /tänään/i }))
   );
   await act(async () =>
-    userEvent.click(screen.getByRole("button", { name: /hae/i }))
+    userEvent.click(screen.getByRole('button', { name: /hae/i }))
   );
   expect(router).toMatchObject({
     pathname,
-    query: { dateTypes: "today", text: "jazz" },
+    query: { dateTypes: 'today', text: 'jazz' },
   });
 });
 
-test("should change search query after selecting start date and pressing submit button", async () => {
-  advanceTo("2020-10-04");
+test('should change search query after selecting start date and pressing submit button', async () => {
+  advanceTo('2020-10-04');
   const { router } = renderComponent();
 
-  const chooseDateButton = screen.getByRole("button", {
+  const chooseDateButton = screen.getByRole('button', {
     name: /valitse ajankohta/i,
   });
   await act(async () => userEvent.click(chooseDateButton));
@@ -190,73 +190,73 @@ test("should change search query after selecting start date and pressing submit 
     userEvent.click(
       // The reason to use getAllByRole is that there is also mobile date selector with same text,
       // which is hidden using css
-      screen.getAllByRole("button", { name: /valitse päivät/i })[0]
+      screen.getAllByRole('button', { name: /valitse päivät/i })[0]
     )
   );
   await act(async () =>
     userEvent.click(
-      screen.getAllByRole("button", { name: /valitse päivämäärä/i })[0]
+      screen.getAllByRole('button', { name: /valitse päivämäärä/i })[0]
     )
   );
   await act(async () =>
     userEvent.click(
-      screen.getByRole("button", {
+      screen.getByRole('button', {
         name: /lokakuu 6/i,
       })
     )
   );
   await act(async () =>
-    userEvent.click(screen.getByRole("button", { name: /hae/i }))
+    userEvent.click(screen.getByRole('button', { name: /hae/i }))
   );
   expect(router).toMatchObject({
     pathname,
-    query: { start: "2020-10-06", text: "jazz" },
+    query: { start: '2020-10-06', text: 'jazz' },
   });
 }, 50000); // FIXME: Why does this take so long to test?
 
-test("should change search query after clicking category menu item", async () => {
+test('should change search query after clicking category menu item', async () => {
   const { router } = renderComponent();
 
-  const chooseCategoryButton = screen.getByRole("button", {
+  const chooseCategoryButton = screen.getByRole('button', {
     name: /valitse kategoria/i,
   });
 
   await act(async () => userEvent.click(chooseCategoryButton));
   await act(async () =>
-    userEvent.click(screen.getByRole("checkbox", { name: /elokuva ja media/i }))
+    userEvent.click(screen.getByRole('checkbox', { name: /elokuva ja media/i }))
   );
   await act(async () =>
-    userEvent.click(screen.getByRole("button", { name: /hae/i }))
+    userEvent.click(screen.getByRole('button', { name: /hae/i }))
   );
 
   expect(router).toMatchObject({
     pathname,
     asPath: `${pathname}?categories=movie_and_media&text=jazz`,
-    query: { categories: "movie_and_media", text: "jazz" },
+    query: { categories: 'movie_and_media', text: 'jazz' },
   });
 
   //multiple selection
   await act(async () => userEvent.click(chooseCategoryButton));
-  userEvent.click(screen.getByRole("checkbox", { name: /pelit/i }));
+  userEvent.click(screen.getByRole('checkbox', { name: /pelit/i }));
   await act(async () =>
-    userEvent.click(screen.getByRole("checkbox", { name: /musiikki/i }))
+    userEvent.click(screen.getByRole('checkbox', { name: /musiikki/i }))
   );
   await act(() =>
-    userEvent.click(screen.getByRole("button", { name: /hae/i }))
+    userEvent.click(screen.getByRole('button', { name: /hae/i }))
   );
 
   expect(router).toMatchObject({
     pathname,
     asPath: `${pathname}?categories=movie_and_media%2Cgames%2Cmusic&text=jazz`,
-    query: { categories: "movie_and_media,games,music", text: "jazz" },
+    query: { categories: 'movie_and_media,games,music', text: 'jazz' },
   });
 });
 
 // TODO: SKipped since there is no divisions input at the moment, but I've heard it should be there
-test.skip("disivions dropdown has additional divisions", async () => {
+test.skip('disivions dropdown has additional divisions', async () => {
   renderComponent();
 
-  const chooseCategoryButton = screen.getByRole("button", {
+  const chooseCategoryButton = screen.getByRole('button', {
     name: /etsi alue/i,
   });
   await act(() => userEvent.click(chooseCategoryButton));

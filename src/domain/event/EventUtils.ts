@@ -15,10 +15,10 @@ import {
   EVENT_LOCATIONS,
   EVENT_PLACEHOLDER_IMAGES,
   EVENT_SOME_IMAGE,
-} from "./constants";
-import getSecureImage from "../../common-events/utils/getSecureImage";
-import { UnionTFunction } from "../../common-events/types";
-import { EventFields, KeywordOption } from "./types";
+} from './constants';
+import getSecureImage from '../../common-events/utils/getSecureImage';
+import { UnionTFunction } from '../../common-events/types';
+import { EventFields, KeywordOption } from './types';
 
 export const getEventCardId = (id: string): string => `event-card_${id}`;
 

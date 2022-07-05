@@ -1,31 +1,31 @@
-import React from "react";
-import { I18nextProvider } from "react-i18next";
-import { RouterContext } from "next/dist/shared/lib/router-context";
-import { NextRouter } from "next/router";
-import { MockedProvider, MockedResponse } from "@apollo/client/testing";
+import React from 'react';
+import { I18nextProvider } from 'react-i18next';
+import { RouterContext } from 'next/dist/shared/lib/router-context';
+import { NextRouter } from 'next/router';
+import { MockedProvider, MockedResponse } from '@apollo/client/testing';
 import {
   Config as RHHCConfig,
   ConfigProvider as RHHCConfigProvider,
   defaultConfig as rhhcDefaultConfig,
   getUri,
   ModuleItemTypeEnum,
-} from "react-helsinki-headless-cms";
-import { ApolloCache, InMemoryCache, useApolloClient } from "@apollo/client";
+} from 'react-helsinki-headless-cms';
+import { ApolloCache, InMemoryCache, useApolloClient } from '@apollo/client';
 
-import i18n from "./initI18n";
-import eventsDefaultConfig from "../common-events/configProvider/defaultConfig";
-import { createEventsApolloClient } from "../domain/clients/eventsApolloClient";
-import { Config as EventsConfig } from "../common-events/configProvider/configContext";
-import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from "../constants";
-import EventsConfigProvider from "../common-events/configProvider/ConfigProvider";
-import { getI18nPath } from "../common-events/i18n/router/utils";
-import { createCmsApolloClient } from "../domain/clients/cmsApolloClient";
+import i18n from './initI18n';
+import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
+import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
+import { Config as EventsConfig } from '../common-events/configProvider/configContext';
+import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from '../constants';
+import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
+import { getI18nPath } from '../common-events/i18n/router/utils';
+import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
 const mockRouter: Partial<NextRouter> = {
-  locale: "fi",
-  defaultLocale: "fi",
+  locale: 'fi',
+  defaultLocale: 'fi',
 };
 
 type Props = {

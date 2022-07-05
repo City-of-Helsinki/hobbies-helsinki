@@ -1,8 +1,8 @@
-import { ParsedUrlQueryInput } from "querystring";
+import { ParsedUrlQueryInput } from 'querystring';
 
-import { useTranslation } from "next-i18next";
-import React from "react";
-import qs, { parse } from "query-string";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
+import qs, { parse } from 'query-string';
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
@@ -16,12 +16,12 @@ import {
   getSearchFilters,
   getSearchQuery,
   getSuitableForFilterValue,
-} from "../utils";
-import DateFilter from "./DateFilter";
-import styles from "./filterSummary.module.scss";
-import PlaceFilter from "./PlaceFilter";
-import PublisherFilter from "./PublisherFilter";
-import TextFilter from "./TextFilter";
+} from '../utils';
+import DateFilter from './DateFilter';
+import styles from './filterSummary.module.scss';
+import PlaceFilter from './PlaceFilter';
+import PublisherFilter from './PublisherFilter';
+import TextFilter from './TextFilter';
 
 export const filterSummaryContainerTestId = 'filter-summary';
 
@@ -81,11 +81,12 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       places: getFilteredList('place', places),
       publisher: type !== 'publisher' ? publisher : null,
       start: type === 'date' ? null : start,
+      text: getFilteredList('text', text),
       suitableFor: getSuitableForFilterValue(suitableFor, type) ?? [],
     });
 
     router.push({
-      pathname: getI18nPath("/search", locale),
+      pathname: getI18nPath('/search', locale),
       query: parse(search) as ParsedUrlQueryInput,
     });
   };
@@ -110,7 +111,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
         <FilterButton
           key={category}
           onRemove={handleFilterRemove}
-          text={translateValue("home:category.courses.", category, t)}
+          text={translateValue('home:category.courses.', category, t)}
           type="category"
           value={category}
         />

@@ -29,7 +29,7 @@ test('should show success message when copying succeeds that displays for 4 seco
 
   // Fast forwards by 4s
   act(() => {
-  jest.advanceTimersByTime(4000);
+    jest.advanceTimersByTime(4000);
   });
 
   expect(screen.queryByText(testMessage)).not.toBeInTheDocument();

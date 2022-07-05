@@ -1,13 +1,13 @@
-import { ApolloProvider, gql } from "@apollo/client";
-import { Koros } from "hds-react";
-import { PageContentLayoutProps } from "react-helsinki-headless-cms/";
+import { ApolloProvider, gql } from '@apollo/client';
+import { Koros } from 'hds-react';
+import { PageContentLayoutProps } from 'react-helsinki-headless-cms/';
 
-import Hero from "../../../common/components/hero/Hero";
-import HeroImage from "../../../common/components/hero/HeroImage";
-import Section from "../../../common-events/components/section/Section";
-import LandingPageSearch from "../landingPageSearch/LandingPageSearch";
-import styles from "./landingPage.module.scss";
-import useEventsApolloClientFromConfig from "../../../common-events/hooks/useEventsApolloClientFromConfig";
+import Hero from '../../../common/components/hero/Hero';
+import HeroImage from '../../../common/components/hero/HeroImage';
+import Section from '../../../common-events/components/section/Section';
+import LandingPageSearch from '../landingPageSearch/LandingPageSearch';
+import styles from './landingPage.module.scss';
+import useEventsApolloClientFromConfig from '../../../common-events/hooks/useEventsApolloClientFromConfig';
 
 export const LANDING_PAGE_QUERY = gql`
   query LandingPageQuery($languageCode: LanguageCodeEnum!) {

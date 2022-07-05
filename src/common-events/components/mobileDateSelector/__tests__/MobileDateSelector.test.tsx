@@ -59,7 +59,7 @@ test('should call onChangeDateTypes and unselect option', async () => {
   const onChangeDateTypes = jest.fn();
   renderComponent({ onChangeDateTypes });
   await act(() =>
-    userEvent.click(screen.getByRole("button", { name: dateTypeOptions[0] }))
+    userEvent.click(screen.getByRole('button', { name: dateTypeOptions[0] }))
   );
   expect(onChangeDateTypes).toBeCalledWith([DATE_TYPES.WEEKEND]);
 });
@@ -69,7 +69,7 @@ test('should call onChangeDateTypes and select option', async () => {
   renderComponent({ onChangeDateTypes, dateTypes: [] });
 
   await act(() =>
-    userEvent.click(screen.getByRole("button", { name: dateTypeOptions[0] }))
+    userEvent.click(screen.getByRole('button', { name: dateTypeOptions[0] }))
   );
   expect(onChangeDateTypes).toBeCalledWith([DATE_TYPES.TODAY]);
 });
@@ -90,10 +90,10 @@ test('custom date type should be selected when endDate is selected', async () =>
   );
 });
 
-test("should close date selector menu with escape", async () => {
+test('should close date selector menu with escape', async () => {
   renderComponent();
   await act(() =>
-    userEvent.click(screen.getByRole("button", { name: /valitse päivät/i }))
+    userEvent.click(screen.getByRole('button', { name: /valitse päivät/i }))
   );
 
   // Check that menu is open
@@ -105,27 +105,27 @@ test("should close date selector menu with escape", async () => {
   expect(screen.queryByTestId(testIds.menu)).not.toBeInTheDocument();
 });
 
-test("should close date selector menu with close button", async () => {
+test('should close date selector menu with close button', async () => {
   renderComponent();
   await act(() =>
-    userEvent.click(screen.getByRole("button", { name: /valitse päivät/i }))
+    userEvent.click(screen.getByRole('button', { name: /valitse päivät/i }))
   );
   // Check that menu is open
   await waitFor(() => {
     expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
   });
-  userEvent.click(screen.getByRole("button", { name: /sulje/i }));
+  userEvent.click(screen.getByRole('button', { name: /sulje/i }));
   await actWait();
   // Check that menu is closed
   expect(screen.queryByTestId(testIds.menu)).not.toBeInTheDocument();
 });
 
-describe("when menu has been closed, it should reopen with", () => {
+describe('when menu has been closed, it should reopen with', () => {
   const renderClosedMenu = async () => {
     renderComponent();
 
     await act(() =>
-      userEvent.click(screen.getByRole("button", { name: /valitse päivät/i }))
+      userEvent.click(screen.getByRole('button', { name: /valitse päivät/i }))
     );
 
     await waitFor(() => {
@@ -141,7 +141,7 @@ describe("when menu has been closed, it should reopen with", () => {
     expect(screen.getByTestId(testIds.menu)).toBeInTheDocument();
   };
 
-  test("ArrowDown", async () => {
+  test('ArrowDown', async () => {
     await renderClosedMenu();
 
     arrowDownKeyPressHelper();

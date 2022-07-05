@@ -1,5 +1,5 @@
-import { EventTypeId } from "../../nextApi/graphql/generated/graphql";
-import AppConfig from "../AppConfig";
+import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
+import AppConfig from '../AppConfig';
 
 let env: any;
 beforeAll(() => {
@@ -17,9 +17,9 @@ test.each([
     envName: 'NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT',
   },
   {
-    field: "origin",
-    mockEnvValue: "https://localhost",
-    envName: "NEXT_PUBLIC_APP_ORIGIN",
+    field: 'origin',
+    mockEnvValue: 'https://localhost',
+    envName: 'NEXT_PUBLIC_APP_ORIGIN',
   },
 ])(
   'provides required config $field',
@@ -38,18 +38,18 @@ test.each([
 
 test.each([
   {
-    field: "debug",
-    envName: "NEXT_PUBLIC_DEBUG",
+    field: 'debug',
+    envName: 'NEXT_PUBLIC_DEBUG',
   },
   {
     field: 'allowUnauthorizedRequests',
     envName: 'NEXT_PUBLIC_ALLOW_UNAUTHORIZED_REQUESTS',
   },
   {
-    field: "showSimilarEvents",
-    envName: "NEXT_PUBLIC_SHOW_SIMILAR_EVENTS",
+    field: 'showSimilarEvents',
+    envName: 'NEXT_PUBLIC_SHOW_SIMILAR_EVENTS',
   },
-])("provides flag config $field", ({ field, envName }) => {
+])('provides flag config $field', ({ field, envName }) => {
   // When undefined, returns false
   process.env[envName];
   expect(AppConfig[field]).toEqual(false);
@@ -111,7 +111,7 @@ test('provides configuration for Matomo', () => {
     }
   `);
 
-  process.env.NEXT_PUBLIC_MATOMO_ENABLED = "1";
+  process.env.NEXT_PUBLIC_MATOMO_ENABLED = '1';
   expect(AppConfig.matomoConfiguration?.disabled).toEqual(false);
 });
 

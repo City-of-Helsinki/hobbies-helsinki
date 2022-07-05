@@ -1,11 +1,11 @@
 /* eslint-disable @typescript-eslint/no-require-imports */
-import "@testing-library/jest-dom/extend-expect";
-import { TextEncoder, TextDecoder } from "util";
+import '@testing-library/jest-dom/extend-expect';
+import { TextEncoder, TextDecoder } from 'util';
 
-import { loadEnvConfig } from "@next/env";
+import { loadEnvConfig } from '@next/env';
 // import { server } from "./tests/mocks/server";
-import "./tests/initI18n";
-import { toHaveNoViolations } from "jest-axe";
+import './tests/initI18n';
+import { toHaveNoViolations } from 'jest-axe';
 
 loadEnvConfig(process.cwd());
 
@@ -16,7 +16,7 @@ loadEnvConfig(process.cwd());
 global.scrollTo = jest.fn();
 
 // Mock the translations module
-jest.mock("next-i18next", () => ({
+jest.mock('next-i18next', () => ({
   // When testing, i18n is set up with providers instead of the version that's
   // optimized for next. That's why we replace the next useTranslation with the
   // default react version.
@@ -24,13 +24,13 @@ jest.mock("next-i18next", () => ({
 }));
 
 // Mock the ICS create event that fails during the tests
-jest.mock("ics", () => {
+jest.mock('ics', () => {
   createEvent: jest.fn();
 });
 
 // Mock the NextJS-router
-jest.mock("next/router", () => require("next-router-mock"));
-jest.mock("next/dist/client/router", () => require("next-router-mock"));
+jest.mock('next/router', () => require('next-router-mock'));
+jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
 // Extend except with jest-axe
 expect.extend(toHaveNoViolations);

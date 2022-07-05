@@ -1,5 +1,5 @@
-import { i18n } from "../../../next-i18next.config";
-import { EventTypeId } from "../nextApi/graphql/generated/graphql";
+import { i18n } from '../../../next-i18next.config';
+import { EventTypeId } from '../nextApi/graphql/generated/graphql';
 
 class AppConfig {
   static get cmsGraphqlEndpoint() {

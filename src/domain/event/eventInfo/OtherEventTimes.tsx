@@ -16,7 +16,7 @@ const EVENTS_LIST_LIMIT = 3;
 export const otherEventTimesListTestId = 'other-event-times-list';
 
 const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
-  const { t } = useTranslation("event");
+  const { t } = useTranslation('event');
   const [isListOpen, setIsListOpen] = React.useState(false);
 
   const { superEventId, loading, events, isFetchingMore } =
@@ -45,7 +45,7 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
     <div className={styles.eventList}>
       <InfoWithIcon
         icon={<IconCalendarPlus aria-hidden />}
-        title={t("otherTimes.title")}
+        title={t('otherTimes.title')}
       >
         <EventList
           id={otherEventTimesListTestId}
@@ -59,8 +59,8 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
             aria-expanded={isListOpen}
           >
             {isListOpen
-              ? t("otherTimes.buttonHide")
-              : t("otherTimes.buttonShow")}
+              ? t('otherTimes.buttonHide')
+              : t('otherTimes.buttonShow')}
             {isListOpen ? (
               <IconAngleUp aria-hidden />
             ) : (
