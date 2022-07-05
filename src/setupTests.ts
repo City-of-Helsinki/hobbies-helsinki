@@ -7,6 +7,9 @@ import { loadEnvConfig } from '@next/env';
 import './tests/initI18n';
 import { toHaveNoViolations } from 'jest-axe';
 
+// Raise the default timeout from 5000
+jest.setTimeout(10000);
+
 loadEnvConfig(process.cwd());
 
 // Mock the fetch

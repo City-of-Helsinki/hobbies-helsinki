@@ -13,7 +13,7 @@ test('component should be accessible', async () => {
   const { container } = render(<FooterCategories />);
 
   expect(await axe(container)).toHaveNoViolations();
-}, 7000);
+});
 
 test('should route to event search page by clicking category', async () => {
   const { router } = render(<FooterCategories />);
