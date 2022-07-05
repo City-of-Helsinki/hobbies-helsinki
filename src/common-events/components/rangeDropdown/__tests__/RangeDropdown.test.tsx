@@ -1,20 +1,19 @@
+import { axe } from 'jest-axe';
+import React from 'react';
+
 import {
   act,
   fireEvent,
   render,
   screen,
   waitFor,
-} from '@testing-library/react';
-import { axe } from 'jest-axe';
-import React from 'react';
-
-import { userEvent } from '../../../../tests/testUtils';
+  userEvent,
+} from '../../../../tests/testUtils';
 import RangeDropdown, { RangeDropdownProps } from '../RangeDropdown';
 
 const title = 'test title';
 
 const defaultProps: RangeDropdownProps = {
-  checkboxName: 'set_defaults',
   icon: <div />,
   rangeIcon: <div />,
   minInputStartValue: '0',
@@ -51,11 +50,11 @@ test('for accessibility violations', async () => {
 });
 
 describe('Escape', () => {
-  test('should close range dropdown with escape', () => {
+  test('should close range dropdown with escape', async () => {
     renderComponent();
 
     const toggleButton = screen.getByRole('button', { name: title });
-    userEvent.click(toggleButton);
+    await act(() => userEvent.click(toggleButton));
 
     expect(
       screen.queryByRole('spinbutton', {
@@ -88,11 +87,11 @@ test('should not open dropdown when user focuses toggle button', () => {
   ).not.toBeInTheDocument();
 });
 
-test('should open dropdown when user clicks on toggle button', () => {
+test('should open dropdown when user clicks on toggle button', async () => {
   renderComponent();
 
   const toggleButton = screen.getByRole('button', { name: title });
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
 
   expect(
     screen.queryByRole('spinbutton', {
@@ -131,10 +130,10 @@ test('should close dropdown when toggle button is active and user presses ArrowU
   ).not.toBeInTheDocument();
 });
 
-test('can be navigated with tab', () => {
+test('can be navigated with tab', async () => {
   renderComponent();
   const toggleButton = screen.getByRole('button', { name: title });
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
 
   const minValueTextbox = screen.queryByRole('spinbutton', {
     name: /start integer/i,
@@ -151,12 +150,12 @@ test('can be navigated with tab', () => {
   expect(maxValueTextbox).toHaveFocus();
 });
 
-test('should call onChange correctly when setting fixed values with checkbox', () => {
+test('should call onChange correctly when setting fixed values with checkbox', async () => {
   const onChange = jest.fn();
   const { rerender } = renderComponent({ onChange });
 
   const toggleButton = screen.getByRole('button', { name: title });
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
 
   const minValueTextbox = screen.queryByRole('spinbutton', {
     name: /start integer/i,
@@ -164,7 +163,7 @@ test('should call onChange correctly when setting fixed values with checkbox', (
   const maxValueTextbox = screen.queryByRole('spinbutton', {
     name: /end integer/i,
   }) as HTMLInputElement;
-  const setDefaultsCheckbox = screen.queryByRole('checkbox', {
+  const setDefaultsCheckbox = screen.getByRole('checkbox', {
     name: /set default values/i,
   });
 
@@ -175,7 +174,7 @@ test('should call onChange correctly when setting fixed values with checkbox', (
   expect(setDefaultsCheckbox).toBeInTheDocument();
 
   //click defaults
-  userEvent.click(setDefaultsCheckbox);
+  await act(() => userEvent.click(setDefaultsCheckbox));
 
   expect(onChange).toHaveBeenCalledWith('18', '80');
 
@@ -197,7 +196,7 @@ describe('Validation', () => {
     const { rerender } = renderComponent({ onChange });
 
     const toggleButton = screen.getByRole('button', { name: title });
-    userEvent.click(toggleButton);
+    await act(() => userEvent.click(toggleButton));
     userEvent.tab();
     const minValueTextbox = screen.queryByRole('spinbutton', {
       name: /start integer/i,
@@ -233,7 +232,7 @@ describe('Validation', () => {
     const { rerender } = renderComponent({ onChange });
 
     const toggleButton = screen.getByRole('button', { name: title });
-    userEvent.click(toggleButton);
+    await act(() => userEvent.click(toggleButton));
     userEvent.tab();
     const minValueTextbox = screen.queryByRole('spinbutton', {
       name: /start integer/i,
