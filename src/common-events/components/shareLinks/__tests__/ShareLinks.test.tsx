@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 
+import { render } from '../../../../tests/testUtils';
 import ShareLinks, { ShareLinksProps } from '../ShareLinks';
 
 const renderComponent = (props: ShareLinksProps) =>
