@@ -1,7 +1,7 @@
-import { clear } from "console";
-import { advanceTo } from "jest-date-mock";
-import * as React from "react";
-import { translations } from "../../../../tests/initI18n";
+import { clear } from 'console';
+import { advanceTo } from 'jest-date-mock';
+import * as React from 'react';
+import { translations } from '../../../../tests/initI18n';
 
 import {
   fakeEvent,
@@ -9,17 +9,17 @@ import {
   fakeKeyword,
   fakeLocalizedObject,
   fakeTargetGroup,
-} from "../../../../tests/mockDataUtils";
-import { createEventListRequestAndResultMocks } from "../../../../tests/mocks/eventListMocks";
+} from '../../../../tests/mockDataUtils';
+import { createEventListRequestAndResultMocks } from '../../../../tests/mocks/eventListMocks';
 import {
   render,
   screen,
   userEvent,
   waitFor,
-} from "../../../../tests/testUtils";
-import { EventFieldsFragment } from "../../../nextApi/graphql/generated/graphql";
+} from '../../../../tests/testUtils';
+import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
 
-import SimilarEvents from "../SimilarEvents";
+import SimilarEvents from '../SimilarEvents';
 
 const id = '1';
 const name = 'Event title';
@@ -73,9 +73,9 @@ const waitForComponentToBeLoaded = async () => {
   });
 };
 
-describe.skip("similar events", () => {
-  test("should render similar event cards", async () => {
-    advanceTo(new Date("2020-08-11"));
+describe.skip('similar events', () => {
+  test('should render similar event cards', async () => {
+    advanceTo(new Date('2020-08-11'));
     render(<SimilarEvents event={event as EventFieldsFragment} />, {
       mocks,
     });
@@ -83,9 +83,9 @@ describe.skip("similar events", () => {
 
     expectedSimilarEvents.data.forEach((event) => {
       expect(
-        screen.queryByRole("link", {
+        screen.queryByRole('link', {
           name: translations.event.eventCard.ariaLabelLink.replace(
-            "{{name}}",
+            '{{name}}',
             event.name.fi as string
           ),
         })
@@ -93,9 +93,9 @@ describe.skip("similar events", () => {
     });
   });
 
-  it("has return path on similar event link", async () => {
-    const path = "/courses/:id";
-    const route = path.replace(":id", "rootEventId");
+  it('has return path on similar event link', async () => {
+    const path = '/courses/:id';
+    const route = path.replace(':id', 'rootEventId');
     const { router } = render(
       <SimilarEvents event={event as EventFieldsFragment} />,
       {
@@ -106,16 +106,16 @@ describe.skip("similar events", () => {
     for (const similarEvent of expectedSimilarEvents.data) {
       await waitForComponentToBeLoaded();
       userEvent.click(
-        screen.getByRole("button", {
+        screen.getByRole('button', {
           name: translations.event.eventCard.ariaLabelLink.replace(
-            "{{name}}",
+            '{{name}}',
             similarEvent.name.fi as string
           ),
         })
       );
       expect(router).toMatchObject({
-        pathname: `/fi${"/courses/:id".replace(
-          ":id",
+        pathname: `/fi${'/courses/:id'.replace(
+          ':id',
           similarEvent.id
         )}?returnPath=${encodeURIComponent(route)}`,
       });

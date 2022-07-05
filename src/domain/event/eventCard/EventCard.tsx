@@ -4,15 +4,15 @@ import { useTranslation } from 'next-i18next';
 import Link from 'next/link';
 import React from 'react';
 
-import getDateRangeStr from "../../../common-events/utils/getDateRangeStr";
-import testImage from "../../../common-events/utils/testImage";
-import IconButton from "../../../common/components/iconButton/IconButton";
-import useLocale from "../../../common-events/hooks/useLocale";
-import { addParamsToQueryString } from "../../../common-events/utils/queryString";
-import { getI18nPath } from "../../../common-events/i18n/router/utils";
-import EventKeywords from "../eventKeywords/EventKeywords";
-import LocationText from "../eventLocation/EventLocationText";
-import EventName from "../eventName/EventName";
+import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
+import testImage from '../../../common-events/utils/testImage';
+import IconButton from '../../../common/components/iconButton/IconButton';
+import useLocale from '../../../common-events/hooks/useLocale';
+import { addParamsToQueryString } from '../../../common-events/utils/queryString';
+import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import EventKeywords from '../eventKeywords/EventKeywords';
+import LocationText from '../eventLocation/EventLocationText';
+import EventName from '../eventName/EventName';
 import {
   getEventCardId,
   getEventFields,

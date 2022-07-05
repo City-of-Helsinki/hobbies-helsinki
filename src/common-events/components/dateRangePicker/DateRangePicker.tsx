@@ -44,9 +44,9 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
     endDateIsInvalid: false,
   });
 
-  const { t } = useTranslation("common");
+  const { t } = useTranslation('common');
   const locale = useLocale();
-  const helperText = t("dateSelector.infoDate");
+  const helperText = t('dateSelector.infoDate');
 
   const internalStartDate = parseDate(internalStartDateString);
   const internalEndDate = parseDate(internalEndDateString);
@@ -131,12 +131,12 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         helperText={!errors.startDateIsInvalid ? helperText : undefined}
         minDate={new Date()}
         initialMonth={new Date()}
-        label={t("dateSelector.labelStartDate")}
+        label={t('dateSelector.labelStartDate')}
         language={locale}
         onChange={(date) => setInternalStartDateString(date)}
         errorText={
           errors.startDateIsInvalid
-            ? t("dateSelector.errorDateFormat")
+            ? t('dateSelector.errorDateFormat')
             : undefined
         }
       />
@@ -153,14 +153,14 @@ const DateRangePicker: React.FC<DateRangePickerProps> = ({
         }
         minDate={new Date()}
         initialMonth={startDate ?? new Date()}
-        label={t("dateSelector.labelEndDate")}
+        label={t('dateSelector.labelEndDate')}
         language={locale}
         onChange={(date) => setInternalEndDateString(date)}
         errorText={
           endDateIsBeforeStartDate
-            ? t("dateSelector.errorEndDateBeforeStartDate")
+            ? t('dateSelector.errorEndDateBeforeStartDate')
             : errors.endDateIsInvalid
-            ? t("dateSelector.errorDateFormat")
+            ? t('dateSelector.errorDateFormat')
             : undefined
         }
       />

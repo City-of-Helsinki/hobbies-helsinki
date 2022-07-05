@@ -1,8 +1,8 @@
-import React from "react";
-import { translations } from "../../../../tests/initI18n";
+import React from 'react';
+import { translations } from '../../../../tests/initI18n';
 
-import { render, screen, userEvent } from "../../../../tests/testUtils";
-import EventClosedHero from "../EventClosedHero";
+import { render, screen, userEvent } from '../../../../tests/testUtils';
+import EventClosedHero from '../EventClosedHero';
 
 it('should render all text fields', () => {
   render(<EventClosedHero />);
@@ -22,7 +22,7 @@ it('should render all text fields', () => {
   ).toBeInTheDocument();
 });
 
-it("should go to home page when clicking button", () => {
+it('should go to home page when clicking button', () => {
   const { router } = render(<EventClosedHero />);
 
   userEvent.click(
@@ -30,5 +30,5 @@ it("should go to home page when clicking button", () => {
       name: translations.event.hero.buttonToHomePage,
     })
   );
-  expect(router.pathname).toBe("");
+  expect(router.pathname).toBe('');
 });

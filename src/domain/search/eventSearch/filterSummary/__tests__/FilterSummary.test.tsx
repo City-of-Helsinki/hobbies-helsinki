@@ -9,18 +9,18 @@ import {
   screen,
   userEvent,
   waitFor,
-} from "../../../../../tests/testUtils";
-import FilterSummary from "../FilterSummary";
+} from '../../../../../tests/testUtils';
+import FilterSummary from '../FilterSummary';
 import {
   // fakeNeighborhoods,
   fakeOrganization,
   fakePlace,
-} from "../../../../../tests/mockDataUtils";
+} from '../../../../../tests/mockDataUtils';
 import {
   OrganizationDetailsDocument,
   PlaceDetailsDocument,
-} from "../../../../nextApi/graphql/generated/graphql";
-import { translations } from "../../../../../tests/initI18n";
+} from '../../../../nextApi/graphql/generated/graphql';
+import { translations } from '../../../../../tests/initI18n';
 
 configure({ defaultHidden: true });
 
@@ -95,10 +95,10 @@ interface UrlParams {
 }
 
 const urlParams: UrlParams = {
-  categories: "music",
-  dateTypes: "today",
+  categories: 'music',
+  dateTypes: 'today',
   // divisions: neighborhoodId,
-  end: "2020-08-23",
+  end: '2020-08-23',
   places: placeId,
   publisher: organizationId,
   start: '2020-08-20',
@@ -135,7 +135,7 @@ it('calls onClear callback when clear button is clicked', async () => {
   });
   await act(() =>
     userEvent.click(
-      screen.getByRole("button", {
+      screen.getByRole('button', {
         name: translations.search.buttonClearFilters,
       })
     )
@@ -143,7 +143,7 @@ it('calls onClear callback when clear button is clicked', async () => {
   expect(onClear).toBeCalledTimes(1);
 });
 
-it.todo("routes to correct url after deleting filters");
+it.todo('routes to correct url after deleting filters');
 // it("routes to correct url after deleting filters", async () => {
 //   const { router } = render(<FilterSummary onClear={jest.fn()} />, {
 //     mocks,

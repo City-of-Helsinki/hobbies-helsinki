@@ -1,6 +1,6 @@
-import FileSaver from "file-saver";
-import React from "react";
-import mockRouter from "next-router-mock";
+import FileSaver from 'file-saver';
+import React from 'react';
+import mockRouter from 'next-router-mock';
 
 import { EventDetails } from '../../../../domain/nextApi/graphql/generated/graphql';
 import { translations } from '../../../../tests/initI18n';
@@ -34,10 +34,10 @@ import {
   subEventsResponse,
   superEventInternalId,
   telephone,
-} from "../utils/EventInfo.mocks";
+} from '../utils/EventInfo.mocks';
 
 beforeEach(() => {
-  mockRouter.setCurrentUrl("/");
+  mockRouter.setCurrentUrl('/');
 });
 configure({ defaultHidden: true });
 
@@ -202,7 +202,7 @@ it('should open ticket buy page', async () => {
 
   // Event info fields
   userEvent.click(
-    screen.getByRole("button", {
+    screen.getByRole('button', {
       name: translations.event.info.ariaLabelBuyTickets,
     })
   );
@@ -212,14 +212,14 @@ it('should open ticket buy page', async () => {
   });
 });
 
-it.skip("should create ics file succesfully", async () => {
-  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
+it.skip('should create ics file succesfully', async () => {
+  const saveAsSpy = jest.spyOn(FileSaver, 'saveAs');
   render(<EventInfo event={event} />, { mocks });
 
   // Event info fields
   await act(() =>
     userEvent.click(
-      screen.getByRole("button", {
+      screen.getByRole('button', {
         name: translations.event.info.buttonAddToCalendar,
       })
     )
@@ -230,15 +230,15 @@ it.skip("should create ics file succesfully", async () => {
   });
 });
 
-it.skip("should create ics file succesfully when end time is not defined", async () => {
-  const saveAsSpy = jest.spyOn(FileSaver, "saveAs");
+it.skip('should create ics file succesfully when end time is not defined', async () => {
+  const saveAsSpy = jest.spyOn(FileSaver, 'saveAs');
   render(<EventInfo event={{ ...event, endTime: null }} />, {
     mocks,
   });
 
   // Event info fields
   userEvent.click(
-    screen.getByRole("button", {
+    screen.getByRole('button', {
       name: translations.event.info.buttonAddToCalendar,
     })
   );
@@ -288,7 +288,7 @@ describe('OrganizationInfo', () => {
     render(<EventInfo event={event} />, { mocks });
     await waitFor(() => {
       expect(
-        screen.getByText("Katso julkaisijan muut harrastukset")
+        screen.getByText('Katso julkaisijan muut harrastukset')
       ).toBeInTheDocument();
     });
   });
@@ -348,7 +348,7 @@ describe('subEvents', () => {
     });
     await waitFor(() => {
       expect(
-        screen.getByRole("heading", {
+        screen.getByRole('heading', {
           name: translations.event.subEvents.title,
         })
       ).toBeInTheDocument();
@@ -356,7 +356,7 @@ describe('subEvents', () => {
     await testSubEvents();
   });
 
-  it("should navigate to sub events page when it is clicked", async () => {
+  it('should navigate to sub events page when it is clicked', async () => {
     const { router } = render(<EventInfo event={event} />, {
       mocks: mocksWithSubEvents,
     });
@@ -373,7 +373,7 @@ describe('subEvents', () => {
   });
 
   // eslint-disable-next-line max-len
-  it("should render subEvents with other times title when the event is a middle level event in event hierarchy", async () => {
+  it('should render subEvents with other times title when the event is a middle level event in event hierarchy', async () => {
     const middleAsSuperEventMock = getSubEventsMocks({
       variables: {
         superEvent: event.id,
@@ -390,7 +390,7 @@ describe('subEvents', () => {
     });
     const superEventMock = getSubEventsMocks({
       variables: {
-        superEvent: "super:123",
+        superEvent: 'super:123',
       },
       response: subEventsResponse,
     });
@@ -402,16 +402,16 @@ describe('subEvents', () => {
           },
         ],
       }),
-      status: "resolved",
+      status: 'resolved',
     };
     render(
       <EventInfo
         event={Object.assign({}, event, {
           superEvent: {
-            internalId: "https://api.hel.fi/linkedevents/v1/event/super:123",
+            internalId: 'https://api.hel.fi/linkedevents/v1/event/super:123',
           },
           subEvents: [
-            { internalId: "https://api.hel.fi/linkedevents/v1/event/sub:123" },
+            { internalId: 'https://api.hel.fi/linkedevents/v1/event/sub:123' },
           ],
         })}
         superEvent={superEventResponseMock}
@@ -423,7 +423,7 @@ describe('subEvents', () => {
 
     await waitFor(() => {
       expect(
-        screen.getByRole("heading", {
+        screen.getByRole('heading', {
           name: translations.event.otherTimes.title,
           hidden: false,
         })

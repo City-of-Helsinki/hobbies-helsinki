@@ -11,4 +11,3 @@ test('should apply aria label', () => {
 
   expect(getByLabelText(/Jaa Twitterissä/)).toBeInTheDocument();
 });
-

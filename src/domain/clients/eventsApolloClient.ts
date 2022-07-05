@@ -4,14 +4,14 @@ import {
   HttpLink,
   InMemoryCache,
   NormalizedCacheObject,
-} from "@apollo/client";
-import { onError } from "@apollo/client/link/error";
-import * as Sentry from "@sentry/browser";
-import get from "lodash/get";
-import { useMemo } from "react";
-import fetch from "cross-fetch";
-import isClient from "../../common/utils/isClient";
-import AppConfig from "../app/AppConfig";
+} from '@apollo/client';
+import { onError } from '@apollo/client/link/error';
+import * as Sentry from '@sentry/browser';
+import get from 'lodash/get';
+import { useMemo } from 'react';
+import fetch from 'cross-fetch';
+import isClient from '../../common/utils/isClient';
+import AppConfig from '../app/AppConfig';
 
 export const createEventsApolloClient = (
   initialState: NormalizedCacheObject = {}

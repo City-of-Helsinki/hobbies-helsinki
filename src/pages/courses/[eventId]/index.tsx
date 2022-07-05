@@ -1,14 +1,14 @@
-import { ApolloProvider } from "@apollo/client";
-import { GetStaticPropsContext, NextPage } from "next";
-import React from "react";
-import { Page as RHHCPage } from "react-helsinki-headless-cms";
+import { ApolloProvider } from '@apollo/client';
+import { GetStaticPropsContext, NextPage } from 'next';
+import React from 'react';
+import { Page as RHHCPage } from 'react-helsinki-headless-cms';
 
-import Navigation from "../../../common-events/components/navigation/Navigation";
-import useEventsApolloClientFromConfig from "../../../common-events/hooks/useEventsApolloClientFromConfig";
-import { getLocaleOrError } from "../../../common-events/i18n/router/utils";
-import { DEFAULT_LANGUAGE } from "../../../constants";
-import AppConfig from "../../../domain/app/AppConfig";
-import getHobbiesStaticProps from "../../../domain/app/getHobbiesStaticProps";
+import Navigation from '../../../common-events/components/navigation/Navigation';
+import useEventsApolloClientFromConfig from '../../../common-events/hooks/useEventsApolloClientFromConfig';
+import { getLocaleOrError } from '../../../common-events/i18n/router/utils';
+import { DEFAULT_LANGUAGE } from '../../../constants';
+import AppConfig from '../../../domain/app/AppConfig';
+import getHobbiesStaticProps from '../../../domain/app/getHobbiesStaticProps';
 // import eventsWithApollo from "../../../domain/clients/eventsWithApollo";
 import EventPageContainer from '../../../domain/event/EventPageContainer';
 import FooterSection from '../../../domain/footer/Footer';

@@ -5,18 +5,18 @@ import { AutosuggestMenuOption } from '../../../common-events/types';
 import {
   CATEGORY_CATALOG,
   EVENT_DEFAULT_SEARCH_FILTERS,
-} from "../eventSearch/constants";
-import { getEventCategoryOptions, getSearchQuery } from "../eventSearch/utils";
-import useLocale from "../../../common-events/hooks/useLocale";
-import useRouter from "../../../common-events/i18n/router/useRouter";
+} from '../eventSearch/constants';
+import { getEventCategoryOptions, getSearchQuery } from '../eventSearch/utils';
+import useLocale from '../../../common-events/hooks/useLocale';
+import useRouter from '../../../common-events/i18n/router/useRouter';
 import {
   getI18nPath,
   getParsedUrlQueryInput,
-} from "../../../common-events/i18n/router/utils";
-import SearchShortcuts from "./SearchShortcuts";
-import LandingPageSearchForm from "./LandingPageSearchForm";
-import styles from "./landingPageSearch.module.scss";
-import { EventTypeId } from "../../nextApi/graphql/generated/graphql";
+} from '../../../common-events/i18n/router/utils';
+import SearchShortcuts from './SearchShortcuts';
+import LandingPageSearchForm from './LandingPageSearchForm';
+import styles from './landingPageSearch.module.scss';
+import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
 
 const Search: React.FC = () => {
   const { t } = useTranslation();
@@ -38,7 +38,7 @@ const Search: React.FC = () => {
 
   const goToSearchPage = (search: string) => {
     router.push({
-      pathname: getI18nPath("/search", locale),
+      pathname: getI18nPath('/search', locale),
       query: getParsedUrlQueryInput(search),
     });
   };
