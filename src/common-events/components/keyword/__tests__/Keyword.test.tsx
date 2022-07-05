@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { act, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 
@@ -14,13 +14,13 @@ it('matches snapshot', () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-it('calls onClick callback when clicking', () => {
+it('calls onClick callback when clicking', async () => {
   const onClickMock = jest.fn();
   render(<Keyword keyword={keyword} onClick={onClickMock} />);
 
   expect(screen.queryByText(keyword)).toBeInTheDocument();
 
-  userEvent.click(screen.getByRole('link'));
+  await act(() => userEvent.click(screen.getByRole('link')));
 
   expect(onClickMock).toHaveBeenCalled();
 });
