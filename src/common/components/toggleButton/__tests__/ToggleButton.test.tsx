@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { act, render } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 
@@ -17,12 +17,12 @@ test('matches snapshot', () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-test('should call onClick', () => {
+test('should call onClick', async () => {
   const onClick = jest.fn();
   const { container } = render(
     <ToggleButton {...defaultProps} onClick={onClick} />
   );
 
-  userEvent.click(container.firstChild as HTMLElement);
+  await act(() => userEvent.click(container.firstChild as HTMLElement));
   expect(onClick).toBeCalledTimes(1);
 });
