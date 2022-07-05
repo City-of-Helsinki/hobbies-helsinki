@@ -1,6 +1,6 @@
-import { render } from '@testing-library/react';
 import * as React from 'react';
 
+import { render } from '../../../../tests/testUtils';
 import FilterButton from '../FilterButton';
 
 test('matches snapshot', () => {
