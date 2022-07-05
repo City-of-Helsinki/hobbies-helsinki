@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react';
 import React from 'react';
 
-import { EventFieldsFragment } from '../../../../generated/graphql';
-import { fakeEvent } from '../../../../test/mockDataUtils';
+import { fakeEvent } from '../../../../tests/mockDataUtils';
 import { actWait } from '../../../../tests/testUtils';
+import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
 import EventPageMeta from '../EventPageMeta';
 
 const eventName = 'Name of event';
@@ -29,11 +29,11 @@ const event = fakeEvent({
 //     `EventPageMeta` is rendered as part of some other test suite (likely)
 // To combat these conditions, we are manually managing the `head` in setup and
 // teardown.
-let initialHeadInnerHTML = null;
+let initialHeadInnerHTML = '';
 
 beforeEach(() => {
   const head = document.querySelector('head');
-  initialHeadInnerHTML = head.innerHTML;
+  initialHeadInnerHTML = head?.innerHTML ?? '';
 
   document.head.innerHTML = '';
 });
@@ -49,11 +49,11 @@ test('applies expected metadata', async () => {
 
   const title = document.title;
   const head = document.querySelector('head');
-  const metaDescription = head.querySelector('[name="description"]');
-  const metaKeywords = head.querySelector('[name="keywords"]');
-  const ogTitle = head.querySelector('[property="og:title"]');
-  const ogDescription = head.querySelector('[property="og:description"]');
-  const ogImage = head.querySelector('[property="og:image"]');
+  const metaDescription = head?.querySelector('[name="description"]');
+  const metaKeywords = head?.querySelector('[name="keywords"]');
+  const ogTitle = head?.querySelector('[property="og:title"]');
+  const ogDescription = head?.querySelector('[property="og:description"]');
+  const ogImage = head?.querySelector('[property="og:image"]');
 
   expect(title).toEqual(eventName);
   expect(metaDescription).toHaveAttribute('content', eventDescription);
