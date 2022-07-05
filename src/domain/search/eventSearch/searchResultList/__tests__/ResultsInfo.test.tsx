@@ -1,14 +1,14 @@
 import * as React from 'react';
 
-import * as useLocale from '../../../../hooks/useLocale';
+import * as useLocale from '../../../../../common-events/hooks/useLocale';
 import {
+  act,
   render,
   screen,
   userEvent,
   waitFor,
 } from '../../../../../tests/testUtils';
 import { Language } from '../../../../../types';
-import { ROUTES } from '../../../app/routes/constants';
 import ResultsInfo from '../ResultsInfo';
 
 test('events with 0 results matches snapshot for no results', () => {
@@ -22,7 +22,7 @@ test('renders no events found text', async () => {
 
   expect(
     screen.queryByText(
-      'Valitsemillasi hakuehdoilla ei löytynyt yhtään tapahtumaa'
+      'Valitsemillasi hakuehdoilla ei löytynyt yhtään harrastusta'
     )
   ).toBeInTheDocument();
 });
@@ -33,8 +33,7 @@ test.each([1, 4])(
     render(<ResultsInfo resultsCount={resultsCount} />);
 
     const texts = [
-      'Hakuehdoillasi löytyi vain vähän tapahtumia.',
-      // 'Valitsemillasi hakuehdoilla löytyi vain vähän tapahtumia.',
+      'Valitsemillasi hakuehdoilla löytyi vain vähän hakutuloksia.',
     ];
 
     texts.forEach((text) => {
@@ -52,19 +51,21 @@ it.each<[Language, number]>([
   async (language, resultsCount) => {
     jest.spyOn(useLocale, 'default').mockReturnValue(language);
 
-    const { history } = render(<ResultsInfo resultsCount={resultsCount} />);
-    const historyPush = jest.spyOn(history, 'push');
+    const { router } = render(<ResultsInfo resultsCount={resultsCount} />);
 
-    userEvent.click(
-      screen.queryByRole('button', { name: 'Näytä hakutulokset suomeksi' })
+    await act(() =>
+      userEvent.click(
+        screen.getByRole('button', { name: 'Näytä hakutulokset suomeksi' })
+      )
     );
 
     await waitFor(() => {
-      expect(historyPush).toHaveBeenCalledWith(`/fi${ROUTES.EVENTS}`);
+      expect(router.pathname).toBe(`/haku`);
     });
   }
 );
 
+// eslint-disable-next-line max-len
 it('renders does not render language change button under eventss search results when current language is Finnish', () => {
   jest.spyOn(useLocale, 'default').mockReturnValue('fi');
 
