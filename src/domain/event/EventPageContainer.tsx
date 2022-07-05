@@ -1,25 +1,27 @@
-import { useTranslation } from "next-i18next";
-import React from "react";
-import { useLazyQuery } from "@apollo/client";
+import { useTranslation } from 'next-i18next';
+import React from 'react';
+import { useLazyQuery } from '@apollo/client';
 
-import LoadingSpinner from "../../common/components/spinner/LoadingSpinner";
-import isClient from "../../common/utils/isClient";
-import { addParamsToQueryString } from "../../common-events/utils/queryString";
-import ErrorHero from "../error/ErrorHero";
-import Link from "../../common-events/i18n/router/Link";
+import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
+import isClient from '../../common/utils/isClient';
+import { addParamsToQueryString } from '../../common-events/utils/queryString';
+import ErrorHero from '../error/ErrorHero';
+import Link from '../../common-events/i18n/router/Link';
 import {
   EventDetailsDocument,
   useEventDetailsQuery,
-} from "../nextApi/graphql/generated/graphql";
-import EventClosedHero from "./eventClosedHero/EventClosedHero";
-import EventContent from "./eventContent/EventContent";
-import EventHero from "./eventHero/EventHero";
-import EventPageMeta from "./eventPageMeta/EventPageMeta";
-import { getEventIdFromUrl, isEventClosed } from "./EventUtils";
-import SimilarEvents from "./similarEvents/SimilarEvents";
-import { SuperEventResponse } from "./types";
-import styles from "./eventPage.module.scss";
-import useRouter from "../../common-events/i18n/router/useRouter";
+} from '../nextApi/graphql/generated/graphql';
+import EventClosedHero from './eventClosedHero/EventClosedHero';
+import EventContent from './eventContent/EventContent';
+import EventHero from './eventHero/EventHero';
+import EventPageMeta from './eventPageMeta/EventPageMeta';
+import { getEventIdFromUrl, isEventClosed } from './EventUtils';
+import SimilarEvents from './similarEvents/SimilarEvents';
+import { SuperEventResponse } from './types';
+import styles from './eventPage.module.scss';
+import useRouter from '../../common-events/i18n/router/useRouter';
+import useLocale from '../../common-events/hooks/useLocale';
+import { getI18nPath } from '../../common-events/i18n/router/utils';
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -34,7 +36,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
     returnPath: router.pathname,
   });
   const eventId =
-    (router.query?.eventId as string) ?? router.pathname.split("/").pop();
+    (router.query?.eventId as string) ?? router.pathname.split('/').pop();
 
   const [superEvent, setSuperEvent] = React.useState<SuperEventResponse>({
     data: null,
@@ -47,7 +49,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
       include: ['in_language', 'keywords', 'location', 'audience'],
     },
   });
-
+  const locale = useLocale();
   const event = eventData?.eventDetails;
 
   const superEventId = getEventIdFromUrl(
@@ -59,7 +61,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
     {
       variables: {
         id: superEventId,
-        include: ["in_language", "keywords", "location", "audience"],
+        include: ['in_language', 'keywords', 'location', 'audience'],
       },
     }
   );
@@ -70,13 +72,13 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
       if (superEventData) {
         setSuperEvent({
           data: superEventData.eventDetails,
-          status: "resolved",
+          status: 'resolved',
         });
       }
     } else if (event) {
       setSuperEvent({ data: null, status: 'resolved' });
     }
-  }, [event, superEventId]);
+  }, [event, superEventId, superEventData, superEventSearch]);
 
   const eventClosed = !event || isEventClosed(event);
   return (
@@ -103,7 +105,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
               text={t('event:notFound.text')}
               title={t('event:notFound.title')}
             >
-              <Link href={`/search${search}`}>
+              <Link href={`${getI18nPath('/search', locale)}${search}`}>
                 {t('event:notFound.linkSearchEvents')}
               </Link>
             </ErrorHero>
