@@ -2,11 +2,10 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import * as React from 'react';
 import { act } from 'react-dom/test-utils';
-import wait from 'waait';
 
 import { AUTOSUGGEST_TYPES } from '../../../../constants';
-import { KeywordListDocument } from '../../../../generated/graphql';
-import { fakeKeywords } from '../../../../test/mockDataUtils';
+import { KeywordListDocument } from '../../../../domain/nextApi/graphql/generated/graphql';
+import { fakeKeywords } from '../../../../tests/mockDataUtils';
 import {
   arrowDownKeyPressHelper,
   arrowUpKeyPressHelper,
@@ -64,9 +63,7 @@ test('should close menu with esc key', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   expect(screen.queryByRole('listbox')).toBeInTheDocument();
 
@@ -79,9 +76,7 @@ test('should close menu with tab key', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   expect(screen.queryByRole('listbox')).toBeInTheDocument();
 
@@ -94,9 +89,7 @@ test('should allow navigation with down arrows', async () => {
   const { getByPlaceholderText } = renderComponent();
   const searchInput = getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   const options = screen.getAllByRole('option');
 
@@ -107,7 +100,9 @@ test('should allow navigation with down arrows', async () => {
   keywords.data.forEach((keyword, index) => {
     arrowDownKeyPressHelper();
     expect(options[index + 1]).toHaveClass('autosuggestOption--isFocused');
-    expect(options[index + 1]).toHaveTextContent(keyword.name.fi);
+    const text = keyword.name?.fi;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    expect(options[index + 1]).toHaveTextContent(text!);
   });
 });
 
@@ -115,9 +110,7 @@ test('should allow navigation with up arrows', async () => {
   const { getByPlaceholderText } = renderComponent();
   const searchInput = getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   const options = screen.getAllByRole('option');
 
@@ -125,9 +118,9 @@ test('should allow navigation with up arrows', async () => {
 
   reversedKeywords.forEach((keyword, index) => {
     arrowUpKeyPressHelper();
-    expect(options[reversedKeywords.length - index]).toHaveTextContent(
-      keyword.name.fi
-    );
+    const text = keyword.name?.fi;
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    expect(options[reversedKeywords.length - index]).toHaveTextContent(text!);
     expect(options[reversedKeywords.length - index]).toHaveClass(
       'autosuggestOption--isFocused'
     );
@@ -142,9 +135,7 @@ test('first item should be focused when opening menu by down arrow', async () =>
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   escKeyPressHelper();
 
@@ -162,9 +153,7 @@ test('last item should be focused when opening menu by up arrow', async () => {
   renderComponent();
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   escKeyPressHelper();
 
@@ -174,10 +163,10 @@ test('last item should be focused when opening menu by up arrow', async () => {
 
   const options = screen.getAllByRole('option');
   const lastIndex = keywords.data.length;
-
-  expect(options[lastIndex]).toHaveTextContent(
-    keywords.data[lastIndex - 1].name.fi
-  );
+  const keyword = keywords.data[lastIndex - 1];
+  const text = keyword?.name?.fi;
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+  expect(options[lastIndex]).toHaveTextContent(text!);
   expect(options[lastIndex]).toHaveClass('autosuggestOption--isFocused');
 });
 
@@ -186,9 +175,7 @@ test('should call onOptionClick by text is no option is selected', async () => {
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   enterKeyPressHelper();
 
@@ -204,9 +191,7 @@ test('should call onOptionClick by text is first option is selected', async () =
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   arrowDownKeyPressHelper();
   enterKeyPressHelper();
@@ -223,17 +208,15 @@ test('should call onOptionClick with option if keyword is selected', async () =>
   renderComponent({ onOptionClick: onEnter });
   const searchInput = screen.getByPlaceholderText(placeholder);
 
-  await act(wait);
-
-  userEvent.click(searchInput);
+  await act(() => userEvent.click(searchInput));
 
   arrowDownKeyPressHelper();
   arrowDownKeyPressHelper();
   enterKeyPressHelper();
-
+  const keyword = keywords.data[0];
   expect(onEnter).toBeCalledWith({
-    text: keywords.data[0].name.fi,
+    text: keyword.name?.fi,
     type: AUTOSUGGEST_TYPES.KEYWORD,
-    value: keywords.data[0].id,
+    value: keyword.id,
   });
 });
