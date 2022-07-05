@@ -3,6 +3,7 @@ import * as React from 'react';
 import { DATE_TYPES } from '../../../../constants';
 import { translations } from '../../../../tests/initI18n';
 import {
+  act,
   arrowDownKeyPressHelper,
   arrowUpKeyPressHelper,
   escKeyPressHelper,
@@ -45,7 +46,7 @@ test('should render selected date types when multiple options are selected', () 
   ).toBeInTheDocument();
 });
 
-test('should add date type', () => {
+test('should add date type', async () => {
   const onChangeDateTypes = jest.fn();
   renderComponent({
     dateTypes: [],
@@ -56,13 +57,15 @@ test('should add date type', () => {
     name: translations.common.dateSelector.title,
   });
 
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
   expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
 
-  userEvent.click(
-    screen.getByRole('checkbox', {
-      name: translations.common.dateSelector.dateTypeToday,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('checkbox', {
+        name: translations.common.dateSelector.dateTypeToday,
+      })
+    )
   );
 
   expect(onChangeDateTypes).toBeCalledWith([DATE_TYPES.TODAY]);
@@ -79,18 +82,18 @@ test('should call toggleIsCustomDate function', async () => {
     name: translations.common.dateSelector.title,
   });
 
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
   expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
 
   const customDatesButton = screen.getByRole('button', {
     name: translations.common.dateSelector.menu.buttonCustom,
   });
-  userEvent.click(customDatesButton);
+  await act(() => userEvent.click(customDatesButton));
 
   expect(toggleIsCustomDate).toHaveBeenCalled();
 });
 
-test('should remove date type', () => {
+test('should remove date type', async () => {
   const onChangeDateTypes = jest.fn();
   renderComponent({
     dateTypes: [DATE_TYPES.TODAY, DATE_TYPES.TOMORROW],
@@ -101,13 +104,15 @@ test('should remove date type', () => {
     name: translations.common.dateSelector.title,
   });
 
-  userEvent.click(toggleButton);
+  await act(() => userEvent.click(toggleButton));
   expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
 
-  userEvent.click(
-    screen.getByRole('checkbox', {
-      name: translations.common.dateSelector.dateTypeToday,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('checkbox', {
+        name: translations.common.dateSelector.dateTypeToday,
+      })
+    )
   );
 
   expect(onChangeDateTypes).toBeCalledWith([DATE_TYPES.TOMORROW]);
@@ -121,7 +126,7 @@ describe('should open menu with', () => {
       name: translations.common.dateSelector.title,
     });
 
-    userEvent.click(toggleButton);
+    await act(() => userEvent.click(toggleButton));
     expect(screen.queryByTestId(testIds.menu)).toBeInTheDocument();
 
     escKeyPressHelper();
