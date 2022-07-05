@@ -1,13 +1,12 @@
-/* eslint-disable jest/no-conditional-expect */
 import React from 'react';
 
 import { render, screen } from '../../../../../tests/testUtils';
 import SearchResultsContainer from '../SearchResultsContainer';
 
 it.each<[number, string]>([
-  [0, 'Valitsemillasi hakuehdoilla ei löytynyt yhtään tapahtumaa'],
-  [1, 'Hakuehdoillasi löytyi vain vähän tapahtumia.'],
-  [4, 'Hakuehdoillasi löytyi vain vähän tapahtumia.'],
+  [0, 'Valitsemillasi hakuehdoilla ei löytynyt yhtään harrastusta'],
+  [1, 'Valitsemillasi hakuehdoilla löytyi vain vähän hakutuloksia.'],
+  [4, 'Valitsemillasi hakuehdoilla löytyi vain vähän hakutuloksia.'],
 ])(
   'should return the proper results info text if %i %s results are found',
   (eventsCount, infoText) => {
