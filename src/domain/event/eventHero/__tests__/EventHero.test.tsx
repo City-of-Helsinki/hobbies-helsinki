@@ -1,8 +1,8 @@
 import { advanceTo, clear } from 'jest-date-mock';
 import capitalize from 'lodash/capitalize';
 import * as React from 'react';
-import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
 
+import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
 import {
   EventDetails,
   EventFieldsFragment,
@@ -16,8 +16,7 @@ import {
   fakeLocalizedObject,
   fakeOffer,
 } from '../../../../tests/mockDataUtils';
-import { render, screen, userEvent } from '../../../../tests/testUtils';
-
+import { act, render, screen, userEvent } from '../../../../tests/testUtils';
 import EventHero, { Props as EventHeroProps } from '../EventHero';
 
 const name = 'Event name';
@@ -72,15 +71,17 @@ test('should render event name, description and location', () => {
   ).toBeInTheDocument();
 });
 
-test('should go to event list', () => {
-  const { history } = renderComponent();
+test('should go to event list', async () => {
+  const { router } = renderComponent();
 
-  userEvent.click(
-    screen.getByRole('link', {
-      name: translations.event.hero.ariaLabelBackButton,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('link', {
+        name: translations.event.hero.ariaLabelBackButton,
+      })
+    )
   );
-  expect(history.location.pathname).toBe('/fi/events');
+  expect(router.pathname).toBe('/haku');
 });
 
 test('should render keywords', () => {
@@ -136,7 +137,7 @@ test('should hide buy button for free events', () => {
   ).not.toBeInTheDocument();
 });
 
-test('should show buy button', () => {
+test('should show buy button', async () => {
   global.open = jest.fn();
   const infoUrl = 'https://test.url';
   const mockEvent = getFakeEvent({
@@ -158,15 +159,17 @@ test('should show buy button', () => {
     })
   ).not.toBeInTheDocument();
 
-  userEvent.click(
-    screen.getByRole('button', {
-      name: new RegExp(translations.event.hero.buttonBuyTickets, 'i'),
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('button', {
+        name: new RegExp(translations.event.hero.buttonBuyTickets, 'i'),
+      })
+    )
   );
   expect(global.open).toHaveBeenCalledWith(infoUrl);
 });
 
-test('Register button should be visible and clickable', () => {
+test('Register button should be visible and clickable', async () => {
   global.open = jest.fn();
   const registrationUrl = 'https://harrastushaku.fi/register/13290';
   const mockEvent = getFakeEvent({
@@ -184,10 +187,12 @@ test('Register button should be visible and clickable', () => {
     screen.queryByText(translations.event.hero.buttonEnrol)
   ).toBeInTheDocument();
 
-  userEvent.click(
-    screen.getByRole('button', {
-      name: translations.event.hero.ariaLabelEnrol,
-    })
+  await act(() =>
+    userEvent.click(
+      screen.getByRole('button', {
+        name: translations.event.hero.ariaLabelEnrol,
+      })
+    )
   );
 
   expect(global.open).toBeCalledWith(registrationUrl);
