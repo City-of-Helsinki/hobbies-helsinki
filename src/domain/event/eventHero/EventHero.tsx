@@ -1,3 +1,5 @@
+import { ParsedUrlQueryInput } from 'querystring';
+
 import classNames from 'classnames';
 import {
   Button,
@@ -9,6 +11,7 @@ import {
 } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { parse } from 'query-string';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import Container from '../../../common-events/components/layout/Container';
@@ -26,12 +29,10 @@ import EventName from '../eventName/EventName';
 import {
   extractLatestReturnPath,
   ReturnParams,
-} from "../eventQueryString.util";
-import { getEventFields, getEventPrice } from "../EventUtils";
-import { EventFields, SuperEventResponse } from "../types";
-import styles from "./eventHero.module.scss";
-import { parse } from "query-string";
-import { ParsedUrlQueryInput } from "querystring";
+} from '../eventQueryString.util';
+import { getEventFields, getEventPrice } from '../EventUtils';
+import { EventFields, SuperEventResponse } from '../types';
+import styles from './eventHero.module.scss';
 
 export interface Props {
   event: EventFields;
@@ -64,13 +65,13 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
     t('event:hero.offers.isFree')
   );
   const showKeywords = Boolean(today || thisWeek || keywords.length);
-  const returnParam = extractLatestReturnPath(search);
+  const returnParam = extractLatestReturnPath(search, locale);
 
   const goBack = ({ returnPath, remainingQueryString }: ReturnParams) => {
     router.push({
-      pathname: `/${locale}${returnPath}`,
+      pathname: returnPath,
       query: {
-        ...(parse(remainingQueryString ?? "") as ParsedUrlQueryInput),
+        ...(parse(remainingQueryString ?? '') as ParsedUrlQueryInput),
         eventId: event.id,
       },
     });

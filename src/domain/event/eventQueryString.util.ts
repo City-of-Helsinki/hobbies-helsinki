@@ -1,3 +1,5 @@
+import { getI18nPath } from '../../common-events/i18n/router/utils';
+
 export type ReturnParams = {
   returnPath: string;
   remainingQueryString?: string;
@@ -8,11 +10,14 @@ export type ReturnParams = {
  * http://localhost:3000/fi/event/kulke:53397?returnPath=%2Fevents&returnPath=%2Fevent%2Fhelsinki%3Aaf3pnza3zi
  * latest return path is in the last returnPath param on queryString : %2Fevent%2Fhelsinki%3Aaf3pnza3zi
  */
-export const extractLatestReturnPath = (queryString: string): ReturnParams => {
+export const extractLatestReturnPath = (
+  queryString: string,
+  locale: string
+): ReturnParams => {
   const searchParams = new URLSearchParams(queryString);
   const returnPaths = searchParams.getAll('returnPath');
   // latest path is the last item, it can be popped. If empty, defaults to /events
-  const extractedPath = returnPaths.pop() ?? '/search';
+  const extractedPath = returnPaths.pop() ?? getI18nPath('/search', locale);
   // there is no support to delete all but extracted item from same parameter list. This is a workaround to it:
   // 1) delete all first
   searchParams.delete('returnPath');

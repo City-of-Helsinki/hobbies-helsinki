@@ -1,6 +1,7 @@
 import i18n from 'i18next';
 // eslint-disable-next-line no-restricted-imports
 import { initReactI18next } from 'react-i18next';
+
 import cms from '../../public/locales/fi/cms.json';
 import common from '../../public/locales/fi/common.json';
 import event from '../../public/locales/fi/event.json';
