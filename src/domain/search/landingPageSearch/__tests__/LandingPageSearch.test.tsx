@@ -53,7 +53,7 @@ describe('Landing page', () => {
 
   test('should route to event search page with correct search query after clicking submit button', async () => {
     const { router } = render(<LandingPageSearch />, { mocks });
-    const searchInput = screen.getByRole('textbox', { name: /mitä etsit\?/i });
+    const searchInput = screen.getByRole('textbox');
     await act(() => userEvent.type(searchInput, searchValue));
     // Check that auto-suggest menu is open
     expect(screen.getByText(/hakuehdotuksia/i)).toBeInTheDocument();
