@@ -1,5 +1,12 @@
 import { ParsedUrlQueryInput } from 'querystring';
 
+import classNames from 'classnames';
+import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react';
+import uniq from 'lodash/uniq';
+import { useTranslation } from 'next-i18next';
+import React, { FormEvent } from 'react';
+import qs, { parse } from 'query-string';
+
 import Container from '../../../common-events/components/layout/Container';
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import SearchLabel from '../../../common-events/components/search/searchLabel/SearchLabel';

@@ -47,6 +47,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     publisher,
     start,
     suitableFor,
+    text,
   } = getSearchFilters(searchParams);
 
   const dateText =
@@ -98,6 +99,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     !!dateTypes.length ||
     !!divisions.length ||
     !!places.length ||
+    !!text?.length ||
     !!suitableFor?.length;
 
   if (!hasFilters) return null;
