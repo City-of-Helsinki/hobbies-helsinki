@@ -1,8 +1,7 @@
-import userEvent from '@testing-library/user-event';
 import { IconHome } from 'hds-react';
 import React from 'react';
 
-import { render, screen } from '../../../../tests/testUtils';
+import { act, render, screen, userEvent } from '../../../../tests/testUtils';
 import CategoryFilter from '../CategoryFilter';
 
 const category = {
@@ -23,9 +22,9 @@ it('matches snapshot', () => {
   expect(container.firstChild).toMatchSnapshot();
 });
 
-it('calls onClick callback when category filter button is clicked', () => {
+it('calls onClick callback when category filter button is clicked', async () => {
   const testUrl = '/test';
-  const { history } = render(
+  const { router } = render(
     <CategoryFilter
       href={testUrl}
       icon={<IconHome />}
@@ -34,10 +33,8 @@ it('calls onClick callback when category filter button is clicked', () => {
     />
   );
 
-  const historyPush = jest.spyOn(history, 'push');
-
   expect(screen.queryByText(category.text)).toBeInTheDocument();
 
-  userEvent.click(screen.getByText(category.text));
-  expect(historyPush).toHaveBeenCalledWith(testUrl);
+  await act(() => userEvent.click(screen.getByText(category.text)));
+  expect(router).toMatchObject({ asPath: testUrl });
 });
