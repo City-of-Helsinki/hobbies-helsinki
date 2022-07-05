@@ -34,16 +34,16 @@ describe('date range input', () => {
     const onChangeEndDate = jest.fn();
     renderComponent({ endDate, onChangeEndDate });
 
-    const endDateInput = screen.getByRole('textbox', {
+    const endDateInput = await screen.findByRole('textbox', {
       name: /loppumispäivä/i,
     });
 
     const endDateStr = '12.10.2020';
-    userEvent.click(endDateInput);
-    userEvent.clear(endDateInput);
+    await act(() => userEvent.click(endDateInput));
+    await act(() => userEvent.clear(endDateInput));
     await act(async () => userEvent.type(endDateInput, endDateStr));
 
-    const startDateInput = screen.getByRole('textbox', {
+    const startDateInput = await screen.findByRole('textbox', {
       name: /alkamispäivä/i,
     });
     await act(async () => userEvent.click(startDateInput));
@@ -58,7 +58,7 @@ describe('date range input', () => {
     const onChangeEndDate = jest.fn();
     renderComponent({ endDate, onChangeEndDate });
 
-    const endDateInput = screen.getByRole('textbox', {
+    const endDateInput = await screen.findByRole('textbox', {
       name: /loppumispäivä/i,
     });
 
@@ -75,10 +75,8 @@ describe('date range input', () => {
         })
       )
     );
-    // need to wait one useEffect cycle for date go take effect
-    await actWait();
 
-    const startDateInput = screen.getByRole('textbox', {
+    const startDateInput = await screen.findByRole('textbox', {
       name: /alkamispäivä/i,
     });
     await act(async () => userEvent.click(startDateInput));
@@ -86,24 +84,24 @@ describe('date range input', () => {
     expect(onChangeEndDate).toBeCalledWith(
       utcToZonedTime(new Date('2020-10-15'), 'UTC')
     );
-  });
+  }, 25000);
 
   test('should call onChangeStartDate', async () => {
     const startDate = new Date('2020-10-10');
     const onChangeStartDate = jest.fn();
     renderComponent({ startDate, onChangeStartDate });
 
-    const startDateInput = screen.getByRole('textbox', {
+    const startDateInput = await screen.findByRole('textbox', {
       name: /alkamispäivä/i,
     });
 
     const startDateStr = '12.10.2020';
 
-    userEvent.click(startDateInput);
-    userEvent.clear(startDateInput);
+    await act(() => userEvent.click(startDateInput));
+    await act(() => userEvent.clear(startDateInput));
     await act(async () => userEvent.type(startDateInput, startDateStr));
 
-    const endDateInput = screen.getByRole('textbox', {
+    const endDateInput = await screen.findByRole('textbox', {
       name: /loppumispäivä/i,
     });
     await act(async () => userEvent.click(endDateInput));
@@ -118,10 +116,10 @@ describe('date range input', () => {
     const onChangeStartDate = jest.fn();
     renderComponent({ startDate, onChangeStartDate });
 
-    const startDateInput = screen.getByRole('textbox', {
+    const startDateInput = await screen.findByRole('textbox', {
       name: /alkamispäivä/i,
     });
-    userEvent.click(startDateInput);
+    await act(() => userEvent.click(startDateInput));
 
     await act(async () =>
       userEvent.click(
@@ -136,7 +134,7 @@ describe('date range input', () => {
       )
     );
 
-    const endDateInput = screen.getByRole('textbox', {
+    const endDateInput = await screen.findByRole('textbox', {
       name: /loppumispäivä/i,
     });
     await act(async () => userEvent.click(endDateInput));
@@ -149,12 +147,12 @@ describe('date range input', () => {
   test('should show error start date must be before end date', async () => {
     renderComponent();
 
-    const startDateInput = screen.getByRole('textbox', {
+    const startDateInput = await screen.findByRole('textbox', {
       name: /alkamispäivä/i,
     });
     await act(async () => userEvent.type(startDateInput, '23.6.2021'));
 
-    const endDateInput = screen.getByRole('textbox', {
+    const endDateInput = await screen.findByRole('textbox', {
       name: /loppumispäivä/i,
     });
     await act(async () => userEvent.type(endDateInput, '22.6.2021'));

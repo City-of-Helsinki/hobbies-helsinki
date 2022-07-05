@@ -143,7 +143,7 @@ it('should render info and load other events + similar events', async () => {
     expect(
       screen.queryByRole('link', { name: keyword.name })
     ).toBeInTheDocument();
-  });
+  }, 10000);
 
   await screen.findByText('Tapahtuman muut ajat');
 
@@ -159,7 +159,7 @@ it('should render info and load other events + similar events', async () => {
   expect(screen.getByTestId(otherEventTimesListTestId).children).toHaveLength(
     otherEventTimesCount
   );
-}, 6000);
+}, 50000);
 
 it('should show error info when event is closed', async () => {
   advanceTo('2020-10-10');
@@ -168,12 +168,13 @@ it('should show error info when event is closed', async () => {
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
-
-  expect(
-    screen.queryByRole('heading', {
-      name: translations.event.hero.titleEventClosed,
-    })
-  ).toBeInTheDocument();
+  await waitFor(() => {
+    expect(
+      screen.queryByRole('heading', {
+        name: translations.event.hero.titleEventClosed,
+      })
+    ).toBeInTheDocument();
+  });
 });
 
 it("should show error info when event doesn't exist", async () => {
@@ -192,12 +193,13 @@ it("should show error info when event doesn't exist", async () => {
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
   });
-
-  expect(
-    screen.queryByRole('heading', {
-      name: translations.event.notFound.title,
-    })
-  ).toBeInTheDocument();
+  await waitFor(() => {
+    expect(
+      screen.queryByRole('heading', {
+        name: translations.event.notFound.title,
+      })
+    ).toBeInTheDocument();
+  });
 });
 
 describe.skip(`SIMILAR_EVENTS feature flag`, () => {
