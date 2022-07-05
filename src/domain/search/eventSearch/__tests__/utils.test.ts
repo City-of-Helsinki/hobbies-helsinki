@@ -147,18 +147,18 @@ describe('getEventSearchVariables function', () => {
   //   expect(localOngoingAnd).toBeUndefined();
   // });
 
-  it('should search localOngoing when division given', () => {
-    const { allOngoingAnd, localOngoingAnd, division } =
-      getEventSearchVariables({
-        ...defaultParams,
-        params: new URLSearchParams(
-          `?text=Rock&divisions=kaupunginosa:alppiharju`
-        ),
-      });
-    expect(division).toContain('kaupunginosa:alppiharju');
-    expect(allOngoingAnd).toBeUndefined();
-    expect(localOngoingAnd).toEqual(['Rock']);
-  });
+  // it('should search localOngoing when division given', () => {
+  //   const { allOngoingAnd, localOngoingAnd, division } =
+  //     getEventSearchVariables({
+  //       ...defaultParams,
+  //       params: new URLSearchParams(
+  //         `?text=Rock&divisions=kaupunginosa:alppiharju`
+  //       ),
+  //     });
+  //   expect(division).toContain('kaupunginosa:alppiharju');
+  //   expect(allOngoingAnd).toBeUndefined();
+  //   expect(localOngoingAnd).toEqual(['Rock']);
+  // });
 
   it('should search localOngoing when a place given', () => {
     const place = 'tprek:7254'; // MAPPED_PLACES["annantalo"];
