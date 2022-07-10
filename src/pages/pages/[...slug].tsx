@@ -6,8 +6,8 @@ import {
   Breadcrumb,
   getCollections,
   CollectionType,
-  PageContent as RHHCPageContent,
-  Page as RHHCPage,
+  PageContent as HCRCPageContent,
+  Page as HCRCPage,
   PageContentProps,
 } from 'react-helsinki-headless-cms';
 import {
@@ -33,10 +33,10 @@ const NextCmsPage: NextPage<{
   breadcrumbs: Breadcrumb[];
   collections?: CollectionType[];
 }> = ({ page, breadcrumbs, collections }) => (
-  <RHHCPage
+  <HCRCPage
     navigation={<Navigation />}
     content={
-      <RHHCPageContent
+      <HCRCPageContent
         page={page as PageContentProps['page']}
         breadcrumbs={breadcrumbs}
         collections={collections ? getCmsCollectionList(collections) : []}

@@ -1,11 +1,16 @@
 import React from 'react';
-import { GetStaticPropsContext } from 'next';
-import { useQuery } from '@apollo/client';
+import { GetStaticPropsContext, NextPage } from 'next';
 import {
   ArticleQuery,
-  Page as RHHCApolloPage,
-  PageContent as RHHCApolloPageContent,
   PageQuery,
+  //PageByTemplateQuery,
+  //PageByTemplateQueryVariables,
+  //PageByTemplateDocument,
+  LandingPageDocument,
+  LandingPageQuery,
+  LandingPageQueryVariables,
+  PageContent as HCRCPageContent,
+  Page as HCRCPage,
 } from 'react-helsinki-headless-cms/apollo';
 import {
   Card,
@@ -18,7 +23,9 @@ import {
   isLayoutPage,
   ModuleItemTypeEnum,
   useConfig,
+  PageContentProps,
 } from 'react-helsinki-headless-cms';
+//import { gql, useQuery } from '@apollo/client';
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
@@ -27,15 +34,16 @@ import {
   getLocaleOrError,
 } from '../common-events/i18n/router/utils';
 import { getQlLanguage } from '../common/apollo/utils';
-import {
-  LandingPageContentLayout,
-  LANDING_PAGE_QUERY,
-} from '../domain/search/landingPage/LandingPage';
+import { LandingPageContentLayout } from '../domain/search/landingPage/LandingPage';
 import { DEFAULT_LANGUAGE } from '../constants';
 import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
-import useRouter from '../common-events/i18n/router/useRouter';
 import useLocale from '../common-events/hooks/useLocale';
+
+export enum TemplateEnum {
+  FrontPage = 'frontPage',
+  PostsPage = 'postsPage',
+}
 
 export const getCollectionCard = (
   item: CollectionItemType,
@@ -83,51 +91,80 @@ export const defaultCollections = (
     );
   });
 
-export default function HomePage() {
-  const router = useRouter();
+const HomePage: NextPage<{
+  landingPage: LandingPageQuery['landingPage'];
+  page: PageQuery['page'];
+}> = ({ landingPage, page }) => {
   const locale = useLocale();
   const {
     utils: { getRoutedInternalHref },
   } = useConfig();
-  const language = getQlLanguage(
-    router.locale ?? router.defaultLocale ?? DEFAULT_LANGUAGE
-  );
-  const { data } = useQuery(LANDING_PAGE_QUERY, {
+
+  /*const PAGE_BY_TEMPLATE_QUERY = gql`
+    query pageByTemplate($template: TemplateEnum, $language: string) {
+      pageByTemplate(template: $template, language: $language) {
+        id
+      }
+    }
+  `;
+
+  const { data } = useQuery(PAGE_BY_TEMPLATE_QUERY, {
     variables: {
-      languageCode: language,
+      template: TemplateEnum.FrontPage,
+      language: 'fi',
     },
-  });
+  });*/
+
   return (
-    <RHHCApolloPage
-      uri={getI18nPath('/', locale)}
+    <HCRCPage
       className="pageLayout"
       navigation={<Navigation />}
+      uri={getI18nPath('/', locale)}
       content={
-        <RHHCApolloPageContent
+        <HCRCPageContent
           breadcrumbs={[]}
-          landingPage={data.landingPage}
+          page={page}
+          landingPage={landingPage}
           PageContentLayoutComponent={LandingPageContentLayout}
-          collections={(page) =>
+          collections={(page: PageContentProps['page']) =>
             defaultCollections(page, getRoutedInternalHref)
           }
+          language={getQlLanguage(locale)}
         />
       }
       footer={<FooterSection />}
     />
   );
-}
+};
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ cmsClient }) => {
     const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
-    // TODO: Stop using landing page here when the front page can be queried from the Headless CMS.
-    // The front page should be queried instead - there is no need for landing page.
-    await cmsClient.query({
-      query: LANDING_PAGE_QUERY,
+    const { data: landingPageData } = await cmsClient.query<
+      LandingPageQuery,
+      LandingPageQueryVariables
+    >({
+      query: LandingPageDocument,
       variables: {
+        id: 'root',
         languageCode: getQlLanguage(locale),
       },
     });
+
+    /*const { data: pageData } = await cmsClient.query<
+      PageByTemplateQuery,
+      PageByTemplateQueryVariables
+    >({
+      query: PageByTemplateDocument,
+      variables: {
+        template: TemplateEnum.FrontPage,
+        //language: getQlLanguage(locale).toLocaleLowerCase(),
+      },
+    });
+
+    const page = pageData.pageByTemplate;*/
+
+    const landingPage = landingPageData.landingPage;
 
     return {
       props: {
@@ -135,7 +172,11 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           'home',
           'search',
         ])),
+        landingPage: landingPage,
+        //page: page,
       },
     };
   });
 }
+
+export default HomePage;

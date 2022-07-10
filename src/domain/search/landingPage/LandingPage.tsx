@@ -1,4 +1,4 @@
-import { ApolloProvider, gql } from '@apollo/client';
+import { ApolloProvider } from '@apollo/client';
 import { Koros } from 'hds-react';
 import { PageContentLayoutProps } from 'react-helsinki-headless-cms/';
 
@@ -8,26 +8,6 @@ import Section from '../../../common-events/components/section/Section';
 import LandingPageSearch from '../landingPageSearch/LandingPageSearch';
 import styles from './landingPage.module.scss';
 import useEventsApolloClientFromConfig from '../../../common-events/hooks/useEventsApolloClientFromConfig';
-
-export const LANDING_PAGE_QUERY = gql`
-  query LandingPageQuery($languageCode: LanguageCodeEnum!) {
-    landingPage(id: "root", idType: SLUG) {
-      id
-      desktopImage {
-        edges {
-          node {
-            mediaItemUrl
-          }
-        }
-      }
-      translation(language: $languageCode) {
-        title
-        description
-        heroLink
-      }
-    }
-  }
-`;
 
 export type LandingPageProps = {
   // TODO: Fix any type by adding the landing page query to HCRC-lib
