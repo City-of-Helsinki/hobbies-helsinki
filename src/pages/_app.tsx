@@ -1,5 +1,6 @@
 import React from 'react';
 import 'nprogress/nprogress.css';
+import { HelmetProvider } from 'react-helmet-async';
 import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
@@ -68,24 +69,26 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <EventsConfigProvider config={eventsConfig}>
-      <RHHCConfigProvider config={rhhcConfig}>
-        <TopProgressBar />
-        <ApolloProvider client={cmsApolloClient}>
-          {router.isFallback ? (
-            <Center>
-              <LoadingSpinner />
-            </Center>
-          ) : pageProps.error ? (
-            <Error
-              statusCode={pageProps.error.networkError?.statusCode ?? 400}
-              title={pageProps.error.title}
-            />
-          ) : (
-            <Component {...pageProps} />
-          )}
-        </ApolloProvider>
-        <ToastContainer />
-      </RHHCConfigProvider>
+      <HelmetProvider>
+        <RHHCConfigProvider config={rhhcConfig}>
+          <TopProgressBar />
+          <ApolloProvider client={cmsApolloClient}>
+            {router.isFallback ? (
+              <Center>
+                <LoadingSpinner />
+              </Center>
+            ) : pageProps.error ? (
+              <Error
+                statusCode={pageProps.error.networkError?.statusCode ?? 400}
+                title={pageProps.error.title}
+              />
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </ApolloProvider>
+          <ToastContainer />
+        </RHHCConfigProvider>
+      </HelmetProvider>
     </EventsConfigProvider>
   );
 }
