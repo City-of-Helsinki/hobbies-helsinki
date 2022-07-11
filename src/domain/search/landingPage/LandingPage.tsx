@@ -1,6 +1,7 @@
 import { ApolloProvider } from '@apollo/client';
 import { Koros } from 'hds-react';
 import { PageContentLayoutProps } from 'react-helsinki-headless-cms/';
+import { LandingPageQuery } from 'react-helsinki-headless-cms/apollo';
 
 import Hero from '../../../common/components/hero/Hero';
 import HeroImage from '../../../common/components/hero/HeroImage';
@@ -10,17 +11,17 @@ import styles from './landingPage.module.scss';
 import useEventsApolloClientFromConfig from '../../../common-events/hooks/useEventsApolloClientFromConfig';
 
 export type LandingPageProps = {
-  // TODO: Fix any type by adding the landing page query to HCRC-lib
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  landingPage?: any;
+  landingPage?: LandingPageQuery['landingPage'];
 };
 
 export function LandingPageContentLayout({
   landingPage,
   collections,
 }: LandingPageProps & PageContentLayoutProps) {
-  const { title, description, heroLink } = landingPage?.translation;
-  const heroImage = landingPage?.desktopImage?.edges[0]?.node?.mediaItemUrl;
+  const { title, description, heroLink } = landingPage?.translation || {};
+  const heroImage =
+    landingPage?.desktopImage?.edges &&
+    landingPage?.desktopImage?.edges[0]?.node?.mediaItemUrl;
   const eventsApolloClient = useEventsApolloClientFromConfig();
 
   return (
@@ -30,14 +31,14 @@ export function LandingPageContentLayout({
           <div className={styles.highlight}>
             {landingPage?.translation && (
               <>
-                <HeroImage desktopImageUri={heroImage} />
+                <HeroImage desktopImageUri={heroImage ?? ''} />
                 <Section variant="contained" color="transparent">
                   <Hero
-                    title={title}
-                    description={description}
+                    title={title ?? ''}
+                    description={description ?? ''}
                     cta={{
-                      label: heroLink[0],
-                      href: heroLink[1],
+                      label: (heroLink && heroLink[0]) ?? '',
+                      href: (heroLink && heroLink[1]) ?? '',
                     }}
                   />
                 </Section>

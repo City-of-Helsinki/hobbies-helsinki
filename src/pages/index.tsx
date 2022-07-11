@@ -3,14 +3,13 @@ import { GetStaticPropsContext, NextPage } from 'next';
 import {
   ArticleQuery,
   PageQuery,
-  //PageByTemplateQuery,
-  //PageByTemplateQueryVariables,
-  //PageByTemplateDocument,
+  PageByTemplateQuery,
+  PageByTemplateQueryVariables,
+  PageByTemplateDocument,
   LandingPageDocument,
   LandingPageQuery,
   LandingPageQueryVariables,
-  PageContent as HCRCPageContent,
-  Page as HCRCPage,
+  TemplateEnum,
 } from 'react-helsinki-headless-cms/apollo';
 import {
   Card,
@@ -24,26 +23,19 @@ import {
   ModuleItemTypeEnum,
   useConfig,
   PageContentProps,
+  PageContent as HCRCPageContent,
+  Page as HCRCPage,
 } from 'react-helsinki-headless-cms';
-//import { gql, useQuery } from '@apollo/client';
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
-import {
-  getI18nPath,
-  getLocaleOrError,
-} from '../common-events/i18n/router/utils';
+import { getLocaleOrError } from '../common-events/i18n/router/utils';
 import { getQlLanguage } from '../common/apollo/utils';
 import { LandingPageContentLayout } from '../domain/search/landingPage/LandingPage';
 import { DEFAULT_LANGUAGE } from '../constants';
 import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
 import useLocale from '../common-events/hooks/useLocale';
-
-export enum TemplateEnum {
-  FrontPage = 'frontPage',
-  PostsPage = 'postsPage',
-}
 
 export const getCollectionCard = (
   item: CollectionItemType,
@@ -99,27 +91,10 @@ const HomePage: NextPage<{
   const {
     utils: { getRoutedInternalHref },
   } = useConfig();
-
-  /*const PAGE_BY_TEMPLATE_QUERY = gql`
-    query pageByTemplate($template: TemplateEnum, $language: string) {
-      pageByTemplate(template: $template, language: $language) {
-        id
-      }
-    }
-  `;
-
-  const { data } = useQuery(PAGE_BY_TEMPLATE_QUERY, {
-    variables: {
-      template: TemplateEnum.FrontPage,
-      language: 'fi',
-    },
-  });*/
-
   return (
     <HCRCPage
       className="pageLayout"
       navigation={<Navigation />}
-      uri={getI18nPath('/', locale)}
       content={
         <HCRCPageContent
           breadcrumbs={[]}
@@ -151,18 +126,18 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       },
     });
 
-    /*const { data: pageData } = await cmsClient.query<
+    const { data: pageData } = await cmsClient.query<
       PageByTemplateQuery,
       PageByTemplateQueryVariables
     >({
       query: PageByTemplateDocument,
       variables: {
         template: TemplateEnum.FrontPage,
-        //language: getQlLanguage(locale).toLocaleLowerCase(),
+        language: getQlLanguage(locale).toLocaleLowerCase(),
       },
     });
 
-    const page = pageData.pageByTemplate;*/
+    const page = pageData.pageByTemplate;
 
     const landingPage = landingPageData.landingPage;
 
@@ -173,7 +148,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           'search',
         ])),
         landingPage: landingPage,
-        //page: page,
+        page: page,
       },
     };
   });
