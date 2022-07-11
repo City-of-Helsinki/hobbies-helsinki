@@ -1,4 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
+import { LanguageCodeEnum } from 'react-helsinki-headless-cms/apollo';
 
 import { Connection, MenuItem } from '../../types';
 
@@ -22,12 +23,14 @@ export function sortMenuItems(menuItemsConnection: { nodes: MenuItem[] }) {
   };
 }
 
-export function getQlLanguage(language: string) {
-  return {
-    fi: 'FI',
-    sv: 'SV',
-    en: 'EN',
-  }[language];
+export function getQlLanguage(language: string): LanguageCodeEnum {
+  return (
+    {
+      fi: LanguageCodeEnum.Fi,
+      sv: LanguageCodeEnum.Sv,
+      en: LanguageCodeEnum.En,
+    }[language] || LanguageCodeEnum.Fi
+  );
 }
 
 export function getUnifiedSearchLanguage(language: string) {

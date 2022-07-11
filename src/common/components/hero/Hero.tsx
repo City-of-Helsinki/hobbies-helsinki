@@ -24,8 +24,7 @@ function Hero({ title, description, cta }: Props) {
         {title}
       </Text>
       <Link href={href}>
-        {/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
-        <a className={styles.linkButton}>{cta.label}</a>
+        <span className={styles.linkButton}>{cta.label}</span>
       </Link>
     </div>
   );

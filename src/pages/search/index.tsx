@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { GetStaticPropsContext } from 'next';
 import { useEffect } from 'react';
-import { Page as RHHCApolloPage } from 'react-helsinki-headless-cms/apollo';
+import { Page as HCRCApolloPage } from 'react-helsinki-headless-cms/apollo';
 import { ApolloProvider } from '@apollo/client';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
@@ -38,7 +38,7 @@ export default function Search() {
   }, [scrollTo]);
 
   return (
-    <RHHCApolloPage
+    <HCRCApolloPage
       uri="/search"
       className="pageLayout"
       navigation={<Navigation />}
