@@ -78,7 +78,7 @@ export default function useRHHCConfig(
         openInExternalDomainAriaLabel: t('common:srOnly.opensInAnExternalSite'),
         openInNewTabAriaLabel: t('common:srOnly.opensInANewTab'),
         closeButtonLabelText: t('common:button.close'),
-        loadMoreButtonLabelText: t('cms:archiveSearch.loadMoreButtonLabelText'),
+        loadMoreButtonLabelText: t('common:button.loadMore'),
         archiveSearch: {
           searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
           searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
