@@ -49,7 +49,7 @@ export function LandingPageContentLayout({
             </Section>
           </div>
           <Koros className={styles.koros} flipHorizontal />
-          <Section color="transparent">{collections}</Section>
+          {collections}
         </main>
       </div>
     </ApolloProvider>
