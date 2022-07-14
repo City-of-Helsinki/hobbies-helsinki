@@ -15,6 +15,10 @@
   "category": {
     "ariaButtonRemove": "Radera kategori: {{category}}"
   },
+  "button": {
+    "close": "Stäng",
+    "loadMore": "Ladda mera"
+  },
   "dateSelector": {
     "dateTypeAll": "När som helst",
     "dateTypeThisWeek": "Denna vecka",

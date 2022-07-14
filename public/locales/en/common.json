@@ -12,6 +12,10 @@
       "title": "Search suggestions"
     }
   },
+  "button": {
+    "close": "Close",
+    "loadMore": "Load more"
+  },
   "category": {
     "ariaButtonRemove": "Remove category: {{category}}"
   },

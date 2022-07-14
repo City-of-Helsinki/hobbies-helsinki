@@ -12,6 +12,10 @@
       "title": "Hakuehdotuksia"
     }
   },
+  "button": {
+    "close": "Sulje",
+    "loadMore": "Lataa lisää"
+  },
   "category": {
     "ariaButtonRemove": "Poista kategoria: {{category}}"
   },
