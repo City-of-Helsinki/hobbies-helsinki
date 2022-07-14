@@ -78,17 +78,33 @@ export const getCmsArticlePath = (uri?: string | null): string => {
   return getI18nPath('/articles', locale) + uri;
 };
 
+export const EVENT_PLACEHOLDER_IMAGES = [
+  '/static/images/event_placeholder_A.jpg',
+  '/static/images/event_placeholder_B.jpg',
+  '/static/images/event_placeholder_C.jpg',
+  '/static/images/event_placeholder_D.jpg',
+];
+
+export const getEventPlaceholderImage = (id: string): string => {
+  const numbers = id.match(/\d+/g);
+  const sum = numbers
+    ? numbers.reduce((prev: number, cur: string) => prev + Number(cur), 0)
+    : 0;
+  const index = sum % 4;
+
+  return EVENT_PLACEHOLDER_IMAGES[index];
+};
+
 export function getCollectionCards(
   collection: GeneralCollectionType,
-  defaultImageUrl?: string,
   locale = 'fi'
 ): CardProps[] {
+  const defaultImageUrl = getEventPlaceholderImage('');
   return collection.items.reduce((result: CardProps[], item) => {
     if (isPageType(item) || isArticleType(item))
       result.push(getArticlePageCardProps(item, defaultImageUrl));
     else if (isEventType(item))
       result.push(getEventCardProps(item, defaultImageUrl, locale));
-
     return result;
   }, []);
 }
@@ -100,7 +116,6 @@ export const getDefaultCollections = (
 ) =>
   getCollections(page?.modules ?? [], true)?.reduce(
     (collectionElements: JSX.Element[], collection) => {
-      const defaultImageUrl = '';
       const commonCollectionProps = {
         key: `collection-${Math.random()}`,
         title: collection.title,
@@ -110,7 +125,6 @@ export const getDefaultCollections = (
       };
 
       if (isEventSearchCollection(collection)) {
-        console.debug('Adding isEventSearchCollection');
         collectionElements.push(
           <EventSearchCollection
             {...commonCollectionProps}
@@ -118,7 +132,6 @@ export const getDefaultCollections = (
           />
         );
       } else if (isEventSelectionCollection(collection)) {
-        console.debug('Adding EventSelectionCollection');
         collectionElements.push(
           <EventSelectionCollection
             {...commonCollectionProps}
@@ -126,18 +139,13 @@ export const getDefaultCollections = (
           />
         );
       } else {
-        console.debug('Adding GeneralCollection');
-        const cards = getCollectionCards(
-          collection,
-          defaultImageUrl,
-          currentLanguageCode
-        ).map((cardProps) => <Card key={Math.random()} {...cardProps} />);
-        console.debug('cards', cards);
+        const cards = getCollectionCards(collection, currentLanguageCode).map(
+          (cardProps) => <Card key={Math.random()} {...cardProps} />
+        );
         collectionElements.push(
           <Collection {...commonCollectionProps} cards={cards} />
         );
       }
-      console.debug('collectionElements', collectionElements);
       return collectionElements;
     },
     []
