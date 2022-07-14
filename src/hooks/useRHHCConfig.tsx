@@ -19,6 +19,7 @@ const CMS_API_DOMAIN = AppConfig.cmsGraphqlEndpoint
 
 export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
+  eventsApolloClient: ApolloClient<NormalizedCacheObject>,
   router: NextRouter
 ) {
   const { t } = useTranslation(['common', 'cms']);
@@ -55,6 +56,10 @@ export default function useRHHCConfig(
         // TODO: fix the getI18nPath for pages
         return getI18nPath('/pages', locale) + uri;
       }
+      if (type === ModuleItemTypeEnum.Event) {
+        // TODO: fix the getI18nPath for pages
+        return getI18nPath('/courses', locale) + uri;
+      }
       return getI18nPath(link, locale);
     };
     return {
@@ -62,6 +67,7 @@ export default function useRHHCConfig(
       siteName: t('appName'),
       currentLanguageCode: locale.toUpperCase(),
       apolloClient: cmsApolloClient,
+      eventsApolloClient: eventsApolloClient,
       copy: {
         breadcrumbNavigationLabel: t(
           'common:breadcrumb.breadcrumbNavigationLabel'
@@ -72,6 +78,7 @@ export default function useRHHCConfig(
         openInExternalDomainAriaLabel: t('common:srOnly.opensInAnExternalSite'),
         openInNewTabAriaLabel: t('common:srOnly.opensInANewTab'),
         closeButtonLabelText: t('common:button.close'),
+        loadMoreButtonLabelText: t('cms:archiveSearch.loadMoreButtonLabelText'),
         archiveSearch: {
           searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
           searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
@@ -89,6 +96,6 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [router.basePath, t, cmsApolloClient, locale]);
+  }, [router.basePath, t, cmsApolloClient, eventsApolloClient, locale]);
   return rhhcConfig;
 }

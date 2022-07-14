@@ -48,7 +48,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   );
   const eventsConfig = useEventsConfig(eventsApolloClient);
   const router = eventsConfig.router as NextRouter;
-  const rhhcConfig = useRHHCConfig(cmsApolloClient, router);
+  const rhhcConfig = useRHHCConfig(cmsApolloClient, eventsApolloClient, router);
 
   // Unset hidden visibility that was applied to hide the first server render
   // that does not include styles from HDS. HDS applies styling by injecting

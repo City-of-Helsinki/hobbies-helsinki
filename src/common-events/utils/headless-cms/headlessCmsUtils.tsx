@@ -1,10 +1,25 @@
 import {
+  ArticleType,
   Card,
+  getCollections,
   Collection,
-  CollectionItemType,
-  CollectionType,
-  getElementTextContent,
+  Config as RCHCConfig,
+  EventSearchCollection,
+  EventSelectionCollection,
+  getCollectionUIType,
+  isEventSearchCollection,
+  isEventSelectionCollection,
+  ModuleItemTypeEnum,
+  PageType,
+  GeneralCollectionType,
+  CardProps,
+  isPageType,
+  isArticleType,
+  isEventType,
+  getEventCardProps,
+  getArticlePageCardProps,
 } from 'react-helsinki-headless-cms';
+
 import { DEFAULT_LANGUAGE } from '../../../constants';
 import { Language } from '../../../types';
 import { getI18nPath } from '../../i18n/router/utils';
@@ -51,50 +66,6 @@ export const slugsToUriSegments = (slugs: string[]): string[] => {
   });
 };
 
-export function getCmsCollectionList(collections: CollectionType[]) {
-  return collections.map((collection) => (
-    <Collection
-      key={`collection-${Math.random()}`}
-      title={collection.title}
-      collectionContainerProps={{
-        withDots: collection.items.length < 4 ? false : true,
-      }}
-      type="grid"
-      cards={collection.items.map((item) =>
-        item ? (
-          <Card
-            key={item.id}
-            {...item}
-            title={item.title ?? ''}
-            text={getElementTextContent((item.lead || item.content) ?? '')}
-            clampText={true}
-            withShadow={true}
-            hasLink={true}
-            url={getCollectionItemUrl(item)}
-            imageLabel={item.featuredImage?.node?.title ?? ''}
-            imageUrl={item.featuredImage?.node?.mediaItemUrl ?? ''}
-          />
-        ) : (
-          <></>
-        )
-      )}
-    />
-  ));
-}
-
-export function getCollectionItemUrl(item: CollectionItemType): string {
-  if (!item) {
-    return '#';
-  }
-  if (item.__typename === 'Post') {
-    return getCmsArticlePath(item.uri);
-  }
-  if (item.__typename === 'Page') {
-    return getCmsPagePath(item.uri);
-  }
-  return item?.uri ?? '';
-}
-
 export const getCmsPagePath = (uri?: string | null): string => {
   if (!uri) return '#';
   const locale = stripLocaleFromUri(uri);
@@ -106,3 +77,68 @@ export const getCmsArticlePath = (uri?: string | null): string => {
   const locale = stripLocaleFromUri(uri);
   return getI18nPath('/articles', locale) + uri;
 };
+
+export function getCollectionCards(
+  collection: GeneralCollectionType,
+  defaultImageUrl?: string,
+  locale = 'fi'
+): CardProps[] {
+  return collection.items.reduce((result: CardProps[], item) => {
+    if (isPageType(item) || isArticleType(item))
+      result.push(getArticlePageCardProps(item, defaultImageUrl));
+    else if (isEventType(item))
+      result.push(getEventCardProps(item, defaultImageUrl, locale));
+
+    return result;
+  }, []);
+}
+
+export const getDefaultCollections = (
+  page: PageType | ArticleType,
+  getRoutedInternalHref: (link: string, type: ModuleItemTypeEnum) => string,
+  currentLanguageCode: RCHCConfig['currentLanguageCode']
+) =>
+  getCollections(page?.modules ?? [], true)?.reduce(
+    (collectionElements: JSX.Element[], collection) => {
+      const defaultImageUrl = '';
+      const commonCollectionProps = {
+        key: `collection-${Math.random()}`,
+        title: collection.title,
+        description: collection.description,
+        type: getCollectionUIType(collection),
+        collectionContainerProps: { withDots: false },
+      };
+
+      if (isEventSearchCollection(collection)) {
+        console.debug('Adding isEventSearchCollection');
+        collectionElements.push(
+          <EventSearchCollection
+            {...commonCollectionProps}
+            collection={collection}
+          />
+        );
+      } else if (isEventSelectionCollection(collection)) {
+        console.debug('Adding EventSelectionCollection');
+        collectionElements.push(
+          <EventSelectionCollection
+            {...commonCollectionProps}
+            collection={collection}
+          />
+        );
+      } else {
+        console.debug('Adding GeneralCollection');
+        const cards = getCollectionCards(
+          collection,
+          defaultImageUrl,
+          currentLanguageCode
+        ).map((cardProps) => <Card key={Math.random()} {...cardProps} />);
+        console.debug('cards', cards);
+        collectionElements.push(
+          <Collection {...commonCollectionProps} cards={cards} />
+        );
+      }
+      console.debug('collectionElements', collectionElements);
+      return collectionElements;
+    },
+    []
+  );

@@ -9,6 +9,7 @@ import {
   PageContent as HCRCPageContent,
   Page as HCRCPage,
   PageContentProps,
+  useConfig,
 } from 'react-helsinki-headless-cms';
 import {
   PageDocument,
@@ -19,7 +20,7 @@ import {
 import Navigation from '../../common-events/components/navigation/Navigation';
 import { getLocaleOrError } from '../../common-events/i18n/router/utils';
 import {
-  getCmsCollectionList,
+  getDefaultCollections,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 import { DEFAULT_LANGUAGE } from '../../constants';
@@ -32,19 +33,34 @@ const NextCmsPage: NextPage<{
   page: PageQuery['page'];
   breadcrumbs: Breadcrumb[];
   collections?: CollectionType[];
-}> = ({ page, breadcrumbs, collections }) => (
-  <HCRCPage
-    navigation={<Navigation />}
-    content={
-      <HCRCPageContent
-        page={page as PageContentProps['page']}
-        breadcrumbs={breadcrumbs}
-        collections={collections ? getCmsCollectionList(collections) : []}
-      />
-    }
-    footer={<FooterSection />}
-  />
-);
+}> = ({ page, breadcrumbs, collections }) => {
+  const {
+    currentLanguageCode,
+    utils: { getRoutedInternalHref },
+  } = useConfig();
+
+  return (
+    <HCRCPage
+      navigation={<Navigation />}
+      content={
+        <HCRCPageContent
+          page={page as PageContentProps['page']}
+          breadcrumbs={breadcrumbs}
+          collections={
+            collections
+              ? getDefaultCollections(
+                  page,
+                  getRoutedInternalHref,
+                  currentLanguageCode
+                )
+              : []
+          }
+        />
+      }
+      footer={<FooterSection />}
+    />
+  );
+};
 
 export async function getStaticPaths() {
   return { paths: [], fallback: true };
