@@ -10,7 +10,13 @@ import {
   getUri,
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
-import { ApolloCache, InMemoryCache, useApolloClient } from '@apollo/client';
+import {
+  ApolloCache,
+  ApolloClient,
+  InMemoryCache,
+  NormalizedCacheObject,
+  useApolloClient,
+} from '@apollo/client';
 
 import i18n from './initI18n';
 import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
@@ -36,10 +42,13 @@ type Props = {
 };
 
 function TestProviders({ mocks, children, router, cache }: Props) {
+  const eventsApolloClient = useApolloClient(createEventsApolloClient());
   return (
     <I18nextProvider i18n={i18n}>
       <MockedProvider mocks={mocks} addTypename={false}>
-        <EventsConfigProvider config={getEventsConfig(router)}>
+        <EventsConfigProvider
+          config={getEventsConfig(router, eventsApolloClient)}
+        >
           <RHHCConfigProvider config={getRHHCConfig(router)}>
             <RouterContext.Provider value={{ ...router, ...mockRouter }}>
               {children}
@@ -51,12 +60,15 @@ function TestProviders({ mocks, children, router, cache }: Props) {
   );
 }
 
-function getEventsConfig(router: NextRouter) {
+function getEventsConfig(
+  router: NextRouter,
+  eventsApolloClient: ApolloClient<object>
+) {
   return {
     ...eventsDefaultConfig,
     t: i18n.t,
     getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
-    apolloClient: useApolloClient(createEventsApolloClient()),
+    apolloClient: eventsApolloClient,
     router,
   } as EventsConfig;
 }
