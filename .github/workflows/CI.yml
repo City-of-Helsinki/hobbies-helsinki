@@ -38,6 +38,7 @@ jobs:
           # NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
           NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
           NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
+          NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
 
@@ -71,6 +72,7 @@ jobs:
           # NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
           NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.content.api.hel.fi/graphql
           NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
+          NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
       - name: Upload coverage report to Codecov

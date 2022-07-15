@@ -13,9 +13,10 @@ import useLocale from '../common-events/hooks/useLocale';
 import { getI18nPath } from '../common-events/i18n/router/utils';
 import AppConfig from '../domain/app/AppConfig';
 
-const CMS_API_DOMAIN = AppConfig.cmsGraphqlEndpoint
-  ? new URL(AppConfig.cmsGraphqlEndpoint).origin
-  : null;
+const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
+const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
+  AppConfig.linkedEventsEventEndpoint
+).href;
 
 export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
@@ -26,16 +27,19 @@ export default function useRHHCConfig(
   const locale = useLocale();
 
   const rhhcConfig = React.useMemo(() => {
+    const internalHrefOrigins = [
+      CMS_API_DOMAIN,
+      LINKEDEVENTS_API_EVENT_ENDPOINT,
+    ];
     const getIsHrefExternal = (href: string) => {
       if (
-        !href?.includes(router.basePath) ||
-        (CMS_API_DOMAIN && !href?.includes(CMS_API_DOMAIN))
+        !href?.includes(router.basePath) &&
+        !internalHrefOrigins.some((origin) => href?.includes(origin))
       ) {
         return true;
       }
       return false;
     };
-    const internalHrefOrigins = CMS_API_DOMAIN ? [CMS_API_DOMAIN] : [];
     const getRoutedInternalHref: Config['utils']['getRoutedInternalHref'] = (
       link,
       type

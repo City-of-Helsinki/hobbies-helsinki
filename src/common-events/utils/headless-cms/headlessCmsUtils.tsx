@@ -14,8 +14,6 @@ import {
   CardProps,
   isPageType,
   isArticleType,
-  isEventType,
-  getEventCardProps,
   getArticlePageCardProps,
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
