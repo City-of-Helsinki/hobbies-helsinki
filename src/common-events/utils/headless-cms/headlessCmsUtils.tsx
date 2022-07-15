@@ -9,7 +9,6 @@ import {
   getCollectionUIType,
   isEventSearchCollection,
   isEventSelectionCollection,
-  ModuleItemTypeEnum,
   PageType,
   GeneralCollectionType,
   CardProps,
@@ -18,6 +17,7 @@ import {
   isEventType,
   getEventCardProps,
   getArticlePageCardProps,
+  ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
 import { DEFAULT_LANGUAGE } from '../../../constants';
@@ -95,23 +95,44 @@ export const getEventPlaceholderImage = (id: string): string => {
   return EVENT_PLACEHOLDER_IMAGES[index];
 };
 
-export function getCollectionCards(
+export function getGeneralCollectionCards(
   collection: GeneralCollectionType,
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
   locale = 'fi'
 ): CardProps[] {
   const defaultImageUrl = getEventPlaceholderImage('');
   return collection.items.reduce((result: CardProps[], item) => {
-    if (isPageType(item) || isArticleType(item))
-      result.push(getArticlePageCardProps(item, defaultImageUrl));
-    else if (isEventType(item))
-      result.push(getEventCardProps(item, defaultImageUrl, locale));
+    if (isArticleType(item)) {
+      result.push({
+        ...getArticlePageCardProps(item, defaultImageUrl),
+        url: getRoutedInternalHref(
+          (item as ArticleType).link,
+          ModuleItemTypeEnum.Article
+        ),
+      });
+    } else if (isPageType(item)) {
+      result.push({
+        ...getArticlePageCardProps(item, defaultImageUrl),
+        url: getRoutedInternalHref(
+          (item as PageType).link,
+          ModuleItemTypeEnum.Page
+        ),
+      });
+    }
+    // NOTE: Event type is not a general type
+    // else if (isEventType(item)) {
+    //   result.push({
+    //     ...getEventCardProps(item, defaultImageUrl, locale),
+    //     url: getRoutedInternalHref(item, ModuleItemTypeEnum.Event),
+    //   });
+    // }
     return result;
   }, []);
 }
 
 export const getDefaultCollections = (
   page: PageType | ArticleType,
-  getRoutedInternalHref: (link: string, type: ModuleItemTypeEnum) => string,
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
   currentLanguageCode: RCHCConfig['currentLanguageCode']
 ) =>
   getCollections(page?.modules ?? [], true)?.reduce(
@@ -139,9 +160,11 @@ export const getDefaultCollections = (
           />
         );
       } else {
-        const cards = getCollectionCards(collection, currentLanguageCode).map(
-          (cardProps) => <Card key={Math.random()} {...cardProps} />
-        );
+        const cards = getGeneralCollectionCards(
+          collection,
+          getRoutedInternalHref,
+          currentLanguageCode
+        ).map((cardProps) => <Card key={Math.random()} {...cardProps} />);
         collectionElements.push(
           <Collection {...commonCollectionProps} cards={cards} />
         );
