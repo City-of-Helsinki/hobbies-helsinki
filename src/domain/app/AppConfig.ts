@@ -16,6 +16,13 @@ class AppConfig {
     );
   }
 
+  static get linkedEventsEventEndpoint() {
+    return getEnvOrError(
+      process.env.NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT,
+      'NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT'
+    );
+  }
+
   static get origin() {
     return getEnvOrError(
       process.env.NEXT_PUBLIC_APP_ORIGIN,
