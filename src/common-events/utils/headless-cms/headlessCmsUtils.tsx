@@ -104,7 +104,7 @@ export function getGeneralCollectionCards(
       result.push({
         ...getArticlePageCardProps(item, defaultImageUrl),
         url: getRoutedInternalHref(
-          (item as ArticleType).link,
+          (item as ArticleType)?.link,
           ModuleItemTypeEnum.Article
         ),
       });
@@ -112,7 +112,7 @@ export function getGeneralCollectionCards(
       result.push({
         ...getArticlePageCardProps(item, defaultImageUrl),
         url: getRoutedInternalHref(
-          (item as PageType).link,
+          (item as PageType)?.link,
           ModuleItemTypeEnum.Page
         ),
       });

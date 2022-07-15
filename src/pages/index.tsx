@@ -7,13 +7,14 @@ import {
   LandingPageDocument,
   LandingPageQuery,
   LandingPageQueryVariables,
-  TemplateEnum,
 } from 'react-helsinki-headless-cms/apollo';
 import {
   useConfig,
   PageContent as HCRCPageContent,
   Page as HCRCPage,
   PageType,
+  ArticleType,
+  TemplateEnum,
 } from 'react-helsinki-headless-cms';
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
@@ -26,6 +27,7 @@ import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
 import useLocale from '../common-events/hooks/useLocale';
 import { getDefaultCollections } from '../common-events/utils/headless-cms/headlessCmsUtils';
+import {} from 'react-helsinki-headless-cms';
 
 const HomePage: NextPage<{
   landingPage: LandingPageQuery['landingPage'];
@@ -46,7 +48,7 @@ const HomePage: NextPage<{
           page={page}
           landingPage={landingPage}
           PageContentLayoutComponent={LandingPageContentLayout}
-          collections={(page: PageType) =>
+          collections={(page: PageType | ArticleType) =>
             getDefaultCollections(
               page,
               getRoutedInternalHref,
