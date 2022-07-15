@@ -11,16 +11,14 @@ export default function Navigation() {
   const navigationMenuName = useNavigationMenuNameFromConfig();
   const locale = useLocale();
   const currentPage = router.pathname;
+
   return (
     <RHHCApolloNavigation
       menuName={navigationMenuName ?? ''}
       onTitleClick={() => {
-        router.push('/', locale);
+        router.push('/');
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
-      getPathnameForLanguage={({ slug }) =>
-        `/${slug}${getI18nPath(currentPage, slug as Language)}`
-      }
     />
   );
 }

@@ -15,15 +15,13 @@ export default function Link({ href, escape, ...delegated }: Props) {
 
   // Use string hrefs as is
   if (typeof href === 'string') {
-    return <NextLink {...delegated} href={href} />;
+    return <NextLink {...delegated} href={href}></NextLink>;
   }
 
   const locale = delegated.locale || router.locale;
   const i18nHref = {
-    ...href,
-    pathname: href.pathname
-      ? getI18nPath(href.pathname, locale)
-      : undefined ?? router.pathname,
+    query: router.query,
+    pathname: getI18nPath(router.pathname, locale),
   };
   const enhancedHref = escape
     ? i18nHref

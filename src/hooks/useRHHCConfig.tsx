@@ -1,3 +1,5 @@
+import { UrlObject } from 'url';
+
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { NextRouter } from 'next/router';
@@ -10,6 +12,7 @@ import {
 } from 'react-helsinki-headless-cms';
 
 import useLocale from '../common-events/hooks/useLocale';
+import I18nLink from '../common-events/i18n/router/Link';
 import { getI18nPath } from '../common-events/i18n/router/utils';
 import AppConfig from '../domain/app/AppConfig';
 
@@ -17,6 +20,21 @@ const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
 const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
   AppConfig.linkedEventsEventEndpoint
 ).href;
+
+type LinkProps = React.HTMLProps<HTMLAnchorElement> & {
+  href: string | UrlObject;
+  locale?: React.ComponentProps<typeof I18nLink>['locale'];
+  lang?: string;
+  children?: React.ReactNode;
+};
+
+const Link = ({ href, children, locale, ...rest }: LinkProps) => {
+  return (
+    <I18nLink href={href} locale={locale}>
+      <a {...rest}>{children}</a>
+    </I18nLink>
+  );
+};
 
 export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
@@ -99,6 +117,10 @@ export default function useRHHCConfig(
         getRoutedInternalHref,
       },
       internalHrefOrigins,
+      components: {
+        ...rhhcDefaultConfig.components,
+        Link: Link,
+      },
     } as Config;
   }, [router.basePath, t, cmsApolloClient, eventsApolloClient, locale]);
   return rhhcConfig;

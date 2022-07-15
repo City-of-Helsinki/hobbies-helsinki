@@ -30,6 +30,8 @@ export function getI18nPath(route: string, locale: string): string {
         transformDynamicPathIntoSegmentedDynamicPath(routeKey) === route
     )?.[1] ?? [];
 
+  console.log(i18nRewriteRules);
+
   if (!i18nRewriteRules || i18nRewriteRules.length === 0) {
     return route;
   }
