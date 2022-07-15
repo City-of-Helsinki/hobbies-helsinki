@@ -4,6 +4,9 @@ on:
     branches:
       - main
 
+# allow only one run at a time
+concurrency: ${{ github.workflow }}
+
 env:
   CONTAINER_REGISTRY: ghcr.io
   CONTAINER_REGISTRY_USER: ${{ secrets.GHCR_CONTAINER_REGISTRY_USER }}
@@ -16,10 +19,16 @@ env:
   BASE_DOMAIN: ${{ secrets.BASE_DOMAIN_STAGING }}
   SERVICE_PORT: 3000
   K8S_REQUEST_CPU: 50m
-  K8S_REQUEST_RAM: 200Mi
-  K8S_LIMIT_CPU: 400m
+  K8S_REQUEST_RAM: 150Mi
+  K8S_LIMIT_CPU: 200m
   K8S_LIMIT_RAM: 400Mi
-  K8S_REPLICACOUNT: 2
+  # horizontal pod autoscaler
+  K8S_HPA_ENABLED: true
+  K8S_HPA_MAX_REPLICAS: 3
+  K8S_HPA_MIN_REPLICAS: 1
+  K8S_HPA_MAX_CPU_AVG: 80 # 80% from request
+#  K8S_HPA_MAX_RAM_AVG: 80 # 80% from request
+
   K8S_LIVENESS_PATH: /api/healthz
   K8S_READINESS_PATH: /api/readiness
   NEXT_PUBLIC_SENTRY_ENVIRONMENT: 'test'
