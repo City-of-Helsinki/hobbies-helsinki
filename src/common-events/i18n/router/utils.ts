@@ -10,11 +10,20 @@ import AppConfig from '../../../domain/app/AppConfig';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]
-// FIXME: Does not work with article URIs
+// dynamic wildcard: /collection/:id*
+// segmented wildcard: /collection[...slug]
 function transformDynamicPathIntoSegmentedDynamicPath(path: string): string {
   return path
     .split('/')
-    .map((part) => (part.startsWith(':') ? `[${part.slice(1)}]` : part))
+    .map((part) => {
+      if (!part.startsWith(':')) return part;
+      //if [...]
+      const partValue = part.slice(1);
+
+      return partValue.endsWith('*')
+        ? `[...${partValue.replace('*', '')}]`
+        : `[${partValue}]`;
+    })
     .join('/');
 }
 
@@ -41,6 +50,7 @@ export function getI18nPath(route: string, locale: string): string {
   if (!i18nRewriteRuleForCurrentLocale) {
     return route;
   }
+
   return transformDynamicPathIntoSegmentedDynamicPath(
     i18nRewriteRuleForCurrentLocale.source
   );
@@ -76,6 +86,7 @@ const queryToString = (
   return queryAsString.length > 0 ? `?${queryAsString}` : null;
 };
 
+// FIXME (partially fixed, test with search params): Does not work with article URIs
 export function stringifyUrlObject(url: UrlObject): string {
   const usedQueryParts: string[] = [];
   const pathname = url.pathname
@@ -85,10 +96,24 @@ export function stringifyUrlObject(url: UrlObject): string {
         return part;
       }
 
-      const dynamicPartName = parseDynamicName(part);
+      let dynamicPartName = parseDynamicName(part);
+
+      //check if is wildcard [...slug] etc
+      //TODO: fix the logic, probably won't work with wildcard and search params
+      if (dynamicPartName.startsWith('...')) {
+        dynamicPartName = dynamicPartName.replace('...', '');
+        usedQueryParts.push(dynamicPartName);
+
+        const wildCardParts = (url.query as ParsedUrlQueryInput)?.[
+          dynamicPartName
+        ];
+
+        if (Array.isArray(wildCardParts)) {
+          return wildCardParts.map((part) => part).join('/');
+        }
+      }
 
       usedQueryParts.push(dynamicPartName);
-
       return (url.query as ParsedUrlQueryInput)?.[dynamicPartName] ?? part;
     })
     .join('/');
