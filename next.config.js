@@ -23,7 +23,11 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'src/styles')],
   },
-  i18n,
+  i18n: {
+    defaultLocale: 'fi',
+    locales: ['fi', 'sv', 'en'],
+    localeDetection: false,
+  },
   async rewrites() {
     return i18nRewriteRules;
   },

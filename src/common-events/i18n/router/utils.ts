@@ -1,5 +1,5 @@
 import { UrlObject } from 'url';
-import { ParsedUrlQueryInput } from 'querystring';
+import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
 
 import qs from 'query-string';
 import { NextRouter } from 'next/router';
@@ -166,4 +166,16 @@ export const removeQueryParamsFromRouter = (
 
 export function getParsedUrlQueryInput(search: string) {
   return qs.parse(search) as ParsedUrlQueryInput;
+}
+
+export function getLocalizedModuleItemUrl(
+  pathname: string,
+  query: ParsedUrlQuery,
+  locale: Language,
+  defaultLocale: Language
+): string {
+  return `${locale !== defaultLocale ? `/${locale}` : ''}${stringifyUrlObject({
+    query: query,
+    pathname: getI18nPath(pathname, locale),
+  })}`;
 }

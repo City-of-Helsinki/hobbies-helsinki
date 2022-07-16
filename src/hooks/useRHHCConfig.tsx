@@ -10,8 +10,12 @@ import {
 } from 'react-helsinki-headless-cms';
 
 import useLocale from '../common-events/hooks/useLocale';
-import { getI18nPath } from '../common-events/i18n/router/utils';
+import {
+  getI18nPath,
+  getLocalizedModuleItemUrl,
+} from '../common-events/i18n/router/utils';
 import AppConfig from '../domain/app/AppConfig';
+import { Language } from '../types';
 
 const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
 const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
@@ -48,22 +52,32 @@ export default function useRHHCConfig(
         return '#';
       }
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
-      // if (uri === link) {
-      //   return link;
-      // }
 
       if (type === ModuleItemTypeEnum.Article) {
-        // TODO: fix the getI18nPath for articles
-        return getI18nPath('/articles', locale) + uri;
+        return getLocalizedModuleItemUrl(
+          '/articles/[...slug]',
+          { slug: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
       if (type === ModuleItemTypeEnum.Page) {
-        // TODO: fix the getI18nPath for pages
-        return getI18nPath('/pages', locale) + uri;
+        return getLocalizedModuleItemUrl(
+          '/pages/[...slug]',
+          { slug: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
       if (type === ModuleItemTypeEnum.Event) {
-        // TODO: fix the getI18nPath for pages
-        return getI18nPath('/courses', locale) + uri;
+        return getLocalizedModuleItemUrl(
+          '/courses/[eventId]',
+          { eventId: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
+      //TODO: test the default case
       return getI18nPath(link, locale);
     };
     return {
@@ -100,6 +114,13 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [router.basePath, t, cmsApolloClient, eventsApolloClient, locale]);
+  }, [
+    router.basePath,
+    router.defaultLocale,
+    t,
+    cmsApolloClient,
+    eventsApolloClient,
+    locale,
+  ]);
   return rhhcConfig;
 }
