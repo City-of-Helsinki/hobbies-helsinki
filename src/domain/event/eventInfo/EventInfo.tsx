@@ -36,6 +36,9 @@ import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
 import getDateArray from '../../../common-events/utils/getDateArray';
 import useRouter from '../../../common-events/i18n/router/useRouter';
 import Link from '../../../common-events/components/link/Link';
+import getDomain from '../../../common/utils/getDomain';
+import { getLocalizedCmsItemUrl } from '../../../common-events/i18n/router/utils';
+import { Language } from '../../../types';
 
 interface Props {
   event: EventFields;
@@ -113,11 +116,16 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
 
   const downloadIcsFile = () => {
     if (startTime) {
-      const domain = router.basePath;
+      const domain = getDomain();
       const icsEvent: EventAttributes = {
         description: t('event:info.textCalendarLinkDescription', {
           description: shortDescription,
-          link: `${domain}/${locale}/courses/${event.id}}`,
+          link: `${domain}${getLocalizedCmsItemUrl(
+            '/courses/[eventId]',
+            { eventId: event.id },
+            locale,
+            router.defaultLocale as Language
+          )}`,
         }),
         end: endTime ? getDateArray(endTime) : getDateArray(startTime),
         location: [locationName, streetAddress, district, addressLocality]
