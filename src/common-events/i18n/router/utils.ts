@@ -168,7 +168,7 @@ export function getParsedUrlQueryInput(search: string) {
   return qs.parse(search) as ParsedUrlQueryInput;
 }
 
-export function getLocalizedModuleItemUrl(
+export function getLocalizedCmsItemUrl(
   pathname: string,
   query: ParsedUrlQuery,
   locale: Language,

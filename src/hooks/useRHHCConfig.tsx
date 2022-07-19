@@ -12,7 +12,7 @@ import {
 import useLocale from '../common-events/hooks/useLocale';
 import {
   getI18nPath,
-  getLocalizedModuleItemUrl,
+  getLocalizedCmsItemUrl,
 } from '../common-events/i18n/router/utils';
 import AppConfig from '../domain/app/AppConfig';
 import { Language } from '../types';
@@ -54,7 +54,7 @@ export default function useRHHCConfig(
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
 
       if (type === ModuleItemTypeEnum.Article) {
-        return getLocalizedModuleItemUrl(
+        return getLocalizedCmsItemUrl(
           '/articles/[...slug]',
           { slug: uri.replace(/^\//, '') },
           locale,
@@ -62,7 +62,7 @@ export default function useRHHCConfig(
         );
       }
       if (type === ModuleItemTypeEnum.Page) {
-        return getLocalizedModuleItemUrl(
+        return getLocalizedCmsItemUrl(
           '/pages/[...slug]',
           { slug: uri.replace(/^\//, '') },
           locale,
@@ -70,7 +70,7 @@ export default function useRHHCConfig(
         );
       }
       if (type === ModuleItemTypeEnum.Event) {
-        return getLocalizedModuleItemUrl(
+        return getLocalizedCmsItemUrl(
           '/courses/[eventId]',
           { eventId: uri.replace(/^\//, '') },
           locale,

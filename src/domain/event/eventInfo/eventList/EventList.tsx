@@ -10,7 +10,7 @@ import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
 import useRouter from '../../../../common-events/i18n/router/useRouter';
 import Link from '../../../../common-events/i18n/router/Link';
-import { getLocalizedModuleItemUrl } from '../../../../common-events/i18n/router/utils';
+import { getLocalizedCmsItemUrl } from '../../../../common-events/i18n/router/utils';
 import { Language } from '../../../../types';
 
 const EventList: React.FC<{
@@ -25,7 +25,7 @@ const EventList: React.FC<{
   const search = router.asPath.split('?')[1];
 
   const getLinkUrl = (event: EventFieldsFragment) =>
-    getLocalizedModuleItemUrl(
+    getLocalizedCmsItemUrl(
       '/courses/[eventId]',
       { eventId: event.id },
       locale,

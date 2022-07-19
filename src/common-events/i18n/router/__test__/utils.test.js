@@ -1,4 +1,4 @@
-import { stringifyUrlObject } from '../utils';
+import { getLocalizedCmsItemUrl, stringifyUrlObject } from '../utils';
 
 describe('i18n router utils', () => {
   describe('stringifyUrlObject', () => {
@@ -29,6 +29,47 @@ describe('i18n router utils', () => {
       ).toMatchInlineSnapshot(
         `"/venue/tprek:123/map?isOpenNow=true&q=Swimming%20Pool"`
       );
+    });
+  });
+
+  describe('getLocalizedCmsItemUrl', () => {
+    it('should correctly return the localized path for the default locale', () => {
+      expect(
+        getLocalizedCmsItemUrl(
+          '/courses/[eventId]',
+          {
+            eventId: 'hki:123',
+          },
+          'fi',
+          'fi'
+        )
+      ).toMatchInlineSnapshot(`"/kurssit/hki:123"`);
+    });
+
+    it('should correctly return the localized path for the secondary locale', () => {
+      expect(
+        getLocalizedCmsItemUrl(
+          '/courses/[eventId]',
+          {
+            eventId: 'hki:123',
+          },
+          'en',
+          'fi'
+        )
+      ).toMatchInlineSnapshot(`"/en/courses/hki:123"`);
+    });
+
+    it('should correctly return the localized path for the wildcard slug', () => {
+      expect(
+        getLocalizedCmsItemUrl(
+          '/articles/[...slug]',
+          {
+            slug: 'some/url',
+          },
+          'fi',
+          'fi'
+        )
+      ).toMatchInlineSnapshot(`"/artikkelit/some/url"`);
     });
   });
 });

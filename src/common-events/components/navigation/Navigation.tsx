@@ -3,10 +3,7 @@ import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/
 import useLocale from '../../hooks/useLocale';
 import useNavigationMenuNameFromConfig from '../../hooks/useNavigationMenuNameFromConfig';
 import useRouter from '../../i18n/router/useRouter';
-import {
-  getI18nPath,
-  getLocalizedModuleItemUrl,
-} from '../../i18n/router/utils';
+import { getI18nPath, getLocalizedCmsItemUrl } from '../../i18n/router/utils';
 
 export default function Navigation() {
   const router = useRouter();
@@ -21,7 +18,7 @@ export default function Navigation() {
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
       getPathnameForLanguage={({ slug }) =>
-        getLocalizedModuleItemUrl(
+        getLocalizedCmsItemUrl(
           currentPage,
           router.query,
           slug,
