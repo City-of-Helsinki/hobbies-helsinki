@@ -10,10 +10,7 @@ import {
 } from 'react-helsinki-headless-cms';
 
 import useLocale from '../common-events/hooks/useLocale';
-import {
-  getI18nPath,
-  getLocalizedCmsItemUrl,
-} from '../common-events/i18n/router/utils';
+import { getLocalizedCmsItemUrl } from '../common-events/i18n/router/utils';
 import AppConfig from '../domain/app/AppConfig';
 import { Language } from '../types';
 
@@ -51,6 +48,7 @@ export default function useRHHCConfig(
       if (!link) {
         return '#';
       }
+
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
 
       if (type === ModuleItemTypeEnum.Article) {
@@ -78,7 +76,12 @@ export default function useRHHCConfig(
         );
       }
       //TODO: test the default case
-      return getI18nPath(link, locale);
+      return getLocalizedCmsItemUrl(
+        link,
+        {},
+        locale,
+        router.defaultLocale as Language
+      );
     };
     return {
       ...rhhcDefaultConfig,

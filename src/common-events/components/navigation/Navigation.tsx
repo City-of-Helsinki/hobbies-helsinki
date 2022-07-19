@@ -17,14 +17,14 @@ export default function Navigation() {
         router.push('/');
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
-      getPathnameForLanguage={({ slug }) =>
-        getLocalizedCmsItemUrl(
+      getPathnameForLanguage={({ slug }) => {
+        return getLocalizedCmsItemUrl(
           currentPage,
           router.query,
           slug,
           router.defaultLocale
-        )
-      }
+        );
+      }}
     />
   );
 }
