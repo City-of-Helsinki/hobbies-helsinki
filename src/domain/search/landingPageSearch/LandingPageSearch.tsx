@@ -17,6 +17,7 @@ import SearchShortcuts from './SearchShortcuts';
 import LandingPageSearchForm from './LandingPageSearchForm';
 import styles from './landingPageSearch.module.scss';
 import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
+import { ROUTES } from '../../../constants';
 
 const Search: React.FC = () => {
   const { t } = useTranslation();
@@ -38,7 +39,7 @@ const Search: React.FC = () => {
 
   const goToSearchPage = (search: string) => {
     router.push({
-      pathname: getI18nPath('/search', locale),
+      pathname: getI18nPath(ROUTES.SEARCH, locale),
       query: getParsedUrlQueryInput(search),
     });
   };

@@ -39,6 +39,7 @@ import Link from '../../../common-events/components/link/Link';
 import getDomain from '../../../common/utils/getDomain';
 import { getLocalizedCmsItemUrl } from '../../../common-events/i18n/router/utils';
 import { Language } from '../../../types';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;
@@ -121,7 +122,7 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
         description: t('event:info.textCalendarLinkDescription', {
           description: shortDescription,
           link: `${domain}${getLocalizedCmsItemUrl(
-            '/courses/[eventId]',
+            ROUTES.COURSES,
             { eventId: event.id },
             locale,
             router.defaultLocale as Language

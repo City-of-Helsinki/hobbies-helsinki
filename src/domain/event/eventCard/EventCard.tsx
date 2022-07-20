@@ -9,10 +9,7 @@ import testImage from '../../../common-events/utils/testImage';
 import IconButton from '../../../common/components/iconButton/IconButton';
 import useLocale from '../../../common-events/hooks/useLocale';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
-import {
-  getI18nPath,
-  getLocalizedCmsItemUrl,
-} from '../../../common-events/i18n/router/utils';
+import { getLocalizedCmsItemUrl } from '../../../common-events/i18n/router/utils';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -26,6 +23,7 @@ import { EventFields } from '../types';
 import styles from './eventCard.module.scss';
 import useRouter from '../../../common-events/i18n/router/useRouter';
 import { Language } from '../../../types';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;
@@ -45,7 +43,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
     returnPath: router.pathname,
   });
   const eventUrl = `${getLocalizedCmsItemUrl(
-    '/courses/[eventId]',
+    ROUTES.COURSES,
     { eventId: event.id },
     locale,
     router.defaultLocale as Language

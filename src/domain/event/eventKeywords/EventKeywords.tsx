@@ -3,7 +3,7 @@ import React from 'react';
 
 import Keyword from '../../../common-events/components/keyword/Keyword';
 import useLocale from '../../../common-events/hooks/useLocale';
-import { DATE_TYPES } from '../../../constants';
+import { DATE_TYPES, ROUTES } from '../../../constants';
 import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { EVENT_DEFAULT_SEARCH_FILTERS } from '../../search/eventSearch/constants';
@@ -44,7 +44,7 @@ const EventKeywords: React.FC<Props> = ({
         text: type === 'text' ? [value] : [],
       });
 
-      router.push(`${getI18nPath('/search', locale)}${search}`);
+      router.push(`${getI18nPath(ROUTES.SEARCH, locale)}${search}`);
       scrollToTop();
     };
 

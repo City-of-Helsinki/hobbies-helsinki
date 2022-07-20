@@ -3,7 +3,10 @@ import React, { FunctionComponent } from 'react';
 
 import CategoryFilter from '../../common-events/components/category/CategoryFilter';
 import useLocale from '../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../common-events/i18n/router/utils';
+import useRouter from '../../common-events/i18n/router/useRouter';
+import { getLocalizedCmsItemUrl } from '../../common-events/i18n/router/utils';
+import { ROUTES } from '../../constants';
+import { Language } from '../../types';
 import {
   CATEGORY_CATALOG,
   COURSE_DEFAULT_SEARCH_FILTERS,
@@ -18,10 +21,16 @@ import styles from './footerCategories.module.scss';
 const FooterCategories: FunctionComponent = () => {
   const { t } = useTranslation('footer');
   const locale = useLocale();
+  const router = useRouter();
   const route = '/courses';
 
   const getCategoryLink = (category: CategoryExtendedOption) => {
-    return `${getI18nPath('/search', locale)}${getSearchQuery({
+    return `${getLocalizedCmsItemUrl(
+      ROUTES.SEARCH,
+      {},
+      locale,
+      router.defaultLocale as Language
+    )}${getSearchQuery({
       ...defaultSearchFiltersMap[route],
       categories: [category.value],
     })}`;

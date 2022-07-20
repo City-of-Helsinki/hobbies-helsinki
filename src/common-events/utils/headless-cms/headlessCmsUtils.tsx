@@ -64,18 +64,6 @@ export const slugsToUriSegments = (slugs: string[]): string[] => {
   });
 };
 
-export const getCmsPagePath = (uri?: string | null): string => {
-  if (!uri) return '#';
-  const locale = stripLocaleFromUri(uri);
-  return getI18nPath('/pages', locale) + uri;
-};
-
-export const getCmsArticlePath = (uri?: string | null): string => {
-  if (!uri) return '#';
-  const locale = stripLocaleFromUri(uri);
-  return getI18nPath('/articles', locale) + uri;
-};
-
 export const EVENT_PLACEHOLDER_IMAGES = [
   '/static/images/event_placeholder_A.jpg',
   '/static/images/event_placeholder_B.jpg',

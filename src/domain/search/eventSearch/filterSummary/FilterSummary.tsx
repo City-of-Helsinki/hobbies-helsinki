@@ -22,6 +22,7 @@ import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
 import PublisherFilter from './PublisherFilter';
 import TextFilter from './TextFilter';
+import { ROUTES } from '../../../../constants';
 
 export const filterSummaryContainerTestId = 'filter-summary';
 
@@ -87,7 +88,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     });
 
     router.push({
-      pathname: getI18nPath('/search', locale),
+      pathname: getI18nPath(ROUTES.SEARCH, locale),
       query: parse(search) as ParsedUrlQueryInput,
     });
   };

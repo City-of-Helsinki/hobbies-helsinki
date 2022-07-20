@@ -34,6 +34,7 @@ import {
 } from './utils';
 import styles from './search.module.scss';
 import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   scrollToResultList: () => void;
@@ -107,6 +108,13 @@ const AdvancedSearch: React.FC<Props> = ({
 
   const categories = getEventCategoryOptions(t);
 
+  const goToSearch = (search: string): void => {
+    router.push({
+      pathname: getI18nPath(ROUTES.SEARCH, locale),
+      query: parse(search) as ParsedUrlQueryInput,
+    });
+  };
+
   const handleChangeDateTypes = (value: string[]) => {
     setSelectedDateTypes(value);
   };
@@ -121,11 +129,7 @@ const AdvancedSearch: React.FC<Props> = ({
       text: [autosuggestInput],
     };
     const search = getSearchQuery(filters);
-
-    router.push({
-      pathname: getI18nPath('/search', locale),
-      query: parse(search) as ParsedUrlQueryInput,
-    });
+    goToSearch(search);
   };
 
   // Initialize fields when page is loaded
@@ -176,11 +180,7 @@ const AdvancedSearch: React.FC<Props> = ({
     });
 
     setSelectedTexts(text || []);
-
-    router.push({
-      pathname: getI18nPath('/search', locale),
-      query: parse(search) as ParsedUrlQueryInput,
-    });
+    goToSearch(search);
     scrollToResultList();
   };
 
@@ -189,11 +189,7 @@ const AdvancedSearch: React.FC<Props> = ({
       ...searchFilters,
       isFree: e.target.checked,
     });
-
-    router.push({
-      pathname: getI18nPath('/search', locale),
-      query: parse(search) as ParsedUrlQueryInput,
-    });
+    goToSearch(search);
   };
 
   const clearInputValues = () => {
@@ -207,12 +203,7 @@ const AdvancedSearch: React.FC<Props> = ({
 
   const clearFilters = () => {
     const search = getSearchQuery(EVENT_DEFAULT_SEARCH_FILTERS);
-
-    router.push({
-      pathname: getI18nPath('/search', locale),
-      query: parse(search) as ParsedUrlQueryInput,
-    });
-
+    goToSearch(search);
     clearInputValues();
   };
 

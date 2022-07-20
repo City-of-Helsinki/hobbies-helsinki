@@ -10,6 +10,7 @@ import { AutosuggestMenuOption } from '../../../common-events/types';
 import useLocale from '../../../common-events/hooks/useLocale';
 import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import styles from './landingPageSearchForm.module.scss';
+import { ROUTES } from '../../../constants';
 
 export type LandingPageSearchFormProps = {
   className?: string;
@@ -96,7 +97,7 @@ export default function LandingPageSearchForm({
         </div>
       </div>
       <div className={styles.linkRow}>
-        <Link color="white" href={getI18nPath('/search', locale)}>
+        <Link color="white" href={getI18nPath(ROUTES.SEARCH, locale)}>
           {t('eventSearch.linkAdvancedSearch')}
         </Link>
       </div>

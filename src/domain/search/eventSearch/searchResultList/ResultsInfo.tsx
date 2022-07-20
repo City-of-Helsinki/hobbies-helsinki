@@ -7,6 +7,7 @@ import { Language } from '../../../../types';
 import useRouter from '../../../../common-events/i18n/router/useRouter';
 import { getI18nPath } from '../../../../common-events/i18n/router/utils';
 import styles from './resultsInfo.module.scss';
+import { ROUTES } from '../../../../constants';
 
 const ResultsInfoContainer: React.FC<{
   resultsCount: number;
@@ -17,7 +18,7 @@ const ResultsInfoContainer: React.FC<{
   const isFinnish = locale === 'fi';
 
   const goToFinnishSearch = () => {
-    router.push(getI18nPath('/search', 'fi' as Language));
+    router.push(getI18nPath(ROUTES.SEARCH, 'fi' as Language));
   };
 
   const ActionButtons = () => (

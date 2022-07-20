@@ -28,6 +28,7 @@ import buttonStyles from '../../../common-events/components/button/button.module
 import styles from './largeEventCard.module.scss';
 import useRouter from '../../../common-events/i18n/router/useRouter';
 import { Language } from '../../../types';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;
@@ -59,7 +60,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
     returnPath: router.pathname,
   });
   const eventUrl = `${getLocalizedCmsItemUrl(
-    '/courses/[eventId]',
+    ROUTES.COURSES,
     { eventId: event.id },
     locale,
     router.defaultLocale as Language

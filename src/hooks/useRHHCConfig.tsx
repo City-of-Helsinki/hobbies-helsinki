@@ -11,6 +11,7 @@ import {
 
 import useLocale from '../common-events/hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../common-events/i18n/router/utils';
+import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
 import { Language } from '../types';
 
@@ -53,7 +54,7 @@ export default function useRHHCConfig(
 
       if (type === ModuleItemTypeEnum.Article) {
         return getLocalizedCmsItemUrl(
-          '/articles/[...slug]',
+          ROUTES.ARTICLES,
           { slug: uri.replace(/^\//, '') },
           locale,
           router.defaultLocale as Language
@@ -61,7 +62,7 @@ export default function useRHHCConfig(
       }
       if (type === ModuleItemTypeEnum.Page) {
         return getLocalizedCmsItemUrl(
-          '/pages/[...slug]',
+          ROUTES.PAGES,
           { slug: uri.replace(/^\//, '') },
           locale,
           router.defaultLocale as Language
@@ -69,7 +70,7 @@ export default function useRHHCConfig(
       }
       if (type === ModuleItemTypeEnum.Event) {
         return getLocalizedCmsItemUrl(
-          '/courses/[eventId]',
+          ROUTES.COURSES,
           { eventId: uri.replace(/^\//, '') },
           locale,
           router.defaultLocale as Language

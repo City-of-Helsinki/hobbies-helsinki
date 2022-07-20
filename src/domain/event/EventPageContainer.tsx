@@ -22,6 +22,7 @@ import styles from './eventPage.module.scss';
 import useRouter from '../../common-events/i18n/router/useRouter';
 import useLocale from '../../common-events/hooks/useLocale';
 import { getI18nPath } from '../../common-events/i18n/router/utils';
+import { ROUTES } from '../../constants';
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -105,7 +106,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
               text={t('event:notFound.text')}
               title={t('event:notFound.title')}
             >
-              <Link href={`${getI18nPath('/search', locale)}${search}`}>
+              <Link href={`${getI18nPath(ROUTES.SEARCH, locale)}${search}`}>
                 {t('event:notFound.linkSearchEvents')}
               </Link>
             </ErrorHero>

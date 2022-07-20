@@ -5,6 +5,7 @@ import React, { FunctionComponent } from 'react';
 import { resetFocusId } from '../../common-events/components/resetFocus/ResetFocus';
 import useLocale from '../../common-events/hooks/useLocale';
 import { getI18nPath } from '../../common-events/i18n/router/utils';
+import { ROUTES } from '../../constants';
 import styles from './footer.module.scss';
 import FooterCategories from './FooterCategories';
 
@@ -24,7 +25,7 @@ const FooterSection: FunctionComponent = () => {
         <Footer.Item
           as={Link}
           label={t('searchHobbies')}
-          href={getI18nPath('/search', locale)}
+          href={getI18nPath(ROUTES.SEARCH, locale)}
         />
       </Footer.Navigation>
       <FooterCategories />

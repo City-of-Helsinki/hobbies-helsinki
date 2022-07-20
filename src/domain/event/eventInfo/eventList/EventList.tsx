@@ -12,6 +12,7 @@ import useRouter from '../../../../common-events/i18n/router/useRouter';
 import Link from '../../../../common-events/i18n/router/Link';
 import { getLocalizedCmsItemUrl } from '../../../../common-events/i18n/router/utils';
 import { Language } from '../../../../types';
+import { ROUTES } from '../../../../constants';
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -26,7 +27,7 @@ const EventList: React.FC<{
 
   const getLinkUrl = (event: EventFieldsFragment) =>
     getLocalizedCmsItemUrl(
-      '/courses/[eventId]',
+      ROUTES.COURSES,
       { eventId: event.id },
       locale,
       router.defaultLocale as Language
