@@ -2,7 +2,6 @@ import { ParsedUrlQueryInput } from 'querystring';
 
 import classNames from 'classnames';
 import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react';
-import uniq from 'lodash/uniq';
 import { useTranslation } from 'next-i18next';
 import React, { FormEvent } from 'react';
 import qs, { parse } from 'query-string';
@@ -14,10 +13,7 @@ import SearchLabel from '../../../common-events/components/search/searchLabel/Se
 import Checkbox from '../../../common/components/checkbox/Checkbox';
 import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
 import MultiSelectDropdown from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { AutosuggestMenuOption } from '../../../common-events/types';
-import useRouter from '../../../common-events/i18n/router/useRouter';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import PlaceSelector from '../../place/placeSelector/PlaceSelector';
 import {
   EVENT_DEFAULT_SEARCH_FILTERS,
@@ -35,6 +31,9 @@ import {
 import styles from './search.module.scss';
 import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
 import { ROUTES } from '../../../constants';
+import useRouter from '../../../hooks/useRouter';
+import useLocale from '../../../hooks/useLocale';
+import { getI18nPath } from '../../../utils/routerUtils';
 
 interface Props {
   scrollToResultList: () => void;

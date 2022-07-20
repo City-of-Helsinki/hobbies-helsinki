@@ -7,9 +7,7 @@ import React from 'react';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import testImage from '../../../common-events/utils/testImage';
 import IconButton from '../../../common/components/iconButton/IconButton';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
-import { getLocalizedCmsItemUrl } from '../../../common-events/i18n/router/utils';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -21,9 +19,11 @@ import {
 } from '../EventUtils';
 import { EventFields } from '../types';
 import styles from './eventCard.module.scss';
-import useRouter from '../../../common-events/i18n/router/useRouter';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
+import useRouter from '../../../hooks/useRouter';
+import useLocale from '../../../hooks/useLocale';
+import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
 interface Props {
   event: EventFields;

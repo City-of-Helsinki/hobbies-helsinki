@@ -5,15 +5,15 @@ import { Page as HCRCApolloPage } from 'react-helsinki-headless-cms/apollo';
 import { ApolloProvider } from '@apollo/client';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
-import useRouter from '../../common-events/i18n/router/useRouter';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import { getLocaleOrError } from '../../common-events/i18n/router/utils';
-import { DEFAULT_LANGUAGE } from '../../constants';
+import { DEFAULT_LANGUAGE, ROUTES } from '../../constants';
 import AdvancedSearch from '../../domain/search/eventSearch/AdvancedSearch';
 import Navigation from '../../common-events/components/navigation/Navigation';
 import SearchPage from '../../domain/search/eventSearch/SearchPage';
 import FooterSection from '../../domain/footer/Footer';
 import useEventsApolloClientFromConfig from '../../common-events/hooks/useEventsApolloClientFromConfig';
+import useRouter from '../../hooks/useRouter';
 
 export default function Search() {
   const router = useRouter();
@@ -39,7 +39,7 @@ export default function Search() {
 
   return (
     <HCRCApolloPage
-      uri="/search"
+      uri={ROUTES.SEARCH}
       className="pageLayout"
       navigation={<Navigation />}
       content={

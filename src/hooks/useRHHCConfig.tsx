@@ -9,11 +9,11 @@ import {
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
-import useLocale from '../common-events/hooks/useLocale';
-import { getLocalizedCmsItemUrl } from '../common-events/i18n/router/utils';
 import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
 import { Language } from '../types';
+import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
+import useLocale from './useLocale';
 
 const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
 const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(

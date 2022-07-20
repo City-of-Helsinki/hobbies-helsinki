@@ -2,15 +2,15 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 import Keyword from '../../../common-events/components/keyword/Keyword';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { DATE_TYPES, ROUTES } from '../../../constants';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { EVENT_DEFAULT_SEARCH_FILTERS } from '../../search/eventSearch/constants';
 import { getEventFields } from '../EventUtils';
 import { getSearchQuery } from '../../search/eventSearch/utils';
-import useRouter from '../../../common-events/i18n/router/useRouter';
 import scrollToTop from '../../../common-events/utils/scrollToTop';
+import useRouter from '../../../hooks/useRouter';
+import useLocale from '../../../hooks/useLocale';
+import { getI18nPath } from '../../../utils/routerUtils';
 
 interface Props {
   blackOnMobile?: boolean;

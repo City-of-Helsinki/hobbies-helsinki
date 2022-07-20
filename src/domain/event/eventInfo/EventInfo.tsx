@@ -34,12 +34,12 @@ import { translateValue } from '../../../common-events/utils/translateUtils';
 import IconDirections from '../../../assets/icons/IconDirections';
 import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
 import getDateArray from '../../../common-events/utils/getDateArray';
-import useRouter from '../../../common-events/i18n/router/useRouter';
 import Link from '../../../common-events/components/link/Link';
 import getDomain from '../../../common/utils/getDomain';
-import { getLocalizedCmsItemUrl } from '../../../common-events/i18n/router/utils';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
+import useRouter from '../../../hooks/useRouter';
+import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
 interface Props {
   event: EventFields;

@@ -5,12 +5,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import testImage from '../../../common-events/utils/testImage';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
-import {
-  getI18nPath,
-  getLocalizedCmsItemUrl,
-} from '../../../common-events/i18n/router/utils';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -26,9 +21,11 @@ import { EventFields } from '../types';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import buttonStyles from '../../../common-events/components/button/button.module.scss';
 import styles from './largeEventCard.module.scss';
-import useRouter from '../../../common-events/i18n/router/useRouter';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
+import useRouter from '../../../hooks/useRouter';
+import useLocale from '../../../hooks/useLocale';
+import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
 interface Props {
   event: EventFields;

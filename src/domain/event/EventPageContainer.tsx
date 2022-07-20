@@ -19,10 +19,10 @@ import { getEventIdFromUrl, isEventClosed } from './EventUtils';
 import SimilarEvents from './similarEvents/SimilarEvents';
 import { SuperEventResponse } from './types';
 import styles from './eventPage.module.scss';
-import useRouter from '../../common-events/i18n/router/useRouter';
-import useLocale from '../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../common-events/i18n/router/utils';
 import { ROUTES } from '../../constants';
+import useRouter from '../../hooks/useRouter';
+import useLocale from '../../hooks/useLocale';
+import { getI18nPath } from '../../utils/routerUtils';
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -33,6 +33,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
 }) => {
   const { t } = useTranslation();
   const router = useRouter();
+  const locale = useLocale();
   const search = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
@@ -50,7 +51,6 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
       include: ['in_language', 'keywords', 'location', 'audience'],
     },
   });
-  const locale = useLocale();
   const event = eventData?.eventDetails;
 
   const superEventId = getEventIdFromUrl(

@@ -7,11 +7,8 @@ import qs, { parse } from 'query-string';
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
 import { FilterType } from '../../../../common-events/components/filterButton/types';
-import useLocale from '../../../../common-events/hooks/useLocale';
 import { formatDate } from '../../../../common-events/utils/dateUtils';
 import { translateValue } from '../../../../common-events/utils/translateUtils';
-import useRouter from '../../../../common-events/i18n/router/useRouter';
-import { getI18nPath } from '../../../../common-events/i18n/router/utils';
 import {
   getSearchFilters,
   getSearchQuery,
@@ -21,8 +18,10 @@ import DateFilter from './DateFilter';
 import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
 import PublisherFilter from './PublisherFilter';
-import TextFilter from './TextFilter';
 import { ROUTES } from '../../../../constants';
+import useRouter from '../../../../hooks/useRouter';
+import { getI18nPath } from '../../../../utils/routerUtils';
+import useLocale from '../../../../hooks/useLocale';
 
 export const filterSummaryContainerTestId = 'filter-summary';
 

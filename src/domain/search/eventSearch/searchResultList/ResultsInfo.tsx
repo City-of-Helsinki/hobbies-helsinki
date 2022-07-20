@@ -2,12 +2,12 @@ import { Button, IconSearch } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import useLocale from '../../../../common-events/hooks/useLocale';
 import { Language } from '../../../../types';
-import useRouter from '../../../../common-events/i18n/router/useRouter';
-import { getI18nPath } from '../../../../common-events/i18n/router/utils';
 import styles from './resultsInfo.module.scss';
 import { ROUTES } from '../../../../constants';
+import useRouter from '../../../../hooks/useRouter';
+import useLocale from '../../../../hooks/useLocale';
+import { getI18nPath } from '../../../../utils/routerUtils';
 
 const ResultsInfoContainer: React.FC<{
   resultsCount: number;

@@ -3,10 +3,10 @@ import classNames from 'classnames';
 
 import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
 import { CategoryExtendedOption, Filters } from '../eventSearch/types';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { getSearchQuery } from '../eventSearch/utils';
 import { ROUTES } from '../../../constants';
+import useLocale from '../../../hooks/useLocale';
+import { getI18nPath } from '../../../utils/routerUtils';
 
 type SearchShortcutsProps = {
   className: string;

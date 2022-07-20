@@ -3,9 +3,9 @@ import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
 
 import { resetFocusId } from '../../common-events/components/resetFocus/ResetFocus';
-import useLocale from '../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../common-events/i18n/router/utils';
 import { ROUTES } from '../../constants';
+import useLocale from '../../hooks/useLocale';
+import { getI18nPath } from '../../utils/routerUtils';
 import styles from './footer.module.scss';
 import FooterCategories from './FooterCategories';
 

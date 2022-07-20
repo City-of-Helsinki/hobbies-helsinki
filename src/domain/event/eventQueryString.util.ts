@@ -1,5 +1,5 @@
-import { getI18nPath } from '../../common-events/i18n/router/utils';
 import { ROUTES } from '../../constants';
+import { getI18nPath } from '../../utils/routerUtils';
 
 export type ReturnParams = {
   returnPath: string;

@@ -7,10 +7,10 @@ import DateSelector from '../../../common-events/components/dateSelector/DateSel
 import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector';
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import { AutosuggestMenuOption } from '../../../common-events/types';
-import useLocale from '../../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import styles from './landingPageSearchForm.module.scss';
 import { ROUTES } from '../../../constants';
+import useLocale from '../../../hooks/useLocale';
+import { getI18nPath } from '../../../utils/routerUtils';
 
 export type LandingPageSearchFormProps = {
   className?: string;

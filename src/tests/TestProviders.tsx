@@ -1,5 +1,4 @@
 import React from 'react';
-import { I18nextProvider } from 'react-i18next';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { NextRouter } from 'next/router';
 import { MockedProvider, MockedResponse } from '@apollo/client/testing';
@@ -14,7 +13,6 @@ import {
   ApolloCache,
   ApolloClient,
   InMemoryCache,
-  NormalizedCacheObject,
   useApolloClient,
 } from '@apollo/client';
 

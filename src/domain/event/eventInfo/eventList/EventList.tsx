@@ -8,11 +8,11 @@ import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql'
 import { getEventFields } from '../../EventUtils';
 import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
-import useRouter from '../../../../common-events/i18n/router/useRouter';
 import Link from '../../../../common-events/i18n/router/Link';
-import { getLocalizedCmsItemUrl } from '../../../../common-events/i18n/router/utils';
 import { Language } from '../../../../types';
 import { ROUTES } from '../../../../constants';
+import useRouter from '../../../../hooks/useRouter';
+import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
 
 const EventList: React.FC<{
   events: EventFields[];
