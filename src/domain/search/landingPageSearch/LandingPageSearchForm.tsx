@@ -1,4 +1,4 @@
-import { Button, IconSearch } from 'hds-react';
+import { Button, IconAngleRight, IconSearch } from 'hds-react';
 import { Link } from 'react-helsinki-headless-cms';
 import classnames from 'classnames';
 import { useTranslation } from 'next-i18next';
@@ -97,8 +97,9 @@ export default function LandingPageSearchForm({
         </div>
       </div>
       <div className={styles.linkRow}>
-        <Link color="white" href={getI18nPath(ROUTES.SEARCH, locale)}>
+        <Link className={styles.link} href={getI18nPath(ROUTES.SEARCH, locale)}>
           {t('eventSearch.linkAdvancedSearch')}
+          <IconAngleRight />
         </Link>
       </div>
     </div>

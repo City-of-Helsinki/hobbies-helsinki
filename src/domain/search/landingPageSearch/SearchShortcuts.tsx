@@ -33,6 +33,7 @@ export default function SearchShortcuts({
       {categories.map((category) => {
         return (
           <CategoryFilter
+            hasHorizontalPadding
             href={getCategoryLink(category)}
             key={category.value}
             icon={category.icon}

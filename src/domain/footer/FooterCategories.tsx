@@ -54,9 +54,9 @@ const FooterCategories: FunctionComponent = () => {
         {categories.map((category) => {
           return (
             <CategoryFilter
+              hasHorizontalPadding
               href={getCategoryLink(category)}
               key={category.value}
-              hasHorizontalPadding={true}
               icon={category.icon}
               text={category.text}
               value={category.value}
