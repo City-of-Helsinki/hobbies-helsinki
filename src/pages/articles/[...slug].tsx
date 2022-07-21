@@ -22,6 +22,7 @@ import {
   getDefaultCollections,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import KorosWrapper from '../../common/components/korosWrapper/KorosWrapper';
 import { DEFAULT_LANGUAGE } from '../../constants';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
@@ -39,12 +40,15 @@ const NextCmsArticle: NextPage<{
     utils: { getRoutedInternalHref },
   } = useConfig();
 
+  console.log(article);
+
   return (
     <RHHCPage
       navigation={<Navigation />}
       content={
         <RHHCPageContent
           page={article as PageContentProps['page']}
+          heroContainer={<KorosWrapper />}
           breadcrumbs={breadcrumbs}
           collections={
             collections

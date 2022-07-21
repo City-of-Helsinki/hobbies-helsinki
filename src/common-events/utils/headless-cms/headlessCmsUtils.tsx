@@ -20,7 +20,6 @@ import {
 
 import { DEFAULT_LANGUAGE } from '../../../constants';
 import { Language } from '../../../types';
-import { getI18nPath } from '../../i18n/router/utils';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
   if (!slugs) return '/';
@@ -150,7 +149,9 @@ export const getDefaultCollections = (
           collection,
           getRoutedInternalHref,
           currentLanguageCode
-        ).map((cardProps) => <Card key={Math.random()} {...cardProps} />);
+        ).map((cardProps) => (
+          <Card key={Math.random()} {...cardProps} direction="fixed-vertical" />
+        ));
         collectionElements.push(
           <Collection {...commonCollectionProps} cards={cards} />
         );
