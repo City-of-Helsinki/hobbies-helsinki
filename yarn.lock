@@ -7652,10 +7652,10 @@ react-helmet@^6.1.0:
     react-fast-compare "^3.1.1"
     react-side-effect "^2.1.0"
 
-react-helsinki-headless-cms@1.0.0-alpha2-canary-84c3240:
-  version "1.0.0-alpha2-canary-84c3240"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha2-canary-84c3240.tgz#56245c392d2849e27e1459b82195a1e6e7b90d4b"
-  integrity sha512-iNTh43J40JaK2xUSY9xQPEteMflRAXKwU4wT9TdqWxWXg8KlfMgxpBlxiUaZbpZnxLJ91moyvEGBa4l61Cv5qQ==
+react-helsinki-headless-cms@1.0.0-alpha2-canary-7854d3d:
+  version "1.0.0-alpha2-canary-7854d3d"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha2-canary-7854d3d.tgz#4d77308724ce77ad36f961172f0f53982401ede0"
+  integrity sha512-E55xHG8iEBQjoKd2+u3ksYr+XiAyNNungHCtHMrvAoPI9xDYHFiHxC/vty0Pdw8ZpxCL6OFi2IWJvZ6+6bwXDQ==
   dependencies:
     hds-design-tokens "^1.11.1"
     html-react-parser "^1.4.8"

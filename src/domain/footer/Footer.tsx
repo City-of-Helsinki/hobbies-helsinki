@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { Footer, Link } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
@@ -9,7 +10,11 @@ import { getI18nPath } from '../../utils/routerUtils';
 import styles from './footer.module.scss';
 import FooterCategories from './FooterCategories';
 
-const FooterSection: FunctionComponent = () => {
+type Props = {
+  noMargin?: boolean;
+};
+
+const FooterSection: FunctionComponent<Props> = ({ noMargin }) => {
   const { t } = useTranslation('footer');
   const { t: tCommon } = useTranslation('common');
   const locale = useLocale();
@@ -20,7 +25,10 @@ const FooterSection: FunctionComponent = () => {
   };
 
   return (
-    <Footer title={tCommon('appName')} className={styles.footer}>
+    <Footer
+      title={tCommon('appName')}
+      className={classNames(styles.footer, noMargin ? styles.noMargin : '')}
+    >
       <Footer.Navigation>
         <Footer.Item
           as={Link}

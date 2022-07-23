@@ -61,7 +61,7 @@ const NextCmsArticle: NextPage<{
           }
         />
       }
-      footer={<FooterSection />}
+      footer={<FooterSection noMargin />}
     />
   );
 };
