@@ -68,7 +68,7 @@ describe('event card', () => {
         })
       )
     );
-    expect(router.pathname).toEqual('/courses/123');
+    expect(router.pathname).toEqual('/kurssit/123');
   });
 
   test('should go to event page by clicking button', async () => {
@@ -84,6 +84,6 @@ describe('event card', () => {
         })
       )
     );
-    expect(router.pathname).toEqual('/courses/123');
+    expect(router.pathname).toEqual('/kurssit/123');
   });
 });

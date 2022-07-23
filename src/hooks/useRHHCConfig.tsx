@@ -9,9 +9,11 @@ import {
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
-import useLocale from '../common-events/hooks/useLocale';
-import { getI18nPath } from '../common-events/i18n/router/utils';
+import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
+import { Language } from '../types';
+import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
+import useLocale from './useLocale';
 
 const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
 const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
@@ -47,24 +49,40 @@ export default function useRHHCConfig(
       if (!link) {
         return '#';
       }
+
       const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
-      // if (uri === link) {
-      //   return link;
-      // }
 
       if (type === ModuleItemTypeEnum.Article) {
-        // TODO: fix the getI18nPath for articles
-        return getI18nPath('/articles', locale) + uri;
+        return getLocalizedCmsItemUrl(
+          ROUTES.ARTICLES,
+          { slug: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
       if (type === ModuleItemTypeEnum.Page) {
-        // TODO: fix the getI18nPath for pages
-        return getI18nPath('/pages', locale) + uri;
+        return getLocalizedCmsItemUrl(
+          ROUTES.PAGES,
+          { slug: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
       if (type === ModuleItemTypeEnum.Event) {
-        // TODO: fix the getI18nPath for pages
-        return getI18nPath('/courses', locale) + uri;
+        return getLocalizedCmsItemUrl(
+          ROUTES.COURSES,
+          { eventId: uri.replace(/^\//, '') },
+          locale,
+          router.defaultLocale as Language
+        );
       }
-      return getI18nPath(link, locale);
+      //TODO: test the default case
+      return getLocalizedCmsItemUrl(
+        link,
+        {},
+        locale,
+        router.defaultLocale as Language
+      );
     };
     return {
       ...rhhcDefaultConfig,
@@ -100,6 +118,13 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [router.basePath, t, cmsApolloClient, eventsApolloClient, locale]);
+  }, [
+    router.basePath,
+    router.defaultLocale,
+    t,
+    cmsApolloClient,
+    eventsApolloClient,
+    locale,
+  ]);
   return rhhcConfig;
 }

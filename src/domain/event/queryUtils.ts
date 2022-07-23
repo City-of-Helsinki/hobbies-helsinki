@@ -2,8 +2,8 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'react-toastify';
 
-import useLocale from '../../common-events/hooks/useLocale';
-import useRouter from '../../common-events/i18n/router/useRouter';
+import useLocale from '../../hooks/useLocale';
+import useRouter from '../../hooks/useRouter';
 import AppConfig from '../app/AppConfig';
 import {
   EventListQuery,

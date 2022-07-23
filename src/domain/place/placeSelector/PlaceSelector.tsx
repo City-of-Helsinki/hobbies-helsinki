@@ -4,12 +4,11 @@ import MultiSelectDropdown, {
   MultiselectDropdownProps,
 } from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
 import useDebounce from '../../../common/hooks/useDebounce';
-import useLocale from '../../../common-events/hooks/useLocale';
 import getLocalisedString from '../../../common-events/utils/getLocalisedString';
 import isClient from '../../../common/utils/isClient';
-import eventsApolloClient from '../../clients/eventsApolloClient';
 import { usePlaceListQuery } from '../../nextApi/graphql/generated/graphql';
 import PlaceText from '../PlaceText';
+import useLocale from '../../../hooks/useLocale';
 
 const DIVISIONS = ['kunta:helsinki'];
 

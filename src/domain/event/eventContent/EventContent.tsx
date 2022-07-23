@@ -5,13 +5,13 @@ import React from 'react';
 import Container from '../../../common-events/components/layout/Container';
 import sanitizeHtml from '../../../common-events/utils/sanitizeHtml';
 import ShareLinks from '../../../common-events/components/shareLinks/ShareLinks';
-import useLocale from '../../../common-events/hooks/useLocale';
 import { EVENT_LOCATIONS } from '../constants';
 import EventInfo from '../eventInfo/EventInfo';
 import EventLocation from '../eventLocation/EventLocation';
 import { getEventFields } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventContent.module.scss';
+import useLocale from '../../../hooks/useLocale';
 
 interface Props {
   event: EventFields;

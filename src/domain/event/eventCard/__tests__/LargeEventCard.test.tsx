@@ -109,7 +109,7 @@ describe('large event card', () => {
       )
     );
 
-    expect(router.pathname).toEqual('/courses/123');
+    expect(router.pathname).toEqual('/kurssit/123');
   });
 
   // Skipped, because this is not available after the Link-component is changed from react-router Link.
@@ -133,6 +133,6 @@ describe('large event card', () => {
       )
     );
 
-    expect(router.pathname).toEqual('/courses/123');
+    expect(router.pathname).toEqual('/kurssit/123');
   });
 });

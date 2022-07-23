@@ -8,9 +8,11 @@ import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql'
 import { getEventFields } from '../../EventUtils';
 import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
-import useRouter from '../../../../common-events/i18n/router/useRouter';
 import Link from '../../../../common-events/i18n/router/Link';
-import { getI18nPath } from '../../../../common-events/i18n/router/utils';
+import { Language } from '../../../../types';
+import { ROUTES } from '../../../../constants';
+import useRouter from '../../../../hooks/useRouter';
+import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -24,8 +26,13 @@ const EventList: React.FC<{
   const search = router.asPath.split('?')[1];
 
   const getLinkUrl = (event: EventFieldsFragment) =>
-    getI18nPath('/courses/[id]', locale).replace('[id]', event.id) +
-    (search ? `?${search}` : '');
+    getLocalizedCmsItemUrl(
+      ROUTES.COURSES,
+      { eventId: event.id },
+      locale,
+      router.defaultLocale as Language
+    );
+  +(search ? `?${search}` : '');
 
   return (
     <ul className={styles.timeList} data-testid={id}>

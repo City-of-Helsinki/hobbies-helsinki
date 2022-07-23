@@ -2,9 +2,9 @@ import { Button } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 
-import useLocale from '../../../common-events/hooks/useLocale';
-import useRouter from '../../../common-events/i18n/router/useRouter';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
+import useLocale from '../../../hooks/useLocale';
+import useRouter from '../../../hooks/useRouter';
+import { getI18nPath } from '../../../utils/routerUtils';
 import styles from './eventClosedHero.module.scss';
 
 const EventClosedHero: React.FC = () => {

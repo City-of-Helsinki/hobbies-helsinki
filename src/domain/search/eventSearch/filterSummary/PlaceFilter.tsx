@@ -3,8 +3,8 @@ import React from 'react';
 
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
 import { FilterType } from '../../../../common-events/components/filterButton/types';
-import useLocale from '../../../../common-events/hooks/useLocale';
 import getLocalisedString from '../../../../common-events/utils/getLocalisedString';
+import useLocale from '../../../../hooks/useLocale';
 import { usePlaceDetailsQuery } from '../../../nextApi/graphql/generated/graphql';
 
 interface Props {

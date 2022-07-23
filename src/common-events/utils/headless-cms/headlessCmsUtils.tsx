@@ -20,7 +20,6 @@ import {
 
 import { DEFAULT_LANGUAGE } from '../../../constants';
 import { Language } from '../../../types';
-import { getI18nPath } from '../../i18n/router/utils';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
   if (!slugs) return '/';
@@ -62,18 +61,6 @@ export const slugsToUriSegments = (slugs: string[]): string[] => {
   return slugs.map((slug, index) => {
     return `/${slugs.slice(0, index + 1).join('/')}/`;
   });
-};
-
-export const getCmsPagePath = (uri?: string | null): string => {
-  if (!uri) return '#';
-  const locale = stripLocaleFromUri(uri);
-  return getI18nPath('/pages', locale) + uri;
-};
-
-export const getCmsArticlePath = (uri?: string | null): string => {
-  if (!uri) return '#';
-  const locale = stripLocaleFromUri(uri);
-  return getI18nPath('/articles', locale) + uri;
 };
 
 export const EVENT_PLACEHOLDER_IMAGES = [
@@ -162,7 +149,9 @@ export const getDefaultCollections = (
           collection,
           getRoutedInternalHref,
           currentLanguageCode
-        ).map((cardProps) => <Card key={Math.random()} {...cardProps} />);
+        ).map((cardProps) => (
+          <Card key={Math.random()} {...cardProps} direction="fixed-vertical" />
+        ));
         collectionElements.push(
           <Collection {...commonCollectionProps} cards={cards} />
         );

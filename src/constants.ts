@@ -1,12 +1,12 @@
-// export const BREAKPOINTS = {
-//   XS: 576,
-//   SM: 768,
-//   MD: 1024,
-//   LG: 1200,
-//   XLG: 1600,
-// };
-
 import { Language } from './types';
+
+export const ROUTES = {
+  SEARCH: '/search',
+  COURSES: '/courses/[eventId]',
+  ARTICLES: '/articles/[...slug]',
+  PAGES: '/pages/[...slug]',
+  LINK: '',
+};
 
 export const AUTOSUGGEST_KEYWORD_BLACK_LIST = [
   'kulke:354', // Seniorit

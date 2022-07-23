@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-import * as useLocale from '../../../../../common-events/hooks/useLocale';
+import * as useLocale from '../../../../../hooks/useLocale';
 import {
   act,
   render,
