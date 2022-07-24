@@ -16,8 +16,10 @@ import {
   ArticleQuery,
   ArticleQueryVariables,
 } from 'react-helsinki-headless-cms/apollo';
+import { useTranslation } from 'react-i18next';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
+import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';
 import {
   getDefaultCollections,
   getUriID,
@@ -40,7 +42,7 @@ const NextCmsArticle: NextPage<{
     utils: { getRoutedInternalHref },
   } = useConfig();
 
-  console.log(article);
+  const { t } = useTranslation(['common']);
 
   return (
     <RHHCPage
@@ -50,6 +52,7 @@ const NextCmsArticle: NextPage<{
           page={article as PageContentProps['page']}
           heroContainer={<KorosWrapper />}
           breadcrumbs={breadcrumbs}
+          shareLinks={<ShareLinks title={t('common:share.article')} />}
           collections={
             collections
               ? getDefaultCollections(
