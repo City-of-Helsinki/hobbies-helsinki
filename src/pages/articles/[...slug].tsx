@@ -16,18 +16,21 @@ import {
   ArticleQuery,
   ArticleQueryVariables,
 } from 'react-helsinki-headless-cms/apollo';
+import { useTranslation } from 'next-i18next';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
-import { getLocaleOrError } from '../../common-events/i18n/router/utils';
+import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';
 import {
   getDefaultCollections,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import KorosWrapper from '../../common/components/korosWrapper/KorosWrapper';
 import { DEFAULT_LANGUAGE } from '../../constants';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import { Language } from '../../types';
+import { getLocaleOrError } from '../../utils/routerUtils';
 
 const NextCmsArticle: NextPage<{
   article: ArticleQuery['post'];
@@ -39,13 +42,17 @@ const NextCmsArticle: NextPage<{
     utils: { getRoutedInternalHref },
   } = useConfig();
 
+  const { t } = useTranslation(['common']);
+
   return (
     <RHHCPage
       navigation={<Navigation />}
       content={
         <RHHCPageContent
           page={article as PageContentProps['page']}
+          heroContainer={<KorosWrapper />}
           breadcrumbs={breadcrumbs}
+          shareLinks={<ShareLinks title={t('common:share.article')} />}
           collections={
             collections
               ? getDefaultCollections(
@@ -57,7 +64,7 @@ const NextCmsArticle: NextPage<{
           }
         />
       }
-      footer={<FooterSection />}
+      footer={<FooterSection noMargin />}
     />
   );
 };

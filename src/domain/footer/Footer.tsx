@@ -1,14 +1,20 @@
+import classNames from 'classnames';
 import { Footer, Link } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
 
 import { resetFocusId } from '../../common-events/components/resetFocus/ResetFocus';
-import useLocale from '../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../common-events/i18n/router/utils';
+import { ROUTES } from '../../constants';
+import useLocale from '../../hooks/useLocale';
+import { getI18nPath } from '../../utils/routerUtils';
 import styles from './footer.module.scss';
 import FooterCategories from './FooterCategories';
 
-const FooterSection: FunctionComponent = () => {
+type Props = {
+  noMargin?: boolean;
+};
+
+const FooterSection: FunctionComponent<Props> = ({ noMargin }) => {
   const { t } = useTranslation('footer');
   const { t: tCommon } = useTranslation('common');
   const locale = useLocale();
@@ -19,12 +25,15 @@ const FooterSection: FunctionComponent = () => {
   };
 
   return (
-    <Footer title={tCommon('appName')} className={styles.footer}>
+    <Footer
+      title={tCommon('appName')}
+      className={classNames(styles.footer, noMargin ? styles.noMargin : '')}
+    >
       <Footer.Navigation>
         <Footer.Item
           as={Link}
           label={t('searchHobbies')}
-          href={getI18nPath('/search', locale)}
+          href={getI18nPath(ROUTES.SEARCH, locale)}
         />
       </Footer.Navigation>
       <FooterCategories />

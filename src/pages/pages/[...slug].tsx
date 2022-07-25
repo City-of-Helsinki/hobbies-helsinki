@@ -18,7 +18,6 @@ import {
 } from 'react-helsinki-headless-cms/apollo';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
-import { getLocaleOrError } from '../../common-events/i18n/router/utils';
 import {
   getDefaultCollections,
   getUriID,
@@ -28,6 +27,7 @@ import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import { Language } from '../../types';
+import { getLocaleOrError } from '../../utils/routerUtils';
 
 const NextCmsPage: NextPage<{
   page: PageQuery['page'];

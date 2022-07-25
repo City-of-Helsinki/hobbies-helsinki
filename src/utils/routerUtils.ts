@@ -4,9 +4,9 @@ import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
 import qs from 'query-string';
 import { NextRouter } from 'next/router';
 
-import i18nRoutes from '../../../../i18nRoutes.config';
-import { Language } from '../../../types';
-import AppConfig from '../../../domain/app/AppConfig';
+import i18nRoutes from '../../i18nRoutes.config';
+import { Language } from '../types';
+import AppConfig from '../domain/app/AppConfig';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]

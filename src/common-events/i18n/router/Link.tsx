@@ -5,6 +5,8 @@ import useRouter from './useRouter';
 import { getI18nPath, stringifyUrlObject } from './utils';
 import { Language } from '../../../types';
 
+//DEPRECTED
+
 type Props = React.PropsWithChildren<Omit<LinkProps, 'locale'>> & {
   escape?: boolean;
   locale?: Language | false;

@@ -45,6 +45,11 @@ const customRender: CustomRender = (
     }
     routes.forEach((route) => Router.push(route));
   }
+
+  //set locales so that the routing tests for default locale worked
+  Router.defaultLocale = 'fi';
+  Router.locales = ['fi', 'en', 'sv'];
+
   const renderResult = render(ui, {
     wrapper: ({ children }) => (
       <TestProviders mocks={mocks} router={Router} cache={cache}>
@@ -52,7 +57,10 @@ const customRender: CustomRender = (
       </TestProviders>
     ),
   });
-  return { ...renderResult, router: Router };
+  return {
+    ...renderResult,
+    router: Router,
+  };
 };
 
 const actWait = (amount?: number): Promise<void> => act(() => wait(amount));

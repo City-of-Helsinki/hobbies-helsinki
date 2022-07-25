@@ -77,5 +77,8 @@
   "breadcrumb": {
     "breadcrumbNavigationLabel": "brödsmula navigation",
     "breadcrumbListLabel": "brödsmula"
+  },
+  "share": {
+    "article": "Share article"
   }
 }

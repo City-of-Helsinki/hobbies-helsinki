@@ -21,8 +21,6 @@ import testImage from '../../../common-events/utils/testImage';
 import buttonStyles from '../../../common-events/components/button/button.module.scss';
 import IconButton from '../../../common/components/iconButton/IconButton';
 import Visible from '../../../common/components/visible/Visible';
-import useLocale from '../../../common-events/hooks/useLocale';
-import useRouter from '../../../common-events/i18n/router/useRouter';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -33,6 +31,8 @@ import {
 import { getEventFields, getEventPrice } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventHero.module.scss';
+import useRouter from '../../../hooks/useRouter';
+import useLocale from '../../../hooks/useLocale';
 
 export interface Props {
   event: EventFields;

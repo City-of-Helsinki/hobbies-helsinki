@@ -17,9 +17,21 @@
 }
 
 .linkRow {
-  float: right;
-  a {
+  display: flex;
+  justify-content: end;
+  a,
+  a:visited,
+  a:hover {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--color-white);
+    text-decoration: none;
+    font-weight: 500;
+  }
+
+  a:hover {
+    text-decoration: underline;
   }
 }
 

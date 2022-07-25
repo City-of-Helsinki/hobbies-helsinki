@@ -1,4 +1,4 @@
-import { Button, IconSearch } from 'hds-react';
+import { Button, IconAngleRight, IconSearch } from 'hds-react';
 import { Link } from 'react-helsinki-headless-cms';
 import classnames from 'classnames';
 import { useTranslation } from 'next-i18next';
@@ -7,9 +7,10 @@ import DateSelector from '../../../common-events/components/dateSelector/DateSel
 import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector';
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import { AutosuggestMenuOption } from '../../../common-events/types';
-import useLocale from '../../../common-events/hooks/useLocale';
-import { getI18nPath } from '../../../common-events/i18n/router/utils';
 import styles from './landingPageSearchForm.module.scss';
+import { ROUTES } from '../../../constants';
+import useLocale from '../../../hooks/useLocale';
+import { getI18nPath } from '../../../utils/routerUtils';
 
 export type LandingPageSearchFormProps = {
   className?: string;
@@ -96,8 +97,9 @@ export default function LandingPageSearchForm({
         </div>
       </div>
       <div className={styles.linkRow}>
-        <Link color="white" href={getI18nPath('/search', locale)}>
+        <Link className={styles.link} href={getI18nPath(ROUTES.SEARCH, locale)}>
           {t('eventSearch.linkAdvancedSearch')}
+          <IconAngleRight />
         </Link>
       </div>
     </div>
