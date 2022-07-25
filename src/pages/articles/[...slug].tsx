@@ -16,6 +16,7 @@ import {
   ArticleQuery,
   ArticleQueryVariables,
 } from 'react-helsinki-headless-cms/apollo';
+import { useTranslation } from 'next-i18next';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
 import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';
