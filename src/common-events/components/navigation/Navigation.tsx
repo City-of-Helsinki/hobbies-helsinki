@@ -1,5 +1,6 @@
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
 
+import { Language } from '../../../types';
 import useLocale from '../../hooks/useLocale';
 import useNavigationMenuNameFromConfig from '../../hooks/useNavigationMenuNameFromConfig';
 import useRouter from '../../i18n/router/useRouter';
@@ -21,7 +22,7 @@ export default function Navigation() {
         return getLocalizedCmsItemUrl(
           currentPage,
           router.query,
-          slug,
+          slug as Language,
           router.defaultLocale
         );
       }}
