@@ -22,7 +22,7 @@ import i18n from './initI18n';
 import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
 import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import { Config as EventsConfig } from '../common-events/configProvider/configContext';
-import { DEFAULT_HEADER_MENU_NAME, DEFAULT_LANGUAGE } from '../constants';
+import { DEFAULT_LANGUAGE } from '../constants';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { getI18nPath } from '../common-events/i18n/router/utils';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
@@ -67,7 +67,6 @@ function getEventsConfig(
   return {
     ...eventsDefaultConfig,
     t: i18n.t,
-    getNavigationMenuName: (locale) => DEFAULT_HEADER_MENU_NAME[locale],
     apolloClient: eventsApolloClient,
     router,
   } as EventsConfig;
