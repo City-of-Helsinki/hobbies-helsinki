@@ -3,11 +3,9 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { NextRouter } from 'next/router';
 
 import { UnionTFunction } from '../types';
-import { Language } from '../../types';
 
 export type Config = {
   router?: NextRouter; // TODO: Support the react-router
-  getNavigationMenuName?: (locale: Language) => string;
   apolloClient?: ApolloClient<NormalizedCacheObject>;
   t: UnionTFunction;
   components: {

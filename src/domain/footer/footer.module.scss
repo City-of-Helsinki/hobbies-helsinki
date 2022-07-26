@@ -3,6 +3,10 @@
   margin-top: 3rem;
   position: relative;
   --footer-background: var(--color-engel-medium-light) !important;
+  .footerLink,
+  .footerLink:visited {
+    color: var(--color-black);
+  }
 }
 
 .noMargin {

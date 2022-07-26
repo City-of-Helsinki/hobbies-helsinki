@@ -78,3 +78,15 @@ export const DEFAULT_HEADER_MENU_NAME: Record<Language, string> = {
     process.env.NEXT_PUBLIC_CMS_HEADER_MENU_NAME_SV ??
     'Hobbies Helsinki Header SV',
 };
+
+export const DEFAULT_FOOTER_MENU_NAME: Record<Language, string> = {
+  fi:
+    process.env.NEXT_PUBLIC_CMS_FOOTER_MENU_NAME_FI ??
+    'Hobbies Helsinki Footer FI',
+  en:
+    process.env.NEXT_PUBLIC_CMS_FOOTER_MENU_NAME_EN ??
+    'Hobbies Helsinki Footer EN',
+  sv:
+    process.env.NEXT_PUBLIC_CMS_FOOTER_MENU_NAME_SV ??
+    'Hobbies Helsinki Footer SV',
+};
