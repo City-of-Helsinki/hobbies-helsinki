@@ -1,10 +1,11 @@
 import classNames from 'classnames';
+import { useMenuQuery } from 'react-helsinki-headless-cms/apollo';
 import { Footer, Link } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
 
 import { resetFocusId } from '../../common-events/components/resetFocus/ResetFocus';
-import { ROUTES } from '../../constants';
+import { DEFAULT_FOOTER_MENU_NAME, ROUTES } from '../../constants';
 import useLocale from '../../hooks/useLocale';
 import { getI18nPath } from '../../utils/routerUtils';
 import styles from './footer.module.scss';
@@ -18,6 +19,13 @@ const FooterSection: FunctionComponent<Props> = ({ noMargin }) => {
   const { t } = useTranslation('footer');
   const { t: tCommon } = useTranslation('common');
   const locale = useLocale();
+
+  const { data } = useMenuQuery({
+    variables: {
+      id: DEFAULT_FOOTER_MENU_NAME[locale],
+    },
+  });
+
   // override Footer component default behaviour which focuses skip-link
   const handleBackToTop = () => {
     window?.scrollTo({ top: 0 });
@@ -40,23 +48,20 @@ const FooterSection: FunctionComponent<Props> = ({ noMargin }) => {
       <Footer.Utilities
         backToTopLabel={t('backToTop')}
         onBackToTopClick={handleBackToTop}
-      >
-        <Footer.Item
-          as={'a'}
-          href={t('linkFeedbackUrl')}
-          label={t('linkFeedback')}
-        />
-      </Footer.Utilities>
+      ></Footer.Utilities>
       <Footer.Base
         copyrightHolder={t('copyright')}
         copyrightText={t('allRightsReserved')}
       >
-        <Footer.Item as={Link} href={'/about'} label={t('linkAbout')} />
-        <Footer.Item
-          as={Link}
-          href={'/accessibility'}
-          label={t('linkAccessibility')}
-        />
+        {data?.menu?.menuItems?.nodes?.map((navigationItem) => (
+          <Footer.Item
+            className={styles.footerLink}
+            key={navigationItem?.id}
+            as={Link}
+            href={navigationItem?.path || ''}
+            label={navigationItem?.label}
+          />
+        ))}
       </Footer.Base>
     </Footer>
   );
