@@ -13,11 +13,11 @@ import {
 import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SecondaryLink as Link } from 'react-helsinki-headless-cms';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import useLocale from '../../../common-events/hooks/useLocale';
-import linkStyles from '../../../common-events/components/link/link.module.scss';
 import {
   getAudienceAgeText,
   getEventFields,
@@ -34,7 +34,6 @@ import { translateValue } from '../../../common-events/utils/translateUtils';
 import IconDirections from '../../../assets/icons/IconDirections';
 import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
 import getDateArray from '../../../common-events/utils/getDateArray';
-import Link from '../../../common-events/components/link/Link';
 import getDomain from '../../../common/utils/getDomain';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
@@ -163,7 +162,7 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
             includeTime: true,
             timeAbbreviation: t('common:timeAbbreviation'),
           })}
-          <button className={linkStyles.link} onClick={downloadIcsFile}>
+          <button onClick={downloadIcsFile}>
             {t('event:info.buttonAddToCalendar')}
             <IconAngleRight aria-hidden />
           </button>
@@ -176,6 +175,7 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
 const LocationInfo: React.FC<{ event: EventFields }> = ({ event }) => {
   const { t } = useTranslation();
   const locale = useLocale();
+
   const { addressLocality, district, locationName, streetAddress } =
     getEventFields(event, locale);
 
@@ -199,7 +199,12 @@ const LocationInfo: React.FC<{ event: EventFields }> = ({ event }) => {
           })}
       </Visible>
       {serviceMapUrl && (
-        <Link isExternal={true} to={serviceMapUrl}>
+        <Link
+          className={styles.link}
+          showExternalIcon={false}
+          variant="arrowRight"
+          href={serviceMapUrl}
+        >
           {t('event:info.openMap')}
         </Link>
       )}
@@ -260,7 +265,7 @@ const OtherInfo: React.FC<{
         ))}
 
       {infoUrl && (
-        <Link isExternal={true} to={infoUrl}>
+        <Link className={styles.link} href={infoUrl}>
           {t('event:info.linkWebPage')}
         </Link>
       )}
@@ -268,7 +273,7 @@ const OtherInfo: React.FC<{
         return (
           !!externalLink.link &&
           externalLink.link !== registrationUrl && (
-            <Link key={index} isExternal={true} to={externalLink.link}>
+            <Link className={styles.link} key={index} href={externalLink.link}>
               {translateValue('event:info.', externalLink.name as string, t)}
             </Link>
           )
@@ -294,10 +299,10 @@ const Directions: React.FC<{
       icon={<IconDirections aria-hidden />}
       title={t('event:info.labelDirections')}
     >
-      <Link isExternal={true} to={googleDirectionsLink}>
+      <Link className={styles.link} href={googleDirectionsLink}>
         {t('event:info.directionsGoogle')}
       </Link>
-      <Link isExternal={true} to={hslDirectionsLink}>
+      <Link className={styles.link} href={hslDirectionsLink}>
         {t('event:info.directionsHSL')}
       </Link>
     </InfoWithIcon>

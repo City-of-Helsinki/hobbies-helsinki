@@ -4,7 +4,6 @@ import React from 'react';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
-import linkStyles from '../../../common-events/components/link/link.module.scss';
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import { useOtherEventTimes } from '../queryUtils';
 import { EventFields } from '../types';
@@ -53,11 +52,7 @@ const OtherEventTimes: React.FC<{ event: EventFields }> = ({ event }) => {
           showDate
         />
         {events.length > EVENTS_LIST_LIMIT && (
-          <button
-            className={linkStyles.link}
-            onClick={toggleList}
-            aria-expanded={isListOpen}
-          >
+          <button onClick={toggleList} aria-expanded={isListOpen}>
             {isListOpen
               ? t('otherTimes.buttonHide')
               : t('otherTimes.buttonShow')}

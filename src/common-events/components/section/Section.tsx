@@ -1,10 +1,9 @@
 import React from 'react';
 import classNames from 'classnames';
 import { Koros } from 'hds-react';
+import { SecondaryLink as Link } from 'react-helsinki-headless-cms';
 
-import Link from '../../i18n/router/Link';
 import Text from '../../../common/components/text/Text';
-import SecondaryLink from '../link/SecondaryLink';
 import styles from './section.module.scss';
 
 type Props = {
@@ -56,9 +55,7 @@ const Section = React.forwardRef<HTMLElement, Props>(
         {cta && title && (
           <header className={styles.sectionHeader}>
             {titleComponent}
-            <Link href={cta.href} passHref>
-              <SecondaryLink>{cta.label}</SecondaryLink>
-            </Link>
+            <Link href={cta.href}>{cta.label}</Link>
           </header>
         )}
         {children}

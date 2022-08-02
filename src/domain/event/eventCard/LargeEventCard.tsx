@@ -2,7 +2,7 @@ import classNames from 'classnames';
 import { Button, IconLinkExternal } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import Link from 'next/link';
+import { LinkBox } from 'react-helsinki-headless-cms';
 
 import testImage from '../../../common-events/utils/testImage';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
@@ -91,8 +91,8 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
   }, [imageUrl]);
 
   return (
-    <Link
-      aria-label={t('event:eventCard.ariaLabelLink', {
+    <LinkBox
+      ariaLabel={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getLargeEventCardId(id)}
@@ -187,7 +187,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </LinkBox>
   );
 };
 

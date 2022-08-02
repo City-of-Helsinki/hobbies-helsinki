@@ -2,11 +2,11 @@ import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
 
 import CategoryFilter from '../../common-events/components/category/CategoryFilter';
+import { getLocalizedCmsItemUrl } from '../../common-events/i18n/router/utils';
 import { ROUTES } from '../../constants';
 import useLocale from '../../hooks/useLocale';
 import useRouter from '../../hooks/useRouter';
 import { Language } from '../../types';
-import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 import {
   CATEGORY_CATALOG,
   COURSE_DEFAULT_SEARCH_FILTERS,
@@ -22,7 +22,6 @@ const FooterCategories: FunctionComponent = () => {
   const { t } = useTranslation('footer');
   const locale = useLocale();
   const router = useRouter();
-  const route = '/courses';
 
   const getCategoryLink = (category: CategoryExtendedOption) => {
     return `${getLocalizedCmsItemUrl(
@@ -31,13 +30,13 @@ const FooterCategories: FunctionComponent = () => {
       locale,
       router.defaultLocale as Language
     )}${getSearchQuery({
-      ...defaultSearchFiltersMap[route],
+      ...defaultSearchFiltersMap[ROUTES.SEARCH],
       categories: [category.value],
     })}`;
   };
 
   const defaultSearchFiltersMap: Record<string, Filters> = {
-    [route]: COURSE_DEFAULT_SEARCH_FILTERS,
+    [ROUTES.SEARCH]: COURSE_DEFAULT_SEARCH_FILTERS,
   };
 
   const categories = getEventCategoryOptions(
@@ -54,9 +53,9 @@ const FooterCategories: FunctionComponent = () => {
         {categories.map((category) => {
           return (
             <CategoryFilter
-              hasHorizontalPadding
               href={getCategoryLink(category)}
               key={category.value}
+              hasHorizontalPadding={true}
               icon={category.icon}
               text={category.text}
               value={category.value}

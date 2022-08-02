@@ -1,8 +1,8 @@
 import classNames from 'classnames';
 import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
 import React from 'react';
+import { LinkBox } from 'react-helsinki-headless-cms';
 
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import testImage from '../../../common-events/utils/testImage';
@@ -74,8 +74,8 @@ const EventCard: React.FC<Props> = ({ event }) => {
   }, [imageUrl]);
 
   return (
-    <Link
-      aria-label={t('event:eventCard.ariaLabelLink', {
+    <LinkBox
+      ariaLabel={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getEventCardId(id)}
@@ -153,7 +153,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
           </div>
         </div>
       </div>
-    </Link>
+    </LinkBox>
   );
 };
 

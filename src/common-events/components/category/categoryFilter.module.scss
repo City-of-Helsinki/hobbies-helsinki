@@ -6,6 +6,7 @@
   a {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 0.5rem 0;
     margin: 0.25rem 0;
     border: none;
@@ -31,7 +32,6 @@
     }
 
     span {
-      flex: 1 1 0%;
       text-align: left;
       text-overflow: ellipsis;
     }
