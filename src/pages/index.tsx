@@ -19,7 +19,6 @@ import {
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
-import { getLocaleOrError } from '../common-events/i18n/router/utils';
 import { getQlLanguage } from '../common/apollo/utils';
 import { LandingPageContentLayout } from '../domain/search/landingPage/LandingPage';
 import { DEFAULT_LANGUAGE } from '../constants';
@@ -28,6 +27,7 @@ import FooterSection from '../domain/footer/Footer';
 import useLocale from '../common-events/hooks/useLocale';
 import { getDefaultCollections } from '../common-events/utils/headless-cms/headlessCmsUtils';
 import {} from 'react-helsinki-headless-cms';
+import { getLocaleOrError } from '../utils/routerUtils';
 
 const HomePage: NextPage<{
   landingPage: LandingPageQuery['landingPage'];
