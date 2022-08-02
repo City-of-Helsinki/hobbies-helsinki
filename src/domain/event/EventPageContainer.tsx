@@ -1,6 +1,5 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Link } from 'react-helsinki-headless-cms';
 import { useLazyQuery } from '@apollo/client';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
@@ -23,6 +22,7 @@ import { ROUTES } from '../../constants';
 import useRouter from '../../hooks/useRouter';
 import useLocale from '../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
+import Link from '../../common/components/link/Link';
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;

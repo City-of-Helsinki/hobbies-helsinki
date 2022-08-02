@@ -1,7 +1,6 @@
 import { IconFaceSmile, IconLayers } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { SecondaryLink as Link } from 'react-helsinki-headless-cms';
 
 import styles from './eventInfo.module.scss';
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
@@ -16,6 +15,7 @@ import useRouter from '../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import { Language } from '../../../types';
 import useLocale from '../../../hooks/useLocale';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFieldsFragment;
@@ -53,6 +53,7 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
               <>
                 <div>{organizationName}</div>
                 <Link
+                  type="secondaryLink"
                   className={styles.link}
                   variant="arrowRight"
                   href={`${getLocalizedCmsItemUrl(

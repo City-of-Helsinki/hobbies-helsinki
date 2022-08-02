@@ -99,6 +99,7 @@ export default function LandingPageSearchForm({
       <div className={styles.linkRow}>
         <Link
           variant="arrowRight"
+          type="secondaryLink"
           className={styles.link}
           href={getI18nPath(ROUTES.SEARCH, locale)}
         >

@@ -13,7 +13,6 @@ import {
 import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { SecondaryLink as Link } from 'react-helsinki-headless-cms';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -39,6 +38,7 @@ import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFields;
@@ -200,6 +200,7 @@ const LocationInfo: React.FC<{ event: EventFields }> = ({ event }) => {
       </Visible>
       {serviceMapUrl && (
         <Link
+          type="secondaryLink"
           className={styles.link}
           showExternalIcon={false}
           variant="arrowRight"
@@ -265,7 +266,12 @@ const OtherInfo: React.FC<{
         ))}
 
       {infoUrl && (
-        <Link className={styles.link} href={infoUrl}>
+        <Link
+          variant="arrowRight"
+          type="secondaryLink"
+          className={styles.link}
+          href={infoUrl}
+        >
           {t('event:info.linkWebPage')}
         </Link>
       )}
@@ -273,7 +279,12 @@ const OtherInfo: React.FC<{
         return (
           !!externalLink.link &&
           externalLink.link !== registrationUrl && (
-            <Link className={styles.link} key={index} href={externalLink.link}>
+            <Link
+              type="secondaryLink"
+              className={styles.link}
+              key={index}
+              href={externalLink.link}
+            >
               {translateValue('event:info.', externalLink.name as string, t)}
             </Link>
           )
@@ -299,10 +310,18 @@ const Directions: React.FC<{
       icon={<IconDirections aria-hidden />}
       title={t('event:info.labelDirections')}
     >
-      <Link className={styles.link} href={googleDirectionsLink}>
+      <Link
+        type="secondaryLink"
+        className={styles.link}
+        href={googleDirectionsLink}
+      >
         {t('event:info.directionsGoogle')}
       </Link>
-      <Link className={styles.link} href={hslDirectionsLink}>
+      <Link
+        type="secondaryLink"
+        className={styles.link}
+        href={hslDirectionsLink}
+      >
         {t('event:info.directionsHSL')}
       </Link>
     </InfoWithIcon>

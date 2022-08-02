@@ -1,5 +1,6 @@
 import NextLink, { LinkProps as NextLinkProps } from 'next/link';
 import React from 'react';
+import { SecondaryLink } from 'react-helsinki-headless-cms';
 import {
   Link as DefaultLink,
   LinkBox,
@@ -10,9 +11,8 @@ import { useConfig } from 'react-helsinki-headless-cms';
 type CustomLinkProps = React.PropsWithRef<
   Omit<NextLinkProps & LinkProps, 'href'>
 > & {
-  variant: 'default' | 'arrowRight';
   href: string;
-  type?: 'link' | 'linkBox';
+  type?: 'link' | 'secondaryLink' | 'linkBox';
 };
 
 export default function Link({
@@ -27,21 +27,37 @@ export default function Link({
 
   const isExternal = getIsHrefExternal(href);
 
-  const linkComponent =
-    type === 'link' ? (
-      <DefaultLink href={href} {...rest}>
-        {children}
-      </DefaultLink>
-    ) : (
-      <LinkBox href={href} {...rest}>
-        {children}
-      </LinkBox>
-    );
+  const getLinkComponent = () => {
+    switch (type) {
+      case 'link':
+        return (
+          <DefaultLink href={href} {...rest}>
+            {children}
+          </DefaultLink>
+        );
+      case 'secondaryLink':
+        return (
+          <SecondaryLink href={href} {...rest}>
+            {children}
+          </SecondaryLink>
+        );
+      case 'linkBox':
+        return (
+          <LinkBox href={href} {...rest}>
+            {children}
+          </LinkBox>
+        );
+      default:
+        break;
+    }
+  };
+
+  const linkComponent = getLinkComponent();
 
   return isExternal ? (
     <>{linkComponent}</>
   ) : (
-    <NextLink href={href} {...rest} passHref>
+    <NextLink href={href} {...rest}>
       {linkComponent}
     </NextLink>
   );

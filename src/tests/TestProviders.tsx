@@ -74,7 +74,9 @@ function getEventsConfig(
 
 function getRHHCConfig(router: NextRouter) {
   const locale = DEFAULT_LANGUAGE;
+
   const getIsHrefExternal = (href: string) => {
+    if (href.startsWith('/')) return false;
     if (
       !href?.includes(router.basePath) ||
       (CMS_API_DOMAIN && !href?.includes(CMS_API_DOMAIN))

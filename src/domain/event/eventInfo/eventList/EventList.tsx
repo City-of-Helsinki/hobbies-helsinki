@@ -1,7 +1,6 @@
 import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { Link } from 'react-helsinki-headless-cms';
 
 import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
 import useLocale from '../../../../common-events/hooks/useLocale';
@@ -13,6 +12,7 @@ import { Language } from '../../../../types';
 import { ROUTES } from '../../../../constants';
 import useRouter from '../../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
+import Link from '../../../../common/components/link/Link';
 
 const EventList: React.FC<{
   events: EventFields[];

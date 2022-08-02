@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { LinkBox } from 'react-helsinki-headless-cms';
 
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import testImage from '../../../common-events/utils/testImage';
@@ -24,6 +23,7 @@ import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFields;
@@ -74,7 +74,8 @@ const EventCard: React.FC<Props> = ({ event }) => {
   }, [imageUrl]);
 
   return (
-    <LinkBox
+    <Link
+      type="linkBox"
       ariaLabel={t('event:eventCard.ariaLabelLink', {
         name,
       })}
@@ -153,7 +154,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
           </div>
         </div>
       </div>
-    </LinkBox>
+    </Link>
   );
 };
 
