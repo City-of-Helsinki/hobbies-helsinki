@@ -28,6 +28,7 @@
   .focusVisible {
     &:focus {
       outline: 2px solid var(--color-black) !important;
+      outline-offset: -2px;
     }
   }
 }

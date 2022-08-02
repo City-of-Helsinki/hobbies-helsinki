@@ -8,6 +8,7 @@ import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields, getServiceMapUrl } from '../EventUtils';
 import styles from './eventLocation.module.scss';
 import LocationText from './EventLocationText';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFieldsFragment;
@@ -54,26 +55,14 @@ const EventLocation: React.FC<Props> = ({ event }) => {
           showLocationName={false}
         />
       </div>
-      <a
-        className={styles.directionsLink}
-        href={googleDirectionsLink}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <Link type="secondaryLink" href={googleDirectionsLink}>
         {t('event:location.directionsGoogle')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
-        <IconLinkExternal size="xs" aria-hidden />
-      </a>
-      <a
-        className={styles.directionsLink}
-        href={hslDirectionsLink}
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      </Link>
+      <Link type="secondaryLink" href={hslDirectionsLink}>
         {t('event:location.directionsHSL')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
-        <IconLinkExternal size="xs" aria-hidden />
-      </a>
+      </Link>
     </div>
   );
 };
