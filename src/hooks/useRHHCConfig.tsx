@@ -2,7 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { NextRouter } from 'next/router';
 import React from 'react';
-import { Helmet, HelmetProps } from 'react-helmet-async';
+import { Helmet, HelmetProps } from 'react-helmet';
 import {
   Config,
   defaultConfig as rhhcDefaultConfig,
