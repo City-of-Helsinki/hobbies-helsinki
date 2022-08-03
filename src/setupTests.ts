@@ -35,6 +35,28 @@ jest.mock('ics', () => {
 jest.mock('next/router', () => require('next-router-mock'));
 jest.mock('next/dist/client/router', () => require('next-router-mock'));
 
+//Mock next/head
+jest.mock('next/head', () => {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const ReactDOMServer = require('react-dom/server');
+  return {
+    __esModule: true,
+    default: ({
+      children,
+    }: {
+      children: Array<React.ReactElement> | React.ReactElement | null;
+    }) => {
+      if (children) {
+        global.document.head.insertAdjacentHTML(
+          'afterbegin',
+          ReactDOMServer.renderToString(children) || ''
+        );
+      }
+      return null;
+    },
+  };
+});
+
 // Extend except with jest-axe
 expect.extend(toHaveNoViolations);
 
