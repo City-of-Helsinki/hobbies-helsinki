@@ -1,10 +1,13 @@
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
 
 import { DEFAULT_HEADER_MENU_NAME } from '../../../constants';
+import useRouter from '../../../hooks/useRouter';
 import { Language } from '../../../types';
+import {
+  getI18nPath,
+  getLocalizedCmsItemUrl,
+} from '../../../utils/routerUtils';
 import useLocale from '../../hooks/useLocale';
-import useRouter from '../../i18n/router/useRouter';
-import { getI18nPath, getLocalizedCmsItemUrl } from '../../i18n/router/utils';
 
 export default function Navigation() {
   const router = useRouter();

@@ -6,7 +6,9 @@ import { CategoryExtendedOption, Filters } from '../eventSearch/types';
 import { getSearchQuery } from '../eventSearch/utils';
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
-import { getI18nPath } from '../../../utils/routerUtils';
+import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import { Language } from '../../../types';
+import useRouter from '../../../hooks/useRouter';
 
 type SearchShortcutsProps = {
   className: string;
@@ -20,9 +22,15 @@ export default function SearchShortcuts({
   searchFilters,
 }: SearchShortcutsProps) {
   const locale = useLocale();
+  const router = useRouter();
 
   const getCategoryLink = (category: CategoryExtendedOption) => {
-    return `${getI18nPath(ROUTES.SEARCH, locale)}${getSearchQuery({
+    return `${getLocalizedCmsItemUrl(
+      ROUTES.SEARCH,
+      {},
+      locale,
+      router.defaultLocale as Language
+    )}${getSearchQuery({
       ...searchFilters,
       categories: [category.value],
     })}`;

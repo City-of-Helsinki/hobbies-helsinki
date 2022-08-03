@@ -6,7 +6,6 @@ import { ApolloProvider } from '@apollo/client';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { getLocaleOrError } from '../../common-events/i18n/router/utils';
 import { DEFAULT_LANGUAGE, ROUTES } from '../../constants';
 import AdvancedSearch from '../../domain/search/eventSearch/AdvancedSearch';
 import Navigation from '../../common-events/components/navigation/Navigation';
@@ -14,6 +13,7 @@ import SearchPage from '../../domain/search/eventSearch/SearchPage';
 import FooterSection from '../../domain/footer/Footer';
 import useEventsApolloClientFromConfig from '../../common-events/hooks/useEventsApolloClientFromConfig';
 import useRouter from '../../hooks/useRouter';
+import { getLocaleOrError } from '../../utils/routerUtils';
 
 export default function Search() {
   const router = useRouter();

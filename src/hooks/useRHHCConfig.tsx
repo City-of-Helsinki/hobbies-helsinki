@@ -16,6 +16,7 @@ import { Language } from '../types';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
 import useLocale from './useLocale';
 
+const APP_DOMAIN = new URL(AppConfig.origin).origin;
 const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
 const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
   AppConfig.linkedEventsEventEndpoint
@@ -31,14 +32,13 @@ export default function useRHHCConfig(
 
   const rhhcConfig = React.useMemo(() => {
     const internalHrefOrigins = [
+      APP_DOMAIN,
       CMS_API_DOMAIN,
       LINKEDEVENTS_API_EVENT_ENDPOINT,
     ];
     const getIsHrefExternal = (href: string) => {
-      if (
-        !href?.includes(router.basePath) &&
-        !internalHrefOrigins.some((origin) => href?.includes(origin))
-      ) {
+      if (href.startsWith('/')) return false;
+      if (!internalHrefOrigins.some((origin) => href?.includes(origin))) {
         return true;
       }
       return false;

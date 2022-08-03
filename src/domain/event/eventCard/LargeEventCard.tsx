@@ -2,7 +2,6 @@ import classNames from 'classnames';
 import { Button, IconLinkExternal } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import Link from 'next/link';
 
 import testImage from '../../../common-events/utils/testImage';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
@@ -26,6 +25,7 @@ import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFields;
@@ -92,7 +92,8 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <Link
-      aria-label={t('event:eventCard.ariaLabelLink', {
+      type="linkBox"
+      ariaLabel={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getLargeEventCardId(id)}

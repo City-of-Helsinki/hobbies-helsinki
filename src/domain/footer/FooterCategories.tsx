@@ -22,7 +22,6 @@ const FooterCategories: FunctionComponent = () => {
   const { t } = useTranslation('footer');
   const locale = useLocale();
   const router = useRouter();
-  const route = '/courses';
 
   const getCategoryLink = (category: CategoryExtendedOption) => {
     return `${getLocalizedCmsItemUrl(
@@ -31,13 +30,13 @@ const FooterCategories: FunctionComponent = () => {
       locale,
       router.defaultLocale as Language
     )}${getSearchQuery({
-      ...defaultSearchFiltersMap[route],
+      ...defaultSearchFiltersMap[ROUTES.SEARCH],
       categories: [category.value],
     })}`;
   };
 
   const defaultSearchFiltersMap: Record<string, Filters> = {
-    [route]: COURSE_DEFAULT_SEARCH_FILTERS,
+    [ROUTES.SEARCH]: COURSE_DEFAULT_SEARCH_FILTERS,
   };
 
   const categories = getEventCategoryOptions(
@@ -54,9 +53,9 @@ const FooterCategories: FunctionComponent = () => {
         {categories.map((category) => {
           return (
             <CategoryFilter
-              hasHorizontalPadding
               href={getCategoryLink(category)}
               key={category.value}
+              hasHorizontalPadding={true}
               icon={category.icon}
               text={category.text}
               value={category.value}

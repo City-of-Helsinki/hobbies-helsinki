@@ -14,7 +14,6 @@ import {
   ApolloCache,
   ApolloClient,
   InMemoryCache,
-  NormalizedCacheObject,
   useApolloClient,
 } from '@apollo/client';
 
@@ -24,8 +23,8 @@ import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import { Config as EventsConfig } from '../common-events/configProvider/configContext';
 import { DEFAULT_LANGUAGE } from '../constants';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
-import { getI18nPath } from '../common-events/i18n/router/utils';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
+import { getI18nPath } from '../utils/routerUtils';
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
@@ -74,7 +73,9 @@ function getEventsConfig(
 
 function getRHHCConfig(router: NextRouter) {
   const locale = DEFAULT_LANGUAGE;
+
   const getIsHrefExternal = (href: string) => {
+    if (href.startsWith('/')) return false;
     if (
       !href?.includes(router.basePath) ||
       (CMS_API_DOMAIN && !href?.includes(CMS_API_DOMAIN))

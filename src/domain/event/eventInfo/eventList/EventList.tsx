@@ -8,11 +8,11 @@ import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql'
 import { getEventFields } from '../../EventUtils';
 import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
-import Link from '../../../../common-events/i18n/router/Link';
 import { Language } from '../../../../types';
 import { ROUTES } from '../../../../constants';
 import useRouter from '../../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
+import Link from '../../../../common/components/link/Link';
 
 const EventList: React.FC<{
   events: EventFields[];
@@ -50,23 +50,18 @@ const EventList: React.FC<{
         return (
           <li key={event.id}>
             <Link
+              className={styles.link}
+              iconRight={<IconArrowRight />}
               href={getLinkUrl(event)}
-              // className={styles.listButton}
+              aria-label={
+                showDate
+                  ? t('event:otherTimes.buttonReadMore', {
+                      date,
+                    })
+                  : t('event:relatedEvents.buttonReadMore')
+              }
             >
-              <a
-                aria-label={
-                  showDate
-                    ? t('event:otherTimes.buttonReadMore', {
-                        date,
-                      })
-                    : t('event:relatedEvents.buttonReadMore')
-                }
-              >
-                <span>{`${showName ? name : ''} ${showDate ? date : ''}`}</span>
-                <i className={styles.arrowContainer}>
-                  <IconArrowRight aria-hidden />
-                </i>
-              </a>
+              <span>{`${showName ? name : ''} ${showDate ? date : ''}`}</span>
             </Link>
           </li>
         );

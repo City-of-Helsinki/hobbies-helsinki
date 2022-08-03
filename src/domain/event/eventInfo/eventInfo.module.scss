@@ -15,18 +15,28 @@
     grid-template-columns: 1fr 1fr;
   }
 
-  button,
-  a {
+  button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: var(--spacing-s) 0;
+    color: var(--color-coat-of-arms-dark);
     outline: none !important;
+    font-weight: 600;
   }
 
   .focusVisible {
     &:focus {
       outline: 2px solid var(--color-black) !important;
+      outline-offset: -2px;
     }
   }
 }
 
 .buyButtonWrapper {
   margin-top: var(--spacing-s);
+}
+
+.link {
+  margin: var(--spacing-xs) 0;
 }

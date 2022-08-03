@@ -1,9 +1,9 @@
 import classNames from 'classnames';
 import * as CSS from 'csstype';
 import { IconAngleRight } from 'hds-react';
-import Link from 'next/link';
 import React, { FunctionComponent } from 'react';
 
+import Link from '../../../common/components/link/Link';
 import { Category } from '../../types';
 import styles from './categoryFilter.module.scss';
 
@@ -33,12 +33,13 @@ const CategoryFilter: FunctionComponent<Props> = ({
       )}
       style={style}
     >
-      <Link href={href}>
-        <a onClick={() => window?.scrollTo({ top: 0 })}>
-          {icon}
-          <span>{text}</span>
-          <IconAngleRight aria-hidden />
-        </a>
+      <Link
+        href={href}
+        onClick={() => window?.scrollTo({ top: 0 })}
+        iconLeft={icon}
+        iconRight={<IconAngleRight aria-hidden />}
+      >
+        {text}
       </Link>
     </div>
   );

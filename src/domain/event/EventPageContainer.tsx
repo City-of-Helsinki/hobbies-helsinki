@@ -6,7 +6,6 @@ import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import isClient from '../../common/utils/isClient';
 import { addParamsToQueryString } from '../../common-events/utils/queryString';
 import ErrorHero from '../error/ErrorHero';
-import Link from '../../common-events/i18n/router/Link';
 import {
   EventDetailsDocument,
   useEventDetailsQuery,
@@ -22,7 +21,8 @@ import styles from './eventPage.module.scss';
 import { ROUTES } from '../../constants';
 import useRouter from '../../hooks/useRouter';
 import useLocale from '../../hooks/useLocale';
-import { getI18nPath } from '../../utils/routerUtils';
+import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
+import Link from '../../common/components/link/Link';
 
 export interface EventPageContainerProps {
   showSimilarEvents?: boolean;
@@ -106,7 +106,14 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
               text={t('event:notFound.text')}
               title={t('event:notFound.title')}
             >
-              <Link href={`${getI18nPath(ROUTES.SEARCH, locale)}${search}`}>
+              <Link
+                href={`${getLocalizedCmsItemUrl(
+                  ROUTES.SEARCH,
+                  {},
+                  locale,
+                  router.defaultLocale
+                )}${search}`}
+              >
                 {t('event:notFound.linkSearchEvents')}
               </Link>
             </ErrorHero>

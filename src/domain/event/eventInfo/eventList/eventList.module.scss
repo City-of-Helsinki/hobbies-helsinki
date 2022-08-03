@@ -6,6 +6,15 @@
 .eventList {
   margin-bottom: 1rem;
 
+  .link {
+    text-decoration: none;
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
   .toggleButton {
     padding: 0.75rem 0;
     font-weight: 600;
@@ -61,6 +70,7 @@
 
     li {
       border-top: 1px solid var(--color-black-10);
+      padding: var(--spacing-xs) 0;
 
       &:last-child {
         border-bottom: 1px solid var(--color-black-10);

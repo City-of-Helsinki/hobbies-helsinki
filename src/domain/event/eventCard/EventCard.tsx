@@ -1,7 +1,6 @@
 import classNames from 'classnames';
 import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
-import Link from 'next/link';
 import React from 'react';
 
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -24,6 +23,7 @@ import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFields;
@@ -75,7 +75,8 @@ const EventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <Link
-      aria-label={t('event:eventCard.ariaLabelLink', {
+      type="linkBox"
+      ariaLabel={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getEventCardId(id)}
