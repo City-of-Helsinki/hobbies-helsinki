@@ -1,5 +1,5 @@
+import Head from 'next/head';
 import React from 'react';
-import { Helmet } from 'react-helmet';
 
 import useLocale from '../../../hooks/useLocale';
 import { getEventFields } from '../EventUtils';
@@ -26,7 +26,7 @@ const EventPageMeta: React.FC<Props> = ({ event }) => {
   };
 
   return (
-    <Helmet>
+    <Head>
       <title>{name}</title>
       <meta name="description" content={description} />
       <meta
@@ -39,7 +39,7 @@ const EventPageMeta: React.FC<Props> = ({ event }) => {
       {Object.entries(openGraphProperties).map(([property, value]) => (
         <meta key={property} property={`og:${property}`} content={value} />
       ))}
-    </Helmet>
+    </Head>
   );
 };
 
