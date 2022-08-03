@@ -123,13 +123,6 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [
-    router.basePath,
-    router.defaultLocale,
-    t,
-    cmsApolloClient,
-    eventsApolloClient,
-    locale,
-  ]);
+  }, [router.defaultLocale, t, cmsApolloClient, eventsApolloClient, locale]);
   return rhhcConfig;
 }
