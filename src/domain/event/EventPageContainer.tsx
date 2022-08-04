@@ -7,14 +7,17 @@ import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import isClient from '../../common/utils/isClient';
 import { addParamsToQueryString } from '../../common-events/utils/queryString';
 import ErrorHero from '../error/ErrorHero';
-import { EventDetailsDocument } from '../nextApi/graphql/generated/graphql';
+import {
+  EventDetailsDocument,
+  EventFieldsFragment,
+} from '../nextApi/graphql/generated/graphql';
 import EventClosedHero from './eventClosedHero/EventClosedHero';
 import EventContent from './eventContent/EventContent';
 import EventHero from './eventHero/EventHero';
 import EventPageMeta from './eventPageMeta/EventPageMeta';
 import { getEventIdFromUrl, isEventClosed } from './EventUtils';
 import SimilarEvents from './similarEvents/SimilarEvents';
-import { EventFields, SuperEventResponse } from './types';
+import { SuperEventResponse } from './types';
 import styles from './eventPage.module.scss';
 import { ROUTES } from '../../constants';
 import useRouter from '../../hooks/useRouter';
@@ -22,8 +25,8 @@ import useLocale from '../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 
 export interface EventPageContainerProps {
-  event: EventFields;
   loading: boolean;
+  event?: EventFieldsFragment;
   showSimilarEvents?: boolean;
 }
 

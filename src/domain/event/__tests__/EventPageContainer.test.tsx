@@ -116,7 +116,7 @@ const mocks = [
 const testPath = `/courses/${id}`;
 const routes = [testPath];
 
-const renderComponent = (props?: Partial<EventPageContainerProps>) =>
+const renderComponent = (props: EventPageContainerProps) =>
   render(<EventPageContainer {...props} />, {
     mocks,
     routes,
@@ -128,7 +128,7 @@ afterAll(() => {
 
 it('should render info and load other events + similar events', async () => {
   advanceTo('2020-10-01');
-  renderComponent();
+  renderComponent({ event: event, loading: false });
 
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
@@ -163,7 +163,7 @@ it('should render info and load other events + similar events', async () => {
 
 it('should show error info when event is closed', async () => {
   advanceTo('2020-10-10');
-  renderComponent();
+  renderComponent({ event: event, loading: false });
 
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
@@ -185,7 +185,7 @@ it("should show error info when event doesn't exist", async () => {
     },
   ];
 
-  render(<EventPageContainer />, {
+  render(<EventPageContainer event={undefined} loading={false} />, {
     mocks,
     routes,
   });
@@ -205,7 +205,7 @@ it("should show error info when event doesn't exist", async () => {
 describe.skip(`SIMILAR_EVENTS feature flag`, () => {
   it('shows similar events when flag is on', async () => {
     advanceTo('2020-10-01');
-    renderComponent({ showSimilarEvents: true });
+    renderComponent({ event: event, loading: false, showSimilarEvents: true });
     await waitFor(() => {
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
     });
@@ -226,7 +226,7 @@ describe.skip(`SIMILAR_EVENTS feature flag`, () => {
 
   it('doesnt show similar events when flag is off', async () => {
     advanceTo('2020-10-01');
-    renderComponent({ showSimilarEvents: false });
+    renderComponent({ event: event, loading: false, showSimilarEvents: false });
     await waitFor(() => {
       expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
     });
@@ -240,7 +240,7 @@ describe.skip(`SIMILAR_EVENTS feature flag`, () => {
 
 it('should link to events search when clicking tags', async () => {
   advanceTo('2020-10-01');
-  const { router } = renderComponent();
+  const { router } = renderComponent({ event: event, loading: false });
 
   await waitFor(() => {
     expect(screen.queryByTestId('loading-spinner')).not.toBeInTheDocument();
