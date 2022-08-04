@@ -2,6 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { NextRouter } from 'next/router';
 import React from 'react';
+import Link from 'next/link';
 import Head from 'next/head';
 import {
   Config,
@@ -90,6 +91,7 @@ export default function useRHHCConfig(
       components: {
         ...rhhcDefaultConfig.components,
         Head: (props) => <Head {...props} />,
+        Link: ({ href, ...props }) => <Link href={href || ''} {...props} />,
       },
       siteName: t('appName'),
       currentLanguageCode: locale.toUpperCase(),
