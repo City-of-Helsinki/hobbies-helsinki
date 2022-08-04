@@ -1,5 +1,5 @@
 name: k6 Load Tests
-on:
+
 # Only trigger when the staging workflow succeeded
 on:
   workflow_run:
