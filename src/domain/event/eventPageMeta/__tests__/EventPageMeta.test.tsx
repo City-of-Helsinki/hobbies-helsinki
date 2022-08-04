@@ -1,8 +1,7 @@
-import { render } from '@testing-library/react';
 import React from 'react';
 
 import { fakeEvent } from '../../../../tests/mockDataUtils';
-import { actWait } from '../../../../tests/testUtils';
+import { render, actWait } from '../../../../tests/testUtils';
 import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
 import EventPageMeta from '../EventPageMeta';
 
@@ -29,24 +28,11 @@ const event = fakeEvent({
 //     `EventPageMeta` is rendered as part of some other test suite (likely)
 // To combat these conditions, we are manually managing the `head` in setup and
 // teardown.
-let initialHeadInnerHTML = '';
-
-beforeEach(() => {
-  const head = document.querySelector('head');
-  initialHeadInnerHTML = head?.innerHTML ?? '';
-
-  document.head.innerHTML = '';
-});
-
-afterEach(() => {
-  document.head.innerHTML = initialHeadInnerHTML;
-});
 
 test('applies expected metadata', async () => {
   render(<EventPageMeta event={event} />);
 
   await actWait(300);
-
   const title = document.title;
   const head = document.querySelector('head');
   const metaDescription = head?.querySelector('[name="description"]');

@@ -15,7 +15,7 @@ function unescapeDash(str?: string): string {
   return replaceAll(str, '&#x2d;', '-');
 }
 
-export type Props = React.ComponentProps<typeof RouteMeta> & {
+export type PageMetaProps = React.ComponentProps<typeof RouteMeta> & {
   // Title of page, required for accessibility: pages should have unique titles
   // so that screen reader users are able to determine when the current page is
   // changed.
@@ -39,7 +39,7 @@ function PageMeta({
   twitterDescription,
   twitterTitle,
   ...seo
-}: Props) {
+}: PageMetaProps) {
   const openGraphTitle = seo.openGraphTitle ?? title;
   const openGraphDescription =
     seo.openGraphDescription ?? description ?? undefined;

@@ -2,7 +2,7 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { NextRouter } from 'next/router';
 import React from 'react';
-import { Helmet, HelmetProps } from 'react-helmet-async';
+import Head from 'next/head';
 import {
   Config,
   defaultConfig as rhhcDefaultConfig,
@@ -89,7 +89,7 @@ export default function useRHHCConfig(
       ...rhhcDefaultConfig,
       components: {
         ...rhhcDefaultConfig.components,
-        Head: (props: HelmetProps) => <Helmet {...props} />,
+        Head: (props) => <Head {...props} />,
       },
       siteName: t('appName'),
       currentLanguageCode: locale.toUpperCase(),
@@ -123,13 +123,6 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [
-    router.basePath,
-    router.defaultLocale,
-    t,
-    cmsApolloClient,
-    eventsApolloClient,
-    locale,
-  ]);
+  }, [router.defaultLocale, t, cmsApolloClient, eventsApolloClient, locale]);
   return rhhcConfig;
 }
