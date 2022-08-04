@@ -71,18 +71,20 @@ function MyApp({ Component, pageProps }: AppProps) {
       <RHHCConfigProvider config={rhhcConfig}>
         <TopProgressBar />
         <ApolloProvider client={cmsApolloClient}>
-          {router.isFallback ? (
-            <Center>
-              <LoadingSpinner />
-            </Center>
-          ) : pageProps.error ? (
-            <Error
-              statusCode={pageProps.error.networkError?.statusCode ?? 400}
-              title={pageProps.error.title}
-            />
-          ) : (
-            <Component {...pageProps} />
-          )}
+          <ApolloProvider client={eventsApolloClient}>
+            {router.isFallback ? (
+              <Center>
+                <LoadingSpinner />
+              </Center>
+            ) : pageProps.error ? (
+              <Error
+                statusCode={pageProps.error.networkError?.statusCode ?? 400}
+                title={pageProps.error.title}
+              />
+            ) : (
+              <Component {...pageProps} />
+            )}
+          </ApolloProvider>
         </ApolloProvider>
         <ToastContainer />
       </RHHCConfigProvider>
