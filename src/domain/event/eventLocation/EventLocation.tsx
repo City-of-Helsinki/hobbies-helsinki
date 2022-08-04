@@ -1,6 +1,7 @@
 import { IconLinkExternal, IconLocation } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SecondaryLink } from 'react-helsinki-headless-cms';
 
 import SrOnly from '../../../common/components/srOnly/SrOnly';
 import useLocale from '../../../common-events/hooks/useLocale';
@@ -8,7 +9,6 @@ import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields, getServiceMapUrl } from '../EventUtils';
 import styles from './eventLocation.module.scss';
 import LocationText from './EventLocationText';
-import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFieldsFragment;
@@ -55,14 +55,14 @@ const EventLocation: React.FC<Props> = ({ event }) => {
           showLocationName={false}
         />
       </div>
-      <Link type="secondaryLink" href={googleDirectionsLink}>
+      <SecondaryLink href={googleDirectionsLink}>
         {t('event:location.directionsGoogle')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
-      </Link>
-      <Link type="secondaryLink" href={hslDirectionsLink}>
+      </SecondaryLink>
+      <SecondaryLink href={hslDirectionsLink}>
         {t('event:location.directionsHSL')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
-      </Link>
+      </SecondaryLink>
     </div>
   );
 };

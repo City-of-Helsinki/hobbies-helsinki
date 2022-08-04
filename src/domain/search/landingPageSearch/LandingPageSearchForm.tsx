@@ -1,6 +1,7 @@
 import { Button, IconSearch } from 'hds-react';
 import classnames from 'classnames';
 import { useTranslation } from 'next-i18next';
+import { SecondaryLink } from 'react-helsinki-headless-cms';
 
 import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
 import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector';
@@ -10,7 +11,6 @@ import styles from './landingPageSearchForm.module.scss';
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
-import Link from '../../../common/components/link/Link';
 
 export type LandingPageSearchFormProps = {
   className?: string;
@@ -97,14 +97,13 @@ export default function LandingPageSearchForm({
         </div>
       </div>
       <div className={styles.linkRow}>
-        <Link
+        <SecondaryLink
           variant="arrowRight"
-          type="secondaryLink"
           className={styles.link}
           href={getI18nPath(ROUTES.SEARCH, locale)}
         >
           {t('eventSearch.linkAdvancedSearch')}
-        </Link>
+        </SecondaryLink>
       </div>
     </div>
   );

@@ -1,9 +1,9 @@
 import { useHeadlessCmsLink } from 'react-helsinki-headless-cms';
+import { Link } from 'react-helsinki-headless-cms';
 
 import Text from '../text/Text';
 import HtmlToReact from '../htmlToReact/HtmlToReact';
 import styles from './hero.module.scss';
-import Link from '../link/Link';
 
 type Props = {
   title: string;

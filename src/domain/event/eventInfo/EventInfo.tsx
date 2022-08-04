@@ -13,6 +13,7 @@ import {
 import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { SecondaryLink } from 'react-helsinki-headless-cms';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -38,7 +39,6 @@ import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
-import Link from '../../../common/components/link/Link';
 
 interface Props {
   event: EventFields;
@@ -199,15 +199,14 @@ const LocationInfo: React.FC<{ event: EventFields }> = ({ event }) => {
           })}
       </Visible>
       {serviceMapUrl && (
-        <Link
-          type="secondaryLink"
+        <SecondaryLink
           className={styles.link}
           showExternalIcon={false}
           variant="arrowRight"
           href={serviceMapUrl}
         >
           {t('event:info.openMap')}
-        </Link>
+        </SecondaryLink>
       )}
     </InfoWithIcon>
   );
@@ -266,27 +265,25 @@ const OtherInfo: React.FC<{
         ))}
 
       {infoUrl && (
-        <Link
+        <SecondaryLink
           variant="arrowRight"
-          type="secondaryLink"
           className={styles.link}
           href={infoUrl}
         >
           {t('event:info.linkWebPage')}
-        </Link>
+        </SecondaryLink>
       )}
       {externalLinks.map((externalLink: any, index: number) => {
         return (
           !!externalLink.link &&
           externalLink.link !== registrationUrl && (
-            <Link
-              type="secondaryLink"
+            <SecondaryLink
               className={styles.link}
               key={index}
               href={externalLink.link}
             >
               {translateValue('event:info.', externalLink.name as string, t)}
-            </Link>
+            </SecondaryLink>
           )
         );
       })}
@@ -310,20 +307,12 @@ const Directions: React.FC<{
       icon={<IconDirections aria-hidden />}
       title={t('event:info.labelDirections')}
     >
-      <Link
-        type="secondaryLink"
-        className={styles.link}
-        href={googleDirectionsLink}
-      >
+      <SecondaryLink className={styles.link} href={googleDirectionsLink}>
         {t('event:info.directionsGoogle')}
-      </Link>
-      <Link
-        type="secondaryLink"
-        className={styles.link}
-        href={hslDirectionsLink}
-      >
+      </SecondaryLink>
+      <SecondaryLink className={styles.link} href={hslDirectionsLink}>
         {t('event:info.directionsHSL')}
-      </Link>
+      </SecondaryLink>
     </InfoWithIcon>
   );
 };

@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import * as CSS from 'csstype';
 import { IconAngleRight } from 'hds-react';
 import React, { FunctionComponent } from 'react';
+import { Link } from 'react-helsinki-headless-cms';
 
-import Link from '../../../common/components/link/Link';
 import { Category } from '../../types';
 import styles from './categoryFilter.module.scss';
 
