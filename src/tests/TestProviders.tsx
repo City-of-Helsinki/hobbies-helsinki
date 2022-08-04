@@ -1,4 +1,6 @@
 import React from 'react';
+import Link from 'next/link';
+import Head from 'next/head';
 import { I18nextProvider } from 'react-i18next';
 import { RouterContext } from 'next/dist/shared/lib/router-context';
 import { NextRouter } from 'next/router';
@@ -21,10 +23,11 @@ import i18n from './initI18n';
 import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
 import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import { Config as EventsConfig } from '../common-events/configProvider/configContext';
-import { DEFAULT_LANGUAGE } from '../constants';
+import { DEFAULT_LANGUAGE, ROUTES } from '../constants';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
-import { getI18nPath } from '../utils/routerUtils';
+import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
+import { Language } from '../types';
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
@@ -92,20 +95,40 @@ function getRHHCConfig(router: NextRouter) {
     if (!link) {
       return '#';
     }
+
     const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
-    // if (uri === link) {
-    //   return link;
-    // }
 
     if (type === ModuleItemTypeEnum.Article) {
-      // TODO: fix the getI18nPath for articles
-      return getI18nPath('/articles', locale) + uri;
+      return getLocalizedCmsItemUrl(
+        ROUTES.ARTICLES,
+        { slug: uri.replace(/^\//, '') },
+        locale,
+        router.defaultLocale as Language
+      );
     }
     if (type === ModuleItemTypeEnum.Page) {
-      // TODO: fix the getI18nPath for pages
-      return getI18nPath('/pages', locale) + uri;
+      return getLocalizedCmsItemUrl(
+        ROUTES.PAGES,
+        { slug: uri.replace(/^\//, '') },
+        locale,
+        router.defaultLocale as Language
+      );
     }
-    return getI18nPath(link, locale);
+    if (type === ModuleItemTypeEnum.Event) {
+      return getLocalizedCmsItemUrl(
+        ROUTES.COURSES,
+        { eventId: uri.replace(/^\//, '') },
+        locale,
+        router.defaultLocale as Language
+      );
+    }
+    //TODO: test the default case
+    return getLocalizedCmsItemUrl(
+      link,
+      {},
+      locale,
+      router.defaultLocale as Language
+    );
   };
 
   return {
@@ -113,6 +136,11 @@ function getRHHCConfig(router: NextRouter) {
     siteName: 'appName',
     currentLanguageCode: locale.toUpperCase(),
     apolloClient: useApolloClient(createCmsApolloClient()),
+    components: {
+      ...rhhcDefaultConfig.components,
+      Head: (props) => <Head {...props} />,
+      Link: ({ href, ...props }) => <Link href={href || ''} {...props} />,
+    },
     copy: {
       breadcrumbNavigationLabel: 'common:breadcrumb.breadcrumbNavigationLabel',
       breadcrumbListLabel: 'common:breadcrumb.breadcrumbListLabel',
