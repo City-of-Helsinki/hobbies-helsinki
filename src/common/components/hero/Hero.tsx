@@ -24,8 +24,8 @@ function Hero({ title, description, cta }: Props) {
       <Text variant="h2" as="h1" className={styles.boxTitle}>
         {title}
       </Text>
-      <Link href={href}>
-        <span className={styles.linkButton}>{cta.label}</span>
+      <Link className={styles.linkButton} href={href}>
+        {cta.label}
       </Link>
     </div>
   );

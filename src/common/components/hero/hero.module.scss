@@ -37,15 +37,13 @@
   margin-top: $spacing-s;
   padding: $spacing-xs;
   width: fit-content;
-
-  text-decoration: none;
-  color: $color-white;
-
   background-color: $color-coat-of-arms;
-  border-color: $color-coat-of-arms !important;
+  border-color: $color-coat-of-arms;
+  color: $color-white !important;
+  text-decoration: none !important;
 
   &:hover {
-    background-color: $color-bus;
-    border-color: $color-bus !important;
+    background-color: $color-coat-of-arms-dark;
+    border-color: $color-coat-of-arms-dark;
   }
 }
