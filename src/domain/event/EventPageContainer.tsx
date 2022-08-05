@@ -9,7 +9,7 @@ import { addParamsToQueryString } from '../../common-events/utils/queryString';
 import ErrorHero from '../error/ErrorHero';
 import {
   EventDetailsDocument,
-  useEventDetailsQuery,
+  EventFieldsFragment,
 } from '../nextApi/graphql/generated/graphql';
 import EventClosedHero from './eventClosedHero/EventClosedHero';
 import EventContent from './eventContent/EventContent';
@@ -25,10 +25,14 @@ import useLocale from '../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 
 export interface EventPageContainerProps {
+  loading: boolean;
+  event?: EventFieldsFragment;
   showSimilarEvents?: boolean;
 }
 
 const EventPageContainer: React.FC<EventPageContainerProps> = ({
+  event,
+  loading,
   showSimilarEvents = true,
 }) => {
   const { t } = useTranslation();
@@ -37,26 +41,17 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
   const search = addParamsToQueryString(router.asPath, {
     returnPath: router.pathname,
   });
-  const eventId =
-    (router.query?.eventId as string) ?? router.pathname.split('/').pop();
 
   const [superEvent, setSuperEvent] = React.useState<SuperEventResponse>({
     data: null,
     status: 'pending',
   });
-  const { data: eventData, loading } = useEventDetailsQuery({
-    ssr: false,
-    variables: {
-      id: eventId,
-      include: ['in_language', 'keywords', 'location', 'audience'],
-    },
-  });
-  const event = eventData?.eventDetails;
 
   const superEventId = getEventIdFromUrl(
     event?.superEvent?.internalId ?? '',
     'event'
   );
+
   const [superEventSearch, { data: superEventData }] = useLazyQuery(
     EventDetailsDocument,
     {
