@@ -29,14 +29,16 @@ export function LandingPageContentLayout({
             <>
               <HeroImage desktopImageUri={heroImage ?? ''} />
               <Section variant="contained" color="transparent">
-                <Hero
-                  title={title ?? ''}
-                  description={description ?? ''}
-                  cta={{
-                    label: (heroLink && heroLink[0]) ?? '',
-                    href: (heroLink && heroLink[1]) ?? '',
-                  }}
-                />
+                {heroLink && heroLink.length > 0 && (
+                  <Hero
+                    title={title ?? ''}
+                    description={description ?? ''}
+                    cta={{
+                      label: heroLink[0] ?? '',
+                      href: heroLink[1] ?? '',
+                    }}
+                  />
+                )}
               </Section>
             </>
           )}
