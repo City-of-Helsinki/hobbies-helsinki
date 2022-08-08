@@ -34,6 +34,8 @@ import { ROUTES } from '../../../constants';
 import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
+import { PageSection } from 'react-helsinki-headless-cms';
+import { ContentContainer } from 'react-helsinki-headless-cms';
 
 interface Props {
   scrollToResultList: () => void;
@@ -222,8 +224,12 @@ const AdvancedSearch: React.FC<Props> = ({
   };
 
   return (
-    <div className={styles.searchContainer} data-testid={dataTestId}>
-      <Container>
+    <PageSection
+      korosBottom
+      className={styles.searchContainer}
+      data-testid={dataTestId}
+    >
+      <ContentContainer className={styles.contentContainer}>
         <form onSubmit={handleSubmit}>
           <div className={styles.searchWrapper}>
             <div className={styles.rowWrapper}>
@@ -321,16 +327,6 @@ const AdvancedSearch: React.FC<Props> = ({
                   />
                 </div>
               </div>
-              <div className={styles.buttonWrapper}>
-                <Button
-                  fullWidth={true}
-                  iconLeft={<IconSearch aria-hidden />}
-                  variant="success"
-                  type="submit"
-                >
-                  {t('search.buttonSearch')}
-                </Button>
-              </div>
             </div>
             <div className={styles.rowWrapper}>
               <div className={styles.row}>
@@ -352,13 +348,23 @@ const AdvancedSearch: React.FC<Props> = ({
                     onChange={handleIsFreeChange}
                   />
                 </div>
+                <div className={styles.buttonWrapper}>
+                  <Button
+                    fullWidth={true}
+                    iconLeft={<IconSearch aria-hidden />}
+                    variant="success"
+                    type="submit"
+                  >
+                    {t('search.buttonSearch')}
+                  </Button>
+                </div>
               </div>
             </div>
             <FilterSummary onClear={clearFilters} />
           </div>
         </form>
-      </Container>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 };
 

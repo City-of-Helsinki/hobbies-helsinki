@@ -12,6 +12,16 @@
     }
   }
   .loadMoreWrapper {
+    display: flex;
+    justify-content: center;
+    button {
+      border: 2px solid var(--color-black);
+      background-color: var(--color-black-5);
+    }
+    button:hover {
+      background-color: var(--color-black-10);
+      border: 2px solid var(--color-black);
+    }
     &.buttonCentered {
       text-align: center;
     }

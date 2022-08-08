@@ -1,9 +1,8 @@
-.eventSearchPageWrapper {
-  min-height: 20rem;
-  display: grid;
-}
-
 .resultList {
   /* Search dropdowns go under Notification components without this */
   z-index: 0;
+
+  .spinner {
+    background-color: var(--color-black-5);
+  }
 }

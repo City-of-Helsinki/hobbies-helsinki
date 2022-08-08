@@ -8,18 +8,20 @@ interface Props {
   hasPadding?: boolean;
   isLoading: boolean;
   children?: React.ReactNode;
+  className?: string;
 }
 
 const LoadingSpinnerri: FunctionComponent<Props> = ({
   hasPadding = true,
   isLoading,
   children,
+  className,
 }) => {
   return (
     <>
       {isLoading ? (
         <div
-          className={classNames(styles.spinnerWrapper, {
+          className={classNames(styles.spinnerWrapper, className, {
             [styles.hasPadding]: hasPadding,
           })}
           data-testid="loading-spinner"
