@@ -10,7 +10,7 @@
   background-color: rgba($color-black, 70%);
   width: var(--width);
   max-width: var(--max-width);
-  margin-bottom: 10rem;
+  margin-top: 10rem;
   padding: $spacing-m;
 
   @include breakpoints.respond-above(m) {

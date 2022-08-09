@@ -1,10 +1,9 @@
-import { Koros } from 'hds-react';
 import { PageContentLayoutProps } from 'react-helsinki-headless-cms/';
 import { LandingPageQuery } from 'react-helsinki-headless-cms/apollo';
+import { PageSection } from 'react-helsinki-headless-cms';
+import { ContentContainer } from 'react-helsinki-headless-cms';
 
 import Hero from '../../../common/components/hero/Hero';
-import HeroImage from '../../../common/components/hero/HeroImage';
-import Section from '../../../common-events/components/section/Section';
 import LandingPageSearch from '../landingPageSearch/LandingPageSearch';
 import styles from './landingPage.module.scss';
 
@@ -26,9 +25,13 @@ export function LandingPageContentLayout({
       <main className={styles.main}>
         <div className={styles.highlight}>
           {landingPage?.translation && (
-            <>
-              <HeroImage desktopImageUri={heroImage ?? ''} />
-              <Section variant="contained" color="transparent">
+            <PageSection
+              className={styles.sectionHero}
+              korosBottom
+              korosBottomClassName={styles.korosBottomHero}
+              backgroundImageUrl={`url(${heroImage})` || ''}
+            >
+              <ContentContainer>
                 {heroLink && heroLink.length > 0 && (
                   <Hero
                     title={title ?? ''}
@@ -39,15 +42,24 @@ export function LandingPageContentLayout({
                     }}
                   />
                 )}
-              </Section>
-            </>
+              </ContentContainer>
+            </PageSection>
           )}
-          <Section color="transparent">
-            <LandingPageSearch />
-          </Section>
+          <PageSection
+            className={styles.sectionSearch}
+            korosBottom
+            korosBottomClassName={styles.korosBottomSearch}
+          >
+            <ContentContainer>
+              <div className={styles.sectionSearchContent}>
+                <LandingPageSearch />
+              </div>
+            </ContentContainer>
+          </PageSection>
         </div>
-        <Koros className={styles.koros} flipHorizontal />
-        {collections}
+        <PageSection className={styles.sectionCollections}>
+          <ContentContainer>{collections}</ContentContainer>
+        </PageSection>
       </main>
     </div>
   );
