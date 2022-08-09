@@ -3,6 +3,7 @@ import { ParsedUrlQueryInput } from 'querystring';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import qs, { parse } from 'query-string';
+import { IconCrossCircleFill } from 'hds-react';
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
@@ -152,6 +153,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       ))}
       <button className={styles.clearButton} onClick={onClear} type="button">
         {t('search:buttonClearFilters')}
+        <IconCrossCircleFill />
       </button>
     </div>
   );

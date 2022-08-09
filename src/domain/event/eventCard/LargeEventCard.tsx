@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import {
   Button,
+  IconArrowRight,
   IconCake,
   IconCalendarClock,
   IconLinkExternal,
@@ -155,33 +156,48 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
               showIsFree={true}
             />
           </div>
-          <div className={styles.buttonWrapper}>
-            <div>
-              {showBuyButton && (
-                <Button
-                  aria-label={t('event:eventCard.ariaLabelBuyTickets')}
-                  iconRight={<IconLinkExternal aria-hidden />}
-                  fullWidth
-                  onClick={goToBuyTicketsPage}
-                  size="small"
-                  variant="success"
-                >
-                  {t('event:eventCard.buttonBuyTickets')}
-                </Button>
-              )}
-            </div>
-            <div ref={button}>
-              <Button
-                aria-label={t('event:eventCard.ariaLabelReadMore', { name })}
-                className={buttonStyles.buttonGray}
-                fullWidth
-                onClick={goToEventPage}
-                size="small"
-                type="button"
-              >
-                {t('event:eventCard.buttonReadMore')}
-              </Button>
-            </div>
+          <div
+            className={classNames(
+              styles.buttonWrapper,
+              showBuyButton ? styles.rightAlign : ''
+            )}
+          >
+            {showBuyButton ? (
+              <>
+                <div>
+                  <Button
+                    aria-label={t('event:eventCard.ariaLabelBuyTickets')}
+                    iconRight={<IconLinkExternal aria-hidden />}
+                    fullWidth
+                    onClick={goToBuyTicketsPage}
+                    size="small"
+                    variant="success"
+                  >
+                    {t('event:eventCard.buttonBuyTickets')}
+                  </Button>
+                </div>
+                <div ref={button}>
+                  <Button
+                    aria-label={t('event:eventCard.ariaLabelReadMore', {
+                      name,
+                    })}
+                    className={buttonStyles.buttonGray}
+                    fullWidth
+                    onClick={goToEventPage}
+                    size="small"
+                    type="button"
+                  >
+                    {t('event:eventCard.buttonReadMore')}
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <IconArrowRight
+                className={styles.arrowRight}
+                size="l"
+                aria-hidden="true"
+              />
+            )}
           </div>
         </div>
 

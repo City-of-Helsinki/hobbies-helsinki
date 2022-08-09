@@ -97,7 +97,7 @@
 
     .keywordWrapperDesktop {
       order: 6;
-      padding: var(--spacing-xs) 0;
+      //padding: var(--spacing-xs) 0;
 
       @include respond_below(s) {
         display: none;
@@ -111,8 +111,17 @@
       margin-top: auto;
 
       @include respond_above(s) {
-        justify-content: flex-end;
         order: 6;
+      }
+
+      &.rightAlign {
+        justify-content: flex-end;
+      }
+
+      .arrowRight {
+        @include respond_above(s) {
+          margin-top: var(--spacing-s);
+        }
       }
 
       div {
