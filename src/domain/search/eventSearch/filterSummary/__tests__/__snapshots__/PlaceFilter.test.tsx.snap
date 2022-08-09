@@ -4,6 +4,7 @@ exports[`matches snapshot 1`] = `
 <div
   class="filter place"
 >
+  Gräsan taitojen talo
   <button
     aria-label="Poista suodatin: Gräsan taitojen talo"
     class="closeButton"
@@ -31,6 +32,5 @@ exports[`matches snapshot 1`] = `
       </g>
     </svg>
   </button>
-  Gräsan taitojen talo
 </div>
 `;
