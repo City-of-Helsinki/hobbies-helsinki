@@ -12,9 +12,10 @@ import {
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { parse } from 'query-string';
+import { PageSection } from 'react-helsinki-headless-cms';
+import { ContentContainer } from 'react-helsinki-headless-cms';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import Container from '../../../common-events/components/layout/Container';
 import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import testImage from '../../../common-events/utils/testImage';
@@ -105,8 +106,8 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
       : superEvent?.data?.endTime || eventEndTime;
 
   return (
-    <div className={classNames(styles.heroWrapper)}>
-      <Container>
+    <PageSection className={classNames(styles.heroWrapper)}>
+      <ContentContainer>
         <div className={styles.contentWrapper}>
           <div className={styles.backButtonWrapper}>
             <IconButton
@@ -210,8 +211,8 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
             </div>
           </div>
         </div>
-      </Container>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 };
 

@@ -1,8 +1,9 @@
 import classNames from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { PageSection } from 'react-helsinki-headless-cms';
+import { ContentContainer } from 'react-helsinki-headless-cms';
 
-import Container from '../../../common-events/components/layout/Container';
 import sanitizeHtml from '../../../common-events/utils/sanitizeHtml';
 import ShareLinks from '../../../common-events/components/shareLinks/ShareLinks';
 import { EVENT_LOCATIONS } from '../constants';
@@ -26,8 +27,8 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
   const isInternetEvent = event?.location?.id === EVENT_LOCATIONS.INTERNET;
 
   return (
-    <div className={styles.eventContent}>
-      <Container>
+    <PageSection className={styles.eventContent}>
+      <ContentContainer>
         <div className={styles.contentWrapper}>
           <div className={styles.infoColumn}>
             <EventInfo event={event} superEvent={superEvent} />
@@ -65,8 +66,8 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
           {/* Dummy div to keep layout consistent with EventHero */}
           <div />
         </div>
-      </Container>
-    </div>
+      </ContentContainer>
+    </PageSection>
   );
 };
 
