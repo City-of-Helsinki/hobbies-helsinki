@@ -86,7 +86,7 @@ const EventKeywords: React.FC<Props> = ({
         keywords.map((keyword) => {
           return (
             <Keyword
-              color="black10"
+              color="tramLight20"
               blackOnMobile={blackOnMobile}
               hideOnMobile={hideKeywordsOnMobile}
               key={keyword.id}
