@@ -25,7 +25,7 @@ const Keyword: FunctionComponent<Props> = ({
 
   return (
     <button
-      className={classNames(styles.keyword, {
+      className={classNames(styles.keyword, color && styles[color], {
         [styles.blackOnMobile]: blackOnMobile,
         [styles.hideOnMobile]: hideOnMobile,
       })}
