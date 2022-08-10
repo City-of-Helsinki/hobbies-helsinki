@@ -7,28 +7,31 @@ $mainBackground: var(--color-fog-medium-light);
 .layout {
   position: relative;
 
-  .sectionHero {
-    min-height: 60vh;
-  }
-
-  .sectionSearch {
-    background-color: $mainBackground;
-
-    .sectionSearchContent {
-      position: relative;
-      top: -5.5rem;
+  .main {
+    overflow: hidden;
+    .sectionHero {
+      min-height: 60vh;
     }
-  }
 
-  .sectionCollections {
-    padding-bottom: 5.5rem;
-  }
+    .sectionSearch {
+      background-color: $mainBackground;
 
-  .korosBottomHero {
-    fill: $mainBackground !important;
-  }
+      .sectionSearchContent {
+        position: relative;
+        top: -5.5rem;
+      }
+    }
 
-  .korosBottomSearch {
-    fill: var(--color-white) !important;
+    .sectionCollections {
+      padding-bottom: 5.5rem;
+    }
+
+    .korosBottomHero {
+      fill: $mainBackground !important;
+    }
+
+    .korosBottomSearch {
+      fill: var(--color-white) !important;
+    }
   }
 }
