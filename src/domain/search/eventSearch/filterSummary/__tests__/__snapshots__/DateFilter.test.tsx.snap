@@ -39,9 +39,9 @@ exports[`matches snapshot 2`] = `
 <div
   class="filter date"
 >
-  dateSelector.dateTypeValue
+  Some filter text
   <button
-    aria-label="Poista suodatin: dateSelector.dateTypeValue"
+    aria-label="Poista suodatin: Some filter text"
     class="closeButton"
     type="button"
   >
