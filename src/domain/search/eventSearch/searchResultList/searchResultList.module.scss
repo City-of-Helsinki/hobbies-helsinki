@@ -2,7 +2,11 @@
 
 .searchResultListContainer {
   background-color: var(--color-black-5);
-  padding: var(--spacing-xl) 0;
+  padding-bottom: var(--spacing-layout-2-xl) !important;
+
+  .korosBottom {
+    fill: var(--color-engel-medium-light) !important;
+  }
 }
 
 .betaResultNotification {

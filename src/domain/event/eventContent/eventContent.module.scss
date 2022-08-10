@@ -10,7 +10,7 @@ $logoWidth: 5.5rem;
     display: grid;
 
     @include respond_above(s) {
-      grid-template-columns: $logoWidth 1fr 1fr;
+      grid-template-columns: 0 1fr 1fr;
 
       .infoColumn {
         order: 3;

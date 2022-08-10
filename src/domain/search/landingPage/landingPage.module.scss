@@ -5,56 +5,33 @@
 $mainBackground: var(--color-fog-medium-light);
 
 .layout {
-  --spacing: #{$spacing-layout-2-xs};
-
-  display: grid;
-  // Set a three column layout where the middle column is the content column
-  // that has a max width of size param and two whitespace columns with a
-  // mininum width of --spacing.
-  @include utils.get-layout-columns(m);
-  grid-template-rows: auto;
-
-  & > * {
-    // Force child element into the content column
-    grid-column: 2;
-  }
-
-  @include breakpoints.respond-above(m) {
-    --spacing: #{$spacing-layout-xs};
-  }
-
-  @include breakpoints.respond-above(xl) {
-    --spacing: #{$spacing-layout-l};
-  }
-
-  @include breakpoints.respond-above(xxl) {
-    --spacing: #{$spacing-layout-xl};
-  }
+  position: relative;
 
   .main {
-    display: inherit;
-    grid-column: 1 / -1;
-    grid-template-columns: inherit;
+    overflow: hidden;
+    .sectionHero {
+      min-height: 60vh;
+    }
 
-    & > * {
-      grid-column: 1 / -1;
+    .sectionSearch {
+      background-color: $mainBackground;
 
-      display: inherit;
-      grid-template-columns: inherit;
-
-      & > * {
-        grid-column: 2;
+      .sectionSearchContent {
+        position: relative;
+        top: -5.5rem;
       }
     }
 
-    .highlight {
-      background: $mainBackground;
+    .sectionCollections {
+      padding-bottom: 5.5rem;
     }
 
-    .koros {
-      fill: $mainBackground;
-      display: block;
-      margin-top: -1rem;
+    .korosBottomHero {
+      fill: $mainBackground !important;
+    }
+
+    .korosBottomSearch {
+      fill: var(--color-white) !important;
     }
   }
 }

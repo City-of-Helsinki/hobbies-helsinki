@@ -1,5 +1,12 @@
 import classNames from 'classnames';
-import { Button, IconLinkExternal } from 'hds-react';
+import {
+  Button,
+  IconArrowRight,
+  IconCake,
+  IconCalendarClock,
+  IconLinkExternal,
+  IconLocation,
+} from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { LinkBox } from 'react-helsinki-headless-cms';
@@ -110,25 +117,34 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
           <div className={styles.eventName}>
             <EventName event={event} />
           </div>
-          <div className={styles.eventDateAndTime}>
-            {!!startTime &&
-              getDateRangeStr({
-                start: startTime,
-                end: endTime,
-                locale,
-                includeTime: true,
-                timeAbbreviation: t('common:timeAbbreviation'),
-              })}
-          </div>
+
           <div className={styles.eventLocation}>
+            <IconLocation aria-hidden />
             <LocationText
               event={event}
               showDistrict={false}
               showLocationName={true}
             />
           </div>
+          <div className={styles.eventDateAndTime}>
+            {!!startTime && (
+              <>
+                <IconCalendarClock aria-hidden />
+                {getDateRangeStr({
+                  start: startTime,
+                  end: endTime,
+                  locale,
+                  includeTime: true,
+                  timeAbbreviation: t('common:timeAbbreviation'),
+                })}
+              </>
+            )}
+          </div>
           {audienceAge && (
-            <div className={styles.eventAudienceAge}>{audienceAge}</div>
+            <div className={styles.eventAudienceAge}>
+              <IconCake aria-hidden />
+              {audienceAge}
+            </div>
           )}
           <div className={styles.eventPrice}>
             {getEventPrice(event, locale, t('event:eventCard.isFree'))}
@@ -140,33 +156,48 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
               showIsFree={true}
             />
           </div>
-          <div className={styles.buttonWrapper}>
-            <div>
-              {showBuyButton && (
-                <Button
-                  aria-label={t('event:eventCard.ariaLabelBuyTickets')}
-                  iconRight={<IconLinkExternal aria-hidden />}
-                  fullWidth
-                  onClick={goToBuyTicketsPage}
-                  size="small"
-                  variant="success"
-                >
-                  {t('event:eventCard.buttonBuyTickets')}
-                </Button>
-              )}
-            </div>
-            <div ref={button}>
-              <Button
-                aria-label={t('event:eventCard.ariaLabelReadMore', { name })}
-                className={buttonStyles.buttonGray}
-                fullWidth
-                onClick={goToEventPage}
-                size="small"
-                type="button"
-              >
-                {t('event:eventCard.buttonReadMore')}
-              </Button>
-            </div>
+          <div
+            className={classNames(
+              styles.buttonWrapper,
+              showBuyButton ? styles.rightAlign : ''
+            )}
+          >
+            {showBuyButton ? (
+              <>
+                <div>
+                  <Button
+                    aria-label={t('event:eventCard.ariaLabelBuyTickets')}
+                    iconRight={<IconLinkExternal aria-hidden />}
+                    fullWidth
+                    onClick={goToBuyTicketsPage}
+                    size="small"
+                    variant="success"
+                  >
+                    {t('event:eventCard.buttonBuyTickets')}
+                  </Button>
+                </div>
+                <div ref={button}>
+                  <Button
+                    aria-label={t('event:eventCard.ariaLabelReadMore', {
+                      name,
+                    })}
+                    className={buttonStyles.buttonGray}
+                    fullWidth
+                    onClick={goToEventPage}
+                    size="small"
+                    type="button"
+                  >
+                    {t('event:eventCard.buttonReadMore')}
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <IconArrowRight
+                className={styles.arrowRight}
+                size="l"
+                aria-hidden="true"
+              />
+            )}
           </div>
         </div>
 

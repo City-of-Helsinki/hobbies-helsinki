@@ -60,19 +60,6 @@ const EventKeywords: React.FC<Props> = ({
 
   return (
     <>
-      {!!keywords.length &&
-        showKeywords &&
-        keywords.map((keyword) => {
-          return (
-            <Keyword
-              blackOnMobile={blackOnMobile}
-              hideOnMobile={hideKeywordsOnMobile}
-              key={keyword.id}
-              keyword={keyword.name}
-              onClick={handleClick('text', keyword.name)}
-            />
-          );
-        })}
       {today && (
         <Keyword
           color="engelLight50"
@@ -94,6 +81,20 @@ const EventKeywords: React.FC<Props> = ({
           onClick={handleClick('isFree')}
         />
       )}
+      {!!keywords.length &&
+        showKeywords &&
+        keywords.map((keyword) => {
+          return (
+            <Keyword
+              color="engelLight50"
+              blackOnMobile={blackOnMobile}
+              hideOnMobile={hideKeywordsOnMobile}
+              key={keyword.id}
+              keyword={keyword.name}
+              onClick={handleClick('text', keyword.name)}
+            />
+          );
+        })}
     </>
   );
 };

@@ -21,6 +21,7 @@ const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
 
   return (
     <div className={classNames(styles.filter, styles[type])}>
+      {text}
       <button
         type="button"
         className={styles.closeButton}
@@ -31,7 +32,6 @@ const FilterButton: React.FC<Props> = ({ onRemove, text, type, value }) => {
       >
         <IconCross size="s" aria-hidden />
       </button>
-      {text}
     </div>
   );
 };

@@ -4,6 +4,7 @@ exports[`matches snapshot 1`] = `
 <div
   class="filter date"
 >
+  text
   <button
     aria-label="Poista suodatin: text"
     class="closeButton"
@@ -31,7 +32,6 @@ exports[`matches snapshot 1`] = `
       </g>
     </svg>
   </button>
-  text
 </div>
 `;
 
@@ -39,8 +39,9 @@ exports[`matches snapshot 2`] = `
 <div
   class="filter date"
 >
+  Some filter text
   <button
-    aria-label="Poista suodatin: dateSelector.dateTypeValue"
+    aria-label="Poista suodatin: Some filter text"
     class="closeButton"
     type="button"
   >
@@ -66,6 +67,5 @@ exports[`matches snapshot 2`] = `
       </g>
     </svg>
   </button>
-  dateSelector.dateTypeValue
 </div>
 `;

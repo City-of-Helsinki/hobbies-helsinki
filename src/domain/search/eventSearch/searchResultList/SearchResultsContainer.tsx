@@ -1,9 +1,8 @@
-import classNames from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { ContentContainer } from 'react-helsinki-headless-cms';
+import { PageSection } from 'react-helsinki-headless-cms';
 
-// TODO: Replace with Container from HDS
-import Container from '../../../../common-events/components/layout/Container';
 import ResultsInfoContainer from './ResultsInfo';
 import styles from './searchResultList.module.scss';
 
@@ -21,19 +20,21 @@ const SearchResultsContainer: React.FC<Props> = ({
   const { t } = useTranslation('search');
 
   return (
-    <div className={styles.searchResultListContainer}>
-      <Container>
-        <div className={classNames(styles.searchResultWrapper)}>
-          <h2 className={styles.count}>
-            {t('textFoundEvents', {
-              count: eventsCount,
-            })}
-          </h2>
-          {!!eventsCount && eventList}
-          {!loading && <ResultsInfoContainer resultsCount={eventsCount} />}
-        </div>
-      </Container>
-    </div>
+    <PageSection
+      korosBottom
+      korosBottomClassName={styles.korosBottom}
+      className={styles.searchResultListContainer}
+    >
+      <ContentContainer>
+        <h2 className={styles.count}>
+          {t('textFoundEvents', {
+            count: eventsCount,
+          })}
+        </h2>
+        {!!eventsCount && eventList}
+        {!loading && <ResultsInfoContainer resultsCount={eventsCount} />}
+      </ContentContainer>
+    </PageSection>
   );
 };
 

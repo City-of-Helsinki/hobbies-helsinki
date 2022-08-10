@@ -5,6 +5,12 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (props, ref) => {
     const customStyles = {
       '--background-unselected': 'var(--color-white)',
+      '--background-selected': 'var(--color-coat-of-arms)',
+      '--background-selected-hover': 'var(--color-coat-of-arms-dark)',
+      '--background-hover': 'var(--color-coat-of-arms-dark)',
+      '--border-color-selected': 'var(--color-coat-of-arms-dark)',
+      '--border-color-selected-focus': 'var(--color-coat-of-arms-dark)',
+      '--border-color-selected-hover': 'var(--color-coat-of-arms-dark)',
       lineHeight: '24px',
     } as React.CSSProperties;
 

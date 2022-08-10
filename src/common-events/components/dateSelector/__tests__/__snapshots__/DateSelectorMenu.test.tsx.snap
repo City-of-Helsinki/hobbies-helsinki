@@ -10,7 +10,7 @@ exports[`matches snapshot 1`] = `
   >
     <div
       class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
-      style="--background-unselected: var(--color-white); line-height: 24px;"
+      style="--background-unselected: var(--color-white); --background-selected: var(--color-coat-of-arms); --background-selected-hover: var(--color-coat-of-arms-dark); --background-hover: var(--color-coat-of-arms-dark); --border-color-selected: var(--color-coat-of-arms-dark); --border-color-selected-focus: var(--color-coat-of-arms-dark); --border-color-selected-hover: var(--color-coat-of-arms-dark); line-height: 24px;"
     >
       <input
         class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
@@ -28,7 +28,7 @@ exports[`matches snapshot 1`] = `
     </div>
     <div
       class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
-      style="--background-unselected: var(--color-white); line-height: 24px;"
+      style="--background-unselected: var(--color-white); --background-selected: var(--color-coat-of-arms); --background-selected-hover: var(--color-coat-of-arms-dark); --background-hover: var(--color-coat-of-arms-dark); --border-color-selected: var(--color-coat-of-arms-dark); --border-color-selected-focus: var(--color-coat-of-arms-dark); --border-color-selected-hover: var(--color-coat-of-arms-dark); line-height: 24px;"
     >
       <input
         class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
@@ -46,7 +46,7 @@ exports[`matches snapshot 1`] = `
     </div>
     <div
       class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
-      style="--background-unselected: var(--color-white); line-height: 24px;"
+      style="--background-unselected: var(--color-white); --background-selected: var(--color-coat-of-arms); --background-selected-hover: var(--color-coat-of-arms-dark); --background-hover: var(--color-coat-of-arms-dark); --border-color-selected: var(--color-coat-of-arms-dark); --border-color-selected-focus: var(--color-coat-of-arms-dark); --border-color-selected-hover: var(--color-coat-of-arms-dark); line-height: 24px;"
     >
       <input
         class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"
@@ -64,7 +64,7 @@ exports[`matches snapshot 1`] = `
     </div>
     <div
       class="Checkbox-module_checkbox__3L0GR checkbox_hds-checkbox__9HMCz"
-      style="--background-unselected: var(--color-white); line-height: 24px;"
+      style="--background-unselected: var(--color-white); --background-selected: var(--color-coat-of-arms); --background-selected-hover: var(--color-coat-of-arms-dark); --background-hover: var(--color-coat-of-arms-dark); --border-color-selected: var(--color-coat-of-arms-dark); --border-color-selected-focus: var(--color-coat-of-arms-dark); --border-color-selected-hover: var(--color-coat-of-arms-dark); line-height: 24px;"
     >
       <input
         class="Checkbox-module_input__3VZvy checkbox_hds-checkbox__input__1w0pu"

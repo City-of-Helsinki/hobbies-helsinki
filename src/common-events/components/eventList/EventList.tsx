@@ -52,7 +52,7 @@ const EventList: React.FC<Props> = ({
       >
         <LoadingSpinner hasPadding={!events.length} isLoading={loading}>
           {hasNext && (
-            <Button onClick={onLoadMore} variant="success">
+            <Button onClick={onLoadMore} variant="secondary" theme="black">
               {t('buttonLoadMore', { count: eventsLeft })}
             </Button>
           )}

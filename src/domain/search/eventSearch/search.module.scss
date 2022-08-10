@@ -8,6 +8,10 @@ $buttonWidth: 180px;
   padding: 2.375rem 0 1.5rem 0;
   position: relative;
 
+  .contentContainer {
+    margin-bottom: 2.375rem;
+  }
+
   .rowWrapper {
     display: grid;
     height: fit-content;
@@ -19,19 +23,17 @@ $buttonWidth: 180px;
     margin-bottom: var(--spacing-xs);
 
     @include respond-above(s) {
-      grid-template-columns: 1fr $buttonWidth;
+      grid-template-columns: 1fr;
       grid-gap: var(--spacing-xs);
 
       margin-bottom: var(--spacing-xs);
     }
-
-    @include respond-above(m) {
-      grid-gap: var(--spacing-xs);
-    }
   }
 
   .buttonWrapper {
-    align-self: flex-end;
+    @include respond-above(m) {
+      grid-column: span 1 / 5;
+    }
   }
 
   .row {
@@ -84,8 +86,4 @@ $buttonWidth: 180px;
   @include respond-below(s) {
     display: none;
   }
-}
-
-.categoriesWrapper {
-  //padding: 4rem 0 4rem;
 }

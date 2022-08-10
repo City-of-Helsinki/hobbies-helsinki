@@ -22,16 +22,19 @@ $logoWidth: 5.5rem;
 
   @include respond_above(s) {
     min-height: $heroHeight;
-    grid-template-columns: $logoWidth 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
     grid-template-rows: unset;
   }
 
   .backButtonWrapper {
     padding: var(--spacing-m);
+    position: absolute;
 
     @include respond_below(s) {
       padding: var(--spacing-s) 0 0 var(--spacing-s);
-      position: absolute;
+    }
+    @include respond_above(xl) {
+      left: -90px;
     }
   }
 

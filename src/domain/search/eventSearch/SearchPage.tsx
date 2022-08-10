@@ -118,7 +118,7 @@ const SearchPage: React.FC<{
   }, []);
 
   return (
-    <div className={styles.eventSearchPageWrapper}>
+    <div>
       <SrOnly as="h1">{t(pageTitle)}</SrOnly>
       <SearchComponent
         scrollToResultList={scrollToResultList}
@@ -136,7 +136,10 @@ const SearchPage: React.FC<{
                 count: eventsList?.meta.count,
               })}
         </SrOnly>
-        <LoadingSpinner isLoading={!isFetchingMore && isLoadingEvents}>
+        <LoadingSpinner
+          className={styles.spinner}
+          isLoading={!isFetchingMore && isLoadingEvents}
+        >
           {eventsList && (
             <SearchResultsContainer
               eventsCount={eventsList.meta.count}

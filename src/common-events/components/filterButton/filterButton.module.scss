@@ -5,8 +5,8 @@
   color: var(--color-white);
   margin: var(--spacing-2-xs) var(--spacing-2-xs) var(--spacing-2-xs) 0;
   display: inline-flex;
-  padding: var(--spacing-4-xs) var(--spacing-2-xs) var(--spacing-4-xs)
-    var(--spacing-3-xs);
+  padding: var(--spacing-4-xs) var(--spacing-3-xs) var(--spacing-4-xs)
+    var(--spacing-2-xs);
   align-items: center;
   font-size: var(--fontsize-body-s);
   font-weight: 500;
@@ -15,7 +15,7 @@
     padding: 0;
     background: transparent;
     border: none;
-    margin-right: var(--spacing-3-xs);
+    margin-left: var(--spacing-3-xs);
     cursor: pointer;
 
     svg {

@@ -67,7 +67,13 @@ export const fakeEvent = (overrides?: Partial<EventDetails>): EventDetails => {
       endTime: null,
       datePublished: null,
       externalLinks: [fakeExternalLink()],
-      offers: [] as any,
+      offers: [
+        {
+          infoUrl: fakeLocalizedObject(),
+          isFree: false,
+          description: fakeLocalizedObject(),
+        },
+      ],
       subEvents: [] as any,
       eventStatus: 'EventScheduled',
       superEvent: null,

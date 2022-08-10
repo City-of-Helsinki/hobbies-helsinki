@@ -1,6 +1,8 @@
 @import 'breakpoints';
 
 .filterSummary {
+  display: flex;
+  align-items: center;
   margin-bottom: var(--spacing-xs);
 
   &:last-child {
@@ -8,17 +10,24 @@
   }
 
   .clearButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 0;
+    margin-left: var(--spacing-s);
     color: var(--color-black);
-    font-size: 0.875rem;
+    font-size: var(--fontsize-heading-xxs);
     font-weight: 500;
     border: 2px solid transparent;
-    text-decoration: underline;
     text-align: left;
 
     &:focus {
       outline: 2px solid var(--color-black);
       outline-offset: 0.25rem;
+    }
+
+    svg {
+      margin-left: var(--spacing-3-xs);
     }
   }
 }

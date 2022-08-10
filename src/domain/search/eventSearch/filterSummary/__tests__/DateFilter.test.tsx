@@ -16,7 +16,7 @@ it('matches snapshot', () => {
 
   expect(container.firstChild).toMatchSnapshot();
 
-  rerender(<DateFilter {...props} text="" />);
+  rerender(<DateFilter {...props} text="Some filter text" />);
 
   expect(container.firstChild).toMatchSnapshot();
 });
