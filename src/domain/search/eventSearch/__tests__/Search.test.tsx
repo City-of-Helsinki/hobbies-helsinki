@@ -88,8 +88,7 @@ afterAll(() => {
   clear();
 });
 
-//TODO: Fix me
-test.skip('for accessibility violations', async () => {
+test('for accessibility violations', async () => {
   const { container } = renderComponent();
 
   await actWait();

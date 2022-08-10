@@ -112,8 +112,7 @@ const routes = [
   `/haku?categories=${urlParams.categories}&dateTypes=today&end=${urlParams.end}&places=${urlParams.places}&publisher=${urlParams.publisher}&start=${urlParams.start}&text=${urlParams.text}`,
 ];
 
-//TODO: Fix me
-/*it('test for accessibility violations', async () => {
+it('test for accessibility violations', async () => {
   const { container } = render(<FilterSummary onClear={jest.fn()} />, {
     mocks,
     routes,
@@ -123,7 +122,7 @@ const routes = [
   });
   const results = await axe(container);
   expect(results).toHaveNoViolations();
-});*/
+});
 
 it('calls onClear callback when clear button is clicked', async () => {
   const onClear = jest.fn();

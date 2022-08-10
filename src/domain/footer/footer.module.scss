@@ -1,6 +1,6 @@
 .footer {
   overflow: hidden;
-  margin-top: -2.5rem;
+  margin-top: calc(var(--spacing-xl) * -1);
   position: relative;
   --footer-background: var(--color-engel-medium-light) !important;
   .footerLink,

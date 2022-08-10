@@ -89,8 +89,7 @@ describe('large event card', () => {
     ).not.toBeInTheDocument();
   });
 
-  //TODO: fix, conditional only if Buy link is available
-  test.skip('should go to event page by click Read more button', async () => {
+  test('should go to event page by click Read more button', async () => {
     const event = fakeEvent({
       id: '123',
     }) as EventFieldsFragment;

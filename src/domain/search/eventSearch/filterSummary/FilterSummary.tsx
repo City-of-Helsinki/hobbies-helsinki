@@ -153,7 +153,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       ))}
       <button className={styles.clearButton} onClick={onClear} type="button">
         {t('search:buttonClearFilters')}
-        <IconCrossCircleFill />
+        <IconCrossCircleFill aria-hidden />
       </button>
     </div>
   );
