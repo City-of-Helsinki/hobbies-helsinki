@@ -3,8 +3,9 @@ import { MockedResponse } from '@apollo/client/testing';
 import { act, fireEvent, render, RenderResult } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import wait from 'waait';
-import { createEventsApolloCache } from '../domain/clients/eventsApolloClient';
 import Router, { NextRouter } from 'next/router';
+
+import { createEventsApolloCache } from '../domain/clients/eventsApolloClient';
 import TestProviders from './TestProviders';
 
 type CustomRender = {

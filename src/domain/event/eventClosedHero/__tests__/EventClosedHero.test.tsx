@@ -1,6 +1,6 @@
 import React from 'react';
-import { translations } from '../../../../tests/initI18n';
 
+import { translations } from '../../../../tests/initI18n';
 import { render, screen, userEvent } from '../../../../tests/testUtils';
 import EventClosedHero from '../EventClosedHero';
 

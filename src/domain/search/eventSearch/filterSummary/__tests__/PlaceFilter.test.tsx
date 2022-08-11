@@ -1,7 +1,7 @@
 import React from 'react';
+
 import { translations } from '../../../../../tests/initI18n';
 import { fakePlace } from '../../../../../tests/mockDataUtils';
-
 import {
   act,
   render,

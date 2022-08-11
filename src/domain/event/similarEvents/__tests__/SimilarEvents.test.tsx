@@ -1,8 +1,9 @@
 import { clear } from 'console';
+
 import { advanceTo } from 'jest-date-mock';
 import * as React from 'react';
-import { translations } from '../../../../tests/initI18n';
 
+import { translations } from '../../../../tests/initI18n';
 import {
   fakeEvent,
   fakeEvents,
@@ -18,7 +19,6 @@ import {
   waitFor,
 } from '../../../../tests/testUtils';
 import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
-
 import SimilarEvents from '../SimilarEvents';
 
 const id = '1';

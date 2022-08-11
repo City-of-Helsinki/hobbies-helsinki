@@ -1,7 +1,7 @@
 import userEvent from '@testing-library/user-event';
 import React from 'react';
-import { act, render, screen } from '../../../../../tests/testUtils';
 
+import { act, render, screen } from '../../../../../tests/testUtils';
 import TextFilter from '../TextFilter';
 
 const props = {
