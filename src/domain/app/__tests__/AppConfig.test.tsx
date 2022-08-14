@@ -123,6 +123,5 @@ test('gives access to misc configs', () => {
       "en",
     ]
   `);
-  expect(AppConfig.defaultLocale).toMatchInlineSnapshot(`"fi"`);
   expect(AppConfig.supportedEventTypes).toEqual([EventTypeId.Course]);
 });

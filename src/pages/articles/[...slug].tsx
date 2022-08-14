@@ -102,12 +102,12 @@ export async function getStaticProps(
         revalidate: true,
       };
     }
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale)
 
     return {
       props: {
         initialApolloState: cmsClient.cache.extract(),
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+        ...(await serverSideTranslationsWithCommon(locale, [
           'cms',
         ])),
         article,

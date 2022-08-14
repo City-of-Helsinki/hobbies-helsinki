@@ -29,8 +29,7 @@ const EventList: React.FC<{
     getLocalizedCmsItemUrl(
       ROUTES.COURSES,
       { eventId: event.id },
-      locale,
-      router.defaultLocale as Language
+      locale
     );
   +(search ? `?${search}` : '');
 

@@ -106,7 +106,6 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
                   ROUTES.SEARCH,
                   {},
                   locale,
-                  router.defaultLocale
                 )}${search}`}
               >
                 {t('event:notFound.linkSearchEvents')}

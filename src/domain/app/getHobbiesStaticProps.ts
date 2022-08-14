@@ -5,7 +5,6 @@ import {
   ApolloClient,
   NormalizedCacheObject,
 } from '@apollo/client';
-// import { PageDocument } from "react-helsinki-headless-cms/apollo";
 
 import AppConfig from './AppConfig';
 import { CmsLanguage } from '../../types';
@@ -13,7 +12,7 @@ import { getMenuLocationFromLanguage } from '../../common/apollo/utils';
 import { staticGenerationLogger } from '../logger';
 import { createCmsApolloClient } from '../clients/cmsApolloClient';
 import { createEventsApolloClient } from '../clients/eventsApolloClient';
-import { DEFAULT_LANGUAGE } from '../../constants';
+import { getLocaleOrError } from '../../utils/routerUtils';
 
 const GLOBAL_QUERY = gql`
   fragment PageFragment on RootQuery {
@@ -106,7 +105,7 @@ type GetGlobalCMSDataParams = {
 // Get CMS data that's required on every page
 async function getGlobalCMSData({ client, context }: GetGlobalCMSDataParams) {
   const menuLocation = getMenuLocationFromLanguage(
-    context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE
+    getLocaleOrError(context.locale)
   );
   const queryOptions = {
     query: GLOBAL_QUERY,

@@ -28,8 +28,7 @@ export default function SearchShortcuts({
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},
-      locale,
-      router.defaultLocale as Language
+      locale
     )}${getSearchQuery({
       ...searchFilters,
       categories: [category.value],

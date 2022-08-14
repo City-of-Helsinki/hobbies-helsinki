@@ -35,11 +35,7 @@ class AppConfig {
   }
 
   static get locales() {
-    return i18n.locales;
-  }
-
-  static get defaultLocale() {
-    return i18n.defaultLocale;
+    return i18n.locales.filter((locale) => locale !== 'default');
   }
 
   static get allowUnauthorizedRequests() {

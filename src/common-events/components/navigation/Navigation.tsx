@@ -26,7 +26,7 @@ export default function Navigation() {
           currentPage,
           router.query,
           slug as Language,
-          router.defaultLocale
+          'fi'
         );
       }}
     />

@@ -41,7 +41,6 @@ describe('i18n router utils', () => {
             eventId: 'hki:123',
           },
           'fi',
-          'fi'
         )
       ).toMatchInlineSnapshot(`"/kurssit/hki:123"`);
     });
@@ -54,7 +53,6 @@ describe('i18n router utils', () => {
             eventId: 'hki:123',
           },
           'en',
-          'fi'
         )
       ).toMatchInlineSnapshot(`"/en/courses/hki:123"`);
     });
@@ -67,9 +65,8 @@ describe('i18n router utils', () => {
             slug: 'some/url',
           },
           'fi',
-          'fi'
         )
-      ).toMatchInlineSnapshot(`"/artikkelit/some/url"`);
+      ).toMatchInlineSnapshot(`"fi/artikkelit/some/url"`);
     });
   });
 });

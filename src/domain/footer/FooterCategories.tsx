@@ -27,8 +27,7 @@ const FooterCategories: FunctionComponent = () => {
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},
-      locale,
-      router.defaultLocale as Language
+      locale
     )}${getSearchQuery({
       ...defaultSearchFiltersMap[ROUTES.SEARCH],
       categories: [category.value],

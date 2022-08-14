@@ -123,8 +123,7 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
           link: `${domain}${getLocalizedCmsItemUrl(
             ROUTES.COURSES,
             { eventId: event.id },
-            locale,
-            router.defaultLocale as Language
+            locale
           )}`,
         }),
         end: endTime ? getDateArray(endTime) : getDateArray(startTime),

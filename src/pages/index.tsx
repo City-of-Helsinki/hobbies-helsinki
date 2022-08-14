@@ -21,7 +21,6 @@ import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
 import { getQlLanguage } from '../common/apollo/utils';
 import { LandingPageContentLayout } from '../domain/search/landingPage/LandingPage';
-import { DEFAULT_LANGUAGE } from '../constants';
 import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
 import useLocale from '../common-events/hooks/useLocale';
@@ -65,7 +64,7 @@ const HomePage: NextPage<{
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ cmsClient }) => {
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale);
     const { data: landingPageData } = await cmsClient.query<
       LandingPageQuery,
       LandingPageQueryVariables

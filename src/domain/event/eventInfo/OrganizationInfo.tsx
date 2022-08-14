@@ -59,7 +59,6 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
                     ROUTES.SEARCH,
                     {},
                     locale,
-                    router.defaultLocale as Language
                   )}?publisher=${publisher}`}
                 >
                   {t(`event:info.linkSearchByPublisher`)}

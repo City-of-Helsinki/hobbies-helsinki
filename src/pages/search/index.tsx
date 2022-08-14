@@ -6,7 +6,7 @@ import { ApolloProvider } from '@apollo/client';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { DEFAULT_LANGUAGE, ROUTES } from '../../constants';
+import { ROUTES } from '../../constants';
 import AdvancedSearch from '../../domain/search/eventSearch/AdvancedSearch';
 import Navigation from '../../common-events/components/navigation/Navigation';
 import SearchPage from '../../domain/search/eventSearch/SearchPage';
@@ -57,11 +57,11 @@ export default function Search() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async () => {
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale);
 
     return {
       props: {
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+        ...(await serverSideTranslationsWithCommon(locale, [
           'common',
           'home',
           'event',

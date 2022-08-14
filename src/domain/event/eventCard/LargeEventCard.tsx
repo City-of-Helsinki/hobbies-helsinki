@@ -66,8 +66,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
   const eventUrl = `${getLocalizedCmsItemUrl(
     ROUTES.COURSES,
     { eventId: event.id },
-    locale,
-    router.defaultLocale as Language
+    locale
   )}${queryString}`;
 
   const showBuyButton = !eventClosed && !!offerInfoUrl && !isEventFree(event);

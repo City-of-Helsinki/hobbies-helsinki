@@ -45,8 +45,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
   const eventUrl = `${getLocalizedCmsItemUrl(
     ROUTES.COURSES,
     { eventId: event.id },
-    locale,
-    router.defaultLocale as Language
+    locale
   )}${queryString}`;
   const eventClosed = isEventClosed(event);
   const eventPriceText = getEventPrice(

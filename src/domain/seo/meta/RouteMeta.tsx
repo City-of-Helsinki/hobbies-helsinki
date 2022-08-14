@@ -6,13 +6,8 @@ import useRouter from '../../../hooks/useRouter';
 
 function getLanguageAwarePath(
   locale: string,
-  defaultLocale: string,
   path: string
 ) {
-  if (locale === defaultLocale) {
-    return path;
-  }
-
   return `/${locale}${path}`;
 }
 
@@ -21,8 +16,8 @@ type Props = {
 };
 
 function RouteMeta({ languages }: Props) {
-  const { locale, defaultLocale, asPath } = useRouter();
-  const canonical = getLanguageAwarePath(locale, defaultLocale, asPath);
+  const { locale, asPath } = useRouter();
+  const canonical = `${locale}${asPath}`;
   const currentLanguageAndLocale = languages.find(
     (language) => language.slug === locale
   )?.locale;
@@ -35,7 +30,7 @@ function RouteMeta({ languages }: Props) {
           key={language.id}
           rel="alternate"
           hrefLang={language.locale}
-          href={getLanguageAwarePath(language.slug, defaultLocale, asPath)}
+          href={`/${language.slug}${asPath}`}
         />
       ))}
       <link rel="alternate" hrefLang="x-default" href={asPath} />
