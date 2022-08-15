@@ -51,7 +51,7 @@ test.each([
   },
 ])('provides flag config $field', ({ field, envName }) => {
   // When undefined, returns false
-  process.env[envName];
+  process.env[envName] = undefined;
   expect(AppConfig[field]).toEqual(false);
 
   // When 0, returns false

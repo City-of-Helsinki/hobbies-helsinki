@@ -10,7 +10,6 @@ import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql'
 import { getEventFields } from '../../EventUtils';
 import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
-import { Language } from '../../../../types';
 import { ROUTES } from '../../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
 
@@ -30,8 +29,7 @@ const EventList: React.FC<{
       ROUTES.COURSES,
       { eventId: event.id },
       locale
-    );
-  +(search ? `?${search}` : '');
+    ) + (search ? `?${search}` : '');
 
   return (
     <ul className={styles.timeList} data-testid={id}>
