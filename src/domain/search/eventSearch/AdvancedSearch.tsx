@@ -225,6 +225,7 @@ const AdvancedSearch: React.FC<Props> = ({
   return (
     <PageSection
       korosBottom
+      korosBottomClassName={styles.searchContainerKoros}
       className={styles.searchContainer}
       data-testid={dataTestId}
     >
