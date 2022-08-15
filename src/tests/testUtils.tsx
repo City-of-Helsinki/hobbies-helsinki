@@ -13,7 +13,7 @@ type CustomRender = {
     ui: React.ReactElement,
     options?: {
       mocks?: MockedResponse[];
-      cache?: ApolloCache<{}> | InMemoryCache;
+      cache?: ApolloCache<Record<string, unknown>> | InMemoryCache;
       routes?: string | string[];
     }
   ): CustomRenderResult;

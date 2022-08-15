@@ -89,7 +89,6 @@ const queryToString = (
 
 // FIXME (partially fixed, test with search params): Does not work with article URIs
 export function stringifyUrlObject(url: UrlObject): string {
-  console.log('stringifyUrlObject',url);
   const usedQueryParts: string[] = [];
   const pathname = url.pathname
     ?.split('/')
@@ -124,7 +123,6 @@ export function stringifyUrlObject(url: UrlObject): string {
     url.search ??
     queryToString(url.query as ParsedUrlQueryInput, usedQueryParts) ??
     '';
-  console.log('stringified',`${pathname}${search}`)
   return `${pathname}${search}`;
 }
 

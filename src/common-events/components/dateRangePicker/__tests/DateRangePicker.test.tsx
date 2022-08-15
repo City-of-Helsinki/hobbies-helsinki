@@ -4,7 +4,6 @@ import { advanceTo } from 'jest-date-mock';
 import React from 'react';
 
 import {
-  actWait,
   act,
   configure,
   render,

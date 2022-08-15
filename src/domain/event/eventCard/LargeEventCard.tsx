@@ -10,6 +10,7 @@ import {
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { LinkBox } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import testImage from '../../../common-events/utils/testImage';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
@@ -30,7 +31,6 @@ import buttonStyles from '../../../common-events/components/button/button.module
 import styles from './largeEventCard.module.scss';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 

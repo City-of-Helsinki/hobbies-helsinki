@@ -14,6 +14,7 @@ import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -37,7 +38,6 @@ import getDateArray from '../../../common-events/utils/getDateArray';
 import getDomain from '../../../common/utils/getDomain';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
-import useRouter from '../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
 interface Props {

@@ -3,6 +3,7 @@ import React from 'react';
 import { scroller } from 'react-scroll';
 import { toast } from 'react-toastify';
 import qs from 'query-string';
+import { useRouter } from 'next/router';
 
 import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import SrOnly from '../../../common/components/srOnly/SrOnly';
@@ -17,7 +18,6 @@ import { getEventSearchVariables, getNextPage } from './utils';
 import { getLargeEventCardId } from '../../event/EventUtils';
 import EventList from '../../../common-events/components/eventList/EventList';
 import styles from './eventSearchPage.module.scss';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { removeQueryParamsFromRouter } from '../../../utils/routerUtils';
 

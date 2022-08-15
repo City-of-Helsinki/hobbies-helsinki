@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
+import { useRouter } from 'next/router';
 
 import { logger } from '../../../domain/logger';
-import useRouter from '../../../hooks/useRouter';
 
 function TopProgressBar() {
   const router = useRouter();

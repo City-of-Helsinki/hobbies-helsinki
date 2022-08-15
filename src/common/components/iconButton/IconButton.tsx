@@ -16,7 +16,6 @@ const IconButton: React.FC<Props> = ({
   backgroundColor = 'default',
   icon,
   size = 'default',
-  type = 'button',
   ...rest
 }) => {
   return (

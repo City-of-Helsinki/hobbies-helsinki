@@ -2,6 +2,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useLazyQuery } from '@apollo/client';
 import { Link } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import LoadingSpinner from '../../common/components/spinner/LoadingSpinner';
 import isClient from '../../common/utils/isClient';
@@ -20,7 +21,6 @@ import SimilarEvents from './similarEvents/SimilarEvents';
 import { SuperEventResponse } from './types';
 import styles from './eventPage.module.scss';
 import { ROUTES } from '../../constants';
-import useRouter from '../../hooks/useRouter';
 import useLocale from '../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 

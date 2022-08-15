@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import Keyword from '../../../common-events/components/keyword/Keyword';
 import { DATE_TYPES, ROUTES } from '../../../constants';
@@ -8,7 +9,6 @@ import { EVENT_DEFAULT_SEARCH_FILTERS } from '../../search/eventSearch/constants
 import { getEventFields } from '../EventUtils';
 import { getSearchQuery } from '../../search/eventSearch/utils';
 import scrollToTop from '../../../common-events/utils/scrollToTop';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
 

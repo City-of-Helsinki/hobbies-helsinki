@@ -7,6 +7,7 @@ import React, { FormEvent } from 'react';
 import qs, { parse } from 'query-string';
 import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import SearchLabel from '../../../common-events/components/search/searchLabel/SearchLabel';
@@ -32,7 +33,6 @@ import {
 import styles from './search.module.scss';
 import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
 import { ROUTES } from '../../../constants';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
 

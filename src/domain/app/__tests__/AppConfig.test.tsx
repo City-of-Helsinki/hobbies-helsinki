@@ -118,6 +118,7 @@ test('provides configuration for Matomo', () => {
 test('gives access to misc configs', () => {
   expect(AppConfig.locales).toMatchInlineSnapshot(`
     Array [
+      "default",
       "fi",
       "sv",
       "en",

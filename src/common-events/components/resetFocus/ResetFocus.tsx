@@ -1,7 +1,7 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import isClient from '../../../common/utils/isClient';
-import useRouter from '../../../hooks/useRouter';
 
 export const resetFocusId = 'reset-focus';
 

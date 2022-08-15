@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useRouter } from 'next/router';
 
 import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
 import { CategoryExtendedOption, Filters } from '../eventSearch/types';
@@ -8,7 +9,6 @@ import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import { Language } from '../../../types';
-import useRouter from '../../../hooks/useRouter';
 
 type SearchShortcutsProps = {
   className: string;

@@ -3,6 +3,7 @@ import { IconArrowRight } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { LinkBox } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import testImage from '../../../common-events/utils/testImage';
@@ -21,7 +22,6 @@ import { EventFields } from '../types';
 import styles from './eventCard.module.scss';
 import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 

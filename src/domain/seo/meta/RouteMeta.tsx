@@ -1,8 +1,8 @@
 import React from 'react';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 
 import { CmsLanguage } from '../../../types';
-import useRouter from '../../../hooks/useRouter';
 
 function getLanguageAwarePath(
   locale: string,
