@@ -55,11 +55,14 @@ const EventLocation: React.FC<Props> = ({ event }) => {
           showLocationName={false}
         />
       </div>
-      <SecondaryLink href={googleDirectionsLink}>
+      <SecondaryLink
+        className={styles.externalLink}
+        href={googleDirectionsLink}
+      >
         {t('event:location.directionsGoogle')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
       </SecondaryLink>
-      <SecondaryLink href={hslDirectionsLink}>
+      <SecondaryLink className={styles.externalLink} href={hslDirectionsLink}>
         {t('event:location.directionsHSL')}
         <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
       </SecondaryLink>
