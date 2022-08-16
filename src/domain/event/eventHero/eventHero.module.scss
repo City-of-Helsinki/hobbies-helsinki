@@ -22,7 +22,7 @@ $logoWidth: 5.5rem;
 
   @include respond_above(m) {
     min-height: $heroHeight;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto 2fr 1fr;
     grid-template-rows: unset;
   }
 
