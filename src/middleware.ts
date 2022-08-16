@@ -4,16 +4,17 @@ import { DEFAULT_LANGUAGE } from './constants';
 import { stringifyUrlObject } from './utils/routerUtils';
 
 const PUBLIC_FILE = /\.(.*)$/
-
 /**
  * Enforce prefix for default locale 'fi'
  * https://github.com/vercel/next.js/discussions/18419
  * @param req
  */
+
 export async function middleware(req: NextRequest) {
   if (
     req.nextUrl.pathname.startsWith('/_next') ||
-    PUBLIC_FILE.test(req.nextUrl.pathname)
+    PUBLIC_FILE.test(req.nextUrl.pathname) ||
+    req.nextUrl.pathname.includes('/api/')
   ) {
     return;
   }
