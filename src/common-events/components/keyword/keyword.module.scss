@@ -43,4 +43,12 @@
       color: var(--color-black);
     }
   }
+
+  &:hover {
+    background-color: var(--color-summer-light);
+  }
+
+  &:active {
+    background-color: var(--color-summer);
+  }
 }

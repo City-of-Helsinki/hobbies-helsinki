@@ -20,21 +20,22 @@ $logoWidth: 5.5rem;
   min-height: $heroHeight;
   position: relative;
 
-  @include respond_above(s) {
+  @include respond_above(m) {
     min-height: $heroHeight;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: auto 1fr 1fr;
     grid-template-rows: unset;
   }
 
   .backButtonWrapper {
-    padding: var(--spacing-m);
-    position: absolute;
+    padding: var(--spacing-m) var(--spacing-4-xl) var(--spacing-m) 0;
 
-    @include respond_below(s) {
+    @include respond_below(m) {
+      position: absolute;
       padding: var(--spacing-s) 0 0 var(--spacing-s);
     }
-    @include respond_above(xl) {
-      left: -90px;
+
+    button:hover {
+      outline: 2px solid var(--color-coat-of-arms);
     }
   }
 
@@ -88,7 +89,6 @@ $logoWidth: 5.5rem;
 
     .title {
       order: 3;
-      margin: 0.25rem 0 0;
       font-size: 2rem;
       line-height: 2.5rem;
       font-weight: 600;

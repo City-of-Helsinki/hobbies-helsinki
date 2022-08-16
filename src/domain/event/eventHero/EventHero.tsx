@@ -148,24 +148,24 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
                   </InfoWithIcon>
                 </Visible>
                 <Visible above="s" className={styles.start}>
-                  {superEvent?.status === 'pending' ? (
-                    <SkeletonLoader />
-                  ) : (
-                    (startTime !== eventStartTime ||
-                      endTime !== eventEndTime) && (
-                      <InfoWithIcon
-                        icon={<IconCalendarClock aria-hidden />}
-                        title={''}
-                      >
-                        {getDateRangeStr({
+                  {(startTime !== eventStartTime ||
+                    endTime !== eventEndTime) && (
+                    <InfoWithIcon
+                      icon={<IconCalendarClock aria-hidden />}
+                      title={''}
+                    >
+                      {superEvent?.status === 'pending' ? (
+                        <SkeletonLoader />
+                      ) : (
+                        getDateRangeStr({
                           start: eventStartTime || '',
                           end: eventEndTime,
                           locale,
                           includeTime: true,
                           timeAbbreviation: t('common:timeAbbreviation'),
-                        })}
-                      </InfoWithIcon>
-                    )
+                        })
+                      )}
+                    </InfoWithIcon>
                   )}
                 </Visible>
                 {eventPriceText && (
