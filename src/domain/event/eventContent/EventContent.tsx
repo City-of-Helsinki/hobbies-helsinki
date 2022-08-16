@@ -30,10 +30,8 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
     <PageSection className={styles.eventContent}>
       <ContentContainer>
         <div className={styles.contentWrapper}>
-          <div className={styles.infoColumn}>
-            <EventInfo event={event} superEvent={superEvent} />
-          </div>
-          <div className={styles.descriptionColumn}>
+          <div className={styles.leftEmpty} />
+          <div>
             {description && (
               <>
                 <h2 className={styles.descriptionTitle}>
@@ -55,16 +53,11 @@ const EventContent: React.FC<Props> = ({ event, superEvent }) => {
               </>
             )}
             <ShareLinks title={t('event:shareLinks.title')} />
-            <div
-              className={classNames(
-                styles.horizontalDivider,
-                styles.largeWhiteSpace
-              )}
-            />
             {!isInternetEvent && <EventLocation event={event} />}
           </div>
-          {/* Dummy div to keep layout consistent with EventHero */}
-          <div />
+          <div>
+            <EventInfo event={event} superEvent={superEvent} />
+          </div>
         </div>
       </ContentContainer>
     </PageSection>

@@ -7,12 +7,14 @@
   display: grid;
   grid-template-columns: 1fr;
 
-  @include respond_above(s) {
+  @include respond_above(m) {
     padding: var(--spacing-xl);
   }
 
-  @include respond_above(m) {
-    grid-template-columns: 1fr 1fr;
+  .contentWrapper {
+    & > div {
+      margin-bottom: var(--spacing-l);
+    }
   }
 
   button {
@@ -23,6 +25,11 @@
     color: var(--color-coat-of-arms-dark);
     outline: none !important;
     font-weight: 600;
+    padding: 0;
+  }
+
+  button:hover {
+    text-decoration: underline;
   }
 
   .focusVisible {
@@ -39,4 +46,5 @@
 
 .link {
   margin: var(--spacing-xs) 0;
+  padding: 0;
 }
