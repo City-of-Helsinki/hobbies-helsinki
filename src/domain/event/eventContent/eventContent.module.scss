@@ -28,13 +28,8 @@
   }
 }
 .descriptionTitle {
-  font-size: var(--description-font-size);
   font-weight: 600;
   margin: 2.25rem 0 1rem;
-
-  @include respond_above(s) {
-    font-size: var(--fontsize-heading-m);
-  }
 }
 
 .description {

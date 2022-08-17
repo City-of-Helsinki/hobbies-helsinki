@@ -106,8 +106,8 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
       : superEvent?.data?.endTime || eventEndTime;
 
   return (
-    <PageSection className={classNames(styles.heroWrapper)}>
-      <ContentContainer>
+    <PageSection className={classNames(styles.heroSection)}>
+      <ContentContainer className={styles.contentContainer}>
         <div className={styles.contentWrapper}>
           <div className={styles.backButtonWrapper}>
             <IconButton
@@ -201,11 +201,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
               </div>
               {showKeywords && (
                 <div className={styles.categoryWrapper}>
-                  <EventKeywords
-                    blackOnMobile={true}
-                    event={event}
-                    showIsFree={true}
-                  />
+                  <EventKeywords event={event} showIsFree={true} />
                 </div>
               )}
             </div>
