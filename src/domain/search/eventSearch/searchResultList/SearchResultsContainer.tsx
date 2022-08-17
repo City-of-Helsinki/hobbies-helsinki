@@ -20,11 +20,7 @@ const SearchResultsContainer: React.FC<Props> = ({
   const { t } = useTranslation('search');
 
   return (
-    <PageSection
-      korosBottom
-      korosBottomClassName={styles.korosBottom}
-      className={styles.searchResultListContainer}
-    >
+    <PageSection className={styles.searchResultListContainer}>
       <ContentContainer>
         <h2 className={styles.count}>
           {t('textFoundEvents', {
