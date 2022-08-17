@@ -3,8 +3,8 @@ import { sleep } from 'k6';
 import http from 'k6/http';
 
 export const options = {
-  duration: '5m',
-  vus: 50,
+  duration: '10m',
+  vus: 20,
   //  vus: 1,
   thresholds: {
     //avg is around ?800ms? on https://harrastukset.test.kuva.hel.ninja
