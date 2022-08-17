@@ -1,21 +1,15 @@
 @import 'breakpoints';
 
-$heroHeight: 34.5rem;
-$heroHeightDesktop: 39.3125rem;
-
 .eventClosedHero {
-  background: var(--color-copper-light);
-  min-height: $heroHeight;
-  margin-bottom: -12rem;
+  background: var(--color-fog-medium-light);
+  height: 100%;
   padding: 5.625rem var(--spacing-m) 10rem;
   text-align: center;
   box-sizing: border-box;
 
   @include respond_above(s) {
-    min-height: $heroHeightDesktop;
     padding-top: 10.375rem;
-    padding-bottom: 14rem;
-    margin-bottom: -14rem;
+    padding-bottom: 10.375rem;
   }
 
   h1 {
