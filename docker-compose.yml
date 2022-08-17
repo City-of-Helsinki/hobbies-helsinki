@@ -27,9 +27,6 @@ services:
         - NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE=${NEXT_PUBLIC_SENTRY_TRACE_SAMPLE_RATE}
         - SENTRY_AUTH_TOKEN=${SENTRY_AUTH_TOKEN}
         - NEXT_PUBLIC_DEBUG=${NEXT_PUBLIC_DEBUG}
-    volumes:
-      - '.:/app'
-      - '/app/node_modules'
     ports:
       - '3000:3000'
     # At the time of writing this, .env.local is not working. Env variables have to be in .env file
