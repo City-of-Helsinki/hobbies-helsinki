@@ -3,27 +3,36 @@ import { NextRequest, NextResponse } from 'next/server'
 import { DEFAULT_LANGUAGE } from './constants';
 import { stringifyUrlObject } from './utils/routerUtils';
 
-const PUBLIC_FILE = /\.(.*)$/
+const requestType = {
+  isStaticFile: (req: NextRequest) => req.nextUrl.pathname.startsWith('/_next'),
+  isPagesFolderApi: (req: NextRequest) => req.nextUrl.pathname.includes('/api/'),
+  isPublicFile: (req: NextRequest) => /\.(.*)$/.test(req.nextUrl.pathname)
+}
+
 /**
  * Enforce prefix for default locale 'fi'
  * https://github.com/vercel/next.js/discussions/18419
  * @param req
  */
-
-export async function middleware(req: NextRequest) {
-  if (
-    req.nextUrl.pathname.startsWith('/_next') ||
-    PUBLIC_FILE.test(req.nextUrl.pathname) ||
-    req.nextUrl.pathname.includes('/api/')
-  ) {
-    return;
-  }
+const prefixDefaultLocale = async (req: NextRequest) => {
   // stringify and map dynamic paths to segmented, ie: /venues/:id => /venues/[id]
   const path = stringifyUrlObject(req.nextUrl);
+
   if (req.nextUrl.locale === 'default') {
     return NextResponse.redirect(new URL(`/${DEFAULT_LANGUAGE}${path}`, req.url));
   }
   if (!path.includes(req.nextUrl.pathname)) {
     return NextResponse.redirect(new URL(`/${req.nextUrl.locale}${path}`, req.url));
   }
+}
+
+export async function middleware(req: NextRequest) {
+  if (
+    requestType.isStaticFile(req) ||
+    requestType.isPagesFolderApi(req) ||
+    requestType.isPublicFile(req)
+  ) {
+    return;
+  }
+  return prefixDefaultLocale(req);
 }
