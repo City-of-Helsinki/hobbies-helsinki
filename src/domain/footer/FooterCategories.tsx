@@ -1,10 +1,10 @@
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
+import { useRouter } from 'next/router';
 
 import CategoryFilter from '../../common-events/components/category/CategoryFilter';
 import { ROUTES } from '../../constants';
 import useLocale from '../../hooks/useLocale';
-import useRouter from '../../hooks/useRouter';
 import { Language } from '../../types';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 import {
@@ -27,8 +27,7 @@ const FooterCategories: FunctionComponent = () => {
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},
-      locale,
-      router.defaultLocale as Language
+      locale
     )}${getSearchQuery({
       ...defaultSearchFiltersMap[ROUTES.SEARCH],
       categories: [category.value],

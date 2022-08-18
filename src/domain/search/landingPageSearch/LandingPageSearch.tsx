@@ -1,5 +1,6 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { useRouter } from 'next/router';
 
 import { AutosuggestMenuOption } from '../../../common-events/types';
 import {
@@ -16,7 +17,6 @@ import {
   getI18nPath,
   getParsedUrlQueryInput,
 } from '../../../utils/routerUtils';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 
 const Search: React.FC = () => {

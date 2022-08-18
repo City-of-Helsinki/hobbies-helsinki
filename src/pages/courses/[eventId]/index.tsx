@@ -3,7 +3,6 @@ import React from 'react';
 import { Page as RHHCPage } from 'react-helsinki-headless-cms';
 
 import Navigation from '../../../common-events/components/navigation/Navigation';
-import { DEFAULT_LANGUAGE } from '../../../constants';
 import AppConfig from '../../../domain/app/AppConfig';
 import getHobbiesStaticProps from '../../../domain/app/getHobbiesStaticProps';
 import EventPageContainer from '../../../domain/event/EventPageContainer';
@@ -48,7 +47,7 @@ export async function getStaticPaths() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ eventsClient }) => {
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale);
     const { data: eventData, loading } = await eventsClient.query<
       EventDetailsQuery,
       EventDetailsQueryVariables
@@ -66,7 +65,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
       props: {
         event: event,
         loading: loading,
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+        ...(await serverSideTranslationsWithCommon(locale, [
           'common',
           'home',
           'search',

@@ -58,32 +58,28 @@ export default function useRHHCConfig(
         return getLocalizedCmsItemUrl(
           ROUTES.ARTICLES,
           { slug: uri.replace(/^\//, '') },
-          locale,
-          router.defaultLocale as Language
+          locale
         );
       }
       if (type === ModuleItemTypeEnum.Page) {
         return getLocalizedCmsItemUrl(
           ROUTES.PAGES,
           { slug: uri.replace(/^\//, '') },
-          locale,
-          router.defaultLocale as Language
+          locale
         );
       }
       if (type === ModuleItemTypeEnum.Event) {
         return getLocalizedCmsItemUrl(
           ROUTES.COURSES,
           { eventId: uri.replace(/^\//, '') },
-          locale,
-          router.defaultLocale as Language
+          locale
         );
       }
       //TODO: test the default case
       return getLocalizedCmsItemUrl(
         link,
         {},
-        locale,
-        router.defaultLocale as Language
+        locale
       );
     };
     return {
@@ -125,6 +121,6 @@ export default function useRHHCConfig(
       },
       internalHrefOrigins,
     } as Config;
-  }, [router.defaultLocale, t, cmsApolloClient, eventsApolloClient, locale]);
+  }, [t, cmsApolloClient, eventsApolloClient, locale]);
   return rhhcConfig;
 }

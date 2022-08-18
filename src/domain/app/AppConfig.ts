@@ -38,10 +38,6 @@ class AppConfig {
     return i18n.locales;
   }
 
-  static get defaultLocale() {
-    return i18n.defaultLocale;
-  }
-
   static get allowUnauthorizedRequests() {
     return Boolean(
       parseEnvValue(process.env.NEXT_PUBLIC_ALLOW_UNAUTHORIZED_REQUESTS)

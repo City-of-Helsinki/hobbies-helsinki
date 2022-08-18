@@ -2,6 +2,7 @@ import { IconFaceSmile, IconLayers } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import styles from './eventInfo.module.scss';
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
@@ -12,7 +13,6 @@ import {
 } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields } from '../EventUtils';
 import { ROUTES } from '../../../constants';
-import useRouter from '../../../hooks/useRouter';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import { Language } from '../../../types';
 import useLocale from '../../../hooks/useLocale';
@@ -59,7 +59,6 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
                     ROUTES.SEARCH,
                     {},
                     locale,
-                    router.defaultLocale as Language
                   )}?publisher=${publisher}`}
                 >
                   {t(`event:info.linkSearchByPublisher`)}

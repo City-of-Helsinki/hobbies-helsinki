@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import qs, { parse } from 'query-string';
 import { IconCrossCircleFill } from 'hds-react';
+import { useRouter } from 'next/router';
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
 import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
@@ -20,7 +21,6 @@ import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
 import PublisherFilter from './PublisherFilter';
 import { ROUTES } from '../../../../constants';
-import useRouter from '../../../../hooks/useRouter';
 import { getI18nPath } from '../../../../utils/routerUtils';
 import useLocale from '../../../../hooks/useLocale';
 

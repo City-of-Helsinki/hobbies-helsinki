@@ -3,8 +3,9 @@ import { MockedResponse } from '@apollo/client/testing';
 import { act, fireEvent, render, RenderResult } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import wait from 'waait';
-import { createEventsApolloCache } from '../domain/clients/eventsApolloClient';
 import Router, { NextRouter } from 'next/router';
+
+import { createEventsApolloCache } from '../domain/clients/eventsApolloClient';
 import TestProviders from './TestProviders';
 
 type CustomRender = {
@@ -12,7 +13,7 @@ type CustomRender = {
     ui: React.ReactElement,
     options?: {
       mocks?: MockedResponse[];
-      cache?: ApolloCache<{}> | InMemoryCache;
+      cache?: ApolloCache<Record<string, unknown>> | InMemoryCache;
       routes?: string | string[];
     }
   ): CustomRenderResult;
@@ -47,7 +48,6 @@ const customRender: CustomRender = (
   }
 
   //set locales so that the routing tests for default locale worked
-  Router.defaultLocale = 'fi';
   Router.locales = ['fi', 'en', 'sv'];
 
   const renderResult = render(ui, {

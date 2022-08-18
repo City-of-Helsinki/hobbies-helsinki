@@ -1,8 +1,8 @@
 import { advanceTo, clear } from 'jest-date-mock';
 import capitalize from 'lodash/capitalize';
 import * as React from 'react';
-import { translations } from '../../../../tests/initI18n';
 
+import { translations } from '../../../../tests/initI18n';
 import {
   fakeEvent,
   fakeKeyword,

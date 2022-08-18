@@ -51,7 +51,7 @@ test.each([
   },
 ])('provides flag config $field', ({ field, envName }) => {
   // When undefined, returns false
-  process.env[envName];
+  process.env[envName] = undefined;
   expect(AppConfig[field]).toEqual(false);
 
   // When 0, returns false
@@ -118,11 +118,11 @@ test('provides configuration for Matomo', () => {
 test('gives access to misc configs', () => {
   expect(AppConfig.locales).toMatchInlineSnapshot(`
     Array [
+      "default",
       "fi",
       "sv",
       "en",
     ]
   `);
-  expect(AppConfig.defaultLocale).toMatchInlineSnapshot(`"fi"`);
   expect(AppConfig.supportedEventTypes).toEqual([EventTypeId.Course]);
 });

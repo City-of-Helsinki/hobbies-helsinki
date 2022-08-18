@@ -3,16 +3,16 @@ import { GetStaticPropsContext } from 'next';
 import { useEffect } from 'react';
 import { Page as HCRCApolloPage } from 'react-helsinki-headless-cms/apollo';
 import { ApolloProvider } from '@apollo/client';
+import { useRouter } from 'next/router';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { DEFAULT_LANGUAGE, ROUTES } from '../../constants';
+import { ROUTES } from '../../constants';
 import AdvancedSearch from '../../domain/search/eventSearch/AdvancedSearch';
 import Navigation from '../../common-events/components/navigation/Navigation';
 import SearchPage from '../../domain/search/eventSearch/SearchPage';
 import FooterSection from '../../domain/footer/Footer';
 import useEventsApolloClientFromConfig from '../../common-events/hooks/useEventsApolloClientFromConfig';
-import useRouter from '../../hooks/useRouter';
 import { getLocaleOrError } from '../../utils/routerUtils';
 
 export default function Search() {
@@ -57,11 +57,11 @@ export default function Search() {
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async () => {
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale);
 
     return {
       props: {
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+        ...(await serverSideTranslationsWithCommon(locale, [
           'common',
           'home',
           'event',

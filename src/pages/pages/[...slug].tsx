@@ -22,7 +22,6 @@ import {
   getDefaultCollections,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
-import { DEFAULT_LANGUAGE } from '../../constants';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -94,12 +93,12 @@ export async function getStaticProps(
         revalidate: true,
       };
     }
-    const locale = context.locale ?? context.defaultLocale ?? DEFAULT_LANGUAGE;
+    const locale = getLocaleOrError(context.locale);
 
     return {
       props: {
         initialApolloState: cmsClient.cache.extract(),
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+        ...(await serverSideTranslationsWithCommon(locale, [
           'cms',
         ])),
         page,

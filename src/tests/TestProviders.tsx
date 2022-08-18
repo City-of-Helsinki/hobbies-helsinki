@@ -27,20 +27,20 @@ import { DEFAULT_LANGUAGE, ROUTES } from '../constants';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
-import { Language } from '../types';
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 
 const mockRouter: Partial<NextRouter> = {
   locale: 'fi',
   defaultLocale: 'fi',
+  prefetch: () => Promise.resolve()
 };
 
 type Props = {
   mocks?: ReadonlyArray<MockedResponse>;
   children: React.ReactNode;
   router: NextRouter;
-  cache?: ApolloCache<{}> | InMemoryCache;
+  cache?: ApolloCache<Record<string, unknown>> | InMemoryCache;
 };
 
 function TestProviders({ mocks, children, router, cache }: Props) {
@@ -102,32 +102,28 @@ function getRHHCConfig(router: NextRouter) {
       return getLocalizedCmsItemUrl(
         ROUTES.ARTICLES,
         { slug: uri.replace(/^\//, '') },
-        locale,
-        router.defaultLocale as Language
+        locale
       );
     }
     if (type === ModuleItemTypeEnum.Page) {
       return getLocalizedCmsItemUrl(
         ROUTES.PAGES,
         { slug: uri.replace(/^\//, '') },
-        locale,
-        router.defaultLocale as Language
+        locale
       );
     }
     if (type === ModuleItemTypeEnum.Event) {
       return getLocalizedCmsItemUrl(
         ROUTES.COURSES,
         { eventId: uri.replace(/^\//, '') },
-        locale,
-        router.defaultLocale as Language
+        locale
       );
     }
     //TODO: test the default case
     return getLocalizedCmsItemUrl(
       link,
       {},
-      locale,
-      router.defaultLocale as Language
+      locale
     );
   };
 
@@ -135,6 +131,7 @@ function getRHHCConfig(router: NextRouter) {
     ...rhhcDefaultConfig,
     siteName: 'appName',
     currentLanguageCode: locale.toUpperCase(),
+    // eslint-disable-next-line react-hooks/rules-of-hooks
     apolloClient: useApolloClient(createCmsApolloClient()),
     components: {
       ...rhhcDefaultConfig.components,

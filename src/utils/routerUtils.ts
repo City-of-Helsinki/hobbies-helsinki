@@ -7,6 +7,7 @@ import { NextRouter } from 'next/router';
 import i18nRoutes from '../../i18nRoutes.config';
 import { Language } from '../types';
 import AppConfig from '../domain/app/AppConfig';
+import { DEFAULT_LANGUAGE } from '../constants';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]
@@ -122,12 +123,11 @@ export function stringifyUrlObject(url: UrlObject): string {
     url.search ??
     queryToString(url.query as ParsedUrlQueryInput, usedQueryParts) ??
     '';
-
   return `${pathname}${search}`;
 }
 
-export function getLocaleOrError(locale: string): Language {
-  if (!AppConfig.locales.includes(locale)) {
+export function getLocaleOrError(locale: string | undefined): Language {
+  if (typeof locale !== 'string' || !AppConfig.locales.includes(locale)) {
     throw Error(`Locale ${locale} is not supported`);
   }
 
@@ -171,10 +171,9 @@ export function getParsedUrlQueryInput(search: string) {
 export function getLocalizedCmsItemUrl(
   pathname: string,
   query: ParsedUrlQuery,
-  locale: Language,
-  defaultLocale: Language
+  locale: Language
 ): string {
-  return `${locale !== defaultLocale ? `/${locale}` : ''}${stringifyUrlObject({
+  return `${locale !== DEFAULT_LANGUAGE ? `/${locale}` : ''}${stringifyUrlObject({
     query: query,
     pathname: getI18nPath(pathname, locale),
   })}`;

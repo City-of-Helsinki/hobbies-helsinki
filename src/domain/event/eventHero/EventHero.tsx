@@ -14,6 +14,7 @@ import React from 'react';
 import { parse } from 'query-string';
 import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
+import { useRouter } from 'next/router';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
@@ -32,7 +33,6 @@ import {
 import { getEventFields, getEventPrice } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventHero.module.scss';
-import useRouter from '../../../hooks/useRouter';
 import useLocale from '../../../hooks/useLocale';
 
 export interface Props {
