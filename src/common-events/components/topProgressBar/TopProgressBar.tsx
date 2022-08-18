@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
 import NProgress from 'nprogress';
-import { useRouter } from 'next/router';
 
 import { logger } from '../../../domain/logger';
+import useRouterFromConfig from '../../hooks/useRouterFromConfig';
 
 function TopProgressBar() {
-  const router = useRouter();
+  const router = useRouterFromConfig();
 
   const handleStart = (url: string) => {
     logger.debug(`Started navigation to page: ${url}`);

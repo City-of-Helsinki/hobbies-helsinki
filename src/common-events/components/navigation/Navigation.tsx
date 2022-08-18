@@ -1,5 +1,4 @@
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
-import { useRouter } from 'next/router';
 
 import { DEFAULT_HEADER_MENU_NAME } from '../../../constants';
 import { Language } from '../../../types';
@@ -8,9 +7,10 @@ import {
   getLocalizedCmsItemUrl,
 } from '../../../utils/routerUtils';
 import useLocale from '../../hooks/useLocale';
+import useRouterFromConfig from '../../hooks/useRouterFromConfig';
 
 export default function Navigation() {
-  const router = useRouter();
+  const router = useRouterFromConfig();
   const locale = useLocale();
   const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale];
   const currentPage = router.pathname;
