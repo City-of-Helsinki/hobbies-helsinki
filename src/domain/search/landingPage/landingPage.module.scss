@@ -13,25 +13,29 @@ $mainBackground: var(--color-fog-medium-light);
       min-height: 60vh;
     }
 
+    .highhighlight {
+      position: relative;
+    }
+
     .sectionSearch {
       background-color: $mainBackground;
-
       .sectionSearchContent {
+        top: -5.5em;
         position: relative;
-        top: -5.5rem;
+        height: calc(100% - 5.5rem);
       }
     }
 
     .sectionCollections {
-      padding-bottom: 5.5rem;
+      top: -4.5rem;
     }
 
     .korosBottomHero {
       fill: $mainBackground !important;
     }
-
-    .korosBottomSearch {
-      fill: var(--color-white) !important;
-    }
   }
+}
+
+.korosTopCollections {
+  fill: var(--color-fog-medium-light) !important;
 }

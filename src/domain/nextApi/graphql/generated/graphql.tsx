@@ -865,11 +865,11 @@ export const EventDetailsDocument = gql`
  * });
  */
 export function useEventDetailsQuery(baseOptions: Apollo.QueryHookOptions<EventDetailsQuery, EventDetailsQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<EventDetailsQuery, EventDetailsQueryVariables>(EventDetailsDocument, options);
       }
 export function useEventDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EventDetailsQuery, EventDetailsQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<EventDetailsQuery, EventDetailsQueryVariables>(EventDetailsDocument, options);
         }
 export type EventDetailsQueryHookResult = ReturnType<typeof useEventDetailsQuery>;
@@ -900,11 +900,11 @@ export const KeywordDetailsDocument = gql`
  * });
  */
 export function useKeywordDetailsQuery(baseOptions: Apollo.QueryHookOptions<KeywordDetailsQuery, KeywordDetailsQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<KeywordDetailsQuery, KeywordDetailsQueryVariables>(KeywordDetailsDocument, options);
       }
 export function useKeywordDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<KeywordDetailsQuery, KeywordDetailsQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<KeywordDetailsQuery, KeywordDetailsQueryVariables>(KeywordDetailsDocument, options);
         }
 export type KeywordDetailsQueryHookResult = ReturnType<typeof useKeywordDetailsQuery>;
@@ -956,11 +956,11 @@ export const KeywordListDocument = gql`
  * });
  */
 export function useKeywordListQuery(baseOptions?: Apollo.QueryHookOptions<KeywordListQuery, KeywordListQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<KeywordListQuery, KeywordListQueryVariables>(KeywordListDocument, options);
       }
 export function useKeywordListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<KeywordListQuery, KeywordListQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<KeywordListQuery, KeywordListQueryVariables>(KeywordListDocument, options);
         }
 export type KeywordListQueryHookResult = ReturnType<typeof useKeywordListQuery>;
@@ -1002,11 +1002,11 @@ export const NeighborhoodListDocument = gql`
  * });
  */
 export function useNeighborhoodListQuery(baseOptions?: Apollo.QueryHookOptions<NeighborhoodListQuery, NeighborhoodListQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<NeighborhoodListQuery, NeighborhoodListQueryVariables>(NeighborhoodListDocument, options);
       }
 export function useNeighborhoodListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<NeighborhoodListQuery, NeighborhoodListQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<NeighborhoodListQuery, NeighborhoodListQueryVariables>(NeighborhoodListDocument, options);
         }
 export type NeighborhoodListQueryHookResult = ReturnType<typeof useNeighborhoodListQuery>;
@@ -1037,11 +1037,11 @@ export const OrganizationDetailsDocument = gql`
  * });
  */
 export function useOrganizationDetailsQuery(baseOptions: Apollo.QueryHookOptions<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>(OrganizationDetailsDocument, options);
       }
 export function useOrganizationDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<OrganizationDetailsQuery, OrganizationDetailsQueryVariables>(OrganizationDetailsDocument, options);
         }
 export type OrganizationDetailsQueryHookResult = ReturnType<typeof useOrganizationDetailsQuery>;
@@ -1072,11 +1072,11 @@ export const PlaceDetailsDocument = gql`
  * });
  */
 export function usePlaceDetailsQuery(baseOptions: Apollo.QueryHookOptions<PlaceDetailsQuery, PlaceDetailsQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<PlaceDetailsQuery, PlaceDetailsQueryVariables>(PlaceDetailsDocument, options);
       }
 export function usePlaceDetailsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PlaceDetailsQuery, PlaceDetailsQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PlaceDetailsQuery, PlaceDetailsQueryVariables>(PlaceDetailsDocument, options);
         }
 export type PlaceDetailsQueryHookResult = ReturnType<typeof usePlaceDetailsQuery>;
@@ -1130,11 +1130,11 @@ export const PlaceListDocument = gql`
  * });
  */
 export function usePlaceListQuery(baseOptions?: Apollo.QueryHookOptions<PlaceListQuery, PlaceListQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<PlaceListQuery, PlaceListQueryVariables>(PlaceListDocument, options);
       }
 export function usePlaceListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<PlaceListQuery, PlaceListQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<PlaceListQuery, PlaceListQueryVariables>(PlaceListDocument, options);
         }
 export type PlaceListQueryHookResult = ReturnType<typeof usePlaceListQuery>;
@@ -1236,11 +1236,11 @@ export const EventListDocument = gql`
  * });
  */
 export function useEventListQuery(baseOptions?: Apollo.QueryHookOptions<EventListQuery, EventListQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<EventListQuery, EventListQueryVariables>(EventListDocument, options);
       }
 export function useEventListLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EventListQuery, EventListQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<EventListQuery, EventListQueryVariables>(EventListDocument, options);
         }
 export type EventListQueryHookResult = ReturnType<typeof useEventListQuery>;
@@ -1294,11 +1294,11 @@ export const EventsByIdsDocument = gql`
  * });
  */
 export function useEventsByIdsQuery(baseOptions: Apollo.QueryHookOptions<EventsByIdsQuery, EventsByIdsQueryVariables>) {
-        const options = { ...defaultOptions, ...baseOptions }
+        const options = {...defaultOptions, ...baseOptions}
         return Apollo.useQuery<EventsByIdsQuery, EventsByIdsQueryVariables>(EventsByIdsDocument, options);
       }
 export function useEventsByIdsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<EventsByIdsQuery, EventsByIdsQueryVariables>) {
-          const options = { ...defaultOptions, ...baseOptions }
+          const options = {...defaultOptions, ...baseOptions}
           return Apollo.useLazyQuery<EventsByIdsQuery, EventsByIdsQueryVariables>(EventsByIdsDocument, options);
         }
 export type EventsByIdsQueryHookResult = ReturnType<typeof useEventsByIdsQuery>;

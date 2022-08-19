@@ -86,10 +86,10 @@ export default function LandingPageSearchForm({
           </div>
           <div className={styles.buttonWrapper}>
             <Button
+              theme="coat"
               fullWidth={true}
               iconLeft={<IconSearch />}
               onClick={handleSubmit}
-              variant="success"
             >
               {t('eventSearch.buttonSearch')}
             </Button>
