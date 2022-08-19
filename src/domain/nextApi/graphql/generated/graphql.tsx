@@ -425,6 +425,8 @@ export type QueryEventListArgs = {
   allOngoing?: InputMaybe<Scalars['Boolean']>;
   allOngoingAnd?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   allOngoingOr?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
+  audienceMaxAgeLt?: InputMaybe<Scalars['String']>;
+  audienceMinAgeGt?: InputMaybe<Scalars['String']>;
   combinedText?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   division?: InputMaybe<Array<InputMaybe<Scalars['String']>>>;
   end?: InputMaybe<Scalars['String']>;
@@ -637,6 +639,8 @@ export type PlaceListQueryVariables = Exact<{
 export type PlaceListQuery = { __typename?: 'Query', placeList: { __typename?: 'PlaceListResponse', meta: { __typename?: 'Meta', count: number, next?: string | null, previous?: string | null }, data: Array<{ __typename?: 'Place', id?: string | null, hasUpcomingEvents?: boolean | null, internalId: string, email?: string | null, postalCode?: string | null, divisions?: Array<{ __typename?: 'Division', type: string, name?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null }> | null, infoUrl?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, name?: { __typename?: 'LocalizedObject', fi?: string | null, en?: string | null, sv?: string | null } | null, addressLocality?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, streetAddress?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null, position?: { __typename?: 'PlacePosition', coordinates: Array<number> } | null, telephone?: { __typename?: 'LocalizedObject', fi?: string | null, sv?: string | null, en?: string | null } | null }> } };
 
 export type EventListQueryVariables = Exact<{
+  audienceMaxAgeLt?: InputMaybe<Scalars['String']>;
+  audienceMinAgeGt?: InputMaybe<Scalars['String']>;
   eventType?: InputMaybe<Array<InputMaybe<EventTypeId>> | InputMaybe<EventTypeId>>;
   internetBased?: InputMaybe<Scalars['Boolean']>;
   suitableFor?: InputMaybe<Array<InputMaybe<Scalars['Int']>> | InputMaybe<Scalars['Int']>>;
@@ -1141,8 +1145,10 @@ export type PlaceListQueryHookResult = ReturnType<typeof usePlaceListQuery>;
 export type PlaceListLazyQueryHookResult = ReturnType<typeof usePlaceListLazyQuery>;
 export type PlaceListQueryResult = Apollo.QueryResult<PlaceListQuery, PlaceListQueryVariables>;
 export const EventListDocument = gql`
-    query EventList($eventType: [EventTypeId], $internetBased: Boolean, $suitableFor: [Int], $allOngoing: Boolean, $allOngoingAnd: [String], $division: [String], $end: String, $endsAfter: String, $endsBefore: String, $inLanguage: String, $include: [String], $isFree: Boolean, $keyword: [String], $keywordAnd: [String], $keywordOrSet1: [String], $keywordOrSet2: [String], $keywordOrSet3: [String], $keywordNot: [String], $language: String, $localOngoingAnd: [String], $location: [String], $page: Int, $pageSize: Int, $publisher: ID, $sort: String, $start: String, $startsAfter: String, $startsBefore: String, $superEvent: ID, $superEventType: [String], $text: String, $translation: String) {
+    query EventList($audienceMaxAgeLt: String, $audienceMinAgeGt: String, $eventType: [EventTypeId], $internetBased: Boolean, $suitableFor: [Int], $allOngoing: Boolean, $allOngoingAnd: [String], $division: [String], $end: String, $endsAfter: String, $endsBefore: String, $inLanguage: String, $include: [String], $isFree: Boolean, $keyword: [String], $keywordAnd: [String], $keywordOrSet1: [String], $keywordOrSet2: [String], $keywordOrSet3: [String], $keywordNot: [String], $language: String, $localOngoingAnd: [String], $location: [String], $page: Int, $pageSize: Int, $publisher: ID, $sort: String, $start: String, $startsAfter: String, $startsBefore: String, $superEvent: ID, $superEventType: [String], $text: String, $translation: String) {
   eventList(
+    audienceMaxAgeLt: $audienceMaxAgeLt
+    audienceMinAgeGt: $audienceMinAgeGt
     eventType: $eventType
     internetBased: $internetBased
     suitableFor: $suitableFor
@@ -1200,6 +1206,8 @@ export const EventListDocument = gql`
  * @example
  * const { data, loading, error } = useEventListQuery({
  *   variables: {
+ *      audienceMaxAgeLt: // value for 'audienceMaxAgeLt'
+ *      audienceMinAgeGt: // value for 'audienceMinAgeGt'
  *      eventType: // value for 'eventType'
  *      internetBased: // value for 'internetBased'
  *      suitableFor: // value for 'suitableFor'
