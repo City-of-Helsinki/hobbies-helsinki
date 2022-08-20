@@ -25,7 +25,6 @@ import {
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 import KorosWrapper from '../../common/components/korosWrapper/KorosWrapper';
-import { DEFAULT_LANGUAGE } from '../../constants';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -102,14 +101,12 @@ export async function getStaticProps(
         revalidate: true,
       };
     }
-    const locale = getLocaleOrError(context.locale)
+    const locale = getLocaleOrError(context.locale);
 
     return {
       props: {
         initialApolloState: cmsClient.cache.extract(),
-        ...(await serverSideTranslationsWithCommon(locale, [
-          'cms',
-        ])),
+        ...(await serverSideTranslationsWithCommon(locale, ['cms'])),
         article,
         breadcrumbs,
         collections: getCollections(article.modules ?? []),
