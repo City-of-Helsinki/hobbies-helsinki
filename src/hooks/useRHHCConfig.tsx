@@ -38,7 +38,7 @@ export default function useRHHCConfig(
       LINKEDEVENTS_API_EVENT_ENDPOINT,
     ];
     const getIsHrefExternal = (href: string) => {
-      if (href.startsWith('/')) return false;
+      if (href?.startsWith('/')) return false;
       if (!internalHrefOrigins.some((origin) => href?.includes(origin))) {
         return true;
       }
@@ -76,11 +76,7 @@ export default function useRHHCConfig(
         );
       }
       //TODO: test the default case
-      return getLocalizedCmsItemUrl(
-        link,
-        {},
-        locale
-      );
+      return getLocalizedCmsItemUrl(link, {}, locale);
     };
     return {
       ...rhhcDefaultConfig,
