@@ -38,6 +38,18 @@ class AppConfig {
     return i18n.locales;
   }
 
+  static get dateFormat() {
+    return 'dd.MM.yyyy';
+  }
+
+  static get shortDatetimeFormat() {
+    return 'dd.MM.yyyy HH:mm';
+  }
+
+  static get datetimeFormat() {
+    return 'dd.MM.yyyy HH:mm:ss';
+  }
+
   static get allowUnauthorizedRequests() {
     return Boolean(
       parseEnvValue(process.env.NEXT_PUBLIC_ALLOW_UNAUTHORIZED_REQUESTS)
