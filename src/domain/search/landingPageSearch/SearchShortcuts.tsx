@@ -1,6 +1,5 @@
 import React from 'react';
 import classNames from 'classnames';
-import { useRouter } from 'next/router';
 
 import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
 import { CategoryExtendedOption, Filters } from '../eventSearch/types';

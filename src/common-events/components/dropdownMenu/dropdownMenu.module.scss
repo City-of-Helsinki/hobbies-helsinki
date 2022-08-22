@@ -34,6 +34,11 @@
     padding: 1rem;
     color: var(--color-black-50);
 
+    &:hover {
+      color: var(--color-black);
+      text-decoration: underline;
+    }
+
     &:focus {
       outline: 2px solid var(--color-black);
       outline-offset: 0;
