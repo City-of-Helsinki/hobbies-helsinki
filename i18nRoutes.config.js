@@ -7,6 +7,10 @@ const i18nRoutes = {
     { source: '/kurssit/:eventId', locale: 'fi' },
     { source: '/kurser/:eventId', locale: 'sv' },
   ],
+  '/articles': [
+    { source: '/artikkelit', locale: 'fi' },
+    { source: '/artiklar', locale: 'sv' },
+  ],
   '/articles/:slug*': [
     { source: '/artikkelit/:slug*', locale: 'fi' },
     { source: '/artiklar/:slug*', locale: 'sv' },
