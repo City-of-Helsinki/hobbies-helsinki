@@ -35,7 +35,7 @@ export default function useRHHCConfig(
       LINKEDEVENTS_API_EVENT_ENDPOINT,
     ];
     const getIsHrefExternal = (href: string) => {
-      if (href.startsWith('/')) return false;
+      if (href?.startsWith('/')) return false;
       if (!internalHrefOrigins.some((origin) => href?.includes(origin))) {
         return true;
       }
