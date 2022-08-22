@@ -1,3 +1,5 @@
+import format from 'date-fns/format';
+import { CollectionItemType } from 'react-helsinki-headless-cms';
 import {
   ArticleType,
   Card,
@@ -19,6 +21,7 @@ import {
 } from 'react-helsinki-headless-cms';
 
 import { DEFAULT_LANGUAGE } from '../../../constants';
+import AppConfig from '../../../domain/app/AppConfig';
 import { Language } from '../../../types';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
@@ -80,29 +83,51 @@ export const getEventPlaceholderImage = (id: string): string => {
   return EVENT_PLACEHOLDER_IMAGES[index];
 };
 
-export function getGeneralCollectionCards(
-  collection: GeneralCollectionType,
+export function _getArticlePageCardProps(
+  item: ArticleType,
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
-  locale = 'fi'
+  defaultImageUrl: string
+): CardProps {
+  return {
+    ...getArticlePageCardProps(item, defaultImageUrl),
+    subTitle: item?.date
+      ? format(new Date(item.date), AppConfig.dateFormat)
+      : '',
+    url: getRoutedInternalHref(
+      item?.link ?? item?.uri,
+      ModuleItemTypeEnum.Article
+    ),
+  };
+}
+
+export function _getCmsPageCardProps(
+  item: PageType,
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
+  defaultImageUrl: string
+): CardProps {
+  return {
+    ...getArticlePageCardProps(item, defaultImageUrl),
+    url: getRoutedInternalHref(
+      item?.link ?? item?.uri,
+      ModuleItemTypeEnum.Page
+    ),
+  };
+}
+
+export function _collectGeneralCards(
+  items: CollectionItemType[],
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
+  defaultImageUrl: string
 ): CardProps[] {
-  const defaultImageUrl = getEventPlaceholderImage('');
-  return collection.items.reduce((result: CardProps[], item) => {
+  return items.reduce((result: CardProps[], item) => {
     if (isArticleType(item)) {
-      result.push({
-        ...getArticlePageCardProps(item, defaultImageUrl),
-        url: getRoutedInternalHref(
-          (item as ArticleType)?.link,
-          ModuleItemTypeEnum.Article
-        ),
-      });
+      result.push(
+        _getArticlePageCardProps(item, getRoutedInternalHref, defaultImageUrl)
+      );
     } else if (isPageType(item)) {
-      result.push({
-        ...getArticlePageCardProps(item, defaultImageUrl),
-        url: getRoutedInternalHref(
-          (item as PageType)?.link,
-          ModuleItemTypeEnum.Page
-        ),
-      });
+      result.push(
+        _getCmsPageCardProps(item, getRoutedInternalHref, defaultImageUrl)
+      );
     }
     // NOTE: Event type is not a general type
     // else if (isEventType(item)) {
@@ -113,6 +138,19 @@ export function getGeneralCollectionCards(
     // }
     return result;
   }, []);
+}
+
+export function getGeneralCollectionCards(
+  collection: GeneralCollectionType,
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
+  locale = 'fi'
+): CardProps[] {
+  const defaultImageUrl = getEventPlaceholderImage('');
+  return _collectGeneralCards(
+    collection.items,
+    getRoutedInternalHref,
+    defaultImageUrl
+  );
 }
 
 export const getDefaultCollections = (

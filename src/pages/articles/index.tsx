@@ -10,8 +10,10 @@ import {
   LargeCard,
   SearchPageContent,
   ArticleType,
+  useConfig,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
+import { ModuleItemTypeEnum } from 'react-helsinki-headless-cms';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -21,6 +23,11 @@ import FooterSection from '../../domain/footer/Footer';
 import { getLocaleOrError } from '../../utils/routerUtils';
 import useDebounce from '../../common/hooks/useDebounce';
 import { useCmsApollo } from '../../domain/clients/cmsApolloClient';
+import {
+  getEventPlaceholderImage,
+  _getArticlePageCardProps,
+} from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import useLocale from '../../common-events/hooks/useLocale';
 
 const BLOCK_SIZE = 10;
 const SEARCH_DEBOUNCE_TIME = 500;
@@ -29,7 +36,9 @@ export default function ArticleArchive() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME);
   const cmsClient = useCmsApollo({});
-
+  const {
+    utils: { getRoutedInternalHref },
+  } = useConfig();
   const {
     data: articlesData,
     fetchMore,
@@ -43,6 +52,7 @@ export default function ArticleArchive() {
       search: debouncedSearchTerm ?? '',
     },
   });
+  const locale = useLocale();
 
   const isLoading = loading && networkStatus !== NetworkStatus.fetchMore;
   const isLoadingMore = networkStatus === NetworkStatus.fetchMore;
@@ -63,7 +73,7 @@ export default function ArticleArchive() {
   };
 
   const articles = articlesData?.posts?.edges?.map((edge) => edge?.node).flat();
-
+  const defaultImageUrl = getEventPlaceholderImage('');
   return (
     <HCRCApolloPage
       uri={ROUTES.ARTICLEARCHIVE}
@@ -79,17 +89,28 @@ export default function ArticleArchive() {
           onLoadMore={() => {
             fetchMoreArticles();
           }}
-          largeFirstItem
+          largeFirstItem={searchTerm.length == 0 ? true : false}
           createLargeCard={(item) => (
             <LargeCard
               key={`lg-card-${item?.id}`}
-              {...getArticlePageCardProps(item as ArticleType)}
+              {..._getArticlePageCardProps(
+                item as ArticleType,
+                getRoutedInternalHref,
+                defaultImageUrl
+              )}
             />
           )}
           createCard={(item) => (
             <Card
               key={`sm-card-${item?.id}`}
-              {...getArticlePageCardProps(item as ArticleType)}
+              {...{
+                ..._getArticlePageCardProps(
+                  item as ArticleType,
+                  getRoutedInternalHref,
+                  defaultImageUrl
+                ),
+                text: '', // A design decision: The text is not wanted in the small cards
+              }}
             />
           )}
           hasMore={hasMoreToLoad}
