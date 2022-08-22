@@ -40,13 +40,13 @@ export default function ArticleArchive() {
     notifyOnNetworkStatusChange: true,
     variables: {
       first: BLOCK_SIZE,
-      // search: debouncedSearchTerm ?? '',
+      search: debouncedSearchTerm ?? '',
     },
   });
 
   const isLoading = loading && networkStatus !== NetworkStatus.fetchMore;
   const isLoadingMore = networkStatus === NetworkStatus.fetchMore;
-  const pageInfo = articlesData?.posts?.pageInfo ?? {};
+  const pageInfo = articlesData?.posts?.pageInfo;
   const hasMoreToLoad = pageInfo?.hasNextPage ?? false;
 
   const fetchMoreArticles = async () => {
@@ -81,10 +81,16 @@ export default function ArticleArchive() {
           }}
           largeFirstItem
           createLargeCard={(item) => (
-            <LargeCard {...getArticlePageCardProps(item as ArticleType)} />
+            <LargeCard
+              key={`lg-card-${item?.id}`}
+              {...getArticlePageCardProps(item as ArticleType)}
+            />
           )}
           createCard={(item) => (
-            <Card {...getArticlePageCardProps(item as ArticleType)} />
+            <Card
+              key={`sm-card-${item?.id}`}
+              {...getArticlePageCardProps(item as ArticleType)}
+            />
           )}
           hasMore={hasMoreToLoad}
           isLoading={isLoading || isLoadingMore}
