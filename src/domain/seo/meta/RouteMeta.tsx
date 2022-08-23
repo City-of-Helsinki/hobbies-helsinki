@@ -4,13 +4,6 @@ import { useRouter } from 'next/router';
 
 import { CmsLanguage } from '../../../types';
 
-function getLanguageAwarePath(
-  locale: string,
-  path: string
-) {
-  return `/${locale}${path}`;
-}
-
 type Props = {
   languages: CmsLanguage[];
 };

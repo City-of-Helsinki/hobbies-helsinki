@@ -1,6 +1,11 @@
 import classNames from 'classnames';
 import { IconAngleLeft, IconAngleRight, IconCalendarPlus } from 'hds-react';
-import React, { ChangeEvent, FunctionComponent, MutableRefObject } from 'react';
+import React, {
+  ChangeEvent,
+  FunctionComponent,
+  MutableRefObject,
+  useEffect,
+} from 'react';
 
 import { translateValue } from '../../utils/translateUtils';
 import Checkbox from '../../../common/components/checkbox/Checkbox';
@@ -46,6 +51,18 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
   toggleIsCustomDate,
 }) => {
   const { t } = useConfig();
+
+  useEffect(() => {
+    const clearDatesRange = () => {
+      onChangeStartDate(null);
+      onChangeEndDate(null);
+    };
+
+    if (dateTypes.length > 0) {
+      clearDatesRange();
+    }
+  }, [dateTypes, onChangeStartDate, onChangeEndDate]);
+
   const handleCheckboxChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (dateTypes.indexOf(event.target.value) !== -1) {
       onChangeDateTypes(
@@ -54,6 +71,16 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
     } else {
       onChangeDateTypes([...dateTypes, event.target.value]);
     }
+  };
+
+  const handleStartDateChange = (date: Date | null) => {
+    onChangeStartDate(date);
+    onChangeDateTypes([]);
+  };
+
+  const handleEndDateChange = (date: Date | null) => {
+    onChangeEndDate(date);
+    onChangeDateTypes([]);
   };
 
   if (!isOpen) return null;
@@ -120,8 +147,8 @@ const DateSelectorMenu: FunctionComponent<Props> = ({
         <div className={styles.wrapper}>
           <DateRangePicker
             endDate={endDate}
-            onChangeEndDate={onChangeEndDate}
-            onChangeStartDate={onChangeStartDate}
+            onChangeEndDate={handleEndDateChange}
+            onChangeStartDate={handleStartDateChange}
             startDate={startDate}
           />
         </div>

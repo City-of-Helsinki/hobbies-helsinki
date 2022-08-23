@@ -1,7 +1,13 @@
 import { ParsedUrlQueryInput } from 'querystring';
 
 import classNames from 'classnames';
-import { Button, IconCake, IconArrowRight, IconSearch } from 'hds-react';
+import {
+  Button,
+  IconCake,
+  IconArrowRight,
+  IconSearch,
+  IconLocation,
+} from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React, { FormEvent } from 'react';
 import qs, { parse } from 'query-string';
@@ -35,6 +41,7 @@ import RangeDropdown from '../../../common-events/components/rangeDropdown/Range
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
+import IconRead from '../../../assets/icons/IconRead';
 
 interface Props {
   scrollToResultList: () => void;
@@ -102,6 +109,8 @@ const AdvancedSearch: React.FC<Props> = ({
     publisher,
     start,
     text: selectedTexts,
+    audienceMinAgeGt: minAgeInput,
+    audienceMaxAgeLt: maxAgeInput,
   };
 
   // const divisionOptions = useDivisionOptions();
@@ -126,7 +135,7 @@ const AdvancedSearch: React.FC<Props> = ({
   const moveToSearchPage = () => {
     const filters = {
       ...searchFilters,
-      text: [autosuggestInput],
+      ...(autosuggestInput && { text: [autosuggestInput] }),
     };
     const search = getSearchQuery(filters);
     goToSearch(search);
@@ -142,6 +151,8 @@ const AdvancedSearch: React.FC<Props> = ({
       places,
       start: startTime,
       text,
+      audienceMinAgeGt,
+      audienceMaxAgeLt,
     } = getSearchFilters(searchParams);
 
     const pathPlace = params.place && MAPPED_PLACES[params.place.toLowerCase()];
@@ -156,6 +167,8 @@ const AdvancedSearch: React.FC<Props> = ({
     setSelectedTexts(text || []);
     setEnd(endTime);
     setStart(startTime);
+    setMinAgeInput(audienceMinAgeGt || '');
+    setMaxAgeInput(audienceMaxAgeLt || '');
 
     if (endTime || startTime) {
       setIsCustomDate(true);
@@ -253,7 +266,7 @@ const AdvancedSearch: React.FC<Props> = ({
                 <div>
                   <MultiSelectDropdown
                     checkboxName="categoryOptions"
-                    icon={<></>}
+                    icon={<IconRead aria-hidden />}
                     inputValue={categoryInput}
                     name="category"
                     onChange={setSelectedCategories}
@@ -296,7 +309,7 @@ const AdvancedSearch: React.FC<Props> = ({
                 <div>
                   <PlaceSelector
                     checkboxName="placesCheckboxes"
-                    icon={<></>}
+                    icon={<IconLocation aria-hidden />}
                     inputValue={placeInput}
                     name="places"
                     onChange={setSelectedPlaces}
@@ -350,9 +363,9 @@ const AdvancedSearch: React.FC<Props> = ({
                 </div>
                 <div className={styles.buttonWrapper}>
                   <Button
+                    theme="coat"
                     fullWidth={true}
                     iconLeft={<IconSearch aria-hidden />}
-                    variant="success"
                     type="submit"
                   >
                     {t('search.buttonSearch')}

@@ -45,11 +45,7 @@ export function LandingPageContentLayout({
               </ContentContainer>
             </PageSection>
           )}
-          <PageSection
-            className={styles.sectionSearch}
-            korosBottom
-            korosBottomClassName={styles.korosBottomSearch}
-          >
+          <PageSection className={styles.sectionSearch}>
             <ContentContainer>
               <div className={styles.sectionSearchContent}>
                 <LandingPageSearch />
@@ -57,7 +53,11 @@ export function LandingPageContentLayout({
             </ContentContainer>
           </PageSection>
         </div>
-        <PageSection className={styles.sectionCollections}>
+        <PageSection
+          korosTop
+          korosTopClassName={styles.korosTopCollections}
+          className={styles.sectionCollections}
+        >
           <ContentContainer>{collections}</ContentContainer>
         </PageSection>
       </main>

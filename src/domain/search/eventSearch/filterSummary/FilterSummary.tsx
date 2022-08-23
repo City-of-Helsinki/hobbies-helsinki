@@ -16,6 +16,7 @@ import {
   getSearchQuery,
   getSuitableForFilterValue,
 } from '../utils';
+import AgeFilter from './AgeFilter';
 import DateFilter from './DateFilter';
 import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
@@ -49,6 +50,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     start,
     suitableFor,
     text,
+    audienceMaxAgeLt,
+    audienceMinAgeGt,
   } = getSearchFilters(searchParams);
 
   const dateText =
@@ -85,6 +88,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       start: type === 'date' ? null : start,
       text: getFilteredList('text', text),
       suitableFor: getSuitableForFilterValue(suitableFor, type) ?? [],
+      audienceMinAgeGt: type === 'minAge' ? '' : audienceMinAgeGt,
+      audienceMaxAgeLt: type === 'maxAge' ? '' : audienceMaxAgeLt,
     });
 
     router.push({
@@ -101,7 +106,9 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     !!divisions.length ||
     !!places.length ||
     !!text?.length ||
-    !!suitableFor?.length;
+    !!suitableFor?.length ||
+    !!(audienceMinAgeGt || '').length ||
+    !!(audienceMaxAgeLt || '').length;
 
   if (!hasFilters) return null;
 
@@ -151,6 +158,20 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
           value={dateType}
         />
       ))}
+      {audienceMinAgeGt && (
+        <AgeFilter
+          type="minAge"
+          value={audienceMinAgeGt}
+          onRemove={handleFilterRemove}
+        />
+      )}
+      {audienceMaxAgeLt && (
+        <AgeFilter
+          type="maxAge"
+          value={audienceMaxAgeLt}
+          onRemove={handleFilterRemove}
+        />
+      )}
       <button className={styles.clearButton} onClick={onClear} type="button">
         {t('search:buttonClearFilters')}
         <IconCrossCircleFill aria-hidden />

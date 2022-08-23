@@ -1,6 +1,5 @@
 import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
-import { NextRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
@@ -13,7 +12,6 @@ import {
 
 import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
-import { Language } from '../types';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
 import useLocale from './useLocale';
 
@@ -25,8 +23,7 @@ const LINKEDEVENTS_API_EVENT_ENDPOINT = new URL(
 
 export default function useRHHCConfig(
   cmsApolloClient: ApolloClient<NormalizedCacheObject>,
-  eventsApolloClient: ApolloClient<NormalizedCacheObject>,
-  router: NextRouter
+  eventsApolloClient: ApolloClient<NormalizedCacheObject>
 ) {
   const { t } = useTranslation(['common', 'cms']);
   const locale = useLocale();
@@ -76,11 +73,7 @@ export default function useRHHCConfig(
         );
       }
       //TODO: test the default case
-      return getLocalizedCmsItemUrl(
-        link,
-        {},
-        locale
-      );
+      return getLocalizedCmsItemUrl(link, {}, locale);
     };
     return {
       ...rhhcDefaultConfig,

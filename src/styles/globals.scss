@@ -23,14 +23,6 @@ main {
 }
 
 button {
-  --background-color: var(--color-fog-darkened) !important;
-  --background-color-hover: var(--color-info-dark) !important;
-  --background-color-focus: var(--color-fog-darkened) !important;
-  --background-color-hover-focus: var(--color-info-dark) !important;
-  --border-color: var(--color-fog-darkened) !important;
-  --border-color-hover: var(--color-info-dark) !important;
-  --border-color-focus: var(--color-fog-darkened) !important;
-  --border-color-hover-focus: var(--color-info-dark) !important;
   border: none;
   background-color: transparent;
   cursor: pointer;

@@ -12,6 +12,8 @@ import {
 } from '../../domain/nextApi/graphql/generated/graphql';
 
 export const baseVariables = {
+  audienceMinAgeGt: '',
+  audienceMaxAgeLt: '',
   suitableFor: [],
   end: '',
   include: ['keywords', 'location'],

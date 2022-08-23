@@ -3,7 +3,6 @@ import React from 'react';
 
 import {
   act,
-  actWait,
   configure,
   render,
   screen,
@@ -105,7 +104,7 @@ const urlParams: UrlParams = {
   text: 'jazz',
 };
 
-type UrlParamKeys = keyof UrlParams;
+//type UrlParamKeys = keyof UrlParams;
 
 const routes = [
   // eslint-disable-next-line max-len
