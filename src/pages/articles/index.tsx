@@ -10,6 +10,7 @@ import {
   SearchPageContent,
   ArticleType,
   useConfig,
+  LanguageCodeFilterEnum,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
 
@@ -34,6 +35,7 @@ export default function ArticleArchive() {
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME);
   const cmsClient = useCmsApollo({});
   const {
+    currentLanguageCode,
     utils: { getRoutedInternalHref },
   } = useConfig();
   const {
@@ -47,6 +49,7 @@ export default function ArticleArchive() {
     variables: {
       first: BLOCK_SIZE,
       search: debouncedSearchTerm ?? '',
+      language: currentLanguageCode as LanguageCodeFilterEnum,
     },
   });
 
