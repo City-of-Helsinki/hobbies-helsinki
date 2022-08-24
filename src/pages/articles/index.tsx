@@ -76,7 +76,7 @@ export default function ArticleArchive() {
 
   return (
     <HCRCApolloPage
-      uri={ROUTES.ARTICLEARCHIVE}
+      uri={ROUTES.ARTICLE_ARCHIVE}
       className="pageLayout"
       navigation={<Navigation />}
       content={
