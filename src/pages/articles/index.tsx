@@ -6,14 +6,12 @@ import {
 } from 'react-helsinki-headless-cms/apollo';
 import {
   Card,
-  getArticlePageCardProps,
   LargeCard,
   SearchPageContent,
   ArticleType,
   useConfig,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
-import { ModuleItemTypeEnum } from 'react-helsinki-headless-cms';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -27,7 +25,6 @@ import {
   getEventPlaceholderImage,
   _getArticlePageCardProps,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
-import useLocale from '../../common-events/hooks/useLocale';
 
 const BLOCK_SIZE = 10;
 const SEARCH_DEBOUNCE_TIME = 500;
@@ -52,7 +49,6 @@ export default function ArticleArchive() {
       search: debouncedSearchTerm ?? '',
     },
   });
-  const locale = useLocale();
 
   const isLoading = loading && networkStatus !== NetworkStatus.fetchMore;
   const isLoadingMore = networkStatus === NetworkStatus.fetchMore;
@@ -73,7 +69,11 @@ export default function ArticleArchive() {
   };
 
   const articles = articlesData?.posts?.edges?.map((edge) => edge?.node).flat();
+  // The default image when the CMS does not offer any
   const defaultImageUrl = getEventPlaceholderImage('');
+  // Show the first item large when the search has not yet done
+  const showFirstItemLarge = searchTerm.length == 0 ? true : false;
+
   return (
     <HCRCApolloPage
       uri={ROUTES.ARTICLEARCHIVE}
@@ -83,13 +83,14 @@ export default function ArticleArchive() {
         <SearchPageContent
           // customContent={customContent}
           items={articles}
+          // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onSearch={(freeSearch, tags) => {
             setSearchTerm(freeSearch);
           }}
           onLoadMore={() => {
             fetchMoreArticles();
           }}
-          largeFirstItem={searchTerm.length == 0 ? true : false}
+          largeFirstItem={showFirstItemLarge}
           createLargeCard={(item) => (
             <LargeCard
               key={`lg-card-${item?.id}`}
