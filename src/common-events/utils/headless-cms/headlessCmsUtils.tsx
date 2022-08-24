@@ -16,7 +16,7 @@ import {
   CardProps,
   isPageType,
   isArticleType,
-  getArticlePageCardProps,
+  getArticlePageCardProps as getArticlePageCardPropsBase,
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
@@ -83,13 +83,13 @@ export const getEventPlaceholderImage = (id: string): string => {
   return EVENT_PLACEHOLDER_IMAGES[index];
 };
 
-export function _getArticlePageCardProps(
+export function getArticlePageCardProps(
   item: ArticleType,
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
   defaultImageUrl: string
 ): CardProps {
   return {
-    ...getArticlePageCardProps(item, defaultImageUrl),
+    ...getArticlePageCardPropsBase(item, defaultImageUrl),
     subTitle: item?.date
       ? format(new Date(item.date), AppConfig.dateFormat)
       : '',
@@ -100,13 +100,13 @@ export function _getArticlePageCardProps(
   };
 }
 
-export function _getCmsPageCardProps(
+export function getCmsPageCardProps(
   item: PageType,
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
   defaultImageUrl: string
 ): CardProps {
   return {
-    ...getArticlePageCardProps(item, defaultImageUrl),
+    ...getArticlePageCardPropsBase(item, defaultImageUrl),
     url: getRoutedInternalHref(
       item?.link ?? item?.uri,
       ModuleItemTypeEnum.Page
@@ -122,11 +122,11 @@ export function _collectGeneralCards(
   return items.reduce((result: CardProps[], item) => {
     if (isArticleType(item)) {
       result.push(
-        _getArticlePageCardProps(item, getRoutedInternalHref, defaultImageUrl)
+        getArticlePageCardProps(item, getRoutedInternalHref, defaultImageUrl)
       );
     } else if (isPageType(item)) {
       result.push(
-        _getCmsPageCardProps(item, getRoutedInternalHref, defaultImageUrl)
+        getCmsPageCardProps(item, getRoutedInternalHref, defaultImageUrl)
       );
     }
     // NOTE: Event type is not a general type
@@ -143,6 +143,7 @@ export function _collectGeneralCards(
 export function getGeneralCollectionCards(
   collection: GeneralCollectionType,
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   locale = 'fi'
 ): CardProps[] {
   const defaultImageUrl = getEventPlaceholderImage('');
