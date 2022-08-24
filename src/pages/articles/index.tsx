@@ -23,7 +23,7 @@ import useDebounce from '../../common/hooks/useDebounce';
 import { useCmsApollo } from '../../domain/clients/cmsApolloClient';
 import {
   getEventPlaceholderImage,
-  _getArticlePageCardProps,
+  getArticlePageCardProps,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 
 const BLOCK_SIZE = 10;
@@ -94,7 +94,7 @@ export default function ArticleArchive() {
           createLargeCard={(item) => (
             <LargeCard
               key={`lg-card-${item?.id}`}
-              {..._getArticlePageCardProps(
+              {...getArticlePageCardProps(
                 item as ArticleType,
                 getRoutedInternalHref,
                 defaultImageUrl
@@ -105,7 +105,7 @@ export default function ArticleArchive() {
             <Card
               key={`sm-card-${item?.id}`}
               {...{
-                ..._getArticlePageCardProps(
+                ...getArticlePageCardProps(
                   item as ArticleType,
                   getRoutedInternalHref,
                   defaultImageUrl
