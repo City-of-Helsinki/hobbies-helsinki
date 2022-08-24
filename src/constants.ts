@@ -3,7 +3,7 @@ import { Language } from './types';
 export const ROUTES = {
   SEARCH: '/search',
   COURSES: '/courses/[eventId]',
-  ARTICLEARCHIVE: '/article-archive',
+  ARTICLE_ARCHIVE: '/article-archive',
   ARTICLES: '/articles/[...slug]',
   PAGES: '/pages/[...slug]',
   LINK: '',
