@@ -73,7 +73,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
 
   return (
     <LinkBox
-      ariaLabel={t('event:eventCard.ariaLabelLink', {
+      aria-label={t('event:eventCard.ariaLabelLink', {
         name,
       })}
       id={getEventCardId(id)}
