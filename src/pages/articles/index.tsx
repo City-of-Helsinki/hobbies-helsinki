@@ -2,6 +2,7 @@ import React from 'react';
 import { GetStaticPropsContext } from 'next';
 import {
   Page as HCRCApolloPage,
+  useCategoriesQuery,
   usePostsQuery,
 } from 'react-helsinki-headless-cms/apollo';
 import {
@@ -27,11 +28,13 @@ import {
   getArticlePageCardProps,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 
+const CATEGORIES_AMOUNT = 20;
 const BLOCK_SIZE = 10;
 const SEARCH_DEBOUNCE_TIME = 500;
 
 export default function ArticleArchive() {
   const [searchTerm, setSearchTerm] = React.useState('');
+  const [searchCategories, setSearchCategories] = React.useState<string[]>([]);
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME);
   const cmsClient = useCmsApollo({});
   const {
@@ -41,7 +44,7 @@ export default function ArticleArchive() {
   const {
     data: articlesData,
     fetchMore,
-    loading,
+    loading: loadingArticles,
     networkStatus,
   } = usePostsQuery({
     client: cmsClient,
@@ -49,12 +52,22 @@ export default function ArticleArchive() {
     variables: {
       first: BLOCK_SIZE,
       search: debouncedSearchTerm ?? '',
-      //fix
-      language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
+      language: currentLanguageCode as LanguageCodeFilterEnum,
+      categories: searchCategories,
     },
   });
+  const { data: categoriesData, loading: loadingCategories } =
+    useCategoriesQuery({
+      client: cmsClient,
+      variables: {
+        first: CATEGORIES_AMOUNT,
+        language: currentLanguageCode as LanguageCodeFilterEnum,
+      },
+    });
 
-  const isLoading = loading && networkStatus !== NetworkStatus.fetchMore;
+  const isLoading =
+    (loadingArticles && networkStatus !== NetworkStatus.fetchMore) ||
+    loadingCategories;
   const isLoadingMore = networkStatus === NetworkStatus.fetchMore;
   const pageInfo = articlesData?.posts?.pageInfo;
   const hasMoreToLoad = pageInfo?.hasNextPage ?? false;
@@ -73,11 +86,11 @@ export default function ArticleArchive() {
   };
 
   const articles = articlesData?.posts?.edges?.map((edge) => edge?.node).flat();
+  const categories = categoriesData?.categories?.nodes ?? [];
   // The default image when the CMS does not offer any
   const defaultImageUrl = getEventPlaceholderImage('');
   // Show the first item large when the search has not yet done
-  const showFirstItemLarge = searchTerm.length === 0 ? true : false;
-
+  const showFirstItemLarge = searchTerm.length == 0 ? true : false;
   return (
     <HCRCApolloPage
       uri={ROUTES.ARTICLE_ARCHIVE}
@@ -87,9 +100,13 @@ export default function ArticleArchive() {
         <SearchPageContent
           // customContent={customContent}
           items={articles}
+          tags={categories}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
           onSearch={(freeSearch, tags) => {
+            //TODO: Instead of doing this through yet another state, could the query just be updated?
             setSearchTerm(freeSearch);
+            // NOTE: For some reason the CMS needs database ids here instead of ids or slugs.
+            setSearchCategories(tags.map((tag) => tag.databaseId));
           }}
           onLoadMore={() => {
             fetchMoreArticles();
