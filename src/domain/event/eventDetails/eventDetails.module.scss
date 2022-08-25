@@ -1,0 +1,16 @@
+.infoRow {
+  padding: var(--spacing-2-xs) 0;
+  svg {
+    margin-right: var(--spacing-xs);
+    min-width: 24px;
+  }
+
+  button {
+    margin: var(--spacing-3-xs);
+  }
+
+  .withIcon {
+    display: flex;
+    align-items: center;
+  }
+}

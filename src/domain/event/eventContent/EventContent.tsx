@@ -1,4 +1,3 @@
-import classNames from 'classnames';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { PageSection } from 'react-helsinki-headless-cms';

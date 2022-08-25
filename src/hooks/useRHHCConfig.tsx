@@ -14,6 +14,8 @@ import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
 import useLocale from './useLocale';
+import EventDetails from '../domain/event/eventDetails/EventDetails';
+import ArticleDetails from '../domain/article/articleDetails/ArticleDetails';
 
 const APP_DOMAIN = new URL(AppConfig.origin).origin;
 const CMS_API_DOMAIN = new URL(AppConfig.cmsGraphqlEndpoint).origin;
@@ -81,6 +83,8 @@ export default function useRHHCConfig(
         ...rhhcDefaultConfig.components,
         Head: (props) => <Head {...props} />,
         Link: ({ href, ...props }) => <Link href={href || ''} {...props} />,
+        EventCardContent: (props) => <EventDetails {...props} />,
+        ArticleCardContent: (props) => <ArticleDetails {...props} />,
       },
       siteName: t('appName'),
       currentLanguageCode: locale.toUpperCase(),
