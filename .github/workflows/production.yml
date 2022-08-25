@@ -3,8 +3,6 @@ on:
   push:
     tags:
       - 'release-*'
-    branches:
-      - main
 
 # allow only one run at a time
 concurrency: ${{ github.workflow }}
