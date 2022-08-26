@@ -1,5 +1,6 @@
 import format from 'date-fns/format';
-import { CollectionItemType } from 'react-helsinki-headless-cms';
+import { Categories } from 'react-helsinki-headless-cms';
+import { Category, CollectionItemType } from 'react-helsinki-headless-cms';
 import {
   ArticleType,
   Card,
@@ -22,6 +23,7 @@ import {
 
 import { DEFAULT_LANGUAGE } from '../../../constants';
 import AppConfig from '../../../domain/app/AppConfig';
+import ArticleDetails from '../../../domain/article/articleDetails/ArticleDetails';
 import { Language } from '../../../types';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
@@ -184,13 +186,34 @@ export const getDefaultCollections = (
           />
         );
       } else {
+        const items = { ...collection.items };
         const cards = getGeneralCollectionCards(
           collection,
           getRoutedInternalHref,
           currentLanguageCode
-        ).map((cardProps) => (
-          <Card key={Math.random()} {...cardProps} direction="fixed-vertical" />
-        ));
+        ).map((cardProps, i) => {
+          const item = items[i] as ArticleType;
+          const categories = item?.categories as Categories;
+          // item should be of type ArticleType but categories then has edges instead of nodes
+          // item?.categories?.edges?.map((category) => category?.node?.name)
+
+          return (
+            <Card
+              key={Math.random()}
+              {...cardProps}
+              direction="fixed-vertical"
+              customContent={
+                <ArticleDetails
+                  keywords={
+                    categories?.nodes?.map(
+                      (category) => category?.name || ''
+                    ) || []
+                  }
+                />
+              }
+            />
+          );
+        });
         collectionElements.push(
           <Collection {...commonCollectionProps} cards={cards} />
         );

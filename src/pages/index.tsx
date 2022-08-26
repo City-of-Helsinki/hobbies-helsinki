@@ -37,6 +37,7 @@ const HomePage: NextPage<{
     currentLanguageCode,
     utils: { getRoutedInternalHref },
   } = useConfig();
+
   return (
     <HCRCPage
       className="pageLayout"
