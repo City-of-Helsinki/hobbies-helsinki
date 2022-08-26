@@ -25,8 +25,8 @@ import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
 import useLocale from '../common-events/hooks/useLocale';
 import { getDefaultCollections } from '../common-events/utils/headless-cms/headlessCmsUtils';
-import {} from 'react-helsinki-headless-cms';
 import { getLocaleOrError } from '../utils/routerUtils';
+import { DEFAULT_LANGUAGE } from '../constants';
 
 const HomePage: NextPage<{
   landingPage: LandingPageQuery['landingPage'];
@@ -64,43 +64,62 @@ const HomePage: NextPage<{
 
 export async function getStaticProps(context: GetStaticPropsContext) {
   return getHobbiesStaticProps(context, async ({ cmsClient }) => {
-    const locale = getLocaleOrError(context.locale);
-    const { data: landingPageData } = await cmsClient.query<
-      LandingPageQuery,
-      LandingPageQueryVariables
-    >({
-      query: LandingPageDocument,
-      variables: {
-        id: 'root',
-        languageCode: getQlLanguage(locale),
-      },
-    });
+    try {
+      const locale = getLocaleOrError(context.locale);
+      const { data: landingPageData } = await cmsClient.query<
+        LandingPageQuery,
+        LandingPageQueryVariables
+      >({
+        query: LandingPageDocument,
+        variables: {
+          id: 'root',
+          languageCode: getQlLanguage(locale),
+        },
+      });
 
-    const { data: pageData } = await cmsClient.query<
-      PageByTemplateQuery,
-      PageByTemplateQueryVariables
-    >({
-      query: PageByTemplateDocument,
-      variables: {
-        template: TemplateEnum.FrontPage,
-        language: getQlLanguage(locale).toLocaleLowerCase(),
-      },
-    });
+      const { data: pageData } = await cmsClient.query<
+        PageByTemplateQuery,
+        PageByTemplateQueryVariables
+      >({
+        query: PageByTemplateDocument,
+        variables: {
+          template: TemplateEnum.FrontPage,
+          language: getQlLanguage(locale).toLocaleLowerCase(),
+        },
+      });
 
-    const page = pageData.pageByTemplate;
+      const page = pageData.pageByTemplate;
 
-    const landingPage = landingPageData.landingPage;
+      const landingPage = landingPageData.landingPage;
 
-    return {
-      props: {
-        ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
-          'home',
-          'search',
-        ])),
-        landingPage: landingPage,
-        page: page,
-      },
-    };
+      return {
+        props: {
+          ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
+            'home',
+            'search',
+          ])),
+          landingPage: landingPage,
+          page: page,
+        },
+      };
+    } catch (e) {
+      // eslint-disable-next-line no-console
+      console.error(
+        'An error occured in the getStaticProps of the Next-js Index-page!',
+        'Tried to fetch the front page and the landing page from the Headless CMS, but an error occured!!',
+        e
+      );
+      return {
+        props: {
+          ...(await serverSideTranslationsWithCommon(
+            getLocaleOrError(DEFAULT_LANGUAGE),
+            ['home', 'search']
+          )),
+          landingPage: null,
+          page: null,
+        },
+      };
+    }
   });
 }
 
