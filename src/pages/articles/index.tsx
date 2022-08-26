@@ -49,7 +49,8 @@ export default function ArticleArchive() {
     variables: {
       first: BLOCK_SIZE,
       search: debouncedSearchTerm ?? '',
-      language: currentLanguageCode as LanguageCodeFilterEnum,
+      //fix
+      language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
     },
   });
 
