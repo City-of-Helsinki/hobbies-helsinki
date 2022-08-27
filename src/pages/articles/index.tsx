@@ -76,7 +76,7 @@ export default function ArticleArchive() {
   // The default image when the CMS does not offer any
   const defaultImageUrl = getEventPlaceholderImage('');
   // Show the first item large when the search has not yet done
-  const showFirstItemLarge = searchTerm.length == 0 ? true : false;
+  const showFirstItemLarge = searchTerm.length === 0 ? true : false;
 
   return (
     <HCRCApolloPage
