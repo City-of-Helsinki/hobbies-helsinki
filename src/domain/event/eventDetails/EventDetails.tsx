@@ -22,7 +22,7 @@ const EventDetails: React.FC<Props> = (props) => {
     return null;
   }
 
-  const { startTime, endTime } = getEventFields(event, locale);
+  const { startTime, endTime, location } = getEventFields(event, locale);
 
   return (
     <div>
