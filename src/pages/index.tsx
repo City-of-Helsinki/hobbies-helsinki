@@ -37,6 +37,7 @@ const HomePage: NextPage<{
     currentLanguageCode,
     utils: { getRoutedInternalHref },
   } = useConfig();
+
   return (
     <HCRCPage
       className="pageLayout"
@@ -97,6 +98,7 @@ export async function getStaticProps(context: GetStaticPropsContext) {
           ...(await serverSideTranslationsWithCommon(getLocaleOrError(locale), [
             'home',
             'search',
+            'event',
           ])),
           landingPage: landingPage,
           page: page,
