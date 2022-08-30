@@ -206,7 +206,7 @@ export const getDefaultCollections = (
                 <ArticleDetails
                   keywords={
                     categories?.nodes?.map(
-                      (category) => category?.name || ''
+                      (category: Category) => category?.name || ''
                     ) || []
                   }
                 />
