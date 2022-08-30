@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
 import { Categories } from 'react-helsinki-headless-cms';
-import { Category, CollectionItemType } from 'react-helsinki-headless-cms';
+import { CollectionItemType } from 'react-helsinki-headless-cms';
 import {
   ArticleType,
   Card,
@@ -25,6 +25,7 @@ import { DEFAULT_LANGUAGE } from '../../../constants';
 import AppConfig from '../../../domain/app/AppConfig';
 import ArticleDetails from '../../../domain/article/articleDetails/ArticleDetails';
 import { Language } from '../../../types';
+import { getEventPlaceholderImageUrl } from '../../../domain/event/EventUtils';
 
 export const getUriID = (slugs: string[], locale: Language): string => {
   if (!slugs) return '/';
@@ -75,16 +76,6 @@ export const EVENT_PLACEHOLDER_IMAGES = [
   '/static/images/event_placeholder_D.jpg',
 ];
 
-export const getEventPlaceholderImage = (id: string): string => {
-  const numbers = id.match(/\d+/g);
-  const sum = numbers
-    ? numbers.reduce((prev: number, cur: string) => prev + Number(cur), 0)
-    : 0;
-  const index = sum % 4;
-
-  return EVENT_PLACEHOLDER_IMAGES[index];
-};
-
 export function getArticlePageCardProps(
   item: ArticleType,
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
@@ -119,9 +110,9 @@ export function getCmsPageCardProps(
 export function _collectGeneralCards(
   items: CollectionItemType[],
   getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
-  defaultImageUrl: string
 ): CardProps[] {
   return items.reduce((result: CardProps[], item) => {
+    const defaultImageUrl = getEventPlaceholderImageUrl(item?.id);
     if (isArticleType(item)) {
       result.push(
         getArticlePageCardProps(item, getRoutedInternalHref, defaultImageUrl)
@@ -148,11 +139,9 @@ export function getGeneralCollectionCards(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   locale = 'fi'
 ): CardProps[] {
-  const defaultImageUrl = getEventPlaceholderImage('');
   return _collectGeneralCards(
     collection.items,
-    getRoutedInternalHref,
-    defaultImageUrl
+    getRoutedInternalHref
   );
 }
 

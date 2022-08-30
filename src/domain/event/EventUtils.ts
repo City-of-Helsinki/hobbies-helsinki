@@ -140,13 +140,13 @@ export const getKeywordList = (
 
 /**
  * Get event placeholder image url
- * @param {object} event
+ * @param {string} id
  * @return {string}
  */
 export const getEventPlaceholderImageUrl = (
-  event: EventFieldsFragment
+  id?: string
 ): string => {
-  const numbers = event.id.match(/\d+/g);
+  const numbers = id?.match(/\d+/g);
   const index = numbers ? sum(numbers) % 4 : 0;
 
   return EVENT_PLACEHOLDER_IMAGES[index];
@@ -160,7 +160,7 @@ export const getEventPlaceholderImageUrl = (
 export const getEventImageUrl = (event: EventFieldsFragment): string => {
   const image = event.images[0];
 
-  return getSecureImage(image?.url) || getEventPlaceholderImageUrl(event);
+  return getSecureImage(image?.url) || getEventPlaceholderImageUrl(event.id);
 };
 
 /**
@@ -339,7 +339,7 @@ export const getEventFields = (event: EventFields, locale: Language) => {
     locationName: getLocalisedString(eventLocation?.name, locale),
     offerInfoUrl,
     registrationUrl,
-    placeholderImage: getEventPlaceholderImageUrl(event),
+    placeholderImage: getEventPlaceholderImageUrl(event.id),
     provider: getLocalisedString(event.provider, locale),
     publisher: event.publisher || '',
     shortDescription: getLocalisedString(event.shortDescription, locale),
