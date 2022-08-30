@@ -17,7 +17,8 @@
   },
   "button": {
     "close": "Stäng",
-    "loadMore": "Ladda mera"
+    "loadMore": "Ladda mera",
+    "showAll": "Visa alt"
   },
   "dateSelector": {
     "dateTypeAll": "När som helst",

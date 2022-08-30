@@ -14,7 +14,8 @@
   },
   "button": {
     "close": "Close",
-    "loadMore": "Load more"
+    "loadMore": "Load more",
+    "showAll": "Show more"
   },
   "category": {
     "ariaButtonRemove": "Remove category: {{category}}"

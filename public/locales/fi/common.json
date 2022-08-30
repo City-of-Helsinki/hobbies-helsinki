@@ -14,7 +14,8 @@
   },
   "button": {
     "close": "Sulje",
-    "loadMore": "Lataa lisää"
+    "loadMore": "Lataa lisää",
+    "showAll": "Näytä kaikki"
   },
   "category": {
     "ariaButtonRemove": "Poista kategoria: {{category}}"
