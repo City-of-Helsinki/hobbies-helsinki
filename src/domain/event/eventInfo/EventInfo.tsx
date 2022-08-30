@@ -265,6 +265,7 @@ const OtherInfo: React.FC<{
           variant="arrowRight"
           className={styles.link}
           href={infoUrl}
+          showExternalIcon={false}
         >
           {t('event:info.linkWebPage')}
         </SecondaryLink>

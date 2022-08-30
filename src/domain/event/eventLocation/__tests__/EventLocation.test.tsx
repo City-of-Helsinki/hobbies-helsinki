@@ -20,7 +20,7 @@ it('should render 1 mapLink and 2 directionsLink', () => {
   render(<EventLocation event={event} />);
 
   expect(
-    screen.getByRole('link', { name: /avaa kartta uuteen ikkunaan/i })
+    screen.getByRole('link', { name: /Avaa kartta. Avautuu uudessa välilehdessä. Avautuu toisella sivustolla./i })
   ).toBeInTheDocument();
   expect(
     screen.getByRole('link', { name: /reittiohjeet \(hsl\)/i })

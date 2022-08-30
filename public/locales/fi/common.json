@@ -1,6 +1,6 @@
 {
   "appName": "Harrastukset Helsinki",
-  "opens_in_new_tab": "Avautuu uudessa välilehdessä",
+  "opens_in_new_tab": "Avautuu uudessa välilehdessä.",
 
   "notification": {
     "labelClose": "Sulje ilmoitus"
@@ -70,8 +70,8 @@
   "supriseMe": "Koeta onneasi",
   "timeAbbreviation": "klo",
   "srOnly": {
-    "opensInANewTab": "Avautuu uudessa välilehdessä",
-    "opensInAnExternalSite": "Avautuu toisella sivustolla"
+    "opensInANewTab": "Avautuu uudessa välilehdessä.",
+    "opensInAnExternalSite": "Avautuu toisella sivustolla."
   },
   "yearsShort": "v",
   "photographerText": "Kuva: {{photographer}}",

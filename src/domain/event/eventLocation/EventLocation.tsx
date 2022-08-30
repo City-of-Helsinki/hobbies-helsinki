@@ -1,7 +1,7 @@
-import { IconLinkExternal, IconLocation } from 'hds-react';
+import { IconLocation } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { Link, SecondaryLink } from 'react-helsinki-headless-cms';
 
 import SrOnly from '../../../common/components/srOnly/SrOnly';
 import useLocale from '../../../common-events/hooks/useLocale';
@@ -29,16 +29,12 @@ const EventLocation: React.FC<Props> = ({ event }) => {
           <IconLocation aria-hidden />
           <h2>{t('event:location.title')}</h2>
         </div>
-        <a
+        <Link
           className={styles.mapLink}
           href={getServiceMapUrl(event, locale, false)}
-          rel="noopener noreferrer"
-          target="_blank"
         >
           {t('event:location.openMap')}
-          <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
-          <IconLinkExternal size="xs" aria-hidden />
-        </a>
+        </Link>
       </div>
 
       <iframe
@@ -60,11 +56,9 @@ const EventLocation: React.FC<Props> = ({ event }) => {
         href={googleDirectionsLink}
       >
         {t('event:location.directionsGoogle')}
-        <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
       </SecondaryLink>
       <SecondaryLink className={styles.externalLink} href={hslDirectionsLink}>
         {t('event:location.directionsHSL')}
-        <SrOnly>{t('common:srOnly.opensInANewTab')}</SrOnly>
       </SecondaryLink>
     </div>
   );
