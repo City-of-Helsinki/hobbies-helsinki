@@ -22,6 +22,7 @@ import Navigation from '../../common-events/components/navigation/Navigation';
 import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';
 import {
   getDefaultCollections,
+  getSlugFromUri,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 import KorosWrapper from '../../common/components/korosWrapper/KorosWrapper';
@@ -30,11 +31,12 @@ import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import { Language } from '../../types';
 import { getLocaleOrError } from '../../utils/routerUtils';
+import { getAllArticles } from '../../common-events/utils/headless-cms/service';
 
 const NextCmsArticle: NextPage<{
   article: ArticleQuery['post'];
-  breadcrumbs: Breadcrumb[];
-  collections?: CollectionType[];
+  breadcrumbs: Breadcrumb[] | null;
+  collections: CollectionType[];
 }> = ({ article, breadcrumbs, collections }) => {
   const {
     currentLanguageCode,
@@ -50,7 +52,7 @@ const NextCmsArticle: NextPage<{
         <RHHCPageContent
           page={article as PageContentProps['page']}
           heroContainer={<KorosWrapper />}
-          breadcrumbs={breadcrumbs}
+          breadcrumbs={breadcrumbs ?? undefined}
           shareLinks={<ShareLinks title={t('common:share.article')} />}
           collections={
             collections
@@ -69,7 +71,15 @@ const NextCmsArticle: NextPage<{
 };
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true };
+  const articlePageInfos = await getAllArticles();
+  const paths = articlePageInfos.map((pageInfo) => ({
+    params: { slug: getSlugFromUri(pageInfo.uri) },
+    locale: pageInfo.locale,
+  }));
+  return {
+    paths,
+    fallback: true, // can also be true or 'blocking'
+  };
 }
 
 type ResultProps =
@@ -77,7 +87,7 @@ type ResultProps =
       initialApolloState: NormalizedCacheObject;
       article: ArticleQuery['post'];
       breadcrumbs: Breadcrumb[];
-      collections?: CollectionType[];
+      collections: CollectionType[];
     }
   | {
       error?: {
@@ -145,6 +155,29 @@ const getProps = async (context: GetStaticPropsContext) => {
   });
 
   const currentArticle = articleData.post;
+
+  // TODO: Breadcrumbs are unstyled, so left disabled
+  // Fetch all parent pages for navigation data
+  // const uriSegments = [ROUTES.ARTICLE_ARCHIVE];
+  // const apolloPageResponses = await Promise.all(
+  //   uriSegments.map((uri) => {
+  //     return cmsClient.query<PageQuery, PageQueryVariables>({
+  //       query: PageDocument,
+  //       variables: {
+  //         id: uri,
+  //       },
+  //     });
+  //   })
+  // );
+  // const pages = apolloPageResponses.map((res) => res.data.page);
+  // const breadcrumbs = pages
+  //   .map((page) => ({
+  //     link: page?.link ?? '',
+  //     title: page?.title ?? '',
+  //   }))
+  //   .concat([
+  //     { link: currentArticle?.link ?? '', title: currentArticle?.title ?? '' },
+  //   ]);
 
   return { currentArticle, breadcrumbs: [], cmsClient };
 };

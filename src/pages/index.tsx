@@ -44,7 +44,6 @@ const HomePage: NextPage<{
       navigation={<Navigation />}
       content={
         <HCRCPageContent
-          breadcrumbs={[]}
           page={page}
           landingPage={landingPage}
           PageContentLayoutComponent={LandingPageContentLayout}
