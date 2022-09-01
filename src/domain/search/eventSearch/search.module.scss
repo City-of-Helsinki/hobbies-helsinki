@@ -36,7 +36,7 @@ $buttonWidth: 180px;
 
   .buttonWrapper {
     @include respond-above(m) {
-      grid-column: span 1 / 6;
+      grid-column: span 1 / 5;
     }
   }
 
@@ -49,18 +49,20 @@ $buttonWidth: 180px;
     }
 
     @include respond-above(m) {
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
   }
 
   .autoSuggestRow {
-    @include respond-above(s) {
-      grid-template-columns: 1fr;
-    }
+    align-items: flex-end;
 
     @include respond-above(m) {
-      div:first-child {
-        grid-column: 1/4;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    & > :first-child {
+      @include respond-above(m) {
+        grid-column: 1 / 4;
       }
     }
   }
