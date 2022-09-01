@@ -299,6 +299,16 @@ export const MAPPED_COURSE_CATEGORIES: Record<string, string[]> = {
   [COURSE_CATEGORIES.THEATRE]: THEATRE_COURSES_KEYWORDS,
 };
 
+//todo: replace with valid keyword ids
+export const MAPPED_COURSE_HOBBY_TYPES: Record<string, string[]> = {
+  [COURSE_HOBBY_TYPES.CLUBS]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.COURSES]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.CAMPS]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.TRIPS]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.WORKSHOPS]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.ONLINE_STUDIES]: ['yso:p1235'],
+};
+
 export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
   {
     [COURSE_CATEGORIES.MOVIE]: {

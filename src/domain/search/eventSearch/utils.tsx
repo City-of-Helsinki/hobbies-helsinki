@@ -29,6 +29,7 @@ import {
   MAPPED_COURSE_CATEGORIES,
   COURSE_HOBBY_TYPES,
   courseHobbyTypes,
+  MAPPED_COURSE_HOBBY_TYPES,
 } from './constants';
 import {
   CategoryExtendedOption,
@@ -181,6 +182,7 @@ export const getEventSearchVariables = ({
 }): QueryEventListArgs => {
   const {
     categories,
+    hobbyTypes,
     dateTypes,
     divisions,
     isFree,
@@ -225,6 +227,9 @@ export const getEventSearchVariables = ({
   const categoriesParamName = 'keywordOrSet1';
   const categoryMap = MAPPED_COURSE_CATEGORIES;
 
+  const hobbyTypesParamName = 'keywordOrSet2';
+  const hobbyTypeMap = MAPPED_COURSE_HOBBY_TYPES;
+
   const getMappedPropertyValues = (
     list: string[],
     map: Record<string, string[]>
@@ -235,6 +240,7 @@ export const getEventSearchVariables = ({
     );
 
   const mappedCategories = getMappedPropertyValues(categories, categoryMap);
+  const mappedHobbyTypes = getMappedPropertyValues(hobbyTypes, hobbyTypeMap);
 
   const hasLocation = !isEmpty(divisions) || !isEmpty(places);
 
@@ -261,6 +267,7 @@ export const getEventSearchVariables = ({
     isFree: isFree || undefined,
     // internetBased: onlyRemoteEvents || undefined,
     [categoriesParamName]: [...(keyword ?? []), ...mappedCategories],
+    [hobbyTypesParamName]: [...(keyword ?? []), ...mappedHobbyTypes],
     keywordAnd,
     keywordNot,
     language,

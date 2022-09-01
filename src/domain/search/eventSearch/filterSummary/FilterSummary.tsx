@@ -103,6 +103,7 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
   const hasFilters =
     !!publisher ||
     !!categories.length ||
+    !!hobbyTypes.length ||
     !!dateText ||
     !!dateTypes.length ||
     !!divisions.length ||

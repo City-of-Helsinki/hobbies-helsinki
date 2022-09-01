@@ -217,6 +217,7 @@ const AdvancedSearch: React.FC<Props> = ({
 
   const clearInputValues = () => {
     setCategoryInput('');
+    setHobbyTypeInput('');
     // setDivisionInput("");
     setPlaceInput('');
     setAutosuggestInput('');
@@ -271,24 +272,6 @@ const AdvancedSearch: React.FC<Props> = ({
                 </div>
                 <div>
                   <MultiSelectDropdown
-                    checkboxName="hobbyTypeOptions"
-                    icon={<IconGroup aria-hidden />}
-                    inputValue={hobbyTypeInput}
-                    name="hobbyType"
-                    onChange={setSelectedHobbyTypes}
-                    options={hobbyTypes}
-                    setInputValue={setHobbyTypeInput}
-                    showSearch={false}
-                    title={t('search.titleDropdownHobbyType')}
-                    value={selectedHobbyTypes}
-                  />
-                </div>
-              </div>
-            </div>
-            <div className={styles.rowWrapper}>
-              <div className={styles.row}>
-                <div>
-                  <MultiSelectDropdown
                     checkboxName="categoryOptions"
                     icon={<IconRead aria-hidden />}
                     inputValue={categoryInput}
@@ -299,6 +282,24 @@ const AdvancedSearch: React.FC<Props> = ({
                     showSearch={false}
                     title={t('search.titleDropdownCategory')}
                     value={selectedCategories}
+                  />
+                </div>
+              </div>
+            </div>
+            <div className={styles.rowWrapper}>
+              <div className={styles.row}>
+                <div>
+                  <MultiSelectDropdown
+                    checkboxName="hobbyTypeOptions"
+                    icon={<IconGroup aria-hidden />}
+                    inputValue={hobbyTypeInput}
+                    name="hobbyType"
+                    onChange={setSelectedHobbyTypes}
+                    options={hobbyTypes}
+                    setInputValue={setHobbyTypeInput}
+                    showSearch={false}
+                    title={t('search.titleDropdownHobbyType')}
+                    value={selectedHobbyTypes}
                   />
                 </div>
                 <div className={styles.dateSelectorWrapper}>
