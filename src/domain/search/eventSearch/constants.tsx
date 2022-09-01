@@ -12,7 +12,7 @@ import IconMusic from '../../../assets/icons/IconMusic';
 import IconSports from '../../../assets/icons/IconSports';
 import IconTheatre from '../../../assets/icons/IconTheatre';
 import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
-import { Filters, SearchCategoryOption } from './types';
+import { Filters, SearchCategoryOption, SearchHobbyTypeOption } from './types';
 
 // Page size of the event list
 export const PAGE_SIZE = 10;
@@ -44,6 +44,7 @@ export enum COURSE_HOBBY_TYPES {
 // TODO: Remove these since they should not be needed when the general events are not used at all.
 export const EVENT_DEFAULT_SEARCH_FILTERS: Filters = {
   categories: [],
+  hobbyTypes: [],
   dateTypes: [],
   divisions: [],
   end: null,
@@ -84,6 +85,7 @@ export enum EVENT_SORT_OPTIONS {
 
 export enum EVENT_SEARCH_FILTERS {
   CATEGORIES = 'categories',
+  HOBBY_TYPES = 'hobbyTypes',
   DATE_TYPES = 'dateTypes',
   DIVISIONS = 'divisions',
   END = 'end',
@@ -348,5 +350,35 @@ export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
       labelKey: 'home:category.courses.theatre',
     },
   };
+
+export const courseHobbyTypes: Record<
+  COURSE_HOBBY_TYPES,
+  SearchHobbyTypeOption
+> = {
+  [COURSE_HOBBY_TYPES.CLUBS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.clubs',
+  },
+  [COURSE_HOBBY_TYPES.COURSES]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.courses',
+  },
+  [COURSE_HOBBY_TYPES.CAMPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.camps',
+  },
+  [COURSE_HOBBY_TYPES.TRIPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.trips',
+  },
+  [COURSE_HOBBY_TYPES.WORKSHOPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.workshops',
+  },
+  [COURSE_HOBBY_TYPES.ONLINE_STUDIES]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobbyType.courses.onlineStudies',
+  },
+};
 
 export const MAPPED_PLACES: Record<string, string> = {};

@@ -30,6 +30,7 @@ import {
 } from './constants';
 import FilterSummary from './filterSummary/FilterSummary';
 import {
+  getCourseHobbyTypeOptions,
   getEventCategoryOptions,
   getSearchFilters,
   getSearchQuery,
@@ -62,6 +63,10 @@ const AdvancedSearch: React.FC<Props> = ({
   );
 
   const [categoryInput, setCategoryInput] = React.useState('');
+  const [hobbyTypeInput, setHobbyTypeInput] = React.useState('');
+  const [selectedHobbyTypes, setSelectedHobbyTypes] = React.useState<string[]>(
+    []
+  );
   const [minAgeInput, setMinAgeInput] = React.useState('');
   const [maxAgeInput, setMaxAgeInput] = React.useState('');
   // const [divisionInput, setDivisionInput] = React.useState("");
@@ -96,6 +101,7 @@ const AdvancedSearch: React.FC<Props> = ({
 
   const searchFilters = {
     categories: selectedCategories,
+    hobbyTypes: selectedHobbyTypes,
     dateTypes: selectedDateTypes,
     divisions: selectedDivisions,
     end,
@@ -116,6 +122,7 @@ const AdvancedSearch: React.FC<Props> = ({
   // const divisionOptions = useDivisionOptions();
 
   const categories = getEventCategoryOptions(t);
+  const hobbyTypes = getCourseHobbyTypeOptions(t);
 
   const goToSearch = (search: string): void => {
     router.push({
@@ -145,6 +152,7 @@ const AdvancedSearch: React.FC<Props> = ({
   React.useEffect(() => {
     const {
       categories,
+      hobbyTypes,
       dateTypes,
       divisions,
       end: endTime,
@@ -162,6 +170,7 @@ const AdvancedSearch: React.FC<Props> = ({
     }
 
     setSelectedCategories(categories);
+    setSelectedHobbyTypes(hobbyTypes || []);
     setSelectedDivisions(divisions);
     setSelectedPlaces(places);
     setSelectedTexts(text || []);
@@ -275,6 +284,20 @@ const AdvancedSearch: React.FC<Props> = ({
                     showSearch={false}
                     title={t('search.titleDropdownCategory')}
                     value={selectedCategories}
+                  />
+                </div>
+                <div>
+                  <MultiSelectDropdown
+                    checkboxName="hobbyTypeOptions"
+                    icon={<IconRead aria-hidden />}
+                    inputValue={hobbyTypeInput}
+                    name="hobbyType"
+                    onChange={setSelectedHobbyTypes}
+                    options={hobbyTypes}
+                    setInputValue={setHobbyTypeInput}
+                    showSearch={false}
+                    title={t('courseSearch.search.titleDropdownHobbyType')}
+                    value={selectedHobbyTypes}
                   />
                 </div>
                 <div className={styles.dateSelectorWrapper}>
