@@ -20,8 +20,10 @@ import {
 import Navigation from '../../common-events/components/navigation/Navigation';
 import {
   getDefaultCollections,
+  getSlugFromUri,
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import { getAllPages } from '../../common-events/utils/headless-cms/service';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -30,8 +32,8 @@ import { getLocaleOrError } from '../../utils/routerUtils';
 
 const NextCmsPage: NextPage<{
   page: PageQuery['page'];
-  breadcrumbs: Breadcrumb[];
-  collections?: CollectionType[];
+  breadcrumbs: Breadcrumb[] | null;
+  collections: CollectionType[];
 }> = ({ page, breadcrumbs, collections }) => {
   const {
     currentLanguageCode,
@@ -44,7 +46,7 @@ const NextCmsPage: NextPage<{
       content={
         <HCRCPageContent
           page={page as PageContentProps['page']}
-          breadcrumbs={breadcrumbs}
+          breadcrumbs={breadcrumbs ?? undefined}
           collections={
             collections
               ? getDefaultCollections(
@@ -62,7 +64,18 @@ const NextCmsPage: NextPage<{
 };
 
 export async function getStaticPaths() {
-  return { paths: [], fallback: true };
+  const pagePageInfos = await getAllPages();
+  const paths = pagePageInfos
+    .map((pageInfo) => ({
+      params: { slug: getSlugFromUri(pageInfo.slug) },
+      locale: pageInfo.locale,
+    }))
+    // Remove the pages without a slug
+    .filter((entry) => entry.params.slug && entry.params.slug.length);
+  return {
+    paths,
+    fallback: true, // can also be true or 'blocking'
+  };
 }
 
 type ResultProps =
@@ -70,7 +83,7 @@ type ResultProps =
       initialApolloState: NormalizedCacheObject;
       page: PageQuery['page'];
       breadcrumbs: Breadcrumb[];
-      collections?: CollectionType[];
+      collections: CollectionType[];
     }
   | {
       error?: {
@@ -98,9 +111,7 @@ export async function getStaticProps(
     return {
       props: {
         initialApolloState: cmsClient.cache.extract(),
-        ...(await serverSideTranslationsWithCommon(locale, [
-          'cms',
-        ])),
+        ...(await serverSideTranslationsWithCommon(locale, ['cms'])),
         page,
         breadcrumbs,
         collections: getCollections(page.modules ?? []),
@@ -108,8 +119,6 @@ export async function getStaticProps(
       revalidate: 60,
     };
   } catch (e) {
-    // eslint-disable-next-line no-console
-    console.error('Error while generating content page', e);
     return {
       props: {
         error: {
@@ -121,66 +130,8 @@ export async function getStaticProps(
   }
 }
 
-// const getProps = async (context: GetStaticPropsContext) => {
-//   const cmsClient = createCmsApolloClient();
-
-//   // These breadcrumb uris are used to fetch all the parent pages of the current page
-//   // so that all the childrens of parent page can be figured out and sub page navigations can be formed
-//   // for rendering
-//   const uriSegments = slugsToUriSegments(
-//     (context.params?.slug ?? []) as string[]
-//   );
-
-//   // Fetch menu data to cache for the components so they can be rendered in the server
-//   await cmsClient.query<MenuQuery, MenuQueryVariables>({
-//     query: MenuDocument,
-//     variables: {
-//       id: MENU_NAME.Header,
-//       idType: MenuNodeIdTypeEnum.Name,
-//     },
-//   });
-
-//   const { data: pageData } = await cmsClient.query<
-//     PageQuery,
-//     PageQueryVariables
-//   >({
-//     query: PageDocument,
-//     variables: {
-//       id: getUriID(
-//         context.params?.slug as string[],
-//         context.locale as Language
-//       ),
-//       idType: PageIdType.Uri,
-//     },
-//   });
-
-//   // Fetch all parent pages for navigation data
-//   const apolloPageResponses = await Promise.all(
-//     uriSegments.map((uri) => {
-//       return cmsClient.query<PageQuery, PageQueryVariables>({
-//         query: PageDocument,
-//         variables: {
-//           id: uri,
-//           idType: PageIdType.Uri,
-//         },
-//       });
-//     })
-//   );
-
-//   const pages = apolloPageResponses.map((res) => res.data.page);
-//   const currentPage = pageData.page;
-
-//   const breadcrumbs = pages.map((page) => ({
-//     link: page?.link ?? "",
-//     title: page?.title ?? "",
-//   }));
-
-//   return { currentPage, breadcrumbs, cmsClient };
-// };
-
 const getProps = async (context: GetStaticPropsContext) => {
   const cmsClient = createCmsApolloClient();
-
   const { data: pageData } = await cmsClient.query<
     PageQuery,
     PageQueryVariables
@@ -196,6 +147,29 @@ const getProps = async (context: GetStaticPropsContext) => {
   });
 
   const currentPage = pageData.page;
+  // TODO: Breadcrumbs are unstyled, so left disabled
+  // Fetch all parent pages for navigation data.
+  // These breadcrumb uris are used to fetch all the parent pages of the current page
+  // so that all the childrens of parent page can be figured out and sub page navigations can be formed
+  // for rendering
+  // const uriSegments = slugsToUriSegments(
+  //   (context.params?.slug ?? []) as string[]
+  // );
+  // const apolloPageResponses = await Promise.all(
+  //   uriSegments.map((uri) => {
+  //     return cmsClient.query<PageQuery, PageQueryVariables>({
+  //       query: PageDocument,
+  //       variables: {
+  //         id: uri,
+  //       },
+  //     });
+  //   })
+  // );
+  // const pages = apolloPageResponses.map((res) => res.data.page);
+  // const breadcrumbs = pages.map((page) => ({
+  //   link: page?.link ?? '',
+  //   title: page?.title ?? '',
+  // }));
 
   return { currentPage, breadcrumbs: [], cmsClient };
 };
