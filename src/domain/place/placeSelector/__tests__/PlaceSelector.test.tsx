@@ -102,7 +102,7 @@ const defaultProps = {
   name: 'place',
   onChange: jest.fn(),
   showSearch: true,
-  title: 'Etsi tapahtumapaikka',
+  title: 'Tapahtumapaikka',
   value: [],
 };
 
@@ -112,14 +112,12 @@ test('should filter place options', async () => {
   });
   await actWait();
   await act(() =>
-    userEvent.click(
-      screen.getByRole('button', { name: /etsi tapahtumapaikka/i })
-    )
+    userEvent.click(screen.getByRole('button', { name: /tapahtumapaikka/i }))
   );
 
   userEvent.type(
     screen.getByRole('textbox', {
-      name: /etsi tapahtumapaikka kirjoita hakusana/i,
+      name: /tapahtumapaikka kirjoita hakusana/i,
     }),
     // uppercase to test case insesitivity
     searchWord.toUpperCase()

@@ -351,33 +351,34 @@ export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
     },
   };
 
+// todo: fix icons if/when we need them as category labels and when the icons are defined (not defined in events)
 export const courseHobbyTypes: Record<
   COURSE_HOBBY_TYPES,
   SearchHobbyTypeOption
 > = {
   [COURSE_HOBBY_TYPES.CLUBS]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.clubs',
+    labelKey: 'home:hobby.clubs',
   },
   [COURSE_HOBBY_TYPES.COURSES]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.courses',
+    labelKey: 'home:hobby.courses',
   },
   [COURSE_HOBBY_TYPES.CAMPS]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.camps',
+    labelKey: 'home:hobby.camps',
   },
   [COURSE_HOBBY_TYPES.TRIPS]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.trips',
+    labelKey: 'home:hobby.trips',
   },
   [COURSE_HOBBY_TYPES.WORKSHOPS]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.workshops',
+    labelKey: 'home:hobby.workshops',
   },
   [COURSE_HOBBY_TYPES.ONLINE_STUDIES]: {
     icon: <IconMovies />,
-    labelKey: 'home:hobbyType.courses.onlineStudies',
+    labelKey: 'home:hobby.onlineStudies',
   },
 };
 
