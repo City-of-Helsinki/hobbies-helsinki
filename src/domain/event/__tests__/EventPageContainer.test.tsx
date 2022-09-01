@@ -108,7 +108,11 @@ const mocks = [
     response: fakeEvents(otherEventTimesCount),
   }),
   createEventListRequestAndResultMocks({
-    variables: { allOngoing: true, keywordOrSet1: eventKeywordIds },
+    variables: {
+      allOngoing: true,
+      keywordOrSet2: eventKeywordIds,
+      keywordOrSet3: eventKeywordIds,
+    },
     response: similarEvents,
   }),
 ];

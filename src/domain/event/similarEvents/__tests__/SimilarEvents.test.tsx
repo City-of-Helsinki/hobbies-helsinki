@@ -53,7 +53,7 @@ const mocks = [
   createEventListRequestAndResultMocks({
     variables: {
       allOngoing: true,
-      keywordOrSet1: ['keyword1', 'keyword2', 'keyword3'],
+      keywordOrSet2: ['keyword1', 'keyword2', 'keyword3'],
     },
     response: expectedSimilarEvents,
   }),
