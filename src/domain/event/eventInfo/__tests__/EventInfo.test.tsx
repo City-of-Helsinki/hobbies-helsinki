@@ -54,6 +54,7 @@ it('should render event info fields', async () => {
   render(<EventInfo event={event} />, { mocks });
   await actWait();
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const itemsByRole = [
     { role: 'heading', name: translations.event.info.labelDateAndTime },
     { role: 'heading', name: translations.event.info.labelLocation },

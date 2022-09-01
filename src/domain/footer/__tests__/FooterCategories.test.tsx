@@ -1,5 +1,4 @@
 import i18n from 'i18next';
-import { axe } from 'jest-axe';
 import React from 'react';
 
 import { screen, render, userEvent, act } from '../../../tests/testUtils';

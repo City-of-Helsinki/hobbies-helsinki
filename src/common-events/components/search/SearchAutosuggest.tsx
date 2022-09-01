@@ -13,7 +13,6 @@ import getLocalisedString from '../../utils/getLocalisedString';
 import AutosuggestMenu from './AutosuggestMenu';
 import styles from './searchAutosuggest.module.scss';
 import { useKeywordListQuery } from '../../../domain/nextApi/graphql/generated/graphql';
-import eventsApolloClient from '../../../domain/clients/eventsApolloClient';
 
 export interface SearchAutosuggestProps {
   name: string;

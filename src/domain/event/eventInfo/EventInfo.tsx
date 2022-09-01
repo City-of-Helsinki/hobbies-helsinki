@@ -14,7 +14,6 @@ import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
-import { useRouter } from 'next/router';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -100,7 +99,6 @@ const EventInfo: React.FC<Props> = ({ event, superEvent }) => {
 const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const router = useRouter();
 
   const {
     addressLocality,

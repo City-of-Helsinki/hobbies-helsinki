@@ -1,6 +1,5 @@
 import { axe } from 'jest-axe';
 import React from 'react';
-import wait from 'waait';
 
 import { translations } from '../../../../tests/initI18n';
 import {
