@@ -36,7 +36,6 @@ import IconDirections from '../../../assets/icons/IconDirections';
 import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
 import getDateArray from '../../../common-events/utils/getDateArray';
 import getDomain from '../../../common/utils/getDomain';
-import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 

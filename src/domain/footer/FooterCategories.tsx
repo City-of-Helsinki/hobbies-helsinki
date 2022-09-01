@@ -1,17 +1,15 @@
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
-import { useRouter } from 'next/router';
 
 import CategoryFilter from '../../common-events/components/category/CategoryFilter';
 import { ROUTES } from '../../constants';
 import useLocale from '../../hooks/useLocale';
-import { Language } from '../../types';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
 import {
   CATEGORY_CATALOG,
   COURSE_DEFAULT_SEARCH_FILTERS,
 } from '../search/eventSearch/constants';
-import { CategoryExtendedOption, Filters } from '../search/eventSearch/types';
+import { CategoryOption, Filters } from '../search/eventSearch/types';
 import {
   getEventCategoryOptions,
   getSearchQuery,
@@ -21,9 +19,8 @@ import styles from './footerCategories.module.scss';
 const FooterCategories: FunctionComponent = () => {
   const { t } = useTranslation('footer');
   const locale = useLocale();
-  const router = useRouter();
 
-  const getCategoryLink = (category: CategoryExtendedOption) => {
+  const getCategoryLink = (category: CategoryOption) => {
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},

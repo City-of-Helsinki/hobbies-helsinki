@@ -32,15 +32,14 @@ import {
   MAPPED_COURSE_HOBBY_TYPES,
 } from './constants';
 import {
-  CategoryExtendedOption,
+  CategoryOption,
   Filters,
-  HobbyTypeExtendedOption,
+  HobbyTypeOption,
   MappedFilters,
   SearchCategoryOption,
   SearchCategoryType,
   SearchHobbyType,
   SearchHobbyTypeOption,
-  SearchHobbyTypeRecord,
 } from './types';
 import { UnionTFunction } from '../../../common-events/types';
 import AppConfig from '../../app/AppConfig';
@@ -49,15 +48,15 @@ export const MIN_AGE = 0;
 export const MAX_AGE = 99;
 
 export const sortExtendedCategoryOptions = (
-  a: CategoryExtendedOption,
-  b: CategoryExtendedOption
+  a: CategoryOption,
+  b: CategoryOption
 ) => (a.text > b.text ? 1 : b.text > a.text ? -1 : 0);
 
 export const getCategoryOptions = (
   category: SearchCategoryType,
   categoryOption: SearchCategoryOption,
   t: UnionTFunction
-): CategoryExtendedOption => {
+): CategoryOption => {
   const { icon, labelKey } = categoryOption;
   return {
     icon,
@@ -67,15 +66,15 @@ export const getCategoryOptions = (
 };
 
 export const sortExtendedHobbyTypeOptions = (
-  a: HobbyTypeExtendedOption,
-  b: HobbyTypeExtendedOption
+  a: HobbyTypeOption,
+  b: HobbyTypeOption
 ) => (a.text > b.text ? 1 : b.text > a.text ? -1 : 0);
 
 export const getHobbyTypeOptions = (
   hobbyType: SearchHobbyType,
   hobbyTypeOption: SearchHobbyTypeOption,
   t: UnionTFunction
-): HobbyTypeExtendedOption => {
+): HobbyTypeOption => {
   const { icon, labelKey } = hobbyTypeOption;
   return {
     icon,
@@ -87,7 +86,7 @@ export const getHobbyTypeOptions = (
 export const getEventCategoryOptions = (
   t: UnionTFunction,
   categories: COURSE_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
-): CategoryExtendedOption[] =>
+): CategoryOption[] =>
   categories
     .map((category) =>
       getCategoryOptions(category, courseCategories[category], t)
@@ -97,7 +96,7 @@ export const getEventCategoryOptions = (
 export const getCourseHobbyTypeOptions = (
   t: UnionTFunction,
   hobbytTypes: COURSE_HOBBY_TYPES[] = CATEGORY_CATALOG.hobbyTypes.default
-): HobbyTypeExtendedOption[] =>
+): HobbyTypeOption[] =>
   hobbytTypes
     .map((hobbyType) =>
       getHobbyTypeOptions(hobbyType, courseHobbyTypes[hobbyType], t)
@@ -224,10 +223,7 @@ export const getEventSearchVariables = ({
     keywordAnd.push('yso:p4354');
   }
 
-  const categoriesParamName = 'keywordOrSet1';
   const categoryMap = MAPPED_COURSE_CATEGORIES;
-
-  const hobbyTypesParamName = 'keywordOrSet2';
   const hobbyTypeMap = MAPPED_COURSE_HOBBY_TYPES;
 
   const getMappedPropertyValues = (
@@ -266,8 +262,8 @@ export const getEventSearchVariables = ({
     include,
     isFree: isFree || undefined,
     // internetBased: onlyRemoteEvents || undefined,
-    [categoriesParamName]: [...(keyword ?? []), ...mappedCategories],
-    [hobbyTypesParamName]: [...(keyword ?? []), ...mappedHobbyTypes],
+    keywordOrSet2: [...(keyword ?? []), ...mappedCategories],
+    keywordOrSet3: [...(keyword ?? []), ...mappedHobbyTypes],
     keywordAnd,
     keywordNot,
     language,

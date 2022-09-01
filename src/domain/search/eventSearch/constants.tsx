@@ -299,14 +299,43 @@ export const MAPPED_COURSE_CATEGORIES: Record<string, string[]> = {
   [COURSE_CATEGORIES.THEATRE]: THEATRE_COURSES_KEYWORDS,
 };
 
-//todo: replace with valid keyword ids
+//course hobby types
+export const CLUBS_KEYWORDS = [
+  'yso:p7642', // kerhot
+  'yso:p7641', // kerhotoiminta
+];
+
+export const COURSES_KEYWORDS = [
+  //kurssit, vapaa-ajan kurssit
+  'yso:p9270',
+  'kulke:301',
+  'kulke:60',
+  'kulke:625',
+];
+
+export const CAMPS_KEYWORDS = [
+  'yso:p143', //leirit
+  'yso:p21435', //kesäleirit
+  'yso:p22818', //tiedeleirit
+];
+
+export const TRIPS_KEYWORDS = [
+  'yso:p25261', //retket
+  'yso:p1103', //retkeily
+];
+
+export const WORKSHOPS_KEYWORDS = [
+  //työpajat
+  'yso:p19245',
+  'kulke:732',
+];
+
 export const MAPPED_COURSE_HOBBY_TYPES: Record<string, string[]> = {
-  [COURSE_HOBBY_TYPES.CLUBS]: ['yso:p1235'],
-  [COURSE_HOBBY_TYPES.COURSES]: ['yso:p1235'],
-  [COURSE_HOBBY_TYPES.CAMPS]: ['yso:p1235'],
-  [COURSE_HOBBY_TYPES.TRIPS]: ['yso:p1235'],
-  [COURSE_HOBBY_TYPES.WORKSHOPS]: ['yso:p1235'],
-  [COURSE_HOBBY_TYPES.ONLINE_STUDIES]: ['yso:p1235'],
+  [COURSE_HOBBY_TYPES.CLUBS]: CLUBS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.COURSES]: COURSES_KEYWORDS,
+  [COURSE_HOBBY_TYPES.CAMPS]: CAMPS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.TRIPS]: TRIPS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.WORKSHOPS]: WORKSHOPS_KEYWORDS,
 };
 
 export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =

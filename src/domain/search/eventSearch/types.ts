@@ -12,12 +12,6 @@ export interface CategoryOption {
   value: COURSE_CATEGORIES;
 }
 
-export interface CategoryExtendedOption {
-  icon: React.ReactElement;
-  text: string;
-  value: COURSE_CATEGORIES;
-}
-
 export type SearchCategoryType = COURSE_CATEGORIES;
 
 export interface SearchCategoryOption {
@@ -31,12 +25,6 @@ export type SearchCategoryRecord = Record<
 >;
 
 export interface HobbyTypeOption {
-  icon: React.ReactElement;
-  text: string;
-  value: COURSE_HOBBY_TYPES;
-}
-
-export interface HobbyTypeExtendedOption {
   icon: React.ReactElement;
   text: string;
   value: COURSE_HOBBY_TYPES;

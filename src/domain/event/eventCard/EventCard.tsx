@@ -20,7 +20,6 @@ import {
 } from '../EventUtils';
 import { EventFields } from '../types';
 import styles from './eventCard.module.scss';
-import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
