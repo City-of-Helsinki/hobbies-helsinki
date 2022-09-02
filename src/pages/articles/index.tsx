@@ -1,25 +1,26 @@
 import React from 'react';
 import { GetStaticPropsContext } from 'next';
 import {
-  Page as HCRCApolloPage,
   useCategoriesQuery,
+  PageByTemplateDocument,
+  PageByTemplateQuery,
+  PageByTemplateQueryVariables,
   usePostsQuery,
 } from 'react-helsinki-headless-cms/apollo';
 import {
+  Page as RHHCPage,
   Card,
   LargeCard,
   SearchPageContent,
   ArticleType,
   useConfig,
   LanguageCodeFilterEnum,
+  TemplateEnum,
+  PageType,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
 
-import getHobbiesStaticProps, {
-  HobbiesGlobalPageProps,
-} from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { ROUTES } from '../../constants';
 import Navigation from '../../common-events/components/navigation/Navigation';
 import FooterSection from '../../domain/footer/Footer';
 import { getLocaleOrError } from '../../utils/routerUtils';
@@ -27,6 +28,10 @@ import useDebounce from '../../common/hooks/useDebounce';
 import { useCmsApollo } from '../../domain/clients/cmsApolloClient';
 import { getArticlePageCardProps } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 import { skipFalsyType } from '../../common/utils/typescript.utils';
+import { getQlLanguage } from '../../common/apollo/utils';
+import getHobbiesStaticProps, {
+  HobbiesGlobalPageProps,
+} from '../../domain/app/getHobbiesStaticProps';
 
 const CATEGORIES_AMOUNT = 20;
 const BLOCK_SIZE = 10;
@@ -34,7 +39,8 @@ const SEARCH_DEBOUNCE_TIME = 500;
 
 export default function ArticleArchive({
   initialApolloState,
-}: HobbiesGlobalPageProps) {
+  page,
+}: HobbiesGlobalPageProps & { page: PageType }) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchCategories, setSearchCategories] = React.useState<string[]>([]);
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME);
@@ -93,10 +99,9 @@ export default function ArticleArchive({
   // Show the first item large when the search has not yet done
   const showFirstItemLarge = searchTerm.length == 0 ? true : false;
   return (
-    <HCRCApolloPage
-      uri={ROUTES.ARTICLE_ARCHIVE}
+    <RHHCPage
       className="pageLayout"
-      navigation={<Navigation />}
+      navigation={<Navigation page={page} />}
       content={
         <SearchPageContent
           // customContent={customContent}
@@ -148,11 +153,23 @@ export default function ArticleArchive({
 }
 
 export async function getStaticProps(context: GetStaticPropsContext) {
-  return getHobbiesStaticProps(context, async () => {
+  return getHobbiesStaticProps(context, async ({ cmsClient }) => {
     const locale = getLocaleOrError(context.locale);
+    const { data: pageData } = await cmsClient.query<
+      PageByTemplateQuery,
+      PageByTemplateQueryVariables
+    >({
+      query: PageByTemplateDocument,
+      variables: {
+        template: TemplateEnum.PostsPage,
+        language: getQlLanguage(locale).toLocaleLowerCase(),
+      },
+    });
 
+    const page = pageData.pageByTemplate;
     return {
       props: {
+        page,
         ...(await serverSideTranslationsWithCommon(locale, [
           'common',
           'home',

@@ -10,6 +10,7 @@ import {
   PageContent as RHHCPageContent,
   Page as RHHCPage,
   useConfig,
+  ArticleType,
 } from 'react-helsinki-headless-cms';
 import {
   ArticleDocument,
@@ -34,7 +35,7 @@ import { getLocaleOrError } from '../../utils/routerUtils';
 import { getAllArticles } from '../../common-events/utils/headless-cms/service';
 
 const NextCmsArticle: NextPage<{
-  article: ArticleQuery['post'];
+  article: ArticleType;
   breadcrumbs: Breadcrumb[] | null;
   collections: CollectionType[];
 }> = ({ article, breadcrumbs, collections }) => {
@@ -47,7 +48,7 @@ const NextCmsArticle: NextPage<{
 
   return (
     <RHHCPage
-      navigation={<Navigation />}
+      navigation={<Navigation page={article} />}
       content={
         <RHHCPageContent
           page={article as PageContentProps['page']}
