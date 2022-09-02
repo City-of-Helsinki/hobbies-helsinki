@@ -27,13 +27,19 @@ import {
   MAPPED_PLACES,
   CATEGORY_CATALOG,
   MAPPED_COURSE_CATEGORIES,
+  COURSE_HOBBY_TYPES,
+  courseHobbyTypes,
+  MAPPED_COURSE_HOBBY_TYPES,
 } from './constants';
 import {
-  CategoryExtendedOption,
+  CategoryOption,
   Filters,
+  HobbyTypeOption,
   MappedFilters,
   SearchCategoryOption,
   SearchCategoryType,
+  SearchHobbyType,
+  SearchHobbyTypeOption,
 } from './types';
 import { UnionTFunction } from '../../../common-events/types';
 import AppConfig from '../../app/AppConfig';
@@ -42,15 +48,15 @@ export const MIN_AGE = 0;
 export const MAX_AGE = 99;
 
 export const sortExtendedCategoryOptions = (
-  a: CategoryExtendedOption,
-  b: CategoryExtendedOption
+  a: CategoryOption,
+  b: CategoryOption
 ) => (a.text > b.text ? 1 : b.text > a.text ? -1 : 0);
 
 export const getCategoryOptions = (
   category: SearchCategoryType,
   categoryOption: SearchCategoryOption,
   t: UnionTFunction
-): CategoryExtendedOption => {
+): CategoryOption => {
   const { icon, labelKey } = categoryOption;
   return {
     icon,
@@ -59,15 +65,43 @@ export const getCategoryOptions = (
   };
 };
 
+export const sortExtendedHobbyTypeOptions = (
+  a: HobbyTypeOption,
+  b: HobbyTypeOption
+) => (a.text > b.text ? 1 : b.text > a.text ? -1 : 0);
+
+export const getHobbyTypeOptions = (
+  hobbyType: SearchHobbyType,
+  hobbyTypeOption: SearchHobbyTypeOption,
+  t: UnionTFunction
+): HobbyTypeOption => {
+  const { icon, labelKey } = hobbyTypeOption;
+  return {
+    icon,
+    text: t(labelKey),
+    value: hobbyType,
+  };
+};
+
 export const getEventCategoryOptions = (
   t: UnionTFunction,
   categories: COURSE_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
-): CategoryExtendedOption[] =>
+): CategoryOption[] =>
   categories
     .map((category) =>
       getCategoryOptions(category, courseCategories[category], t)
     )
     .sort(sortExtendedCategoryOptions);
+
+export const getCourseHobbyTypeOptions = (
+  t: UnionTFunction,
+  hobbytTypes: COURSE_HOBBY_TYPES[] = CATEGORY_CATALOG.hobbyTypes.default
+): HobbyTypeOption[] =>
+  hobbytTypes
+    .map((hobbyType) =>
+      getHobbyTypeOptions(hobbyType, courseHobbyTypes[hobbyType], t)
+    )
+    .sort(sortExtendedHobbyTypeOptions);
 
 /**
  * Get start and end dates to event list filtering
@@ -147,6 +181,7 @@ export const getEventSearchVariables = ({
 }): QueryEventListArgs => {
   const {
     categories,
+    hobbyTypes,
     dateTypes,
     divisions,
     isFree,
@@ -188,8 +223,8 @@ export const getEventSearchVariables = ({
     keywordAnd.push('yso:p4354');
   }
 
-  const categoriesParamName = 'keywordOrSet1';
   const categoryMap = MAPPED_COURSE_CATEGORIES;
+  const hobbyTypeMap = MAPPED_COURSE_HOBBY_TYPES;
 
   const getMappedPropertyValues = (
     list: string[],
@@ -201,6 +236,7 @@ export const getEventSearchVariables = ({
     );
 
   const mappedCategories = getMappedPropertyValues(categories, categoryMap);
+  const mappedHobbyTypes = getMappedPropertyValues(hobbyTypes, hobbyTypeMap);
 
   const hasLocation = !isEmpty(divisions) || !isEmpty(places);
 
@@ -226,7 +262,8 @@ export const getEventSearchVariables = ({
     include,
     isFree: isFree || undefined,
     // internetBased: onlyRemoteEvents || undefined,
-    [categoriesParamName]: [...(keyword ?? []), ...mappedCategories],
+    keywordOrSet2: [...(keyword ?? []), ...mappedCategories],
+    keywordOrSet3: [...(keyword ?? []), ...mappedHobbyTypes],
     keywordAnd,
     keywordNot,
     language,
@@ -290,6 +327,10 @@ export const getSearchFilters = (searchParams: URLSearchParams): Filters => {
     categories: getUrlParamAsArray(
       searchParams,
       EVENT_SEARCH_FILTERS.CATEGORIES
+    ),
+    hobbyTypes: getUrlParamAsArray(
+      searchParams,
+      EVENT_SEARCH_FILTERS.HOBBY_TYPES
     ),
     dateTypes: getUrlParamAsArray(
       searchParams,

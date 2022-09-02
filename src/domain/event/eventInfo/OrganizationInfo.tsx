@@ -2,7 +2,6 @@ import { IconFaceSmile, IconLayers } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
-import { useRouter } from 'next/router';
 
 import styles from './eventInfo.module.scss';
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
@@ -14,7 +13,6 @@ import {
 import { getEventFields } from '../EventUtils';
 import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
-import { Language } from '../../../types';
 import useLocale from '../../../hooks/useLocale';
 
 interface Props {
@@ -24,7 +22,6 @@ interface Props {
 const OrganizationInfo: React.FC<Props> = ({ event }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const router = useRouter();
   const { provider, publisher } = getEventFields(event, locale);
   const { data: organizationData, loading } = useOrganizationDetailsQuery({
     ssr: false,
@@ -58,7 +55,7 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
                   href={`${getLocalizedCmsItemUrl(
                     ROUTES.SEARCH,
                     {},
-                    locale,
+                    locale
                   )}?publisher=${publisher}`}
                 >
                   {t(`event:info.linkSearchByPublisher`)}

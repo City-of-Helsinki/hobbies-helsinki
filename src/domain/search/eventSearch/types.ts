@@ -1,14 +1,12 @@
 import React from 'react';
 
-import { COURSE_CATEGORIES, EVENT_SEARCH_FILTERS } from './constants';
+import {
+  COURSE_CATEGORIES,
+  COURSE_HOBBY_TYPES,
+  EVENT_SEARCH_FILTERS,
+} from './constants';
 
 export interface CategoryOption {
-  icon: React.ReactElement;
-  text: string;
-  value: COURSE_CATEGORIES;
-}
-
-export interface CategoryExtendedOption {
   icon: React.ReactElement;
   text: string;
   value: COURSE_CATEGORIES;
@@ -21,10 +19,32 @@ export interface SearchCategoryOption {
   labelKey: string;
 }
 
-export type SearchCategory = Record<SearchCategoryType, SearchCategoryOption>;
+export type SearchCategoryRecord = Record<
+  SearchCategoryType,
+  SearchCategoryOption
+>;
+
+export interface HobbyTypeOption {
+  icon: React.ReactElement;
+  text: string;
+  value: COURSE_HOBBY_TYPES;
+}
+
+export type SearchHobbyType = COURSE_HOBBY_TYPES;
+
+export interface SearchHobbyTypeOption {
+  icon: React.ReactElement;
+  labelKey: string;
+}
+
+export type SearchHobbyTypeRecord = Record<
+  SearchHobbyType,
+  SearchHobbyTypeOption
+>;
 
 export interface Filters {
   [EVENT_SEARCH_FILTERS.CATEGORIES]: string[];
+  [EVENT_SEARCH_FILTERS.HOBBY_TYPES]: string[];
   [EVENT_SEARCH_FILTERS.DATE_TYPES]: string[];
   [EVENT_SEARCH_FILTERS.DIVISIONS]: string[];
   [EVENT_SEARCH_FILTERS.END]: Date | null;

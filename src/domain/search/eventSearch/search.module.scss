@@ -54,12 +54,14 @@ $buttonWidth: 180px;
   }
 
   .autoSuggestRow {
-    @include respond-above(s) {
-      grid-template-columns: 1fr;
-    }
+    align-items: flex-end;
 
     @include respond-above(m) {
-      div:first-child {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    & > :first-child {
+      @include respond-above(m) {
         grid-column: 1 / 4;
       }
     }

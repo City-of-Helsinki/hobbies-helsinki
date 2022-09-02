@@ -2,7 +2,7 @@ import React from 'react';
 import classNames from 'classnames';
 
 import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
-import { CategoryExtendedOption, Filters } from '../eventSearch/types';
+import { CategoryOption, Filters } from '../eventSearch/types';
 import { getSearchQuery } from '../eventSearch/utils';
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
@@ -10,7 +10,7 @@ import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
 type SearchShortcutsProps = {
   className: string;
-  categories: CategoryExtendedOption[];
+  categories: CategoryOption[];
   searchFilters: Filters;
 };
 
@@ -21,7 +21,7 @@ export default function SearchShortcuts({
 }: SearchShortcutsProps) {
   const locale = useLocale();
 
-  const getCategoryLink = (category: CategoryExtendedOption) => {
+  const getCategoryLink = (category: CategoryOption) => {
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},

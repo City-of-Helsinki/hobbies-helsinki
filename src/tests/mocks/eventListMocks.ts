@@ -20,7 +20,6 @@ export const baseVariables = {
   isFree: undefined,
   keywordAnd: [],
   keywordNot: [],
-  // keywordOrSet3: [],
   language: 'fi',
   location: [],
   pageSize: 10,
@@ -33,7 +32,8 @@ export const baseVariables = {
 
 export const eventListBaseVariables: QueryEventListArgs = {
   ...baseVariables,
-  keywordOrSet1: [],
+  keywordOrSet2: [],
+  keywordOrSet3: [],
 };
 
 export const getOtherEventsVariables = (

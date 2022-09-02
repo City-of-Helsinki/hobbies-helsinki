@@ -14,7 +14,6 @@ import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
-import { useRouter } from 'next/router';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
@@ -36,7 +35,6 @@ import IconDirections from '../../../assets/icons/IconDirections';
 import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
 import getDateArray from '../../../common-events/utils/getDateArray';
 import getDomain from '../../../common/utils/getDomain';
-import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 
@@ -101,7 +99,6 @@ const EventInfo: React.FC<Props> = ({ event, superEvent }) => {
 const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
   const { t } = useTranslation();
   const locale = useLocale();
-  const router = useRouter();
 
   const {
     addressLocality,

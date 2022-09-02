@@ -29,7 +29,6 @@ import { EventFields } from '../types';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import buttonStyles from '../../../common-events/components/button/button.module.scss';
 import styles from './largeEventCard.module.scss';
-import { Language } from '../../../types';
 import { ROUTES } from '../../../constants';
 import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';

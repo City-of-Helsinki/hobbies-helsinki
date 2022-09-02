@@ -12,7 +12,7 @@ import IconMusic from '../../../assets/icons/IconMusic';
 import IconSports from '../../../assets/icons/IconSports';
 import IconTheatre from '../../../assets/icons/IconTheatre';
 import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
-import { Filters, SearchCategoryOption } from './types';
+import { Filters, SearchCategoryOption, SearchHobbyTypeOption } from './types';
 
 // Page size of the event list
 export const PAGE_SIZE = 10;
@@ -44,6 +44,7 @@ export enum COURSE_HOBBY_TYPES {
 // TODO: Remove these since they should not be needed when the general events are not used at all.
 export const EVENT_DEFAULT_SEARCH_FILTERS: Filters = {
   categories: [],
+  hobbyTypes: [],
   dateTypes: [],
   divisions: [],
   end: null,
@@ -84,6 +85,7 @@ export enum EVENT_SORT_OPTIONS {
 
 export enum EVENT_SEARCH_FILTERS {
   CATEGORIES = 'categories',
+  HOBBY_TYPES = 'hobbyTypes',
   DATE_TYPES = 'dateTypes',
   DIVISIONS = 'divisions',
   END = 'end',
@@ -297,6 +299,45 @@ export const MAPPED_COURSE_CATEGORIES: Record<string, string[]> = {
   [COURSE_CATEGORIES.THEATRE]: THEATRE_COURSES_KEYWORDS,
 };
 
+//course hobby types
+export const CLUBS_KEYWORDS = [
+  'yso:p7642', // kerhot
+  'yso:p7641', // kerhotoiminta
+];
+
+export const COURSES_KEYWORDS = [
+  //kurssit, vapaa-ajan kurssit
+  'yso:p9270',
+  'kulke:301',
+  'kulke:60',
+  'kulke:625',
+];
+
+export const CAMPS_KEYWORDS = [
+  'yso:p143', //leirit
+  'yso:p21435', //kesäleirit
+  'yso:p22818', //tiedeleirit
+];
+
+export const TRIPS_KEYWORDS = [
+  'yso:p25261', //retket
+  'yso:p1103', //retkeily
+];
+
+export const WORKSHOPS_KEYWORDS = [
+  //työpajat
+  'yso:p19245',
+  'kulke:732',
+];
+
+export const MAPPED_COURSE_HOBBY_TYPES: Record<string, string[]> = {
+  [COURSE_HOBBY_TYPES.CLUBS]: CLUBS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.COURSES]: COURSES_KEYWORDS,
+  [COURSE_HOBBY_TYPES.CAMPS]: CAMPS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.TRIPS]: TRIPS_KEYWORDS,
+  [COURSE_HOBBY_TYPES.WORKSHOPS]: WORKSHOPS_KEYWORDS,
+};
+
 export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
   {
     [COURSE_CATEGORIES.MOVIE]: {
@@ -348,5 +389,36 @@ export const courseCategories: Record<COURSE_CATEGORIES, SearchCategoryOption> =
       labelKey: 'home:category.courses.theatre',
     },
   };
+
+// todo: fix icons if/when we need them as category labels and when the icons are defined (not defined in events)
+export const courseHobbyTypes: Record<
+  COURSE_HOBBY_TYPES,
+  SearchHobbyTypeOption
+> = {
+  [COURSE_HOBBY_TYPES.CLUBS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.clubs',
+  },
+  [COURSE_HOBBY_TYPES.COURSES]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.courses',
+  },
+  [COURSE_HOBBY_TYPES.CAMPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.camps',
+  },
+  [COURSE_HOBBY_TYPES.TRIPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.trips',
+  },
+  [COURSE_HOBBY_TYPES.WORKSHOPS]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.workshops',
+  },
+  [COURSE_HOBBY_TYPES.ONLINE_STUDIES]: {
+    icon: <IconMovies />,
+    labelKey: 'home:hobby.onlineStudies',
+  },
+};
 
 export const MAPPED_PLACES: Record<string, string> = {};
