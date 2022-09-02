@@ -23,10 +23,8 @@ import FooterSection from '../../domain/footer/Footer';
 import { getLocaleOrError } from '../../utils/routerUtils';
 import useDebounce from '../../common/hooks/useDebounce';
 import { useCmsApollo } from '../../domain/clients/cmsApolloClient';
-import {
-  getEventPlaceholderImage,
-  getArticlePageCardProps,
-} from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import { getArticlePageCardProps } from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import { skipFalsyType } from '../../common/utils/typescript.utils';
 
 const CATEGORIES_AMOUNT = 20;
 const BLOCK_SIZE = 10;
@@ -87,8 +85,7 @@ export default function ArticleArchive() {
 
   const articles = articlesData?.posts?.edges?.map((edge) => edge?.node).flat();
   const categories = categoriesData?.categories?.nodes ?? [];
-  // The default image when the CMS does not offer any
-  const defaultImageUrl = getEventPlaceholderImage('');
+
   // Show the first item large when the search has not yet done
   const showFirstItemLarge = searchTerm.length == 0 ? true : false;
   return (
@@ -107,7 +104,9 @@ export default function ArticleArchive() {
             setSearchTerm(freeSearch);
             // NOTE: For some reason the CMS needs database ids here instead of ids or slugs.
             setSearchCategories(
-              tags.map((tag) => tag?.databaseId.toString() || '')
+              tags
+                .filter(skipFalsyType)
+                .map((tag) => tag?.databaseId.toString())
             );
           }}
           onLoadMore={() => {
@@ -119,8 +118,7 @@ export default function ArticleArchive() {
               key={`lg-card-${item?.id}`}
               {...getArticlePageCardProps(
                 item as ArticleType,
-                getRoutedInternalHref,
-                defaultImageUrl
+                getRoutedInternalHref
               )}
             />
           )}
@@ -130,8 +128,7 @@ export default function ArticleArchive() {
               {...{
                 ...getArticlePageCardProps(
                   item as ArticleType,
-                  getRoutedInternalHref,
-                  defaultImageUrl
+                  getRoutedInternalHref
                 ),
                 text: '', // A design decision: The text is not wanted in the small cards
               }}

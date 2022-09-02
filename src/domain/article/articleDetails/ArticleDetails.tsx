@@ -1,10 +1,10 @@
 import React from 'react';
 import { TagComponent as Tag } from 'react-helsinki-headless-cms';
 
-interface Props {
+export type ArticleDetailsProps = {
   keywords?: string[];
-}
-const ArticleDetails: React.FC<Props> = ({ keywords }) => {
+};
+const ArticleDetails: React.FC<ArticleDetailsProps> = ({ keywords }) => {
   if (!keywords || keywords.length === 0) {
     return null;
   }

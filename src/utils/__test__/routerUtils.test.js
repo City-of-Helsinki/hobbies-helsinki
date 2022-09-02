@@ -11,9 +11,7 @@ describe('i18n router utils', () => {
             id: 'tprek:123',
           },
         })
-      ).toEqual(
-        "/venue/tprek:123/map?isOpenNow=true&q=Swimming%20Pool"
-      );
+      ).toEqual('/venue/tprek:123/map?isOpenNow=true&q=Swimming%20Pool');
     });
 
     it('should correctly stringify url object with query', () => {
@@ -26,9 +24,7 @@ describe('i18n router utils', () => {
             q: 'Swimming Pool',
           },
         })
-      ).toEqual(
-        "/venue/tprek:123/map?isOpenNow=true&q=Swimming%20Pool"
-      );
+      ).toEqual('/venue/tprek:123/map?isOpenNow=true&q=Swimming%20Pool');
     });
   });
 
@@ -40,9 +36,9 @@ describe('i18n router utils', () => {
           {
             eventId: 'hki:123',
           },
-          'fi',
+          'fi'
         )
-      ).toEqual("/kurssit/hki:123");
+      ).toEqual('/kurssit/hki:123');
     });
 
     it('should correctly return the localized path for the secondary locale', () => {
@@ -52,9 +48,9 @@ describe('i18n router utils', () => {
           {
             eventId: 'hki:123',
           },
-          'en',
+          'en'
         )
-      ).toEqual("/en/courses/hki:123");
+      ).toEqual('/en/courses/hki:123');
     });
 
     it('should correctly return the localized path for the wildcard slug', () => {
@@ -64,9 +60,9 @@ describe('i18n router utils', () => {
           {
             slug: 'some/url',
           },
-          'fi',
+          'fi'
         )
-      ).toEqual("/artikkelit/some/url");
+      ).toEqual('/artikkelit/some/url');
     });
   });
 });

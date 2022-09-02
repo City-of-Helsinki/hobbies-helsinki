@@ -11,7 +11,9 @@
     "test": "jest",
     "lint": "next lint",
     "get-translations": "node ./scripts/get-translations.js",
-    "generate:graphql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen -r dotenv/config --config codegen.yml"
+    "generate:graphql": "DOTENV_CONFIG_PATH=./.env.local graphql-codegen -r dotenv/config --config codegen.yml",
+    "// Refresh local changes from react-helsinki-headless-cms": "",
+    "refresh:rhhc": "yarn --cwd ../react-helsinki-headless-cms build; rm -rf node_modules/react-helsinki-headless-cms/*; cp -rf ../react-helsinki-headless-cms/dist/* node_modules/react-helsinki-headless-cms"
   },
   "eslintConfig": {
     "extends": "react-app"

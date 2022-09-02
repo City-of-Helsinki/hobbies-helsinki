@@ -13,7 +13,6 @@ import { Language } from '../../types';
 import {
   EVENT_KEYWORD_BLACK_LIST,
   EVENT_LOCATIONS,
-  EVENT_PLACEHOLDER_IMAGES,
   EVENT_SOME_IMAGE,
 } from './constants';
 import getSecureImage from '../../common-events/utils/getSecureImage';
@@ -139,20 +138,6 @@ export const getKeywordList = (
 };
 
 /**
- * Get event placeholder image url
- * @param {string} id
- * @return {string}
- */
-export const getEventPlaceholderImageUrl = (
-  id?: string
-): string => {
-  const numbers = id?.match(/\d+/g);
-  const index = numbers ? sum(numbers) % 4 : 0;
-
-  return EVENT_PLACEHOLDER_IMAGES[index];
-};
-
-/**
  * Get event image url
  * @param {object} event
  * @return {string}
@@ -160,7 +145,7 @@ export const getEventPlaceholderImageUrl = (
 export const getEventImageUrl = (event: EventFieldsFragment): string => {
   const image = event.images[0];
 
-  return getSecureImage(image?.url) || getEventPlaceholderImageUrl(event.id);
+  return getSecureImage(image?.url);
 };
 
 /**
@@ -339,7 +324,6 @@ export const getEventFields = (event: EventFields, locale: Language) => {
     locationName: getLocalisedString(eventLocation?.name, locale),
     offerInfoUrl,
     registrationUrl,
-    placeholderImage: getEventPlaceholderImageUrl(event.id),
     provider: getLocalisedString(event.provider, locale),
     publisher: event.publisher || '',
     shortDescription: getLocalisedString(event.shortDescription, locale),

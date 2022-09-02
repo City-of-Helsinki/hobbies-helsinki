@@ -105,7 +105,7 @@ const EventPageContainer: React.FC<EventPageContainerProps> = ({
                 href={`${getLocalizedCmsItemUrl(
                   ROUTES.SEARCH,
                   {},
-                  locale,
+                  locale
                 )}${search}`}
               >
                 {t('event:notFound.linkSearchEvents')}
