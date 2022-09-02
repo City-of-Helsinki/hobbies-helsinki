@@ -15,7 +15,9 @@ import {
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
 
-import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
+import getHobbiesStaticProps, {
+  HobbiesGlobalPageProps,
+} from '../../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import { ROUTES } from '../../constants';
 import Navigation from '../../common-events/components/navigation/Navigation';
@@ -30,11 +32,13 @@ const CATEGORIES_AMOUNT = 20;
 const BLOCK_SIZE = 10;
 const SEARCH_DEBOUNCE_TIME = 500;
 
-export default function ArticleArchive() {
+export default function ArticleArchive({
+  initialApolloState,
+}: HobbiesGlobalPageProps) {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [searchCategories, setSearchCategories] = React.useState<string[]>([]);
   const debouncedSearchTerm = useDebounce(searchTerm, SEARCH_DEBOUNCE_TIME);
-  const cmsClient = useCmsApollo({});
+  const cmsClient = useCmsApollo(initialApolloState);
   const {
     currentLanguageCode,
     utils: { getRoutedInternalHref },

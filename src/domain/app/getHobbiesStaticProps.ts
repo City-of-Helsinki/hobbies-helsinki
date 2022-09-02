@@ -50,6 +50,11 @@ type HobbiesContext = {
   eventsClient: ApolloClient<NormalizedCacheObject>;
 };
 
+export type HobbiesGlobalPageProps = {
+  initialApolloState: NormalizedCacheObject;
+  initialEventsApolloState: NormalizedCacheObject;
+} & unknown; //FIXME: Promise<GetStaticPropsResult<P>> of getHobbiesStaticProps
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default async function getHobbiesStaticProps<P = Record<string, any>>(
   context: GetStaticPropsContext,
