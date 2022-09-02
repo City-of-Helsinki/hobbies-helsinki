@@ -1,10 +1,5 @@
 import format from 'date-fns/format';
 import {
-  Categories,
-  Category,
-  CollectionItemType,
-} from 'react-helsinki-headless-cms';
-import {
   ArticleType,
   Card,
   Category,

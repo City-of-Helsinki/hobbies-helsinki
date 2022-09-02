@@ -1,3 +1,4 @@
+import { ArticleType, PageType } from 'react-helsinki-headless-cms';
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
 
 import { DEFAULT_HEADER_MENU_NAME } from '../../../constants';
@@ -8,12 +9,18 @@ import {
 } from '../../../utils/routerUtils';
 import useLocale from '../../hooks/useLocale';
 import useRouterFromConfig from '../../hooks/useRouterFromConfig';
+import { getSlugFromUri } from '../../utils/headless-cms/headlessCmsUtils';
 
-export default function Navigation() {
+type NavigationProps = {
+  page?: PageType | ArticleType;
+};
+
+export default function Navigation({ page }: NavigationProps) {
   const router = useRouterFromConfig();
   const locale = useLocale();
   const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale];
   const currentPage = router.pathname;
+
   return (
     <RHHCApolloNavigation
       menuName={navigationMenuName ?? ''}
@@ -22,9 +29,17 @@ export default function Navigation() {
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
       getPathnameForLanguage={({ slug }) => {
+        const translatedPage = page?.translations?.find(
+          (translation: PageType['translations'][number]) =>
+            translation.language.slug === slug
+        );
         return getLocalizedCmsItemUrl(
           currentPage,
-          router.query,
+          translatedPage
+            ? {
+                slug: getSlugFromUri(translatedPage.uri) ?? '',
+              }
+            : router.query,
           slug as Language
         );
       }}

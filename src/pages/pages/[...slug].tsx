@@ -10,6 +10,7 @@ import {
   Page as HCRCPage,
   PageContentProps,
   useConfig,
+  PageType,
 } from 'react-helsinki-headless-cms';
 import {
   PageDocument,
@@ -31,7 +32,7 @@ import { Language } from '../../types';
 import { getLocaleOrError } from '../../utils/routerUtils';
 
 const NextCmsPage: NextPage<{
-  page: PageQuery['page'];
+  page: PageType;
   breadcrumbs: Breadcrumb[] | null;
   collections: CollectionType[];
 }> = ({ page, breadcrumbs, collections }) => {
@@ -42,7 +43,7 @@ const NextCmsPage: NextPage<{
 
   return (
     <HCRCPage
-      navigation={<Navigation />}
+      navigation={<Navigation page={page} />}
       content={
         <HCRCPageContent
           page={page as PageContentProps['page']}
