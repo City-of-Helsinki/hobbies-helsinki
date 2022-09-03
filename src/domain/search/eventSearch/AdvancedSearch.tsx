@@ -116,8 +116,8 @@ const AdvancedSearch: React.FC<Props> = ({
     publisher,
     start,
     text: selectedTexts,
-    audienceMinAgeGt: minAgeInput,
-    audienceMaxAgeLt: maxAgeInput,
+    audienceMinAgeLt: minAgeInput,
+    audienceMaxAgeGt: maxAgeInput,
   };
 
   // const divisionOptions = useDivisionOptions();
@@ -160,8 +160,8 @@ const AdvancedSearch: React.FC<Props> = ({
       places,
       start: startTime,
       text,
-      audienceMinAgeGt,
-      audienceMaxAgeLt,
+      audienceMinAgeLt,
+      audienceMaxAgeGt,
     } = getSearchFilters(searchParams);
 
     const pathPlace = params.place && MAPPED_PLACES[params.place.toLowerCase()];
@@ -177,8 +177,8 @@ const AdvancedSearch: React.FC<Props> = ({
     setSelectedTexts(text || []);
     setEnd(endTime);
     setStart(startTime);
-    setMinAgeInput(audienceMinAgeGt || '');
-    setMaxAgeInput(audienceMaxAgeLt || '');
+    setMinAgeInput(audienceMinAgeLt || '');
+    setMaxAgeInput(audienceMaxAgeGt || '');
 
     if (endTime || startTime) {
       setIsCustomDate(true);
