@@ -26,19 +26,6 @@ const EventDetails: React.FC<Props> = (props) => {
 
   return (
     <div>
-      {location && (
-        <div className={styles.infoRow}>
-          <div className={styles.withIcon}>
-            <IconLocation aria-hidden />
-            <LocationText
-              event={event}
-              showDistrict={false}
-              showLocationName={true}
-            />
-          </div>
-        </div>
-      )}
-
       {!!startTime && (
         <div className={styles.infoRow}>
           <div className={styles.withIcon}>
@@ -53,7 +40,18 @@ const EventDetails: React.FC<Props> = (props) => {
           </div>
         </div>
       )}
-
+      {location && (
+        <div className={styles.infoRow}>
+          <div className={styles.withIcon}>
+            <IconLocation aria-hidden />
+            <LocationText
+              event={event}
+              showDistrict={false}
+              showLocationName={true}
+            />
+          </div>
+        </div>
+      )}
       <div className={styles.infoRow}>
         <EventKeywords event={event} showIsFree />
       </div>

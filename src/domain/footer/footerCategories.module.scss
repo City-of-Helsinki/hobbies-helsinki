@@ -28,10 +28,11 @@
   align-items: center;
   height: 100%;
   grid-template-columns: 1fr;
-  grid-gap: 1rem 3.25rem;
+  grid-gap: 1rem;
 
   @include respond-above(s) {
     grid-template-columns: repeat(2, 1fr);
+    grid-gap: 1rem;
   }
 
   @include respond-above(m) {
