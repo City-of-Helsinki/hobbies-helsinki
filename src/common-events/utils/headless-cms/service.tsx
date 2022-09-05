@@ -48,6 +48,8 @@ export const getAllArticles = async (): Promise<PageInfo[]> => {
         locale: node.language.code.toLowerCase(),
         slug: node.slug,
       });
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       node.translations?.forEach((translation: PageType['translations']) => {
         if (
           translation?.uri &&
