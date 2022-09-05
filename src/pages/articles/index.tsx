@@ -106,7 +106,9 @@ export default function ArticleArchive() {
             //TODO: Instead of doing this through yet another state, could the query just be updated?
             setSearchTerm(freeSearch);
             // NOTE: For some reason the CMS needs database ids here instead of ids or slugs.
-            setSearchCategories(tags.map((tag) => tag.databaseId));
+            setSearchCategories(
+              tags.map((tag) => tag?.databaseId.toString() || '')
+            );
           }}
           onLoadMore={() => {
             fetchMoreArticles();
