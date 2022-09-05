@@ -52,7 +52,7 @@ export default function ArticleArchive() {
     variables: {
       first: BLOCK_SIZE,
       search: debouncedSearchTerm ?? '',
-      language: currentLanguageCode as LanguageCodeFilterEnum,
+      language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
       categories: searchCategories,
     },
   });
@@ -61,7 +61,7 @@ export default function ArticleArchive() {
       client: cmsClient,
       variables: {
         first: CATEGORIES_AMOUNT,
-        language: currentLanguageCode as LanguageCodeFilterEnum,
+        language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
       },
     });
 
@@ -106,7 +106,9 @@ export default function ArticleArchive() {
             //TODO: Instead of doing this through yet another state, could the query just be updated?
             setSearchTerm(freeSearch);
             // NOTE: For some reason the CMS needs database ids here instead of ids or slugs.
-            setSearchCategories(tags.map((tag) => tag.databaseId));
+            setSearchCategories(
+              tags.map((tag) => tag?.databaseId.toString() || '')
+            );
           }}
           onLoadMore={() => {
             fetchMoreArticles();
