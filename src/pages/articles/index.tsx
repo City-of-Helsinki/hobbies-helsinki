@@ -52,7 +52,7 @@ export default function ArticleArchive() {
     variables: {
       first: BLOCK_SIZE,
       search: debouncedSearchTerm ?? '',
-      language: currentLanguageCode as LanguageCodeFilterEnum,
+      language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
       categories: searchCategories,
     },
   });
@@ -61,7 +61,7 @@ export default function ArticleArchive() {
       client: cmsClient,
       variables: {
         first: CATEGORIES_AMOUNT,
-        language: currentLanguageCode as LanguageCodeFilterEnum,
+        language: currentLanguageCode as unknown as LanguageCodeFilterEnum,
       },
     });
 

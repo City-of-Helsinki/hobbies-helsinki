@@ -44,11 +44,7 @@ const EventDetails: React.FC<Props> = (props) => {
         <div className={styles.infoRow}>
           <div className={styles.withIcon}>
             <IconLocation aria-hidden />
-            <LocationText
-              event={event}
-              showDistrict={false}
-              showLocationName={true}
-            />
+            <LocationText event={event} showDistrict={false} showLocationName />
           </div>
         </div>
       )}
