@@ -18,7 +18,6 @@ export function LandingPageContentLayout({
   const { title, description, heroLink } = landingPage?.translation || {};
   const heroImage =
     landingPage?.desktopImage?.edges?.[0]?.node?.mediaItemUrl ?? undefined;
-  console.log('heroImage', heroImage);
   return (
     <div className={styles.layout}>
       <main className={styles.main}>

@@ -30,7 +30,7 @@
       }
     ],
     "max-len": ["warn", { "code": 120 }],
-    "no-console": "warn",
+    "no-console": "error",
     "no-plusplus": "error",
     "no-undef": "warn",
     "object-curly-spacing": ["warn", "always"],
