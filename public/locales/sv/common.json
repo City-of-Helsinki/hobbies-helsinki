@@ -1,6 +1,6 @@
 {
   "appName": "Hobbyer Helsingfors",
-  "opens_in_new_tab": "Öppnas i ett nytt mellanblad",
+  "opens_in_new_tab": "Öppnas i ett nytt mellanblad.",
 
   "notification": {
     "labelClose": "Stäng anmälan"
@@ -68,7 +68,7 @@
     "messageLinkCopySuccess": "Länk kopierad till urklipp"
   },
   "srOnly": {
-    "opensInANewTab": "Öppnas i en ny flik",
+    "opensInANewTab": "Öppnas i en ny flik.",
     "opensInAnExternalSite": "Öppnar en annan webbplats."
   },
   "yearsShort": "år",

@@ -1,6 +1,6 @@
 {
   "appName": "Hobbies Helsinki",
-  "opens_in_new_tab": "Opens in a new tab",
+  "opens_in_new_tab": "Opens in a new tab.",
 
   "notification": {
     "labelClose": "Close notification"
@@ -68,7 +68,7 @@
     "messageLinkCopySuccess": "Link copied into clipboard"
   },
   "srOnly": {
-    "opensInANewTab": "Opens in a new tab",
+    "opensInANewTab": "Opens in a new tab.",
     "opensInAnExternalSite": "Opens a different website."
   },
   "yearsShort": "y",

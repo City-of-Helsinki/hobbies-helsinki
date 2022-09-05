@@ -52,14 +52,13 @@ it('should render event content fields', () => {
     { role: 'button', name: translations.common.shareLink.shareOnTwitter },
     { role: 'button', name: translations.common.shareLink.shareOnLinkedIn },
     { role: 'heading', name: translations.event.location.title },
-    {
-      role: 'link',
-      name: `${translations.event.location.openMap} ${translations.common.srOnly.opensInANewTab}`,
-    },
   ];
   itemsByRole.forEach(({ role, name }) => {
     expect(screen.queryByRole(role, { name })).toBeInTheDocument();
   });
+
+  // there is two kartta-links, thus we check that three is at least one match of each
+  expect(screen.queryAllByRole('link', { name: `${translations.event.location.openMap}. ${translations.common.srOnly.opensInANewTab} ${translations.common.srOnly.opensInAnExternalSite}` })).not.toHaveLength(0);
 
   const itemsByText = [
     description,
