@@ -17,9 +17,7 @@ export function LandingPageContentLayout({
 }: LandingPageProps & PageContentLayoutProps) {
   const { title, description, heroLink } = landingPage?.translation || {};
   const heroImage =
-    landingPage?.desktopImage?.edges &&
-    landingPage?.desktopImage?.edges[0]?.node?.mediaItemUrl;
-
+    landingPage?.desktopImage?.edges?.[0]?.node?.mediaItemUrl ?? undefined;
   return (
     <div className={styles.layout}>
       <main className={styles.main}>
@@ -29,7 +27,7 @@ export function LandingPageContentLayout({
               className={styles.sectionHero}
               korosBottom
               korosBottomClassName={styles.korosBottomHero}
-              backgroundImageUrl={`url(${heroImage})` || ''}
+              backgroundImageUrl={heroImage}
             >
               <ContentContainer>
                 {heroLink && heroLink.length > 0 && (

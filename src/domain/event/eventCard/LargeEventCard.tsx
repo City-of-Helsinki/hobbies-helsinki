@@ -9,7 +9,7 @@ import {
 } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
-import { LinkBox } from 'react-helsinki-headless-cms';
+import { BackgroundImage, LinkBox } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 
 import testImage from '../../../common-events/utils/testImage';
@@ -40,7 +40,6 @@ interface Props {
 const LargeEventCard: React.FC<Props> = ({ event }) => {
   const { t } = useTranslation();
   const router = useRouter();
-  const [showBackupImage, setShowBackupImage] = React.useState(false);
   const locale = useLocale();
   const button = React.useRef<HTMLDivElement>(null);
 
@@ -50,7 +49,6 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
     imageUrl,
     name,
     offerInfoUrl,
-    placeholderImage,
     startTime,
     audienceMinAge,
     audienceMaxAge,
@@ -80,20 +78,6 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
   const goToEventPage = (ev: React.MouseEvent<HTMLButtonElement>) => {
     router.push(eventUrl);
   };
-
-  React.useEffect(() => {
-    if (imageUrl) {
-      const testThatImageExist = async () => {
-        try {
-          await testImage(imageUrl);
-        } catch {
-          setShowBackupImage(true);
-        }
-      };
-
-      testThatImageExist();
-    }
-  }, [imageUrl]);
 
   return (
     <LinkBox
@@ -198,16 +182,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
             )}
           </div>
         </div>
-
-        {/* IMAGE WRAPPER */}
-        <div
-          className={styles.imageWrapper}
-          style={{
-            backgroundImage: `url(${
-              showBackupImage ? placeholderImage : imageUrl
-            })`,
-          }}
-        >
+        <BackgroundImage className={styles.imageWrapper} url={imageUrl}>
           <div className={styles.keywordWrapper}>
             <EventKeywords
               event={event}
@@ -215,7 +190,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
               showIsFree={true}
             />
           </div>
-        </div>
+        </BackgroundImage>
       </div>
     </LinkBox>
   );

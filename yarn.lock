@@ -7648,10 +7648,10 @@ react-fast-compare@^3.0.1:
   resolved "https://registry.yarnpkg.com/react-fast-compare/-/react-fast-compare-3.2.0.tgz#641a9da81b6a6320f270e89724fb45a0b39e43bb"
   integrity sha512-rtGImPZ0YyLrscKI9xTpV8psd6I8VAtjKCzQDlzyDvqJA8XOW78TXYQwNRNd8g8JZnDu8q9Fu/1v4HPAVwVdHA==
 
-react-helsinki-headless-cms@1.0.0-alpha5-canary-c45bbdb:
-  version "1.0.0-alpha5-canary-c45bbdb"
-  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha5-canary-c45bbdb.tgz#ebb896723287e98e6c9a3e64320af4437227a71f"
-  integrity sha512-zs/YUEYSdElPJve6MgFViLa9vFqY1NTlA8sM6F/4OyU8QwOOraE4ShN7I7VORfXi3IKR0A11ahoSSVyYNBb0Iw==
+react-helsinki-headless-cms@1.0.0-alpha8:
+  version "1.0.0-alpha8"
+  resolved "https://registry.yarnpkg.com/react-helsinki-headless-cms/-/react-helsinki-headless-cms-1.0.0-alpha8.tgz#0c0592b291b84579ff689d8a8ec6961b00213302"
+  integrity sha512-+1GLwi2KL9Ou4jZC3DSWnpMHhf3i9SJ5PsywGhVfGTTvQtdtiwICGiG98hb83N/kjmvOHrCuQQA/QFMEENMc/Q==
   dependencies:
     hds-design-tokens "^1.11.1"
     html-react-parser "^1.4.8"

@@ -12,14 +12,16 @@ import {
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { parse } from 'query-string';
-import { PageSection } from 'react-helsinki-headless-cms';
-import { ContentContainer } from 'react-helsinki-headless-cms';
+import {
+  BackgroundImage,
+  ContentContainer,
+  PageSection,
+} from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 
 import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
 import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
-import testImage from '../../../common-events/utils/testImage';
 import buttonStyles from '../../../common-events/components/button/button.module.scss';
 import IconButton from '../../../common/components/iconButton/IconButton';
 import Visible from '../../../common/components/visible/Visible';
@@ -42,7 +44,6 @@ export interface Props {
 
 const EventHero: React.FC<Props> = ({ event, superEvent }) => {
   const { t } = useTranslation('event');
-  const [showBackupImage, setShowBackupImage] = React.useState(false);
   const locale = useLocale();
   const router = useRouter();
   const search = router.asPath.split('?')[1];
@@ -52,7 +53,6 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
     imageUrl,
     keywords,
     offerInfoUrl,
-    placeholderImage,
     shortDescription,
     startTime: eventStartTime,
     today,
@@ -82,20 +82,6 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
     window.open(offerInfoUrl);
   };
 
-  React.useEffect(() => {
-    if (imageUrl) {
-      const testThatImageExist = async () => {
-        try {
-          await testImage(imageUrl);
-        } catch {
-          setShowBackupImage(true);
-        }
-      };
-
-      testThatImageExist();
-    }
-  }, [imageUrl]);
-
   const startTime =
     superEvent?.status === 'pending'
       ? ''
@@ -120,14 +106,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
             />
           </div>
           <div>
-            <div
-              className={styles.image}
-              style={{
-                backgroundImage: `url(${
-                  showBackupImage ? placeholderImage : imageUrl
-                })`,
-              }}
-            />
+            <BackgroundImage className={styles.image} url={imageUrl} />
           </div>
           <div className={styles.leftPanel}>
             <div className={styles.textWrapper}>

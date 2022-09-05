@@ -173,7 +173,9 @@ export function getLocalizedCmsItemUrl(
   query: ParsedUrlQuery,
   locale: Language
 ): string {
-  return `${locale !== DEFAULT_LANGUAGE ? `/${locale}` : ''}${stringifyUrlObject({
+  return `${
+    locale !== DEFAULT_LANGUAGE ? `/${locale}` : ''
+  }${stringifyUrlObject({
     query: query,
     pathname: getI18nPath(pathname, locale),
   })}`;

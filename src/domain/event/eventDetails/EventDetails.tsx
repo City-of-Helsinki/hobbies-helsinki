@@ -10,10 +10,10 @@ import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
 import styles from './eventDetails.module.scss';
 import EventKeywords from '../eventKeywords/EventKeywords';
 
-interface Props {
+export type EventDetailsProps = {
   event: EventFieldsFragment;
-}
-const EventDetails: React.FC<Props> = (props) => {
+};
+const EventDetails: React.FC<EventDetailsProps> = (props) => {
   const event = props.event;
   const { t } = useTranslation();
   const locale = useLocale();

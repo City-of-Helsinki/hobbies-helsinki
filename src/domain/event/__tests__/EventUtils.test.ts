@@ -17,7 +17,6 @@ import {
   getEventIdFromUrl,
   getEventIdsFromUrls,
   getEventImageUrl,
-  getEventPlaceholderImageUrl,
   getEventSomeImageUrl,
   getKeywordList,
   getLocationId,
@@ -66,39 +65,6 @@ describe('getKeywordList function', () => {
     const eventKeywords = getKeywordList(event.keywords, 'fi');
 
     expect(eventKeywords).toHaveLength(0);
-  });
-});
-
-describe('getEventPlaceholderImageUrl function', () => {
-  it('should return event placeholder image url', () => {
-    const event = fakeEvent({ id: 'has_no_numbers' }) as EventFieldsFragment;
-    expect(getEventPlaceholderImageUrl(event)).toBe(
-      '/images/activities_placeholder_imgA.jpg'
-    );
-    expect(getEventPlaceholderImageUrl({ ...event, id: 'helsinki:221' })).toBe(
-      '/images/activities_placeholder_imgB.jpg'
-    );
-    expect(getEventPlaceholderImageUrl({ ...event, id: 'helsinki:222' })).toBe(
-      '/images/activities_placeholder_imgC.jpg'
-    );
-    expect(getEventPlaceholderImageUrl({ ...event, id: 'helsinki:223' })).toBe(
-      '/images/activities_placeholder_imgD.jpg'
-    );
-    expect(getEventPlaceholderImageUrl({ ...event, id: 'helsinki:224' })).toBe(
-      '/images/activities_placeholder_imgA.jpg'
-    );
-  });
-});
-
-describe('getEventImageUrl function', () => {
-  it('should return event placeholder image if image is not defined', () => {
-    const event = fakeEvent({
-      id: 'helsinki:221',
-      images: [fakeImage({ url: '' })],
-    }) as EventFieldsFragment;
-    expect(getEventImageUrl(event)).toBe(
-      '/images/activities_placeholder_imgB.jpg'
-    );
   });
 });
 

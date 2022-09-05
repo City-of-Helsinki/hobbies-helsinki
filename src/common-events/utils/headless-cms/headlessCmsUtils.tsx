@@ -1,9 +1,10 @@
 import format from 'date-fns/format';
-import { Categories } from 'react-helsinki-headless-cms';
-import { Category, CollectionItemType } from 'react-helsinki-headless-cms';
 import {
   ArticleType,
   Card,
+  Category,
+  Categories,
+  CollectionItemType,
   getCollections,
   Collection,
   Config as RCHCConfig,
@@ -68,30 +69,12 @@ export const slugsToUriSegments = (slugs: string[]): string[] => {
   });
 };
 
-export const EVENT_PLACEHOLDER_IMAGES = [
-  '/static/images/event_placeholder_A.jpg',
-  '/static/images/event_placeholder_B.jpg',
-  '/static/images/event_placeholder_C.jpg',
-  '/static/images/event_placeholder_D.jpg',
-];
-
-export const getEventPlaceholderImage = (id: string): string => {
-  const numbers = id.match(/\d+/g);
-  const sum = numbers
-    ? numbers.reduce((prev: number, cur: string) => prev + Number(cur), 0)
-    : 0;
-  const index = sum % 4;
-
-  return EVENT_PLACEHOLDER_IMAGES[index];
-};
-
 export function getArticlePageCardProps(
   item: ArticleType,
-  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
-  defaultImageUrl: string
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref']
 ): CardProps {
   return {
-    ...getArticlePageCardPropsBase(item, defaultImageUrl),
+    ...getArticlePageCardPropsBase(item),
     subTitle: item?.date
       ? format(new Date(item.date), AppConfig.dateFormat)
       : '',
@@ -104,11 +87,10 @@ export function getArticlePageCardProps(
 
 export function getCmsPageCardProps(
   item: PageType,
-  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
-  defaultImageUrl: string
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref']
 ): CardProps {
   return {
-    ...getArticlePageCardPropsBase(item, defaultImageUrl),
+    ...getArticlePageCardPropsBase(item),
     url: getRoutedInternalHref(
       item?.link ?? item?.uri,
       ModuleItemTypeEnum.Page
@@ -118,23 +100,18 @@ export function getCmsPageCardProps(
 
 export function _collectGeneralCards(
   items: CollectionItemType[],
-  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref'],
-  defaultImageUrl: string
+  getRoutedInternalHref: RCHCConfig['utils']['getRoutedInternalHref']
 ): CardProps[] {
   return items.reduce((result: CardProps[], item) => {
     if (isArticleType(item)) {
-      result.push(
-        getArticlePageCardProps(item, getRoutedInternalHref, defaultImageUrl)
-      );
+      result.push(getArticlePageCardProps(item, getRoutedInternalHref));
     } else if (isPageType(item)) {
-      result.push(
-        getCmsPageCardProps(item, getRoutedInternalHref, defaultImageUrl)
-      );
+      result.push(getCmsPageCardProps(item, getRoutedInternalHref));
     }
     // NOTE: Event type is not a general type
     // else if (isEventType(item)) {
     //   result.push({
-    //     ...getEventCardProps(item, defaultImageUrl, locale),
+    //     ...getEventCardProps(item, locale),
     //     url: getRoutedInternalHref(item, ModuleItemTypeEnum.Event),
     //   });
     // }
@@ -148,12 +125,7 @@ export function getGeneralCollectionCards(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   locale = 'fi'
 ): CardProps[] {
-  const defaultImageUrl = getEventPlaceholderImage('');
-  return _collectGeneralCards(
-    collection.items,
-    getRoutedInternalHref,
-    defaultImageUrl
-  );
+  return _collectGeneralCards(collection.items, getRoutedInternalHref);
 }
 
 export const getDefaultCollections = (
