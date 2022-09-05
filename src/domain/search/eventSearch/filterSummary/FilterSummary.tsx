@@ -51,8 +51,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     start,
     suitableFor,
     text,
-    audienceMaxAgeLt,
-    audienceMinAgeGt,
+    audienceMaxAgeGt,
+    audienceMinAgeLt,
   } = getSearchFilters(searchParams);
 
   const dateText =
@@ -90,8 +90,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
       start: type === 'date' ? null : start,
       text: getFilteredList('text', text),
       suitableFor: getSuitableForFilterValue(suitableFor, type) ?? [],
-      audienceMinAgeGt: type === 'minAge' ? '' : audienceMinAgeGt,
-      audienceMaxAgeLt: type === 'maxAge' ? '' : audienceMaxAgeLt,
+      audienceMinAgeLt: type === 'minAge' ? '' : audienceMinAgeLt,
+      audienceMaxAgeGt: type === 'maxAge' ? '' : audienceMaxAgeGt,
     });
 
     router.push({
@@ -110,8 +110,8 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
     !!places.length ||
     !!text?.length ||
     !!suitableFor?.length ||
-    !!(audienceMinAgeGt || '').length ||
-    !!(audienceMaxAgeLt || '').length;
+    !!(audienceMinAgeLt || '').length ||
+    !!(audienceMaxAgeGt || '').length;
 
   if (!hasFilters) return null;
 
@@ -170,17 +170,17 @@ const FilterSummary: React.FC<Props> = ({ onClear }) => {
           value={dateType}
         />
       ))}
-      {audienceMinAgeGt && (
+      {audienceMinAgeLt && (
         <AgeFilter
           type="minAge"
-          value={audienceMinAgeGt}
+          value={audienceMinAgeLt}
           onRemove={handleFilterRemove}
         />
       )}
-      {audienceMaxAgeLt && (
+      {audienceMaxAgeGt && (
         <AgeFilter
           type="maxAge"
-          value={audienceMaxAgeLt}
+          value={audienceMaxAgeGt}
           onRemove={handleFilterRemove}
         />
       )}

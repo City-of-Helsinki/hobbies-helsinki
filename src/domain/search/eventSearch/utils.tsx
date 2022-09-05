@@ -194,8 +194,8 @@ export const getEventSearchVariables = ({
     publisher,
     text,
     suitableFor,
-    audienceMinAgeGt,
-    audienceMaxAgeLt,
+    audienceMinAgeLt,
+    audienceMaxAgeGt,
   } = getSearchFilters(params);
   const pathPlace = place && MAPPED_PLACES[place.toLowerCase()];
 
@@ -276,8 +276,8 @@ export const getEventSearchVariables = ({
     superEventType,
     suitableFor,
     eventType: AppConfig.supportedEventTypes,
-    audienceMinAgeGt,
-    audienceMaxAgeLt,
+    audienceMinAgeLt,
+    audienceMaxAgeGt,
   };
 };
 
@@ -357,8 +357,8 @@ export const getSearchFilters = (searchParams: URLSearchParams): Filters => {
     suitableFor: normalizeSuitableFor(
       getUrlParamAsArray(searchParams, EVENT_SEARCH_FILTERS.SUITABLE, false)
     ),
-    audienceMinAgeGt: searchParams.get(EVENT_SEARCH_FILTERS.MIN_AGE) || '',
-    audienceMaxAgeLt: searchParams.get(EVENT_SEARCH_FILTERS.MAX_AGE) || '',
+    audienceMinAgeLt: searchParams.get(EVENT_SEARCH_FILTERS.MIN_AGE) || '',
+    audienceMaxAgeGt: searchParams.get(EVENT_SEARCH_FILTERS.MAX_AGE) || '',
   };
 };
 

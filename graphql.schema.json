@@ -3856,6 +3856,18 @@
                 "deprecationReason": null
               },
               {
+                "name": "audienceMaxAgeGt",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
                 "name": "audienceMaxAgeLt",
                 "description": null,
                 "type": {
@@ -3869,6 +3881,18 @@
               },
               {
                 "name": "audienceMinAgeGt",
+                "description": null,
+                "type": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                },
+                "defaultValue": null,
+                "isDeprecated": false,
+                "deprecationReason": null
+              },
+              {
+                "name": "audienceMinAgeLt",
                 "description": null,
                 "type": {
                   "kind": "SCALAR",

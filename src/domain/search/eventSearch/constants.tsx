@@ -100,8 +100,8 @@ export enum EVENT_SEARCH_FILTERS {
   PUBLISHER = 'publisher',
   START = 'start',
   TEXT = 'text',
-  MIN_AGE = 'audienceMinAgeGt',
-  MAX_AGE = 'audienceMaxAgeLt',
+  MIN_AGE = 'audienceMinAgeLt',
+  MAX_AGE = 'audienceMaxAgeGt',
   SUITABLE = 'suitableFor',
 }
 
