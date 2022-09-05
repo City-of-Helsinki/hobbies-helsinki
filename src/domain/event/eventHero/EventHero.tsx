@@ -106,7 +106,7 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
             />
           </div>
           <div>
-            <BackgroundImage className={styles.image} url={imageUrl} />
+            <BackgroundImage className={styles.image} id={event.id} url={imageUrl} />
           </div>
           <div className={styles.leftPanel}>
             <div className={styles.textWrapper}>

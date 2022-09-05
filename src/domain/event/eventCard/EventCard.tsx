@@ -119,7 +119,7 @@ const EventCard: React.FC<Props> = ({ event }) => {
             </div>
           </div>
         </div>
-        <BackgroundImage className={styles.imageWrapper} url={imageUrl}>
+        <BackgroundImage className={styles.imageWrapper} id={id} url={imageUrl}>
           <div className={styles.keywordWrapperDesktop}>
             <EventKeywords
               event={event}
