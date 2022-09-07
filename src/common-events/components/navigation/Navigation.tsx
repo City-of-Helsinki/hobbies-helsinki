@@ -29,11 +29,7 @@ export default function Navigation({ page }: NavigationProps) {
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
       getPathnameForLanguage={({ slug }) => {
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-ignore
         const translatedPage = page?.translations?.find(
-          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-          // @ts-ignore
           (translation: PageType['translations'][number]) =>
             translation.language.slug === slug
         );

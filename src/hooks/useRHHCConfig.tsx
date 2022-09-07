@@ -94,7 +94,7 @@ export default function useRHHCConfig(
           <ArticleDetails {...props} />
         ),
       },
-      fallbackBackgroundImageUrls: [
+      fallbackImageUrls: [
         '/static/images/event_placeholder_A.jpg',
         '/static/images/event_placeholder_B.jpg',
         '/static/images/event_placeholder_C.jpg',
