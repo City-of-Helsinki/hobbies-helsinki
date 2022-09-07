@@ -182,7 +182,7 @@ const LargeEventCard: React.FC<Props> = ({ event }) => {
             )}
           </div>
         </div>
-        <BackgroundImage className={styles.imageWrapper} url={imageUrl}>
+        <BackgroundImage className={styles.imageWrapper} id={id} url={imageUrl}>
           <div className={styles.keywordWrapper}>
             <EventKeywords
               event={event}

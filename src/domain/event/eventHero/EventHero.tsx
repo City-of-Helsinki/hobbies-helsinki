@@ -105,9 +105,10 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
               size="default"
             />
           </div>
-          <div>
-            <BackgroundImage className={styles.image} url={imageUrl} />
+          {imageUrl && <div>
+            <BackgroundImage className={styles.image} id={event.id} url={imageUrl} />
           </div>
+          }
           <div className={styles.leftPanel}>
             <div className={styles.textWrapper}>
               <h1 className={styles.title}>
