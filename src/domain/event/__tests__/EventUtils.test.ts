@@ -16,7 +16,6 @@ import {
   getEventFields,
   getEventIdFromUrl,
   getEventIdsFromUrls,
-  getEventImageUrl,
   getEventSomeImageUrl,
   getKeywordList,
   getLocationId,

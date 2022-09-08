@@ -29,9 +29,8 @@ export default function Navigation({ page }: NavigationProps) {
       }}
       getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
       getPathnameForLanguage={({ slug }) => {
-        const translatedPage = page?.translations?.find(
-          (translation: PageType['translations'][number]) =>
-            translation.language.slug === slug
+        const translatedPage = (page?.translations as PageType[])?.find(
+          (translation) => translation?.language?.slug === slug
         );
         return getLocalizedCmsItemUrl(
           currentPage,

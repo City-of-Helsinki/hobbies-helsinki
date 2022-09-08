@@ -12,7 +12,6 @@ import React from 'react';
 import { BackgroundImage, LinkBox } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 
-import testImage from '../../../common-events/utils/testImage';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
