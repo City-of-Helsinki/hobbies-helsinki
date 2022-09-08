@@ -97,7 +97,7 @@ export default function ArticleArchive({
   const categories = categoriesData?.categories?.nodes ?? [];
 
   // Show the first item large when the search has not yet done
-  const showFirstItemLarge = searchTerm.length == 0 ? true : false;
+  const showFirstItemLarge = searchTerm.length === 0;
   return (
     <RHHCPage
       className="pageLayout"

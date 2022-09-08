@@ -3,7 +3,6 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Link, SecondaryLink } from 'react-helsinki-headless-cms';
 
-import SrOnly from '../../../common/components/srOnly/SrOnly';
 import useLocale from '../../../common-events/hooks/useLocale';
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields, getServiceMapUrl } from '../EventUtils';

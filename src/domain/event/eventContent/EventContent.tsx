@@ -12,7 +12,6 @@ import { getEventFields } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventContent.module.scss';
 import useLocale from '../../../hooks/useLocale';
-import useConfig from '../../../common-events/hooks/useConfig';
 
 interface Props {
   event: EventFields;
