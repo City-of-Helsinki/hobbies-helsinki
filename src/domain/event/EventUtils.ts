@@ -1,6 +1,5 @@
 import { isPast, isThisWeek, isToday } from 'date-fns';
 import capitalize from 'lodash/capitalize';
-import sum from 'lodash/sum';
 
 import getLocalisedString from '../../common-events/utils/getLocalisedString';
 import { EVENT_STATUS } from '../../constants';

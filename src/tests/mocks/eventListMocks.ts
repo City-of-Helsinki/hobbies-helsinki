@@ -20,7 +20,6 @@ export const baseVariables = {
   isFree: undefined,
   keywordAnd: [],
   keywordNot: [],
-  language: 'fi',
   location: [],
   pageSize: 10,
   publisher: null,

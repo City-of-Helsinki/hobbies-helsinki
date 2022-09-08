@@ -18,7 +18,6 @@ import { getEventSearchVariables, getNextPage } from './utils';
 import { getLargeEventCardId } from '../../event/EventUtils';
 import EventList from '../../../common-events/components/eventList/EventList';
 import styles from './eventSearchPage.module.scss';
-import useLocale from '../../../hooks/useLocale';
 import { removeQueryParamsFromRouter } from '../../../utils/routerUtils';
 
 const SearchPage: React.FC<{
@@ -29,7 +28,6 @@ const SearchPage: React.FC<{
   pageTitle: string;
 }> = ({ SearchComponent, pageTitle }) => {
   const { t } = useTranslation('search');
-  const locale = useLocale();
   const router = useRouter();
   const params: { place?: string } = router.query;
 
@@ -40,7 +38,6 @@ const SearchPage: React.FC<{
     const searchParams = new URLSearchParams(qs.stringify(router.query));
     const variables: QueryEventListArgs = getEventSearchVariables({
       include: ['keywords', 'location'],
-      language: locale,
       pageSize: PAGE_SIZE,
       params: searchParams,
       place: params.place,
@@ -48,7 +45,7 @@ const SearchPage: React.FC<{
       superEventType: ['umbrella', 'none'],
     });
     return variables;
-  }, [locale, router.query, params.place]);
+  }, [router.query, params.place]);
 
   const {
     data: eventsData,

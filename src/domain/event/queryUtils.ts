@@ -39,13 +39,12 @@ const useSimilarEventsQueryVariables = (event: EventFields) => {
     const searchParams = new URLSearchParams(search || eventSearch);
     return getEventSearchVariables({
       include: ['keywords', 'location'],
-      language: locale,
       pageSize: PAGE_SIZE,
       params: searchParams,
       sortOrder: EVENT_SORT_OPTIONS.END_TIME,
       superEventType: ['umbrella', 'none'],
     });
-  }, [eventSearch, locale, search]);
+  }, [eventSearch, search]);
 };
 
 export const useSimilarEventsQuery = (
