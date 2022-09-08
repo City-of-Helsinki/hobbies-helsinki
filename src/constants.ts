@@ -38,11 +38,16 @@ export enum AUTOSUGGEST_TYPES {
 }
 
 export enum SUPPORT_LANGUAGES {
+  EN = 'en',
   FI = 'fi',
   SV = 'sv',
-  EN = 'en',
 }
 
+/**
+ * If logic for selecting the fallback language priority is needed,
+ * then prioritize order is English, Finnish, Swedish.
+ * Ref: https://helsinkisolutionoffice.atlassian.net/browse/HH-110
+ */
 export const supportedLanguages = Object.values(SUPPORT_LANGUAGES);
 
 export enum DATE_PICKER_INPUT {
