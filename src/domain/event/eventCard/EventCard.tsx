@@ -6,7 +6,6 @@ import { BackgroundImage, LinkBox } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 
 import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
-import testImage from '../../../common-events/utils/testImage';
 import IconButton from '../../../common/components/iconButton/IconButton';
 import { addParamsToQueryString } from '../../../common-events/utils/queryString';
 import EventKeywords from '../eventKeywords/EventKeywords';

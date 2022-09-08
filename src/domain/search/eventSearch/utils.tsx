@@ -172,7 +172,7 @@ export const getEventSearchVariables = ({
   place,
 }: {
   include: string[];
-  language: Language;
+  language?: Language;
   pageSize: number;
   params: URLSearchParams;
   sortOrder: EVENT_SORT_OPTIONS;
