@@ -43,6 +43,7 @@ import {
 } from './types';
 import { UnionTFunction } from '../../../common-events/types';
 import AppConfig from '../../app/AppConfig';
+import { EventFields } from '../../event/types';
 
 export const MIN_AGE = 0;
 export const MAX_AGE = 99;
@@ -223,9 +224,6 @@ export const getEventSearchVariables = ({
     keywordAnd.push('yso:p4354');
   }
 
-  const categoryMap = MAPPED_COURSE_CATEGORIES;
-  const hobbyTypeMap = MAPPED_COURSE_HOBBY_TYPES;
-
   const getMappedPropertyValues = (
     list: string[],
     map: Record<string, string[]>
@@ -235,8 +233,14 @@ export const getEventSearchVariables = ({
       []
     );
 
-  const mappedCategories = getMappedPropertyValues(categories, categoryMap);
-  const mappedHobbyTypes = getMappedPropertyValues(hobbyTypes, hobbyTypeMap);
+  const mappedCategories = getMappedPropertyValues(
+    categories,
+    MAPPED_COURSE_CATEGORIES
+  );
+  const mappedHobbyTypes = getMappedPropertyValues(
+    hobbyTypes,
+    MAPPED_COURSE_HOBBY_TYPES
+  );
 
   const hasLocation = !isEmpty(divisions) || !isEmpty(places);
 
@@ -403,4 +407,16 @@ export const getSearchQuery = (filters: Filters): string => {
   }
 
   return buildQueryFromObject(newFilters);
+};
+
+/** Get a list of all the keywords that can be mapped as a category */
+export const getAllHobbyCategories = () =>
+  Object.values(MAPPED_COURSE_CATEGORIES).flat();
+
+/** Filter the kewords from the event that can be mapped as categories */
+export const getEventCategories = (event: EventFields) => {
+  const allHobbyTypes = getAllHobbyCategories();
+  return event.keywords.filter(
+    (keyword) => keyword.id && allHobbyTypes.includes(keyword.id)
+  );
 };
