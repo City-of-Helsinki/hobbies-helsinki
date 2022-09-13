@@ -1,9 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { toast } from 'react-toastify';
-import { useRouter } from 'next/router';
 
-import useLocale from '../../hooks/useLocale';
 import AppConfig from '../app/AppConfig';
 import {
   EventListQuery,
@@ -11,41 +9,84 @@ import {
   useEventListQuery,
 } from '../nextApi/graphql/generated/graphql';
 import {
-  COURSE_DEFAULT_SEARCH_FILTERS,
+  EVENT_SEARCH_FILTERS,
   EVENT_SORT_OPTIONS,
-  PAGE_SIZE,
 } from '../search/eventSearch/constants';
 import {
+  getEventCategories,
   getEventSearchVariables,
   getNextPage,
-  getSearchQuery,
 } from '../search/eventSearch/utils';
 import { SIMILAR_EVENTS_AMOUNT } from './constants';
-import { getEventFields, getEventIdFromUrl } from './EventUtils';
+import { getEventIdFromUrl } from './EventUtils';
 import { EventFields } from './types';
 
 const useSimilarEventsQueryVariables = (event: EventFields) => {
-  const locale = useLocale();
-  const router = useRouter();
-  const search = router.asPath.split('?')[1];
-  const { keywords } = getEventFields(event, locale);
-  const eventSearch = getSearchQuery({
-    ...COURSE_DEFAULT_SEARCH_FILTERS,
-    keyword: keywords.map((keyword) => keyword.id),
-  });
-
   return React.useMemo(() => {
     // Filter by search query if exists, if not filter by event keywords
-    const searchParams = new URLSearchParams(search || eventSearch);
+    const searchParams = {
+      [EVENT_SEARCH_FILTERS.KEYWORD]: getEventCategories(event) // use keyword key to give keyword ids
+        .map((category) => category?.id) // collect ids
+        .filter((id) => id != null) // remove nulls and undefined ones
+        .join(), // make a string
+      [EVENT_SEARCH_FILTERS.MIN_AGE]: event.audienceMinAge ?? '',
+      [EVENT_SEARCH_FILTERS.MAX_AGE]: event.audienceMaxAge ?? '',
+    };
+
     return getEventSearchVariables({
       include: ['keywords', 'location'],
-      pageSize: PAGE_SIZE,
-      params: searchParams,
+      // eslint-disable-next-line max-len
+      pageSize: 100, // TODO: use SIMILAR_EVENTS_AMOUNT when LinkedEvents-query with keyword_OR_set* -param is fixed and it returns distinct results
+      params: new URLSearchParams(searchParams),
       sortOrder: EVENT_SORT_OPTIONS.END_TIME,
       superEventType: ['umbrella', 'none'],
     });
-  }, [eventSearch, search]);
+  }, [event]);
 };
+
+/**
+ * Filter the similar events query results:
+ * - Show unique results only
+ * - Don't show sibling events / events from the same super event
+ *
+ * NOTE: LinkedEvents-query with keyword_OR_set* -param returns can return as many duplicates
+ * as there are keywords listed.
+ *
+ * TODO: This could be simplified if the LinkedEvents -query would be fixed and it would return distinct results only.
+ */
+const _filterSimilarEvents = (event: EventFields, data: EventFields[]) =>
+  data
+    // Don't show current event in the list
+    .filter((item) => item.id !== event.id)
+    // Show unique only - fix for for duplicates - needed because of bug in query with keyword_OR_set* -param
+    .filter(
+      (item, i, existingSimilarEvents) =>
+        existingSimilarEvents.indexOf(item) === i
+    )
+    // Don't show sibling events / events from the same super event
+    .filter(
+      (item) =>
+        (!item.superEvent?.internalId && !event.superEvent?.internalId) ||
+        item.superEvent?.internalId !== event.superEvent?.internalId
+    )
+    // Don't show siblings of any event that already exists in the list of similar events
+    .reduce((similarEvents: EventFields[], item: EventFields) => {
+      // Collect the super event ids
+      const superEventIds = similarEvents
+        .map((e) => e.superEvent?.internalId)
+        .filter((id) => !!id);
+
+      // Search if already in the list and add if not
+      if (
+        !item.superEvent?.internalId ||
+        !superEventIds.includes(item.superEvent.internalId)
+      ) {
+        similarEvents.push(item);
+      }
+      return similarEvents;
+    }, [])
+    // Slice to get only a desired amount of items
+    .slice(0, SIMILAR_EVENTS_AMOUNT);
 
 export const useSimilarEventsQuery = (
   event: EventFields
@@ -55,14 +96,7 @@ export const useSimilarEventsQuery = (
     ssr: false,
     variables: eventFilters,
   });
-  // To display only certain amount of events.
-  // Always fetch data by using same page size to get events from cache
-  const data =
-    eventsData?.eventList.data
-      // Don't show current event on the list
-      ?.filter((item) => item.id !== event.id)
-      .slice(0, SIMILAR_EVENTS_AMOUNT) || [];
-
+  const data = _filterSimilarEvents(event, eventsData?.eventList?.data || []);
   return { data, loading };
 };
 
