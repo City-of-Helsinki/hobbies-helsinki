@@ -1,7 +1,7 @@
 const i18nRoutes = {
   '/search': [
     { source: '/haku', locale: 'fi' },
-    { source: '/sok', locale: 'sv' },
+    { source: '/sok', locale: '' },
   ],
   '/courses/:eventId': [
     { source: '/kurssit/:eventId', locale: 'fi' },
