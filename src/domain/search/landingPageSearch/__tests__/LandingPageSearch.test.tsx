@@ -98,9 +98,9 @@ describe('Landing page', () => {
 
   test('should route to event search page after selecting today date type and pressing submit button', async () => {
     const { router } = render(<LandingPageSearch />, { mocks });
-    userEvent.click(screen.getByRole('button', { name: /valitse ajankohta/i }));
+    await userEvent.click(screen.getByRole('button', { name: /valitse ajankohta/i }));
     await actWait();
-    userEvent.click(screen.getByRole('checkbox', { name: /tänään/i }));
+    await userEvent.click(screen.getByRole('checkbox', { name: /tänään/i }));
     await act(() =>
       userEvent.click(screen.getByRole('button', { name: /hae/i }))
     );
@@ -116,7 +116,7 @@ describe('Landing page', () => {
     const { router } = render(<LandingPageSearch />, { mocks });
     userEvent.click(screen.getByRole('button', { name: /valitse ajankohta/i }));
     await actWait();
-    userEvent.click(
+    await userEvent.click(
       // The reason to use getAllByRole is that there is also mobile date selector with same text,
       // which is hidden using css
       screen.getAllByRole('button', { name: /valitse päivät/i })[0]
