@@ -141,6 +141,8 @@ export const getDefaultCollections = (
         description: collection.description,
         type: getCollectionUIType(collection),
         collectionContainerProps: { withDots: true },
+        // TODO: The collection specific URL from the module itself should be used instead of a hard coded value.
+        showAllUrl: '/',
       };
 
       if (isEventSearchCollection(collection)) {
