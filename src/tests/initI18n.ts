@@ -9,7 +9,6 @@ import footer from '../../public/locales/fi/footer.json';
 import home from '../../public/locales/fi/home.json';
 import notFound from '../../public/locales/fi/notFound.json';
 import search from '../../public/locales/fi/search.json';
-
 import cms_en from '../../public/locales/en/cms.json';
 import common_en from '../../public/locales/en/common.json';
 import event_en from '../../public/locales/en/event.json';
@@ -17,7 +16,6 @@ import footer_en from '../../public/locales/en/footer.json';
 import home_en from '../../public/locales/en/home.json';
 import notFound_en from '../../public/locales/en/notFound.json';
 import search_en from '../../public/locales/en/search.json';
-
 import cms_sv from '../../public/locales/sv/cms.json';
 import common_sv from '../../public/locales/sv/common.json';
 import event_sv from '../../public/locales/sv/event.json';
@@ -56,7 +54,7 @@ i18n.use(initReactI18next).init({
       notFound: notFound_en,
       search: search_en,
     },
-    sv:  {
+    sv: {
       cms: cms_sv,
       common: common_sv,
       event: event_sv,

@@ -84,13 +84,6 @@ jobs:
           message: |
             **Harrastus-helsinki branch is deployed to: ${{ env.CUSTOM_ENVIRONMENT_URL }}** :rocket::rocket::rocket:
 
-      - name: Get Review Deploy URL
-        id: deploy-url
-        run: |
-          DEPLOY_URL=$(kubectl get ingress -n "${{ env.K8S_NAMESPACE }}" -o jsonpath='{.items[0].spec.rules[0].host}')
-          echo "BROWSER_TESTS_ENV_URL=https://$DEPLOY_URL" >> $GITHUB_ENV
-        shell: bash
-
       # browser tests
       - name: Setup Node
         uses: actions/setup-node@v2.1.2
