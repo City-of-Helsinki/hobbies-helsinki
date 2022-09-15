@@ -92,7 +92,9 @@ class AppConfig {
   }
 
   static get showSimilarEvents() {
-    return Boolean(parseEnvValue(process.env.NEXT_PUBLIC_SHOW_SIMILAR_EVENTS));
+    return Boolean(
+      parseEnvValue(process.env.NEXT_PUBLIC_SHOW_SIMILAR_EVENTS, true)
+    );
   }
 }
 

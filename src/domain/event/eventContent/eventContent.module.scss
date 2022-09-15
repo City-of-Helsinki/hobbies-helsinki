@@ -3,7 +3,7 @@
 .eventContent {
   --description-font-size: var(--fontsize-body-l);
   background-color: var(--color-white);
-  margin-bottom: var(--spacing-4-xl);
+  // margin-bottom: var(--spacing-4-xl); // Not needed when similar events are used
 
   .contentWrapper {
     display: grid;
