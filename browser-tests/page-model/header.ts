@@ -1,18 +1,39 @@
-import { t, Selector } from 'testcafe';
+import { Selector, t } from 'testcafe';
 import { screen } from '@testing-library/testcafe';
-//import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../../src/constants';
+import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../../src/constants';
+import i18n from '../../src/tests/initI18n';
 
-import { translations } from '../../src/tests/initI18n';
+class Header {
+  currentLang = DEFAULT_LANGUAGE;
 
-class HeaderUtil {
-//  currentLang = DEFAULT_LANGUAGE
-  header = screen.getByRole('header');
-  title = screen.getByText(translations.common.appName)
+  banner = screen.getByRole('banner');
+  languageSelectorButton = Selector('#languageSelector-button');
+  languageSelectorItem = Selector('a').withAttribute('lang', this.currentLang);
 
-  async verifyHeader( ) {
-    await t.expect(this.header.exists).ok();
-    await t.expect(this.title.exists).ok();
+  private setLanguage(lang: SUPPORT_LANGUAGES) {
+    this.currentLang = lang;
+    this.languageSelectorItem = Selector('a').withAttribute('lang', this.currentLang);
+  }
+
+  public async changeLanguage(lang: SUPPORT_LANGUAGES) {
+    console.log("changeLanguage to " + lang);
+
+    this.setLanguage(lang);
+
+    const languageSelectorButton_screen = screen.getByRole('button', { name: await this.languageSelectorButton.innerText });
+    const languageSelectorItem_screen = screen.getByRole('link', { name: await this.languageSelectorItem.innerText });
+
+    await t
+      .click(languageSelectorButton_screen)
+      .click(languageSelectorItem_screen);
+
+    await i18n.changeLanguage(lang);
+  }
+
+  public async verify() {
+    console.log("Header: verify");
+    await t.expect(this.banner.exists).ok();
   }
 }
 
-export default HeaderUtil;
+export default Header;
