@@ -82,7 +82,6 @@ export function getArticlePageCardProps(
       item?.link ?? item?.uri,
       ModuleItemTypeEnum.Article
     ),
-    text: '',
   };
 }
 
@@ -184,6 +183,7 @@ export const getDefaultCollections = (
                   }
                 />
               }
+              text=""
             />
           );
         });
