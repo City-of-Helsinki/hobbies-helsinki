@@ -1,27 +1,10 @@
-@import 'breakpoints';
-
 .similarEvents {
+  --padding-bottom: 8em;
   padding: var(--spacing-xl) 0;
+  padding-bottom: var(--padding-bottom);
+  background: var(--color-black-5);
 }
 
-.similarEventsTitle {
-  margin-top: 0;
-  margin-bottom: 2rem;
-  font-size: var(--fontsize-heading-l);
-  font-weight: 600;
-}
-
-.similarEventList {
-  display: grid;
-  margin: 0;
-  grid-gap: var(--spacing-xs);
-
-  @include respond_above(s) {
-    grid-template-columns: 1fr 1fr;
-    grid-gap: 1.75rem 3rem;
-  }
-
-  @include respond_above(m) {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
+.korosTopCollections {
+  fill: var(--color-white) !important;
 }
