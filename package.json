@@ -16,8 +16,7 @@
     "refresh:rhhc": "yarn --cwd ../react-helsinki-headless-cms build; rm -rf node_modules/react-helsinki-headless-cms/*; cp -rf ../react-helsinki-headless-cms/dist/* node_modules/react-helsinki-headless-cms",
     "test:browser": "testcafe \"chrome --window-size='1249,720'\" browser-tests/ --live --dev",
     "test:browser:wsl2win": "testcafe 'path:`/mnt/c/Program Files/Google/Chrome/Application/chrome.exe`' browser-tests/ --live --dev",
-    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1249,720'\" --video report --reporter spec,custom,html:report/index.html browser-tests/"
-
+    "test:browser:ci": "testcafe \"chrome:headless --disable-gpu --window-size='1249,720'\" --screenshots path=report takeOnFails=true --video report browser-tests/"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -60,6 +59,7 @@
     "@commitlint/cli": "^17.0.2",
     "@commitlint/config-conventional": "^17.0.2",
     "@faker-js/faker": "^7.3.0",
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@graphql-codegen/cli": "2.6.2",
     "@graphql-codegen/introspection": "^2.1.1",
     "@graphql-codegen/typescript": "2.5.0",
