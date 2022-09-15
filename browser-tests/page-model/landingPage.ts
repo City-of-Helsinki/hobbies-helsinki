@@ -11,7 +11,7 @@ class LandingPage {
         await t.expect(screen.getByRole('heading', { name: i18n.t('home:search.title') }).exists).ok();
 
         await t.typeText(Selector('#search'), this.searchText);
-
+        await t.wait(2000);
         await t.expect(screen.findByText(this.searchText).exists).ok();
     }
 }
