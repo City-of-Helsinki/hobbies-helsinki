@@ -106,7 +106,7 @@ export default function ArticleArchive({
       navigation={<Navigation page={page} />}
       content={
         <SearchPageContent
-          // customContent={customContent}
+          noResults={!isLoading && articles?.length === 0}
           items={articles}
           tags={categories}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
