@@ -4,6 +4,7 @@
     "searchTextPlaceholder": "Search text",
     "searchButtonLabelText": "Search",
     "loadMoreButtonLabelText": "Load more",
-    "noResultsText": "No results"
+    "noResultsText": "No results",
+    "buttonClearFilters": "Clear filters"
   }
 }

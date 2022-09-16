@@ -4,6 +4,7 @@
     "searchTextPlaceholder": "Hakusana",
     "searchButtonLabelText": "Hae",
     "loadMoreButtonLabelText": "Lataa lisää",
-    "noResultsText": "Ei hakutuloksia"
+    "noResultsText": "Ei hakutuloksia",
+    "buttonClearFilters": "Tyhjennä hakuehdot"
   }
 }

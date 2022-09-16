@@ -123,6 +123,7 @@ export default function useRHHCConfig(
             'cms:archiveSearch.loadMoreButtonLabelText'
           ),
           noResultsText: t('cms:archiveSearch.noResultsText'),
+          clearAll: t('cms:archiveSearch.buttonClearFilters'),
         },
       },
       utils: {
