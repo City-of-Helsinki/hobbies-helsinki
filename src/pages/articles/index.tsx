@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React from 'react';
 import { GetStaticPropsContext } from 'next';
 import {
@@ -32,6 +33,7 @@ import { getQlLanguage } from '../../common/apollo/utils';
 import getHobbiesStaticProps, {
   HobbiesGlobalPageProps,
 } from '../../domain/app/getHobbiesStaticProps';
+import ArticleDetails from '../../domain/article/articleDetails/ArticleDetails';
 
 const CATEGORIES_AMOUNT = 20;
 const BLOCK_SIZE = 10;
@@ -104,7 +106,7 @@ export default function ArticleArchive({
       navigation={<Navigation page={page} />}
       content={
         <SearchPageContent
-          // customContent={customContent}
+          noResults={!isLoading && articles?.length === 0}
           items={articles}
           tags={categories}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -122,27 +124,58 @@ export default function ArticleArchive({
             fetchMoreArticles();
           }}
           largeFirstItem={showFirstItemLarge}
-          createLargeCard={(item) => (
-            <LargeCard
-              key={`lg-card-${item?.id}`}
-              {...getArticlePageCardProps(
-                item as ArticleType,
-                getRoutedInternalHref
-              )}
-            />
-          )}
-          createCard={(item) => (
-            <Card
-              key={`sm-card-${item?.id}`}
-              {...{
-                ...getArticlePageCardProps(
+          createLargeCard={(item) => {
+            const cardItem = item as ArticleType;
+            const itemCategories = cardItem?.categories;
+            return (
+              <LargeCard
+                key={`lg-card-${item?.id}`}
+                {...getArticlePageCardProps(
                   item as ArticleType,
                   getRoutedInternalHref
-                ),
-                text: '', // A design decision: The text is not wanted in the small cards
-              }}
-            />
-          )}
+                )}
+                //todo: fix any type
+                customContent={
+                  <ArticleDetails
+                    keywords={
+                      itemCategories?.edges
+                        ?.filter((category: any) => category?.node?.name)
+                        .map((category: any) => category?.node?.name || '') ||
+                      []
+                    }
+                  />
+                }
+              />
+            );
+          }}
+          createCard={(item) => {
+            const cardItem = item as ArticleType;
+            const itemCategories = cardItem?.categories;
+            return (
+              <Card
+                key={`sm-card-${item?.id}`}
+                {...{
+                  ...getArticlePageCardProps(
+                    item as ArticleType,
+                    getRoutedInternalHref
+                  ),
+
+                  text: '', // A design decision: The text is not wanted in the small cards
+                }}
+                //todo: fix any type
+                customContent={
+                  <ArticleDetails
+                    keywords={
+                      itemCategories?.edges
+                        ?.filter((category: any) => category?.node?.name)
+                        .map((category: any) => category?.node?.name || '') ||
+                      []
+                    }
+                  />
+                }
+              />
+            );
+          }}
           hasMore={hasMoreToLoad}
           isLoading={isLoading || isLoadingMore}
         />

@@ -183,6 +183,7 @@ export const getDefaultCollections = (
                   }
                 />
               }
+              text=""
             />
           );
         });

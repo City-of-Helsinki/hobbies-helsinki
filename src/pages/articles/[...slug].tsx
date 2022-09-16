@@ -53,7 +53,9 @@ const NextCmsArticle: NextPage<{
         <RHHCPageContent
           page={article as PageContentProps['page']}
           heroContainer={<KorosWrapper />}
-          breadcrumbs={breadcrumbs ?? undefined}
+          breadcrumbs={
+            breadcrumbs && breadcrumbs.length > 0 ? breadcrumbs : undefined
+          }
           shareLinks={<ShareLinks title={t('common:share.article')} />}
           collections={
             collections
