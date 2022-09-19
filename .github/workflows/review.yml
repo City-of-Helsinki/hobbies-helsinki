@@ -113,3 +113,11 @@ jobs:
           name: report
           path: ./report
         if: always() && steps.testcafe.outcome == 'failure'
+      - name: Create/update PR comment for Acceptance Test results
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: testcafe-results
+          message: |
+            ## TestCafe result is __${{ steps.testcafe.outcome }}__ for ${{ env.CUSTOM_ENVIRONMENT_URL }}! ${{steps.testcafe.outcome == 'success' && ':laughing::tada::tada::tada:' || ':crying_cat_face::anger::boom::boom:' }}
+        if: always() && (steps.testcafe.outcome == 'success' || steps.testcafe.outcome == 'failure')
