@@ -117,7 +117,7 @@ test('should filter place options', async () => {
     )
   );
 
-  userEvent.type(
+  await userEvent.type(
     screen.getByRole('textbox', {
       name: /etsi tapahtumapaikka kirjoita hakusana/i,
     }),

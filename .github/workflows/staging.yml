@@ -83,3 +83,32 @@ jobs:
           K8S_SECRET_NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: ${{ env.NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT }}
           K8S_SECRET_NEXT_PUBLIC_APP_ORIGIN: ${{ env.NEXT_PUBLIC_APP_ORIGIN }}
           K8S_SECRET_NEXT_PUBLIC_DEBUG: 1
+
+      # browser tests
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.2
+        with:
+          node-version: 14.x
+      - name: Create yarn cache directory path
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache dependencies
+        uses: actions/cache@v1
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        run: yarn --prefer-offline --frozen-lockfile --check-files
+
+      - name: Run Acceptance Tests
+        run: yarn test:browser:ci
+        env:
+          BROWSER_TESTS_ENV_URL: https://${{ secrets.ENVIRONMENT_URL_STAGING }}
+      - name: Upload screenshots and videos of failed tests to artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: report
+          path: ./report
+        if: always() && steps.testcafe.outcome == 'failure'
