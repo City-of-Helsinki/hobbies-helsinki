@@ -6,4 +6,4 @@ export const getEnvUrl = (path = ''): string => {
 };
 
 // eslint-disable-next-line no-console
-console.log(getEnvUrl());
+console.log('BROWSER_TESTS_ENV_URL:', getEnvUrl());
