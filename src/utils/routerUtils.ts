@@ -180,3 +180,18 @@ export function getLocalizedCmsItemUrl(
     pathname: getI18nPath(pathname, locale),
   })}`;
 }
+
+/**
+ * Rewrite the URLs with internal URLS.
+ * @param apolloResponseData The fetch result in JSON format
+ * @returns A JSON with manipulated content transformed with URLRewriteMapping
+ */
+export function rewriteInternalURLs(
+  apolloResponseData: Record<string, unknown>
+): typeof JSON.parse {
+  let jsonText = JSON.stringify(apolloResponseData);
+  for (const [search, replace] of Object.entries(AppConfig.URLRewriteMapping)) {
+    jsonText = jsonText.replace(new RegExp(search, 'g'), replace);
+  }
+  return JSON.parse(jsonText);
+}

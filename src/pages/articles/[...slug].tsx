@@ -33,6 +33,8 @@ import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTransl
 import { Language } from '../../types';
 import { getLocaleOrError } from '../../utils/routerUtils';
 import { getAllArticles } from '../../common-events/utils/headless-cms/service';
+import { ROUTES } from '../../constants';
+import AppConfig from '../../domain/app/AppConfig';
 
 const NextCmsArticle: NextPage<{
   article: ArticleType;
@@ -149,40 +151,66 @@ const getProps = async (context: GetStaticPropsContext) => {
   >({
     query: ArticleDocument,
     variables: {
-      id: getUriID(
+      id: _getURIQueryParameter(
         context.params?.slug as string[],
         context.locale as Language
       ),
-      //   idType: PageIdType.Uri,
+      // `idType: PageIdType.Uri // idType is`fixed in query, so added automatically
     },
   });
 
   const currentArticle = articleData.post;
 
   // TODO: Breadcrumbs are unstyled, so left disabled
-  // Fetch all parent pages for navigation data
-  // const uriSegments = [ROUTES.ARTICLE_ARCHIVE];
-  // const apolloPageResponses = await Promise.all(
-  //   uriSegments.map((uri) => {
-  //     return cmsClient.query<PageQuery, PageQueryVariables>({
-  //       query: PageDocument,
-  //       variables: {
-  //         id: uri,
-  //       },
-  //     });
-  //   })
-  // );
-  // const pages = apolloPageResponses.map((res) => res.data.page);
-  // const breadcrumbs = pages
-  //   .map((page) => ({
-  //     link: page?.link ?? '',
-  //     title: page?.title ?? '',
-  //   }))
-  //   .concat([
-  //     { link: currentArticle?.link ?? '', title: currentArticle?.title ?? '' },
-  //   ]);
+  const breadcrumbs: Breadcrumb[] = []; // await _getBreadcrumbs(cmsClient, currentArticle);
 
-  return { currentArticle, breadcrumbs: [], cmsClient };
+  return { currentArticle, breadcrumbs, cmsClient };
 };
+
+/**
+ * The Headless CMS needs the contextpath as a part of the URI
+ * when it's included in the path that is set in article URL settings.
+ * @param slugs   a category URI splitted in slugs
+ * @param locale  locale of the
+ * @returns
+ */
+function _getURIQueryParameter(slugs: string[], locale: Language) {
+  const uri = getUriID(slugs, locale);
+  if (uri.startsWith(AppConfig.cmsArticlesContextPath)) {
+    return uri;
+  }
+  // TODO: get rid of this context path prefix if headless cms supports it
+  // The Headless CMS needs the contextpath as a part of the URI
+  // when it's included in the article URL settings
+  return `${AppConfig.cmsArticlesContextPath}${uri}`;
+}
+
+// async function _getBreadcrumbs(
+//   cmsClient: ApolloClient<NormalizedCacheObject>,
+//   currentArticle: ArticleType
+// ) {
+//   // Fetch all parent pages for navigation data
+//   const uriSegments = [ROUTES.ARTICLE_ARCHIVE];
+//   const apolloPageResponses = await Promise.all(
+//     uriSegments.map((uri) => {
+//       return cmsClient.query<PageQuery, PageQueryVariables>({
+//         query: PageDocument,
+//         variables: {
+//           id: uri,
+//         },
+//       });
+//     })
+//   );
+//   const pages = apolloPageResponses.map((res) => res.data.page);
+//   const breadcrumbs = pages
+//     .map((page) => ({
+//       link: page?.link ?? '',
+//       title: page?.title ?? '',
+//     }))
+//     .concat([
+//       { link: currentArticle?.link ?? '', title: currentArticle?.title ?? '' },
+//     ]);
+//   return breadcrumbs;
+// }
 
 export default NextCmsArticle;

@@ -15,19 +15,29 @@ import {
 } from '../../common/apollo/utils';
 import { sortMenuItems } from '../../common/apollo/utils';
 import isClient from '../../common/utils/isClient';
+import { rewriteInternalURLs } from '../../utils/routerUtils';
 
 const cmsApolloClient = new MutableReference<
   ApolloClient<NormalizedCacheObject>
 >(createCmsApolloClient());
 
 export function createCmsApolloClient() {
+  // Rewrite the URLs coming from events API to route them internally.
+  const transformInternalURLs = new ApolloLink((operation, forward) => {
+    return forward(operation).map((response) => {
+      response.data = response.data
+        ? rewriteInternalURLs(response.data)
+        : response.data;
+      return response;
+    });
+  });
   const httpLink = new HttpLink({
     uri: AppConfig.cmsGraphqlEndpoint,
     fetch,
   });
   return new ApolloClient({
     ssrMode: isClient,
-    link: ApolloLink.from([httpLink]),
+    link: ApolloLink.from([transformInternalURLs, httpLink]),
     cache: new InMemoryCache({
       typePolicies: {
         RootQuery: {

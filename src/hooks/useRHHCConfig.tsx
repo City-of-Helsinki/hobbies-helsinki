@@ -6,13 +6,9 @@ import Head from 'next/head';
 import {
   Config,
   defaultConfig as rhhcDefaultConfig,
-  getUri,
-  ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
-import { ROUTES } from '../constants';
 import AppConfig from '../domain/app/AppConfig';
-import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
 import useLocale from './useLocale';
 import EventDetails, {
   EventDetailsProps,
@@ -46,40 +42,6 @@ export default function useRHHCConfig(
         return true;
       }
       return false;
-    };
-    const getRoutedInternalHref: Config['utils']['getRoutedInternalHref'] = (
-      link,
-      type
-    ) => {
-      if (!link) {
-        return '#';
-      }
-
-      const uri = getUri(link, internalHrefOrigins, getIsHrefExternal);
-
-      if (type === ModuleItemTypeEnum.Article) {
-        return getLocalizedCmsItemUrl(
-          ROUTES.ARTICLES,
-          { slug: uri.replace(/^\//, '') },
-          locale
-        );
-      }
-      if (type === ModuleItemTypeEnum.Page) {
-        return getLocalizedCmsItemUrl(
-          ROUTES.PAGES,
-          { slug: uri.replace(/^\//, '') },
-          locale
-        );
-      }
-      if (type === ModuleItemTypeEnum.Event) {
-        return getLocalizedCmsItemUrl(
-          ROUTES.COURSES,
-          { eventId: uri.replace(/^\//, '') },
-          locale
-        );
-      }
-      //TODO: test the default case
-      return getLocalizedCmsItemUrl(link, {}, locale);
     };
     return {
       ...rhhcDefaultConfig,
@@ -130,8 +92,6 @@ export default function useRHHCConfig(
       utils: {
         ...rhhcDefaultConfig.utils,
         getIsHrefExternal,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        getRoutedInternalHref,
       },
       internalHrefOrigins,
     } as Config;

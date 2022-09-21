@@ -1,4 +1,5 @@
 import { i18n } from '../../../next-i18next.config';
+import { ROUTES } from '../../constants';
 import { EventTypeId } from '../nextApi/graphql/generated/graphql';
 
 class AppConfig {
@@ -28,6 +29,18 @@ class AppConfig {
       process.env.NEXT_PUBLIC_APP_ORIGIN,
       'NEXT_PUBLIC_APP_ORIGIN'
     );
+  }
+
+  static get cmsOrigin() {
+    return new URL(AppConfig.cmsGraphqlEndpoint).origin;
+  }
+
+  static get cmsArticlesContextPath() {
+    return process.env.NEXT_PUBLIC_CMS_ARTICLES_CONTEXT_PATH ?? '/articles';
+  }
+
+  static get cmsPagesContextPath() {
+    return process.env.NEXT_PUBLIC_CMS_PAGES_CONTEXT_PATH ?? '/pages';
   }
 
   static get supportedEventTypes() {
@@ -95,6 +108,19 @@ class AppConfig {
     return Boolean(
       parseEnvValue(process.env.NEXT_PUBLIC_SHOW_SIMILAR_EVENTS, true)
     );
+  }
+
+  static get URLRewriteMapping() {
+    return {
+      [AppConfig.linkedEventsEventEndpoint]: ROUTES.COURSES.replace(
+        '/[eventId]',
+        ''
+      ),
+      [`${AppConfig.cmsOrigin}[/fi|/en|/sv]*${AppConfig.cmsArticlesContextPath}`]:
+        ROUTES.ARTICLES.replace('/[...slug]', ''),
+      [`${AppConfig.cmsOrigin}[/fi|/en|/sv]*${AppConfig.cmsPagesContextPath}`]:
+        '/',
+    };
   }
 }
 
