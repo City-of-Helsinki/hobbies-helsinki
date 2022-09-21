@@ -13,15 +13,24 @@ import fetch from 'cross-fetch';
 
 import isClient from '../../common/utils/isClient';
 import AppConfig from '../app/AppConfig';
+import { rewriteInternalURLs } from '../../utils/routerUtils';
 
 export const createEventsApolloClient = (
   initialState: NormalizedCacheObject = {}
 ): ApolloClient<NormalizedCacheObject> => {
+  // Rewrite the URLs coming from events API to route them internally.
+  const transformInternalURLs = new ApolloLink((operation, forward) => {
+    return forward(operation).map((response) => {
+      response.data = response.data
+        ? rewriteInternalURLs(response.data)
+        : response.data;
+      return response;
+    });
+  });
   const httpLink = new HttpLink({
     uri: AppConfig.eventsGraphqlEndpoint,
     fetch,
   });
-
   const errorLink = onError(({ graphQLErrors, networkError }) => {
     if (graphQLErrors) {
       graphQLErrors.forEach(({ message, locations, path }) => {
@@ -29,7 +38,6 @@ export const createEventsApolloClient = (
         Sentry.captureMessage(errorMessage);
       });
     }
-
     if (networkError) {
       Sentry.captureMessage('Network error');
     }
@@ -40,7 +48,7 @@ export const createEventsApolloClient = (
   return new ApolloClient({
     ssrMode: !isClient, // Disables forceFetch on the server (so queries are only run once)
     // TODO: Add error link after adding Sentry to the project
-    link: ApolloLink.from([errorLink, httpLink]),
+    link: ApolloLink.from([transformInternalURLs, errorLink, httpLink]),
     cache,
   });
 };

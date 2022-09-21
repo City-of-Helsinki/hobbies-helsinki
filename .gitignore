@@ -38,3 +38,5 @@ yarn-error.log*
 
 # browser test screenshots
 report
+
+.vscode/

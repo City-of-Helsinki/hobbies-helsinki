@@ -25,6 +25,7 @@ import {
   getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
 import { getAllPages } from '../../common-events/utils/headless-cms/service';
+import AppConfig from '../../domain/app/AppConfig';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
@@ -139,40 +140,70 @@ const getProps = async (context: GetStaticPropsContext) => {
   >({
     query: PageDocument,
     variables: {
-      id: getUriID(
+      id: _getURIQueryParameter(
         context.params?.slug as string[],
         context.locale as Language
       ),
-      // idType: PageIdType.Uri,
+      // `idType: PageIdType.Uri // idType is`fixed in query, so added automatically
     },
   });
 
   const currentPage = pageData.page;
   // TODO: Breadcrumbs are unstyled, so left disabled
-  // Fetch all parent pages for navigation data.
-  // These breadcrumb uris are used to fetch all the parent pages of the current page
-  // so that all the childrens of parent page can be figured out and sub page navigations can be formed
-  // for rendering
-  // const uriSegments = slugsToUriSegments(
+  // const breadcrumbs = _getBreadcrumbs(
+  //   cmsClient,
   //   (context.params?.slug ?? []) as string[]
   // );
-  // const apolloPageResponses = await Promise.all(
-  //   uriSegments.map((uri) => {
-  //     return cmsClient.query<PageQuery, PageQueryVariables>({
-  //       query: PageDocument,
-  //       variables: {
-  //         id: uri,
-  //       },
-  //     });
-  //   })
-  // );
-  // const pages = apolloPageResponses.map((res) => res.data.page);
-  // const breadcrumbs = pages.map((page) => ({
-  //   link: page?.link ?? '',
-  //   title: page?.title ?? '',
-  // }));
 
   return { currentPage, breadcrumbs: [], cmsClient };
 };
+
+/**
+ * The Headless CMS URIs needs to have a contextpath as a part of the URI.
+ * While the headless cms does not support prefixin the route,
+ * a workaround is to add all the dynamic pages as subpages for a page with a slug "pages".
+ * To embed this context path to the routes of Nextjs API without duplicating a path of an URI,
+ * the pages context path needs to be added to the query.
+ * @param slugs   a category URI splitted in slugs
+ * @param locale  locale of the
+ * @returns
+ */
+function _getURIQueryParameter(slugs: string[], locale: Language) {
+  const uri = getUriID(slugs, locale);
+  if (uri.startsWith(AppConfig.cmsPagesContextPath)) {
+    return uri;
+  }
+  // TODO: get rid of this context path prefix if headless cms supports it
+  // The workaround for Headless CMS makes all the dynamic cms pages
+  // to be subpages for a page with slug 'pages'
+  return `${AppConfig.cmsPagesContextPath}${uri}`;
+}
+
+// async function _getBreadcrumbs(
+//   cmsClient: ApolloClient<NormalizedCacheObject>,
+//   slugs: string[]
+// ) {
+//   // Fetch all parent pages for navigation data.
+//   // These breadcrumb uris are used to fetch all the parent pages of the current page
+//   // so that all the childrens of parent page can be figured out and sub page navigations can be formed
+//   // for rendering
+//   const uriSegments = slugsToUriSegments(slugs);
+//   const apolloPageResponses = await Promise.all(
+//     uriSegments.map((uri) => {
+//       return cmsClient.query<PageQuery, PageQueryVariables>({
+//         query: PageDocument,
+//         variables: {
+//           id: uri,
+//         },
+//       });
+//     })
+//   );
+//   const pages = apolloPageResponses.map((res) => res.data.page);
+//   const breadcrumbs = pages.map((page) => ({
+//     link: page?.link ?? '',
+//     title: page?.title ?? '',
+//   }));
+//   return breadcrumbs;
+// }
 
 export default NextCmsPage;
