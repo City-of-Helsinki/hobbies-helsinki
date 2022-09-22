@@ -30,7 +30,12 @@ export default function Navigation({ page }: NavigationProps) {
       onTitleClick={() => {
         router.push('/');
       }}
-      getIsItemActive={({ path }) => path === getI18nPath(currentPage, locale)}
+      getIsItemActive={({ path }) => {
+        return (
+          path === getI18nPath(currentPage, locale) ||
+          path === `/${locale}${getI18nPath(currentPage, locale)}`
+        );
+      }}
       getPathnameForLanguage={({ slug }) => {
         const translatedPage = (page?.translations as PageType[])?.find(
           (translation) => translation?.language?.slug === slug
