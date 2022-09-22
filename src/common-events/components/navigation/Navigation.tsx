@@ -1,14 +1,12 @@
 import { ArticleType, PageType } from 'react-helsinki-headless-cms';
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
+import { DEFAULT_HEADER_MENU_NAME, Language } from 'events-helsinki-core';
+import { useLocale, useRouterFromConfig } from 'events-helsinki-components';
 
-import { DEFAULT_HEADER_MENU_NAME } from '../../../constants';
-import { Language } from '../../../types';
 import {
   getI18nPath,
   getLocalizedCmsItemUrl,
 } from '../../../utils/routerUtils';
-import useLocale from '../../hooks/useLocale';
-import useRouterFromConfig from '../../hooks/useRouterFromConfig';
 import {
   getSlugFromUri,
   removeContextPathFromUri,

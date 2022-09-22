@@ -21,10 +21,10 @@ import {
   getArticlePageCardProps as getArticlePageCardPropsBase,
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
+import { Language } from 'events-helsinki-core';
 
 import AppConfig from '../../../domain/app/AppConfig';
 import ArticleDetails from '../../../domain/article/articleDetails/ArticleDetails';
-import { Language } from '../../../types';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getUriID = (slugs: string[], locale: Language): string => {

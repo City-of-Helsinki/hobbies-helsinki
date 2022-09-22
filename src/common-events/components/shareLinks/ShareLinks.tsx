@@ -1,14 +1,14 @@
 import classNames from 'classnames';
 import React from 'react';
+import { isClient } from 'events-helsinki-core';
+import { CopyButton, useConfig } from 'events-helsinki-components';
 
 import LinkIcon from '../../../assets/icons/svg/link.svg';
-import isClient from '../../../common/utils/isClient';
-import CopyButton from '../../../common/components/copyButton/CopyButton';
 import FacebookShareLink from './FacebookShareLink';
 import LinkedInShareLink from './LinkedInShareLink';
 import styles from './shareLinks.module.scss';
 import TwitterShareLink from './TwitterShareLink';
-import useConfig from '../../hooks/useConfig';
+
 
 export interface ShareLinksProps {
   title: string;

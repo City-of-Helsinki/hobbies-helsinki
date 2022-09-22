@@ -2,14 +2,11 @@ import { Button, IconSearch } from 'hds-react';
 import classnames from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { DateSelector, MobileDateSelector, useLocale } from 'events-helsinki-components';
+import { AutosuggestMenuOption, ROUTES } from 'events-helsinki-core';
 
-import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
-import MobileDateSelector from '../../../common-events/components/mobileDateSelector/MobileDateSelector';
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
-import { AutosuggestMenuOption } from '../../../common-events/types';
 import styles from './landingPageSearchForm.module.scss';
-import { ROUTES } from '../../../constants';
-import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
 
 export type LandingPageSearchFormProps = {

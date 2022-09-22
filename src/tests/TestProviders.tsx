@@ -18,12 +18,12 @@ import {
   InMemoryCache,
   useApolloClient,
 } from '@apollo/client';
+import { DEFAULT_LANGUAGE, ROUTES } from 'events-helsinki-core';
+import { Config as EventsConfig } from 'events-helsinki-components';
 
 import i18n from './initI18n';
 import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
 import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
-import { Config as EventsConfig } from '../common-events/configProvider/configContext';
-import { DEFAULT_LANGUAGE, ROUTES } from '../constants';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';

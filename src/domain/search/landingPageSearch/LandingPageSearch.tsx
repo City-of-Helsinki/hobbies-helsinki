@@ -1,8 +1,9 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { AutosuggestMenuOption, ROUTES } from 'events-helsinki-core';
+import { useLocale } from 'events-helsinki-components';
 
-import { AutosuggestMenuOption } from '../../../common-events/types';
 import {
   CATEGORY_CATALOG,
   EVENT_DEFAULT_SEARCH_FILTERS,
@@ -12,12 +13,10 @@ import SearchShortcuts from './SearchShortcuts';
 import LandingPageSearchForm from './LandingPageSearchForm';
 import styles from './landingPageSearch.module.scss';
 import { EventTypeId } from '../../nextApi/graphql/generated/graphql';
-import { ROUTES } from '../../../constants';
 import {
   getI18nPath,
   getParsedUrlQueryInput,
 } from '../../../utils/routerUtils';
-import useLocale from '../../../hooks/useLocale';
 
 const Search: React.FC = () => {
   const { t } = useTranslation();

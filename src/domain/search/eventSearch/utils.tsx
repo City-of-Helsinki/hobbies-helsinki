@@ -1,3 +1,4 @@
+import { TFunction } from 'next-i18next';
 import {
   addDays,
   endOfWeek,
@@ -7,13 +8,9 @@ import {
   subDays,
 } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
+import { buildQueryFromObject, DATE_TYPES, formatDate, getUrlParamAsArray, Language } from 'events-helsinki-core';
+import { FilterType } from 'events-helsinki-components';
 
-import { FilterType } from '../../../common-events/components/filterButton/types';
-import buildQueryFromObject from '../../../common/utils/buildQueryFromObject';
-import { formatDate } from '../../../common-events/utils/dateUtils';
-import getUrlParamAsArray from '../../../common-events/utils/getUrlParamAsArray';
-import { DATE_TYPES } from '../../../constants';
-import { Language } from '../../../types';
 import {
   EventTypeId,
   Meta,
@@ -41,7 +38,6 @@ import {
   SearchHobbyType,
   SearchHobbyTypeOption,
 } from './types';
-import { UnionTFunction } from '../../../common-events/types';
 import AppConfig from '../../app/AppConfig';
 import { EventFields } from '../../event/types';
 
@@ -56,7 +52,7 @@ export const sortExtendedCategoryOptions = (
 export const getCategoryOptions = (
   category: SearchCategoryType,
   categoryOption: SearchCategoryOption,
-  t: UnionTFunction
+  t: TFunction
 ): CategoryOption => {
   const { icon, labelKey } = categoryOption;
   return {
@@ -74,7 +70,7 @@ export const sortExtendedHobbyTypeOptions = (
 export const getHobbyTypeOptions = (
   hobbyType: SearchHobbyType,
   hobbyTypeOption: SearchHobbyTypeOption,
-  t: UnionTFunction
+  t: TFunction
 ): HobbyTypeOption => {
   const { icon, labelKey } = hobbyTypeOption;
   return {
@@ -85,7 +81,7 @@ export const getHobbyTypeOptions = (
 };
 
 export const getEventCategoryOptions = (
-  t: UnionTFunction,
+  t: TFunction,
   categories: COURSE_CATEGORIES[] = CATEGORY_CATALOG[EventTypeId.Course].default
 ): CategoryOption[] =>
   categories
@@ -95,7 +91,7 @@ export const getEventCategoryOptions = (
     .sort(sortExtendedCategoryOptions);
 
 export const getCourseHobbyTypeOptions = (
-  t: UnionTFunction,
+  t: TFunction,
   hobbytTypes: COURSE_HOBBY_TYPES[] = CATEGORY_CATALOG.hobbyTypes.default
 ): HobbyTypeOption[] =>
   hobbytTypes

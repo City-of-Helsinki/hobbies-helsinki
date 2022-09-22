@@ -3,14 +3,13 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Link } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
+import { getDateRangeStr, ROUTES } from 'events-helsinki-core';
+import { useLocale } from 'events-helsinki-components';
 
-import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
-import useLocale from '../../../../common-events/hooks/useLocale';
 import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
 import { getEventFields } from '../../EventUtils';
 import { EventFields } from '../../types';
 import styles from './eventList.module.scss';
-import { ROUTES } from '../../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../../utils/routerUtils';
 
 const EventList: React.FC<{

@@ -1,8 +1,7 @@
 import React, { useMemo } from 'react';
 import createDOMPurify from 'dompurify';
 import parse, { domToReact } from 'html-react-parser';
-
-import Text from '../text/Text';
+import { Text } from 'events-helsinki-components';
 
 function getIsomorphicDOMPurifier() {
   if (!process.browser) {

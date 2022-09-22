@@ -9,10 +9,9 @@ import {
   PageSection,
   ContentContainer,
 } from 'react-helsinki-headless-cms';
+import { LoadingSpinner, useLocale } from 'events-helsinki-components';
+import { ROUTES } from 'events-helsinki-core';
 
-import useLocale from '../../../common-events/hooks/useLocale';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import { useSimilarEventsQuery } from '../queryUtils';
 import { EventFields } from '../types';
@@ -60,7 +59,7 @@ const SimilarEvents: React.FC<Props> = ({ event, type = 'carousel' }) => {
       className={styles.similarEvents}
     >
       <ContentContainer>
-        {/* TODO: the loading should be indicated from inside of the Collection component instead, 
+        {/* TODO: the loading should be indicated from inside of the Collection component instead,
         so that the title would be shown while the content is being loaded and ther ewould be less bouncing. */}
         <LoadingSpinner isLoading={loading}>
           <Collection

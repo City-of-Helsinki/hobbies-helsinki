@@ -9,6 +9,8 @@ const path = require('path');
 const i18nRoutes = require('./i18nRoutes.config');
 const { i18n } = require('./next-i18next.config');
 
+const isProd = process.env.NODE_ENV === 'production';
+
 const i18nRewriteRules = Object.entries(i18nRoutes).flatMap(
   ([destination, sources]) =>
     sources.map(({ source, locale }) => ({
@@ -35,12 +37,30 @@ const nextConfig = {
       ).origin,
     ],
   },
-  webpack: (config) => {
+  // @link https://nextjs.org/docs/advanced-features/compiler#minification
+  swcMinify: true,
+  // Standalone build
+  // @link https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files-experimental
+  output: 'standalone',
+  experimental: {
+    browsersListForSwc: true,
+    legacyBrowsers: false,
+    // React 18 server components
+    // @link https://nextjs.org/docs/advanced-features/react-18/server-components
+    serverComponents: false,
+    outputFileTracingRoot: undefined, // ,path.join(__dirname, '../../'),
+    esmExternals: true,
+  },
+  webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.svg$/,
       use: ['@svgr/webpack'],
-    });
-
+    })
+    if (!isServer) {
+      // Fixes npm packages that depend on `fs` module
+      // @link https://github.com/vercel/next.js/issues/36514#issuecomment-1112074589
+      config.resolve.fallback = { ...config.resolve.fallback, fs: false };
+    }
     return config;
   },
   // Do not upload source map files to sentry when sentry not enabled
@@ -52,6 +72,34 @@ const nextConfig = {
   //     },
 };
 
+let config = nextConfig;
+// Tell webpack to compile those packages
+// @link https://www.npmjs.com/package/next-transpile-modules
+const tmModules = [
+  // for legacy browsers support (only in prod)
+  ...(isProd
+    ? [
+      'events-helsinki-components',
+      'events-helsinki-core'
+    ]
+    : []),
+];
+
+if (tmModules.length > 0) {
+  console.info(
+    `Will transpile [${tmModules.join(',')}]`
+  );
+
+  const withNextTranspileModules = require('next-transpile-modules')(
+    tmModules,
+    {
+      resolveSymlinks: true,
+      debug: false,
+    }
+  );
+  config = withNextTranspileModules(config);
+}
+
 // // For all available options, see:
 // // https://github.com/getsentry/sentry-webpack-plugin#options.
 // const sentryWebpackPluginOptions = {
@@ -61,4 +109,4 @@ const nextConfig = {
 // // Make sure adding Sentry options is the last code to run before exporting, to
 // // ensure that your source maps include changes from all other Webpack plugins
 // module.exports = withSentryConfig(nextConfig, sentryWebpackPluginOptions);
-module.exports = nextConfig;
+module.exports = config;

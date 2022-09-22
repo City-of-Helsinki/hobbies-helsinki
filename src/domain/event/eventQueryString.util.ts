@@ -1,4 +1,5 @@
-import { ROUTES } from '../../constants';
+import { ROUTES } from 'events-helsinki-core';
+
 import { getI18nPath } from '../../utils/routerUtils';
 
 export type ReturnParams = {
