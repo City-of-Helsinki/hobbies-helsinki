@@ -7,7 +7,7 @@ import { NextRouter } from 'next/router';
 import i18nRoutes from '../../i18nRoutes.config';
 import { Language } from '../types';
 import AppConfig from '../domain/app/AppConfig';
-import { DEFAULT_LANGUAGE } from '../constants';
+import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../constants';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]
@@ -30,7 +30,7 @@ function transformDynamicPathIntoSegmentedDynamicPath(path: string): string {
 
 export function getI18nPath(route: string, locale: string): string {
   // English is the default language within code so it doesn't need transforming
-  if (locale === 'en') {
+  if (locale === SUPPORT_LANGUAGES.EN) {
     return route;
   }
 
