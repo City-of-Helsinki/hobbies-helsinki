@@ -22,7 +22,9 @@ export default function Navigation({ page }: NavigationProps) {
   const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale];
   const currentPage = router.pathname;
 
-  return (
+  // TODO: This break the build with: TypeError: Cannot read properties of null (reading 'useState')
+  return (null
+    /*
     <RHHCApolloNavigation
       menuName={navigationMenuName ?? ''}
       onTitleClick={() => {
@@ -52,5 +54,7 @@ export default function Navigation({ page }: NavigationProps) {
         );
       }}
     />
+    */
+
   );
 }
