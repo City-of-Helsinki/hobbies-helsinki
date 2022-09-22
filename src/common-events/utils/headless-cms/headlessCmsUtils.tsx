@@ -22,17 +22,14 @@ import {
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
 
-import { DEFAULT_LANGUAGE } from '../../../constants';
 import AppConfig from '../../../domain/app/AppConfig';
 import ArticleDetails from '../../../domain/article/articleDetails/ArticleDetails';
 import { Language } from '../../../types';
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export const getUriID = (slugs: string[], locale: Language): string => {
   if (!slugs) return '/';
-  if (locale === DEFAULT_LANGUAGE) {
-    return `/${slugs.join('/')}/`;
-  }
-  return `/${locale}/${slugs.join('/')}/`;
+  return `/${slugs.join('/')}/`;
 };
 
 export const getSlugFromUri = (uri?: string | null): string[] | null => {
@@ -41,6 +38,12 @@ export const getSlugFromUri = (uri?: string | null): string[] | null => {
     return uriWithoutLang.split('/').filter((i) => i);
   }
   return null;
+};
+
+export const removeContextPathFromUri = (uri?: string | null) => {
+  return uri
+    ?.replace(AppConfig.cmsArticlesContextPath, '')
+    .replace(AppConfig.cmsPagesContextPath, '');
 };
 
 export const stripLocaleFromUri = (uri: string): string => {

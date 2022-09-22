@@ -9,7 +9,10 @@ import {
 } from '../../../utils/routerUtils';
 import useLocale from '../../hooks/useLocale';
 import useRouterFromConfig from '../../hooks/useRouterFromConfig';
-import { getSlugFromUri } from '../../utils/headless-cms/headlessCmsUtils';
+import {
+  getSlugFromUri,
+  removeContextPathFromUri,
+} from '../../utils/headless-cms/headlessCmsUtils';
 
 type NavigationProps = {
   page?: PageType | ArticleType;
@@ -36,7 +39,10 @@ export default function Navigation({ page }: NavigationProps) {
           currentPage,
           translatedPage
             ? {
-                slug: getSlugFromUri(translatedPage.uri) ?? '',
+                slug:
+                  getSlugFromUri(
+                    removeContextPathFromUri(translatedPage.uri)
+                  ) ?? '',
               }
             : router.query,
           slug as Language
