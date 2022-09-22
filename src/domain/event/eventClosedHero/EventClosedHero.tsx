@@ -2,8 +2,8 @@ import { Button } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { useLocale } from 'events-helsinki-components';
 
-import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
 import styles from './eventClosedHero.module.scss';
 

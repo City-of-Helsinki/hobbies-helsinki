@@ -4,10 +4,8 @@ import { scroller } from 'react-scroll';
 import { toast } from 'react-toastify';
 import qs from 'query-string';
 import { useRouter } from 'next/router';
+import { LoadingSpinner, SrOnly, useIsSmallScreen } from 'events-helsinki-components';
 
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
-import SrOnly from '../../../common/components/srOnly/SrOnly';
-import useIsSmallScreen from '../../../common/hooks/useIsSmallScreen';
 import {
   QueryEventListArgs,
   useEventListQuery,

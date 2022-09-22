@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import React from 'react';
+import { useLocale } from 'events-helsinki-components';
 
-import useLocale from '../../../hooks/useLocale';
 import { getEventFields } from '../EventUtils';
 import { EventFields } from '../types';
 

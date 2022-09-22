@@ -1,7 +1,7 @@
 import sortBy from 'lodash/sortBy';
+import { getLocalizedString } from 'events-helsinki-core'
+import { useLocale } from 'events-helsinki-components'
 
-import useLocale from './useLocale';
-import getLocalisedString from '../utils/getLocalisedString';
 import { additionalDivisions } from '../../domain/neighborhood/additionalDivisions';
 import {
   Neighborhood,
@@ -31,7 +31,7 @@ const useDivisionOptions = (): DivisionOption[] => {
 
   const neighborhoodOptionList =
     neighborhoodList?.map((neighborhood: Neighborhood) => ({
-      text: getLocalisedString(neighborhood.name, locale),
+      text: getLocalizedString(neighborhood.name, locale),
       value: neighborhood.id,
     })) ?? [];
 

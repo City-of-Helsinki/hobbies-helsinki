@@ -1,9 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { ShareLinkBase, ShareLinkProps } from 'events-helsinki-components';
 
 import FacebookIcon from '../../../assets/icons/svg/facebook.svg';
-import ShareLinkBase from './ShareLinkBase';
-import { ShareLinkProps } from './types';
 
 const fbShareUrl = 'https://www.facebook.com/sharer/sharer.php';
 

@@ -20,16 +20,15 @@ import {
   PageType,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
+import { getQlLanguage, skipFalsyType } from 'events-helsinki-core';
+import { useDebounce } from 'events-helsinki-components';
 
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
 import Navigation from '../../common-events/components/navigation/Navigation';
 import FooterSection from '../../domain/footer/Footer';
 import { getLocaleOrError } from '../../utils/routerUtils';
-import useDebounce from '../../common/hooks/useDebounce';
 import { useCmsApollo } from '../../domain/clients/cmsApolloClient';
 import { getArticlePageCardProps } from '../../common-events/utils/headless-cms/headlessCmsUtils';
-import { skipFalsyType } from '../../common/utils/typescript.utils';
-import { getQlLanguage } from '../../common/apollo/utils';
 import getHobbiesStaticProps, {
   HobbiesGlobalPageProps,
 } from '../../domain/app/getHobbiesStaticProps';

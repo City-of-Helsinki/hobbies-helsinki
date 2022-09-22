@@ -1,6 +1,8 @@
 import FileSaver from 'file-saver';
 import React from 'react';
 import mockRouter from 'next-router-mock';
+import { EventFields, SuperEventResponse } from 'events-helsinki-core';
+import { getDateRangeStr } from 'events-helsinki-core';
 
 import { EventDetails } from '../../../../domain/nextApi/graphql/generated/graphql';
 import { translations } from '../../../../tests/initI18n';
@@ -15,8 +17,6 @@ import {
   waitFor,
   within,
 } from '../../../../tests/testUtils';
-import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
-import { EventFields, SuperEventResponse } from '../../types';
 import EventInfo from '../EventInfo';
 import { subEventsListTestId, superEventTestId } from '../EventsHierarchy';
 import {
@@ -35,6 +35,7 @@ import {
   superEventInternalId,
   telephone,
 } from '../utils/EventInfo.mocks';
+
 
 beforeEach(() => {
   mockRouter.setCurrentUrl('/');

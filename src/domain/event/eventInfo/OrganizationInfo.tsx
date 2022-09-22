@@ -2,18 +2,16 @@ import { IconFaceSmile, IconLayers } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { ROUTES } from 'events-helsinki-core';
+import { InfoWithIcon, LoadingSpinner, useLocale } from 'events-helsinki-components';
 
 import styles from './eventInfo.module.scss';
-import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import {
   EventFieldsFragment,
   useOrganizationDetailsQuery,
 } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields } from '../EventUtils';
-import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
-import useLocale from '../../../hooks/useLocale';
 
 interface Props {
   event: EventFieldsFragment;

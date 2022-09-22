@@ -13,13 +13,9 @@ import {
   PagesQueryVariables,
   PagesDocument,
 } from 'react-helsinki-headless-cms/apollo';
+import { PageInfo } from 'events-helsinki-core';
 
-// import {
-//   DEFAULT_HEADER_MENU_NAME,
-//   SUPPORT_LANGUAGES,
-// } from '../../../constants';
 import { createCmsApolloClient } from '../../../domain/clients/cmsApolloClient';
-import { PageInfo } from './types';
 
 export const ARTICLES_AMOUNT_LIMIT = 100;
 export const PAGES_AMOUNT_LIMIT = 100;

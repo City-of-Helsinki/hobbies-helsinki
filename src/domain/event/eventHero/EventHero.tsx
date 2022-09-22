@@ -18,13 +18,10 @@ import {
   PageSection,
 } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
+import { Visible, useLocale } from 'events-helsinki-components';
+import { buttonStyles, IconButton, InfoWithIcon, SkeletonLoader } from 'events-helsinki-components';
+import { getDateRangeStr } from 'events-helsinki-core';
 
-import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
-import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
-import buttonStyles from '../../../common-events/components/button/button.module.scss';
-import IconButton from '../../../common/components/iconButton/IconButton';
-import Visible from '../../../common/components/visible/Visible';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -35,7 +32,7 @@ import {
 import { getEventFields, getEventPrice } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventHero.module.scss';
-import useLocale from '../../../hooks/useLocale';
+
 
 export interface Props {
   event: EventFields;

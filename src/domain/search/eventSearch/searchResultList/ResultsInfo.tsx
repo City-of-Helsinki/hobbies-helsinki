@@ -2,12 +2,13 @@ import { Button, IconSearch } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
+import { Language } from 'events-helsinki-core';
+import { ROUTES } from 'events-helsinki-core';
+import { useLocale } from 'events-helsinki-components';
 
-import { Language } from '../../../../types';
 import styles from './resultsInfo.module.scss';
-import { ROUTES } from '../../../../constants';
-import useLocale from '../../../../hooks/useLocale';
 import { getI18nPath } from '../../../../utils/routerUtils';
+
 
 const ResultsInfoContainer: React.FC<{
   resultsCount: number;

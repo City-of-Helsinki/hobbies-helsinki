@@ -2,8 +2,8 @@ import { IconLocation } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { Link, SecondaryLink } from 'react-helsinki-headless-cms';
+import { useLocale } from 'events-helsinki-components';
 
-import useLocale from '../../../common-events/hooks/useLocale';
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields, getServiceMapUrl } from '../EventUtils';
 import styles from './eventLocation.module.scss';

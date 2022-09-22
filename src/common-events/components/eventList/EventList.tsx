@@ -2,8 +2,8 @@ import classNames from 'classnames';
 import { Button } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { LoadingSpinner } from 'events-helsinki-components';
 
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import BasicEventCard from '../../../domain/event/eventCard/EventCard';
 import LargeEventCard from '../../../domain/event/eventCard/LargeEventCard';
 import { EventFields } from '../../../domain/event/types';

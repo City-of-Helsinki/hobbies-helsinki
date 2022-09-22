@@ -3,11 +3,18 @@ import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
 
 import qs from 'query-string';
 import { NextRouter } from 'next/router';
+//TODO: For some reason middleware cannot read `'events-helsinki-core` package without breaking the build
+// import { DEFAULT_LANGUAGE, Language, SUPPORT_LANGUAGES } from 'events-helsinki-core';
+const DEFAULT_LANGUAGE = 'fi'
+type Language = 'en' | 'fi' | 'sv';
+export enum SUPPORT_LANGUAGES {
+  EN = 'en',
+  FI = 'fi',
+  SV = 'sv',
+}
 
 import i18nRoutes from '../../i18nRoutes.config';
-import { Language } from '../types';
 import AppConfig from '../domain/app/AppConfig';
-import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../constants';
 
 // dynamic path: /venues/:id
 // segmented: /venues/[id]

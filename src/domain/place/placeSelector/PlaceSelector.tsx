@@ -1,14 +1,12 @@
 import React from 'react';
+import { MultiSelectDropdown, useDebounce, useLocale } from 'events-helsinki-components';
+import { getLocalizedString, isClient } from 'events-helsinki-core';
+import {
+  MultiselectDropdownProps
+} from 'events-helsinki-components';
 
-import MultiSelectDropdown, {
-  MultiselectDropdownProps,
-} from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
-import useDebounce from '../../../common/hooks/useDebounce';
-import getLocalisedString from '../../../common-events/utils/getLocalisedString';
-import isClient from '../../../common/utils/isClient';
-import { usePlaceListQuery } from '../../nextApi/graphql/generated/graphql';
 import PlaceText from '../PlaceText';
-import useLocale from '../../../hooks/useLocale';
+import { usePlaceListQuery } from '../../nextApi/graphql/generated/graphql';
 
 const DIVISIONS = ['kunta:helsinki'];
 
@@ -44,7 +42,7 @@ const PlaceSelector: React.FC<Props> = ({
   const placeOptions = React.useMemo(() => {
     return (placesData?.placeList.data || [])
       .map((place) => ({
-        text: getLocalisedString(place.name, locale),
+        text: getLocalizedString(place.name, locale),
         value: place.id as string,
       }))
       .sort((a, b) => (a.text > b.text ? 1 : -1));
@@ -53,7 +51,7 @@ const PlaceSelector: React.FC<Props> = ({
   const renderOptionText = (id: string) => {
     try {
       const place = getPlaceDetailsFromCache(id);
-      return getLocalisedString(place.placeDetails.name, locale);
+      return getLocalizedString(place.placeDetails.name, locale);
     } catch {
       return <PlaceText id={id} />;
     }

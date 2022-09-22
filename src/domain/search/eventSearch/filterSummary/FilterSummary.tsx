@@ -5,12 +5,11 @@ import React from 'react';
 import qs, { parse } from 'query-string';
 import { IconCrossCircleFill } from 'hds-react';
 import { useRouter } from 'next/router';
+import { FilterType } from 'events-helsinki-components';
+import { formatDate, ROUTES, translateValue } from 'events-helsinki-core';
+import { FilterButton, useLocale } from 'events-helsinki-components';
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
-import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
-import { FilterType } from '../../../../common-events/components/filterButton/types';
-import { formatDate } from '../../../../common-events/utils/dateUtils';
-import { translateValue } from '../../../../common-events/utils/translateUtils';
 import {
   getSearchFilters,
   getSearchQuery,
@@ -21,9 +20,7 @@ import DateFilter from './DateFilter';
 import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
 import PublisherFilter from './PublisherFilter';
-import { ROUTES } from '../../../../constants';
 import { getI18nPath } from '../../../../utils/routerUtils';
-import useLocale from '../../../../hooks/useLocale';
 
 export const filterSummaryContainerTestId = 'filter-summary';
 

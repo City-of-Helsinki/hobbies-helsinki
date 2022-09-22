@@ -2,8 +2,8 @@ import { ApolloClient, NormalizedCacheObject } from '@apollo/client';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/router';
 import React from 'react';
+import { Config } from 'events-helsinki-components';
 
-import { Config } from '../common-events/configProvider/configContext';
 import eventsDefaultConfig from '../common-events/configProvider/defaultConfig';
 
 export default function useEventsConfig(

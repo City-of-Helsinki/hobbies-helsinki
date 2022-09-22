@@ -1,7 +1,7 @@
 import React from 'react';
+import { configContext, Config } from 'events-helsinki-components';
 
 import defaultConfig from './defaultConfig';
-import configContext, { Config } from './configContext';
 
 type ConfigProviderProps = {
   config: Config;

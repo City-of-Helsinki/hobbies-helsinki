@@ -2,7 +2,6 @@ import { advanceTo, clear } from 'jest-date-mock';
 import capitalize from 'lodash/capitalize';
 import * as React from 'react';
 
-import getDateRangeStr from '../../../../common-events/utils/getDateRangeStr';
 import {
   EventDetails,
   EventFieldsFragment,

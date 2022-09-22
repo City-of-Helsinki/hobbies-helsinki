@@ -19,8 +19,10 @@ import { useEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import useEventsConfig from '../hooks/useEventsConfig';
 
 const TopProgressBar = dynamic(
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   () => {
-    return import('../common-events/components/topProgressBar/TopProgressBar');
+    return import('events-helsinki-components').then(components => components.TopProgressBar);
   },
   { ssr: false }
 );
@@ -42,8 +44,12 @@ function Center({ children }: { children: React.ReactNode }) {
 }
 
 function MyApp({ Component, pageProps }: AppProps) {
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore
   const cmsApolloClient = useCmsApollo(pageProps.initialApolloState);
   const eventsApolloClient = useEventsApolloClient(
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     pageProps.initialEventsApolloState
   );
   const eventsConfig = useEventsConfig(eventsApolloClient);
@@ -66,6 +72,7 @@ function MyApp({ Component, pageProps }: AppProps) {
     }, 10);
   }, []);
 
+
   return (
     <EventsConfigProvider config={eventsConfig}>
       <RHHCConfigProvider config={rhhcConfig}>
@@ -76,9 +83,16 @@ function MyApp({ Component, pageProps }: AppProps) {
               <Center>
                 <LoadingSpinner />
               </Center>
+              // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+              // @ts-ignore
             ) : pageProps.error ? (
+
               <Error
+                { /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                  /* @ts-ignore */ ...{}}
                 statusCode={pageProps.error.networkError?.statusCode ?? 400}
+                { /* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
+                  /* @ts-ignore */ ...{}}
                 title={pageProps.error.title}
               />
             ) : (
