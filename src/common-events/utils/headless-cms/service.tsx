@@ -48,26 +48,24 @@ export const getAllArticles = async (): Promise<PageInfo[]> => {
         locale: node.language.code.toLowerCase(),
         slug: node.slug,
       });
-      node.translations?.forEach(
-        (translation: PageType['translation'][number]) => {
-          if (
-            translation?.uri &&
-            translation.slug &&
-            translation.language?.code
-          ) {
-            const {
-              uri,
-              slug,
-              language: { code },
-            } = translation;
-            pageInfos.push({
-              uri,
-              slug,
-              locale: code.toLocaleLowerCase(),
-            });
-          }
+      node.translations?.forEach((translation) => {
+        if (
+          translation?.uri &&
+          translation.slug &&
+          translation.language?.code
+        ) {
+          const {
+            uri,
+            slug,
+            language: { code },
+          } = translation;
+          pageInfos.push({
+            uri,
+            slug,
+            locale: code.toLocaleLowerCase(),
+          });
         }
-      );
+      });
     }
   }
 };
@@ -96,26 +94,24 @@ export const getAllPages = async (): Promise<PageInfo[]> => {
         locale: node.language.code.toLowerCase(),
         slug: node.slug,
       });
-      node.translations?.forEach(
-        (translation: PageType['translation'][number]) => {
-          if (
-            translation?.uri &&
-            translation.slug &&
-            translation.language?.code
-          ) {
-            const {
-              uri,
-              slug,
-              language: { code },
-            } = translation;
-            pageInfos.push({
-              uri,
-              slug,
-              locale: code.toLocaleLowerCase(),
-            });
-          }
+      node.translations?.forEach((translation) => {
+        if (
+          translation?.uri &&
+          translation.slug &&
+          translation.language?.code
+        ) {
+          const {
+            uri,
+            slug,
+            language: { code },
+          } = translation;
+          pageInfos.push({
+            uri,
+            slug,
+            locale: code.toLocaleLowerCase(),
+          });
         }
-      );
+      });
     }
   }
 };
