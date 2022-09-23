@@ -102,7 +102,9 @@ test('should clear all filters and search field', async () => {
 
   expect(router).toMatchObject({ pathname, query: { text: 'jazz' } });
 
-  const searchInput = screen.getByRole('textbox', { name: /mitä etsit\?/i });
+  const searchInput = screen.getByPlaceholderText(
+    'Kirjoita hakusana, esim. ranska tai ruoanlaitto'
+  );
 
   await act(async () =>
     userEvent.click(screen.getByRole('button', { name: /tyhjennä hakuehdot/i }))
