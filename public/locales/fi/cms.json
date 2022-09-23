@@ -1,6 +1,7 @@
 {
   "linkFrontPage": "Kotisivu",
   "archiveSearch": {
+    "title": "Ajankohtaista",
     "searchTextPlaceholder": "Hakusana",
     "searchButtonLabelText": "Hae",
     "loadMoreButtonLabelText": "Lataa lisää",
