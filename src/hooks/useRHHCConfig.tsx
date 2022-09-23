@@ -79,6 +79,7 @@ export default function useRHHCConfig(
         loadMoreButtonLabelText: t('common:button.loadMore'),
         showAllText: t('common:button.showAll'),
         archiveSearch: {
+          title: t('cms:archiveSearch.title'),
           searchTextPlaceholder: t('cms:archiveSearch.searchTextPlaceholder'),
           searchButtonLabelText: t('cms:archiveSearch.searchButtonLabelText'),
           loadMoreButtonLabelText: t(

@@ -73,7 +73,7 @@
     "title": "Location"
   },
   "notFound": {
-    "linkSearchEvents": "Find something to do",
+    "linkSearchEvents": "Find hobbies",
     "text": "For some reason we can't find the event you are looking for. Try searching for something else here:",
     "title": "Oops, you got hit by a 404!"
   },

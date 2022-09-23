@@ -256,12 +256,10 @@ const AdvancedSearch: React.FC<Props> = ({
       <ContentContainer className={styles.contentContainer}>
         <form onSubmit={handleSubmit}>
           <div className={styles.searchWrapper}>
+            <h2>{t('title')}</h2>
             <div className={styles.rowWrapper}>
               <div className={classNames(styles.row, styles.autoSuggestRow)}>
                 <div>
-                  <SearchLabel color="black" htmlFor="search">
-                    {t('search.labelSearchField')}
-                  </SearchLabel>
                   <SearchAutosuggest
                     name="search"
                     onChangeSearchValue={setAutosuggestInput}
