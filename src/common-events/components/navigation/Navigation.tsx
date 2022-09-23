@@ -19,7 +19,7 @@ type NavigationProps = {
 export default function Navigation({ page }: NavigationProps) {
   const router = useRouterFromConfig();
   const locale = useLocale();
-  const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale];
+  const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale as Language];
   const currentPage = router.pathname;
 
   // TODO: This break the build with: TypeError: Cannot read properties of null (reading 'useState')
