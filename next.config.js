@@ -37,20 +37,6 @@ const nextConfig = {
       ).origin,
     ],
   },
-  // @link https://nextjs.org/docs/advanced-features/compiler#minification
-  swcMinify: true,
-  // Standalone build
-  // @link https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files-experimental
-  output: 'standalone',
-  experimental: {
-    browsersListForSwc: true,
-    legacyBrowsers: false,
-    // React 18 server components
-    // @link https://nextjs.org/docs/advanced-features/react-18/server-components
-    serverComponents: false,
-    outputFileTracingRoot: undefined, // ,path.join(__dirname, '../../'),
-    esmExternals: true,
-  },
   webpack: (config, { isServer }) => {
     config.module.rules.push({
       test: /\.svg$/,
@@ -80,7 +66,8 @@ const tmModules = [
   ...(isProd
     ? [
       'events-helsinki-components',
-      'events-helsinki-core'
+      'events-helsinki-core',
+      'react-helsinki-headless-cms'
     ]
     : []),
 ];
