@@ -1,5 +1,6 @@
+import { ROUTES } from 'events-helsinki-core';
+
 import { i18n } from '../../../next-i18next.config';
-import { ROUTES } from '../../constants';
 import { EventTypeId } from '../nextApi/graphql/generated/graphql';
 
 class AppConfig {
