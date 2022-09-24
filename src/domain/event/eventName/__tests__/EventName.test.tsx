@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
-import { EVENT_STATUS } from 'events-helsinki-core';
+import { EVENT_STATUS } from 'events-helsinki-components';
 
 import { EventFieldsFragment } from '../../../nextApi/graphql/generated/graphql';
 import { fakeEvent } from '../../../../tests/mockDataUtils';

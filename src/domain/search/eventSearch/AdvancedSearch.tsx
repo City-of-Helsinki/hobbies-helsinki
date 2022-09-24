@@ -16,7 +16,7 @@ import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 import { Checkbox, DateSelector, MultiSelectDropdown, RangeDropdown, SearchLabel, useLocale } from 'events-helsinki-components';
-import { AutosuggestMenuOption, ROUTES } from 'events-helsinki-core';
+import { AutosuggestMenuOption } from 'events-helsinki-components';
 
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import PlaceSelector from '../../place/placeSelector/PlaceSelector';
@@ -37,6 +37,7 @@ import {
 import styles from './search.module.scss';
 import { getI18nPath } from '../../../utils/routerUtils';
 import IconRead from '../../../assets/icons/IconRead';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   scrollToResultList: () => void;

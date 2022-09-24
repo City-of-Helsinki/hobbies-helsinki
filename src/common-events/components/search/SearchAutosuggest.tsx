@@ -1,10 +1,11 @@
 import { IconSearch } from 'hds-react';
 import React, { ChangeEvent } from 'react';
 import { AutoSuggestMenu, useLocale, useDebounce, useDropdownKeyboardNavigation } from 'events-helsinki-components';
-import { AutosuggestMenuOption, AUTOSUGGEST_TYPES, AUTOSUGGEST_KEYWORD_BLACK_LIST, getLocalizedString } from 'events-helsinki-core';
+import { AutosuggestMenuOption, AUTOSUGGEST_TYPES, getLocalizedString } from 'events-helsinki-components';
 
 import styles from './searchAutosuggest.module.scss';
 import { useKeywordListQuery } from '../../../domain/nextApi/graphql/generated/graphql';
+import { AUTOSUGGEST_KEYWORD_BLACK_LIST } from '../../../constants';
 
 export interface SearchAutosuggestProps {
   name: string;

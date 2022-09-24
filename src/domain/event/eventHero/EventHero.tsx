@@ -20,7 +20,7 @@ import {
 import { useRouter } from 'next/router';
 import { Visible, useLocale } from 'events-helsinki-components';
 import { buttonStyles, IconButton, InfoWithIcon, SkeletonLoader } from 'events-helsinki-components';
-import { getDateRangeStr } from 'events-helsinki-core';
+import { getDateRangeStr } from 'events-helsinki-components';
 
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';

@@ -6,7 +6,7 @@ import qs, { parse } from 'query-string';
 import { IconCrossCircleFill } from 'hds-react';
 import { useRouter } from 'next/router';
 import { FilterType } from 'events-helsinki-components';
-import { formatDate, ROUTES, translateValue } from 'events-helsinki-core';
+import { formatDate, translateValue } from 'events-helsinki-components';
 import { FilterButton, useLocale } from 'events-helsinki-components';
 
 import useDivisionOptions from '../../../../common-events/hooks/useDivisionOptions';
@@ -21,6 +21,7 @@ import styles from './filterSummary.module.scss';
 import PlaceFilter from './PlaceFilter';
 import PublisherFilter from './PublisherFilter';
 import { getI18nPath } from '../../../../utils/routerUtils';
+import { ROUTES } from '../../../../constants';
 
 export const filterSummaryContainerTestId = 'filter-summary';
 

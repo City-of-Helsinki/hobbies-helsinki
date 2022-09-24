@@ -19,7 +19,7 @@ import {
 } from 'react-helsinki-headless-cms/apollo';
 import {
   Language,
-} from 'events-helsinki-core';
+} from 'events-helsinki-components';
 
 import {
   getDefaultCollections, getSlugFromUri, getUriID,

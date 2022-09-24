@@ -6,7 +6,7 @@ import range from 'lodash/range';
 import React from 'react';
 import { toast } from 'react-toastify';
 import { NextRouter } from 'next/router';
-import { getDateRangeStr } from 'events-helsinki-core';
+import { getDateRangeStr } from 'events-helsinki-components';
 
 import {
   EventDetails,

@@ -2,13 +2,14 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
 import { Keyword, useLocale } from 'events-helsinki-components';
-import { DATE_TYPES, ROUTES, scrollToTop } from 'events-helsinki-core';
+import { DATE_TYPES, scrollToTop } from 'events-helsinki-components';
 
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { EVENT_DEFAULT_SEARCH_FILTERS } from '../../search/eventSearch/constants';
 import { getEventFields } from '../EventUtils';
 import { getSearchQuery } from '../../search/eventSearch/utils';
 import { getI18nPath } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 
 interface Props {

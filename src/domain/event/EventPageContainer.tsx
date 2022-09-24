@@ -4,8 +4,7 @@ import { useLazyQuery } from '@apollo/client';
 import { Link } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
 import { LoadingSpinner } from 'events-helsinki-components';
-import { isClient, addParamsToQueryString } from 'events-helsinki-core';
-import { ROUTES } from 'events-helsinki-core';
+import { isClient, addParamsToQueryString } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 
 import ErrorHero from '../error/ErrorHero';
@@ -22,6 +21,7 @@ import SimilarEvents from './similarEvents/SimilarEvents';
 import { SuperEventResponse } from './types';
 import styles from './eventPage.module.scss';
 import { getLocalizedCmsItemUrl } from '../../utils/routerUtils';
+import { ROUTES } from '../../constants';
 
 export interface EventPageContainerProps {
   loading: boolean;

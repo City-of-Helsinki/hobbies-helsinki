@@ -1,12 +1,12 @@
 import React from 'react';
 import classNames from 'classnames';
 import { useLocale } from 'events-helsinki-components';
-import { ROUTES } from 'events-helsinki-core';
 
 import CategoryFilter from '../../../common-events/components/category/CategoryFilter';
 import { CategoryOption, Filters } from '../eventSearch/types';
 import { getSearchQuery } from '../eventSearch/utils';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 type SearchShortcutsProps = {
   className: string;
@@ -25,7 +25,7 @@ export default function SearchShortcuts({
     return `${getLocalizedCmsItemUrl(
       ROUTES.SEARCH,
       {},
-      locale
+      locale,
     )}${getSearchQuery({
       ...searchFilters,
       categories: [category.value],

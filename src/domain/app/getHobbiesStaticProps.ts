@@ -5,7 +5,7 @@ import {
   ApolloClient,
   NormalizedCacheObject,
 } from '@apollo/client';
-import { getMenuLocationFromLanguage, CmsLanguage } from 'events-helsinki-core';
+import { getMenuLocationFromLanguage, CmsLanguage } from 'events-helsinki-components';
 
 import AppConfig from './AppConfig';
 import { staticGenerationLogger } from '../logger';

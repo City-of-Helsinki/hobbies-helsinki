@@ -8,7 +8,7 @@ import {
   subDays,
 } from 'date-fns';
 import isEmpty from 'lodash/isEmpty';
-import { buildQueryFromObject, DATE_TYPES, formatDate, getUrlParamAsArray, Language } from 'events-helsinki-core';
+import { buildQueryFromObject, DATE_TYPES, formatDate, getUrlParamAsArray, Language } from 'events-helsinki-components';
 import { FilterType } from 'events-helsinki-components';
 
 import {

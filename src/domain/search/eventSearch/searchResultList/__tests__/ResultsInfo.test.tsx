@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Language } from 'events-helsinki-core';
+import { Language } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 
 import {

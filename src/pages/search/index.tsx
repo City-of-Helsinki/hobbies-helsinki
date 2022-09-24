@@ -4,7 +4,6 @@ import { useEffect } from 'react';
 import { Page as HCRCApolloPage } from 'react-helsinki-headless-cms/apollo';
 import { ApolloProvider } from '@apollo/client';
 import { useRouter } from 'next/router';
-import { ROUTES } from 'events-helsinki-core';
 import { useEventsApolloClientFromConfig } from 'events-helsinki-components';
 
 import getHobbiesStaticProps from '../../domain/app/getHobbiesStaticProps';
@@ -14,6 +13,7 @@ import Navigation from '../../common-events/components/navigation/Navigation';
 import SearchPage from '../../domain/search/eventSearch/SearchPage';
 import FooterSection from '../../domain/footer/Footer';
 import { getLocaleOrError } from '../../utils/routerUtils';
+import { ROUTES } from '../../constants';
 
 export default function Search() {
   const router = useRouter();
@@ -40,7 +40,7 @@ export default function Search() {
   return (
     <HCRCApolloPage
       uri={ROUTES.SEARCH}
-      className="pageLayout"
+      className='pageLayout'
       navigation={<Navigation />}
       content={
         <ApolloProvider client={eventsApolloClient}>

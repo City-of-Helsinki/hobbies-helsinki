@@ -21,7 +21,7 @@ import {
   getArticlePageCardProps as getArticlePageCardPropsBase,
   ModuleItemTypeEnum,
 } from 'react-helsinki-headless-cms';
-import { Language } from 'events-helsinki-core';
+import { Language } from 'events-helsinki-components';
 
 import AppConfig from '../../../domain/app/AppConfig';
 import ArticleDetails from '../../../domain/article/articleDetails/ArticleDetails';

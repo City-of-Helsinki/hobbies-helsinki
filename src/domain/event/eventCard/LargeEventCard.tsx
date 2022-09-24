@@ -11,7 +11,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { BackgroundImage, LinkBox } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
-import { addParamsToQueryString, getDateRangeStr, ROUTES } from 'events-helsinki-core';
+import { addParamsToQueryString, getDateRangeStr } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 import { buttonStyles } from 'events-helsinki-components';
 
@@ -29,6 +29,7 @@ import {
 import { EventFields } from '../types';
 import styles from './largeEventCard.module.scss';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 
 interface Props {

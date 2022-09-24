@@ -1,7 +1,7 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { useRouter } from 'next/router';
-import { AutosuggestMenuOption, ROUTES } from 'events-helsinki-core';
+import { AutosuggestMenuOption } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 
 import {
@@ -17,6 +17,7 @@ import {
   getI18nPath,
   getParsedUrlQueryInput,
 } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 const Search: React.FC = () => {
   const { t } = useTranslation();

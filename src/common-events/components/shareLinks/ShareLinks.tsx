@@ -1,6 +1,6 @@
 import classNames from 'classnames';
 import React from 'react';
-import { isClient } from 'events-helsinki-core';
+import { isClient } from 'events-helsinki-components';
 import { CopyButton, useConfig } from 'events-helsinki-components';
 
 import LinkIcon from '../../../assets/icons/svg/link.svg';

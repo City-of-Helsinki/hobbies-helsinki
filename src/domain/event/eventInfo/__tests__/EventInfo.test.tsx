@@ -1,8 +1,8 @@
 import FileSaver from 'file-saver';
 import React from 'react';
 import mockRouter from 'next-router-mock';
-import { EventFields, SuperEventResponse } from 'events-helsinki-core';
-import { getDateRangeStr } from 'events-helsinki-core';
+import { EventFields, SuperEventResponse } from 'events-helsinki-components';
+import { getDateRangeStr } from 'events-helsinki-components';
 
 import { EventDetails } from '../../../../domain/nextApi/graphql/generated/graphql';
 import { translations } from '../../../../tests/initI18n';

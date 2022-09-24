@@ -1,6 +1,6 @@
 import React from 'react';
 import { FilterType } from 'events-helsinki-components';
-import { translateValue } from 'events-helsinki-core';
+import { translateValue } from 'events-helsinki-components';
 import { FilterButton, useConfig } from 'events-helsinki-components';
 
 

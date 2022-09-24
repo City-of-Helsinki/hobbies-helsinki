@@ -13,7 +13,7 @@ import {
   PagesQueryVariables,
   PagesDocument,
 } from 'react-helsinki-headless-cms/apollo';
-import { Language, PageInfo } from 'events-helsinki-core';
+import { Language, PageInfo } from 'events-helsinki-components';
 
 import { createCmsApolloClient } from '../../../domain/clients/cmsApolloClient';
 

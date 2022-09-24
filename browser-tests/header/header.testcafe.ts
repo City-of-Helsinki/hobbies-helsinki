@@ -1,6 +1,6 @@
 import { getEnvUrl } from '../utils/url.utils';
 
-import { SUPPORT_LANGUAGES } from 'events-helsinki-core';
+import { SUPPORT_LANGUAGES } from 'events-helsinki-components';
 
 import Header from '../page-model/header';
 import LandingPage from '../page-model/landingPage';

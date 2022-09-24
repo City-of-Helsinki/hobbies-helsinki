@@ -18,7 +18,7 @@ import {
   InMemoryCache,
   useApolloClient,
 } from '@apollo/client';
-import { DEFAULT_LANGUAGE, ROUTES } from 'events-helsinki-core';
+import { DEFAULT_LANGUAGE } from 'events-helsinki-components';
 import { Config as EventsConfig } from 'events-helsinki-components';
 
 import i18n from './initI18n';
@@ -27,6 +27,7 @@ import { createEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { createCmsApolloClient } from '../domain/clients/cmsApolloClient';
 import { getLocalizedCmsItemUrl } from '../utils/routerUtils';
+import { ROUTES } from '../constants';
 
 const CMS_API_DOMAIN = 'harrastukset.cms.test.domain.com';
 

@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { faker } from '@faker-js/faker';
 import merge from 'lodash/merge';
-import { EXTLINK } from 'events-helsinki-core';
+import { EXTLINK } from 'events-helsinki-components';
 
 import {
   AboutPagesResponse,
