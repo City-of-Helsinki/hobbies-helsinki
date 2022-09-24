@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { FilterType } from 'events-helsinki-components';
 import { FilterButton, useLocale } from 'events-helsinki-components';
-import { getLocalizedString } from 'events-helsinki-core';
+import { getLocalizedString } from 'events-helsinki-components';
 
 import { usePlaceDetailsQuery } from '../../../nextApi/graphql/generated/graphql';
 

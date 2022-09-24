@@ -1,6 +1,6 @@
 import React from 'react';
 import { MultiSelectDropdown, useDebounce, useLocale } from 'events-helsinki-components';
-import { getLocalizedString, isClient } from 'events-helsinki-core';
+import { getLocalizedString, isClient } from 'events-helsinki-components';
 import {
   MultiselectDropdownProps
 } from 'events-helsinki-components';

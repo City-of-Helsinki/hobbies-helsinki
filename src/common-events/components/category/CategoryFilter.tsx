@@ -3,7 +3,7 @@ import * as CSS from 'csstype';
 import { IconAngleRight } from 'hds-react';
 import React, { FunctionComponent } from 'react';
 import { Link } from 'react-helsinki-headless-cms';
-import { Category } from 'events-helsinki-core';
+import { Category } from 'events-helsinki-components';
 
 import styles from './categoryFilter.module.scss';
 

@@ -20,7 +20,7 @@ import {
   PageType,
 } from 'react-helsinki-headless-cms';
 import { NetworkStatus } from '@apollo/client';
-import { getQlLanguage, skipFalsyType } from 'events-helsinki-core';
+import { getQlLanguage, skipFalsyType } from 'events-helsinki-components';
 import { useDebounce } from 'events-helsinki-components';
 
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';

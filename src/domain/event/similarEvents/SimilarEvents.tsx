@@ -10,12 +10,12 @@ import {
   ContentContainer,
 } from 'react-helsinki-headless-cms';
 import { LoadingSpinner, useLocale } from 'events-helsinki-components';
-import { ROUTES } from 'events-helsinki-core';
 
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import { useSimilarEventsQuery } from '../queryUtils';
 import { EventFields } from '../types';
 import styles from './similarEvents.module.scss';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;

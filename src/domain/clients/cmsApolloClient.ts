@@ -7,7 +7,7 @@ import {
 } from '@apollo/client';
 import { useMemo } from 'react';
 import fetch from 'cross-fetch';
-import { initializeApolloClient, MutableReference, sortMenuItems, isClient  } from 'events-helsinki-core';
+import { initializeApolloClient, MutableReference, sortMenuItems, isClient  } from 'events-helsinki-components';
 
 import AppConfig from '../../domain/app/AppConfig';
 import { rewriteInternalURLs } from '../../utils/routerUtils';

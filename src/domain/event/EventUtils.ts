@@ -1,7 +1,7 @@
 import { isPast, isThisWeek, isToday } from 'date-fns';
 import capitalize from 'lodash/capitalize';
 import { TFunction } from 'next-i18next';
-import { EVENT_STATUS, getLocalizedString, getSecureImage, Language } from 'events-helsinki-core';
+import { EVENT_STATUS, getLocalizedString, getSecureImage, Language } from 'events-helsinki-components';
 
 import {
   EventFieldsFragment,

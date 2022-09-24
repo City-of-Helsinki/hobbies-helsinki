@@ -14,9 +14,9 @@ import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
-import { getDateArray, getDomain } from 'events-helsinki-core';
+import { getDateArray, getDomain } from 'events-helsinki-components';
 import { InfoWithIcon, useLocale, useTabFocusStyle, Visible } from 'events-helsinki-components';
-import { getDateRangeStr, ROUTES, translateValue } from 'events-helsinki-core';
+import { getDateRangeStr, translateValue } from 'events-helsinki-components';
 
 import {
   getAudienceAgeText,
@@ -31,6 +31,7 @@ import OrganizationInfo from './OrganizationInfo';
 import OtherEventTimes from './OtherEventTimes';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
 import IconDirections from '../../../assets/icons/IconDirections';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;
@@ -114,8 +115,9 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
           link: `${domain}${getLocalizedCmsItemUrl(
             ROUTES.COURSES,
             { eventId: event.id },
-            locale
+            locale,
           )}`,
+
         }),
         end: endTime ? getDateArray(endTime) : getDateArray(startTime),
         location: [locationName, streetAddress, district, addressLocality]

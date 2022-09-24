@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { IconCalendarClock, IconLocation } from 'hds-react';
 import { useLocale } from 'events-helsinki-components';
-import { getDateRangeStr } from 'events-helsinki-core';
+import { getDateRangeStr } from 'events-helsinki-components';
 
 import { EventFieldsFragment } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields } from '../EventUtils';

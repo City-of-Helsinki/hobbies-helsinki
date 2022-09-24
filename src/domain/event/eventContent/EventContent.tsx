@@ -2,7 +2,7 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
-import { sanitizeHtml } from 'events-helsinki-core';
+import { sanitizeHtml } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 
 import ShareLinks from '../../../common-events/components/shareLinks/ShareLinks';

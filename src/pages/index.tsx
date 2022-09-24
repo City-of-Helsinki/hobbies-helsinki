@@ -17,7 +17,7 @@ import {
   TemplateEnum,
 } from 'react-helsinki-headless-cms';
 import { useLocale } from 'events-helsinki-components';
-import { DEFAULT_LANGUAGE, getQlLanguage } from 'events-helsinki-core';
+import { DEFAULT_LANGUAGE, getQlLanguage } from 'events-helsinki-components';
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';

@@ -1,5 +1,5 @@
 import sortBy from 'lodash/sortBy';
-import { getLocalizedString } from 'events-helsinki-core'
+import { getLocalizedString } from 'events-helsinki-components'
 import { useLocale } from 'events-helsinki-components'
 
 import { additionalDivisions } from '../../domain/neighborhood/additionalDivisions';

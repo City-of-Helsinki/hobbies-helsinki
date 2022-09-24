@@ -1,5 +1,5 @@
 import React from 'react';
-import { getLocalizedString } from 'events-helsinki-core';
+import { getLocalizedString } from 'events-helsinki-components';
 import { useLocale } from 'events-helsinki-components';
 
 import { usePlaceDetailsQuery } from '../nextApi/graphql/generated/graphql';

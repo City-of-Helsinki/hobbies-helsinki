@@ -3,11 +3,12 @@ import classnames from 'classnames';
 import { useTranslation } from 'next-i18next';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
 import { DateSelector, MobileDateSelector, useLocale } from 'events-helsinki-components';
-import { AutosuggestMenuOption, ROUTES } from 'events-helsinki-core';
+import { AutosuggestMenuOption } from 'events-helsinki-components';
 
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
 import styles from './landingPageSearchForm.module.scss';
 import { getI18nPath } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 export type LandingPageSearchFormProps = {
   className?: string;

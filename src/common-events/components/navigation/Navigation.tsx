@@ -1,6 +1,6 @@
 import { ArticleType, PageType } from 'react-helsinki-headless-cms';
 import { Navigation as RHHCApolloNavigation } from 'react-helsinki-headless-cms/apollo';
-import { DEFAULT_HEADER_MENU_NAME, Language } from 'events-helsinki-core';
+import { Language } from 'events-helsinki-components';
 import { useLocale, useRouterFromConfig } from 'events-helsinki-components';
 
 import {
@@ -11,6 +11,7 @@ import {
   getSlugFromUri,
   removeContextPathFromUri,
 } from '../../utils/headless-cms/headlessCmsUtils';
+import { DEFAULT_HEADER_MENU_NAME } from '../../../constants';
 
 type NavigationProps = {
   page?: PageType | ArticleType;
@@ -19,7 +20,7 @@ type NavigationProps = {
 export default function Navigation({ page }: NavigationProps) {
   const router = useRouterFromConfig();
   const locale = useLocale();
-  const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale as Language];
+  const navigationMenuName = DEFAULT_HEADER_MENU_NAME[locale];
   const currentPage = router.pathname;
 
   // TODO: This break the build with: TypeError: Cannot read properties of null (reading 'useState')

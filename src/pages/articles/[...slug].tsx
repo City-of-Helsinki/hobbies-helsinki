@@ -19,7 +19,7 @@ import {
 } from 'react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'next-i18next';
 import { KorosWrapper } from 'events-helsinki-components';
-import { Language, ROUTES } from 'events-helsinki-core';
+import { Language } from 'events-helsinki-components';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
 import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';

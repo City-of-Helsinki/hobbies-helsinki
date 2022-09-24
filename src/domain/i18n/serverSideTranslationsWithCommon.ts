@@ -1,5 +1,5 @@
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { Language } from 'events-helsinki-core';
+import { Language } from 'events-helsinki-components';
 
 import nextI18nextConfig from '../../../next-i18next.config';
 

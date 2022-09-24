@@ -1,6 +1,6 @@
 import { advanceTo, clear } from 'jest-date-mock';
-import { DATE_TYPES } from 'events-helsinki-core';
-import { Language } from 'events-helsinki-core';
+import { DATE_TYPES } from 'events-helsinki-components';
+import { Language } from 'events-helsinki-components';
 
 import { EVENT_DEFAULT_SEARCH_FILTERS, EVENT_SORT_OPTIONS } from '../constants';
 import { getEventSearchVariables, getNextPage, getSearchQuery } from '../utils';

@@ -66,7 +66,6 @@ const tmModules = [
   ...(isProd
     ? [
       'events-helsinki-components',
-      'events-helsinki-core',
       'react-helsinki-headless-cms'
     ]
     : []),
