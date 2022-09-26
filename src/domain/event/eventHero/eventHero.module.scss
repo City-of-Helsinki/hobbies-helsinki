@@ -21,7 +21,7 @@ $logoWidth: 5.5rem;
     min-height: $heroHeight;
     position: relative;
 
-    @include respond_above(m) {
+    @include respond_above(xl) {
       min-height: $heroHeight;
       grid-template-columns: auto 2fr 1fr;
       grid-template-rows: unset;
@@ -30,7 +30,7 @@ $logoWidth: 5.5rem;
     .backButtonWrapper {
       padding: var(--spacing-m) var(--spacing-4-xl) var(--spacing-m) 0;
 
-      @include respond_below(m) {
+      @include respond_below(xl) {
         position: absolute;
         padding: var(--spacing-s) 0 0 var(--spacing-s);
       }
