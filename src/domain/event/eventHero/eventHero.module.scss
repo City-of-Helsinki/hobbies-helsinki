@@ -57,6 +57,21 @@ $logoWidth: 5.5rem;
       margin-top: var(--spacing-s);
     }
 
+    .leftPanelWrapper {
+      display: flex;
+    }
+
+    .leftPanelEmpty {
+      display: flex;
+      padding: var(--spacing-m) var(--spacing-4-xl) var(--spacing-m) 0;
+      @include respond_above(xl) {
+        padding: 0;
+      }
+      @include respond_below(m) {
+        padding: 0;
+      }
+    }
+
     .leftPanel {
       display: flex;
       @include respond_below(m) {

@@ -105,85 +105,99 @@ const EventHero: React.FC<Props> = ({ event, superEvent }) => {
               size="default"
             />
           </div>
-          {imageUrl && <div>
-            <BackgroundImage className={styles.image} id={event.id} url={imageUrl} />
-          </div>
-          }
+          {imageUrl && (
+            <div>
+              <BackgroundImage
+                className={styles.image}
+                id={event.id}
+                url={imageUrl}
+              />
+            </div>
+          )}
           <div className={styles.leftPanel}>
-            <div className={styles.textWrapper}>
-              <h1 className={styles.title}>
-                <EventName event={event} />
-              </h1>
-              {shortDescription && (
-                <div className={styles.description}>{shortDescription}</div>
-              )}
-              <div className={styles.additionalInfo}>
-                <Visible above="s" className={styles.location}>
-                  <InfoWithIcon icon={<IconLocation aria-hidden />} title={''}>
-                    <LocationText
-                      event={event}
-                      showDistrict={false}
-                      showLocationName={true}
-                    />
-                  </InfoWithIcon>
-                </Visible>
-                <Visible above="s" className={styles.start}>
-                  {(startTime !== eventStartTime ||
-                    endTime !== eventEndTime) && (
+            <div className={styles.leftPanelWrapper}>
+              <div className={styles.leftPanelEmpty} />
+              <div className={styles.textWrapper}>
+                <h1 className={styles.title}>
+                  <EventName event={event} />
+                </h1>
+                {shortDescription && (
+                  <div className={styles.description}>{shortDescription}</div>
+                )}
+                <div className={styles.additionalInfo}>
+                  <Visible above="s" className={styles.location}>
                     <InfoWithIcon
-                      icon={<IconCalendarClock aria-hidden />}
+                      icon={<IconLocation aria-hidden />}
                       title={''}
                     >
-                      {superEvent?.status === 'pending' ? (
-                        <SkeletonLoader />
-                      ) : (
-                        getDateRangeStr({
-                          start: eventStartTime || '',
-                          end: eventEndTime,
-                          locale,
-                          includeTime: true,
-                          timeAbbreviation: t('common:timeAbbreviation'),
-                        })
-                      )}
+                      <LocationText
+                        event={event}
+                        showDistrict={false}
+                        showLocationName={true}
+                      />
                     </InfoWithIcon>
+                  </Visible>
+                  <Visible above="s" className={styles.start}>
+                    {(startTime !== eventStartTime ||
+                      endTime !== eventEndTime) && (
+                      <InfoWithIcon
+                        icon={<IconCalendarClock aria-hidden />}
+                        title={''}
+                      >
+                        {superEvent?.status === 'pending' ? (
+                          <SkeletonLoader />
+                        ) : (
+                          getDateRangeStr({
+                            start: eventStartTime || '',
+                            end: eventEndTime,
+                            locale,
+                            includeTime: true,
+                            timeAbbreviation: t('common:timeAbbreviation'),
+                          })
+                        )}
+                      </InfoWithIcon>
+                    )}
+                  </Visible>
+                  {eventPriceText && (
+                    <Visible above="s" className={styles.price}>
+                      <InfoWithIcon
+                        icon={<IconTicket aria-hidden />}
+                        title={''}
+                      >
+                        {eventPriceText}
+                      </InfoWithIcon>
+                    </Visible>
                   )}
-                </Visible>
-                {eventPriceText && (
-                  <Visible above="s" className={styles.price}>
-                    <InfoWithIcon icon={<IconTicket aria-hidden />} title={''}>
-                      {eventPriceText}
-                    </InfoWithIcon>
-                  </Visible>
-                )}
-                {showBuyButton && (
-                  <Visible above="s" className={styles.buyButtonWrapper}>
-                    <Button
-                      aria-label={t('event:hero.ariaLabelBuyTickets')}
-                      onClick={goToBuyTicketsPage}
-                      iconRight={<IconLinkExternal aria-hidden />}
-                      variant="success"
-                    >
-                      {t('hero.buttonBuyTickets')}
-                    </Button>
-                  </Visible>
-                )}
-                {registrationUrl && (
-                  <Visible className={styles.registrationButtonWrapper}>
-                    <Button
-                      className={buttonStyles.buttonCoatBlue}
-                      aria-label={t('event:hero.ariaLabelEnrol')}
-                      onClick={() => window.open(registrationUrl)}
-                    >
-                      {t('event:hero.buttonEnrol')}
-                    </Button>
-                  </Visible>
+                  {showBuyButton && (
+                    <Visible above="s" className={styles.buyButtonWrapper}>
+                      <Button
+                        aria-label={t('event:hero.ariaLabelBuyTickets')}
+                        onClick={goToBuyTicketsPage}
+                        iconRight={<IconLinkExternal aria-hidden />}
+                        variant="success"
+                      >
+                        {t('hero.buttonBuyTickets')}
+                      </Button>
+                    </Visible>
+                  )}
+                  {registrationUrl && (
+                    <Visible className={styles.registrationButtonWrapper}>
+                      <Button
+                        className={buttonStyles.buttonCoatBlue}
+                        aria-label={t('event:hero.ariaLabelEnrol')}
+                        onClick={() => window.open(registrationUrl)}
+                      >
+                        {t('event:hero.buttonEnrol')}
+                      </Button>
+                    </Visible>
+                  )}
+                </div>
+                {showKeywords && (
+                  <div className={styles.categoryWrapper}>
+                    <EventKeywords event={event} showIsFree={true} />
+                  </div>
                 )}
               </div>
-              {showKeywords && (
-                <div className={styles.categoryWrapper}>
-                  <EventKeywords event={event} showIsFree={true} />
-                </div>
-              )}
             </div>
           </div>
         </div>
