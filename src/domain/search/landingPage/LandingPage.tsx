@@ -20,22 +20,9 @@ export function LandingPageContentLayout({
   const heroImage =
     landingPage?.desktopImage?.edges?.[0]?.node?.mediaItemUrl ?? undefined;
 
-  const collectionNodes = collections as React.ReactNode[];
-
-  const getCollectionByIndex = (index: number) => {
-    if (collections && Array.isArray(collections)) {
-      try {
-        return collectionNodes[index];
-      } catch {
-        return null;
-      }
-    }
-    return null;
-  };
-
-  const firstCollection = getCollectionByIndex(0);
-  const restCollections = collectionNodes?.slice(1, collectionNodes.length - 2);
-  const lastCollection = getCollectionByIndex(collectionNodes.length - 1);
+  const [firstCollection, ...restCollections] =
+    (collections as React.ReactNode[]) ?? [];
+  const lastCollection = restCollections.pop();
 
   return (
     <div className={styles.layout}>
