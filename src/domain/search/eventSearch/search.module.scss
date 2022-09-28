@@ -16,8 +16,10 @@ $buttonWidth: 180px;
     margin-bottom: 2.375rem;
 
     h2 {
-      font-size: var(--fontsize-heading-l);
-      margin: 1.3125rem 0;
+      font-size: var(--fontsize-heading-xl);
+      font-weight: 500;
+      margin-top: 2px;
+      margin-bottom: var(--spacing-xl);
     }
   }
 
