@@ -10,7 +10,7 @@ $mainBackground: var(--color-fog-medium-light);
   .main {
     overflow: hidden;
     .sectionHero {
-      min-height: 60vh;
+      min-height: 50vh;
     }
 
     .highhighlight {
@@ -18,24 +18,39 @@ $mainBackground: var(--color-fog-medium-light);
     }
 
     .sectionSearch {
-      background-color: $mainBackground;
       .sectionSearchContent {
         top: -5.5em;
         position: relative;
-        height: calc(100% - 5.5rem);
+        height: 40vh;
       }
     }
 
-    .sectionCollections {
-      top: -4.5rem;
+    .sectionCollectionsFirst {
+      background-color: $mainBackground;
+    }
+
+    .sectionCollectionsLast {
+      background-color: var(--color-black-5);
+      padding-bottom: 120px;
     }
 
     .korosBottomHero {
-      fill: $mainBackground !important;
+      fill: var(--color-white) !important;
     }
   }
 }
 
-.korosTopCollections {
-  fill: var(--color-fog-medium-light) !important;
+.korosTopCollectionsFirst,
+.korosBottomCollectionsFirst,
+.korosTopCollectionsLast,
+.korosBottomCollectionsLast {
+  fill: var(--color-white) !important;
+}
+
+.korosBottomCollectionsLast {
+  bottom: -60px !important;
+}
+
+.korosTopCollectionsRest {
+  fill: $mainBackground !important;
 }
