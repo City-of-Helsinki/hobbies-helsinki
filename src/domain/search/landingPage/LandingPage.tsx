@@ -1,3 +1,4 @@
+import React from 'react';
 import { PageContentLayoutProps } from 'react-helsinki-headless-cms/';
 import { LandingPageQuery } from 'react-helsinki-headless-cms/apollo';
 import { PageSection } from 'react-helsinki-headless-cms';
@@ -18,6 +19,24 @@ export function LandingPageContentLayout({
   const { title, description, heroLink } = landingPage?.translation || {};
   const heroImage =
     landingPage?.desktopImage?.edges?.[0]?.node?.mediaItemUrl ?? undefined;
+
+  const collectionNodes = collections as React.ReactNode[];
+
+  const getCollectionByIndex = (index: number) => {
+    if (collections && Array.isArray(collections)) {
+      try {
+        return collectionNodes[index];
+      } catch {
+        return null;
+      }
+    }
+    return null;
+  };
+
+  const firstCollection = getCollectionByIndex(0);
+  const restCollections = collectionNodes?.slice(1, collectionNodes.length - 2);
+  const lastCollection = getCollectionByIndex(collectionNodes.length - 1);
+
   return (
     <div className={styles.layout}>
       <main className={styles.main}>
@@ -51,13 +70,35 @@ export function LandingPageContentLayout({
             </ContentContainer>
           </PageSection>
         </div>
-        <PageSection
-          korosTop
-          korosTopClassName={styles.korosTopCollections}
-          className={styles.sectionCollections}
-        >
-          <ContentContainer>{collections}</ContentContainer>
-        </PageSection>
+        {firstCollection && (
+          <PageSection
+            korosTop
+            korosTopClassName={styles.korosTopCollectionsFirst}
+            className={styles.sectionCollectionsFirst}
+          >
+            <ContentContainer>{firstCollection}</ContentContainer>
+          </PageSection>
+        )}
+        {restCollections && (
+          <PageSection
+            korosTop
+            korosTopClassName={styles.korosTopCollectionsRest}
+            className={styles.sectionCollections}
+          >
+            <ContentContainer>{restCollections}</ContentContainer>
+          </PageSection>
+        )}
+        {lastCollection && (
+          <PageSection
+            korosTop
+            korosBottom
+            korosTopClassName={styles.korosTopCollectionsLast}
+            korosBottomClassName={styles.korosBottomCollectionsLast}
+            className={styles.sectionCollectionsLast}
+          >
+            <ContentContainer>{lastCollection}</ContentContainer>
+          </PageSection>
+        )}
       </main>
     </div>
   );
