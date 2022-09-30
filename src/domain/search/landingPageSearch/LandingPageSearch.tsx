@@ -73,7 +73,7 @@ const Search: React.FC = () => {
   );
 
   return (
-    <>
+    <div>
       <LandingPageSearchForm
         className={styles.landingPageSearch}
         dateTypes={dateTypes}
@@ -100,7 +100,7 @@ const Search: React.FC = () => {
           start,
         }}
       />
-    </>
+    </div>
   );
 };
 
