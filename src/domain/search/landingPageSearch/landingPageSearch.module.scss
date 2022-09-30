@@ -1,26 +1,36 @@
 @import 'breakpoints';
 
 .landingPageSearch {
-  margin-top: -3.5rem;
+  margin-top: -13.5rem;
   color: var(--color-white);
   background-color: #464646;
   padding: var(--spacing-l) var(--spacing-m);
   z-index: 1;
-  position: relative;
+  position: absolute;
+  width: 100%;
 
   @include respond-above(s) {
     padding: var(--spacing-xl);
-    margin-top: -5.5rem;
+  }
+
+  @include respond-below(s) {
+    position: relative;
   }
 
   h2 {
-    font-size: var(--fontsize-heading-l);
-    margin: 1.3125rem 0;
+    font-size: var(--fontsize-heading-xl);
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: var(--spacing-l);
   }
 }
 
 .categoriesWrapper {
-  padding: 4rem 0 0 0;
+  position: relative;
+  top: 4rem;
+  z-index: 1;
+  padding-top: 4rem;
+  padding-bottom: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 1rem;
@@ -31,8 +41,13 @@
     display: none;
   }
 
+  @include respond-above(s) {
+    padding-top: 12rem;
+  }
+
   @include respond-above(m) {
     grid-template-columns: 1fr 1fr 1fr 1fr;
+    padding-top: 4rem;
   }
 
   div:nth-child(10) {
