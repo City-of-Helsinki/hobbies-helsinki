@@ -27,6 +27,7 @@ import useLocale from '../common-events/hooks/useLocale';
 import { getDefaultCollections } from '../common-events/utils/headless-cms/headlessCmsUtils';
 import { getLocaleOrError } from '../utils/routerUtils';
 import { DEFAULT_LANGUAGE } from '../constants';
+import MatomoWrapper from '../domain/matomoWrapper/MatomoWrapper';
 
 const HomePage: NextPage<{
   landingPage: LandingPageQuery['landingPage'];
@@ -39,26 +40,28 @@ const HomePage: NextPage<{
   } = useConfig();
 
   return (
-    <HCRCPage
-      className="pageLayout"
-      navigation={<Navigation />}
-      content={
-        <HCRCPageContent
-          page={page}
-          landingPage={landingPage}
-          PageContentLayoutComponent={LandingPageContentLayout}
-          collections={(page: PageType | ArticleType) =>
-            getDefaultCollections(
-              page,
-              getRoutedInternalHref,
-              currentLanguageCode
-            )
-          }
-          language={getQlLanguage(locale)}
-        />
-      }
-      footer={<FooterSection />}
-    />
+    <MatomoWrapper>
+      <HCRCPage
+        className="pageLayout"
+        navigation={<Navigation />}
+        content={
+          <HCRCPageContent
+            page={page}
+            landingPage={landingPage}
+            PageContentLayoutComponent={LandingPageContentLayout}
+            collections={(page: PageType | ArticleType) =>
+              getDefaultCollections(
+                page,
+                getRoutedInternalHref,
+                currentLanguageCode
+              )
+            }
+            language={getQlLanguage(locale)}
+          />
+        }
+        footer={<FooterSection />}
+      />
+    </MatomoWrapper>
   );
 };
 

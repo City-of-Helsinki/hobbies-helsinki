@@ -14,6 +14,7 @@ import SearchPage from '../../domain/search/eventSearch/SearchPage';
 import FooterSection from '../../domain/footer/Footer';
 import useEventsApolloClientFromConfig from '../../common-events/hooks/useEventsApolloClientFromConfig';
 import { getLocaleOrError } from '../../utils/routerUtils';
+import MatomoWrapper from '../../domain/matomoWrapper/MatomoWrapper';
 
 export default function Search() {
   const router = useRouter();
@@ -38,20 +39,22 @@ export default function Search() {
   }, [scrollTo]);
 
   return (
-    <HCRCApolloPage
-      uri={ROUTES.SEARCH}
-      className="pageLayout"
-      navigation={<Navigation />}
-      content={
-        <ApolloProvider client={eventsApolloClient}>
-          <SearchPage
-            SearchComponent={AdvancedSearch}
-            pageTitle={'eventSearch.title'}
-          />
-        </ApolloProvider>
-      }
-      footer={<FooterSection />}
-    />
+    <MatomoWrapper>
+      <HCRCApolloPage
+        uri={ROUTES.SEARCH}
+        className="pageLayout"
+        navigation={<Navigation />}
+        content={
+          <ApolloProvider client={eventsApolloClient}>
+            <SearchPage
+              SearchComponent={AdvancedSearch}
+              pageTitle={'eventSearch.title'}
+            />
+          </ApolloProvider>
+        }
+        footer={<FooterSection />}
+      />
+    </MatomoWrapper>
   );
 }
 

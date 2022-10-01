@@ -35,6 +35,7 @@ import { getLocaleOrError } from '../../utils/routerUtils';
 import { getAllArticles } from '../../common-events/utils/headless-cms/service';
 import { ROUTES } from '../../constants';
 import AppConfig from '../../domain/app/AppConfig';
+import MatomoWrapper from '../../domain/matomoWrapper/MatomoWrapper';
 
 const NextCmsArticle: NextPage<{
   article: ArticleType;
@@ -49,29 +50,31 @@ const NextCmsArticle: NextPage<{
   const { t } = useTranslation(['common']);
 
   return (
-    <RHHCPage
-      navigation={<Navigation page={article} />}
-      content={
-        <RHHCPageContent
-          page={article as PageContentProps['page']}
-          heroContainer={<KorosWrapper />}
-          breadcrumbs={
-            breadcrumbs && breadcrumbs.length > 0 ? breadcrumbs : undefined
-          }
-          shareLinks={<ShareLinks title={t('common:share.article')} />}
-          collections={
-            collections
-              ? getDefaultCollections(
-                  article,
-                  getRoutedInternalHref,
-                  currentLanguageCode
-                )
-              : []
-          }
-        />
-      }
-      footer={<FooterSection />}
-    />
+    <MatomoWrapper>
+      <RHHCPage
+        navigation={<Navigation page={article} />}
+        content={
+          <RHHCPageContent
+            page={article as PageContentProps['page']}
+            heroContainer={<KorosWrapper />}
+            breadcrumbs={
+              breadcrumbs && breadcrumbs.length > 0 ? breadcrumbs : undefined
+            }
+            shareLinks={<ShareLinks title={t('common:share.article')} />}
+            collections={
+              collections
+                ? getDefaultCollections(
+                    article,
+                    getRoutedInternalHref,
+                    currentLanguageCode
+                  )
+                : []
+            }
+          />
+        }
+        footer={<FooterSection />}
+      />
+    </MatomoWrapper>
   );
 };
 

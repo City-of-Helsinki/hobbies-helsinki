@@ -1,4 +1,8 @@
 import React from 'react';
+import {
+  MatomoProvider,
+  createInstance as createMatomoInstance,
+} from '@jonkoops/matomo-tracker-react';
 import 'nprogress/nprogress.css';
 import { ApolloProvider } from '@apollo/client';
 import type { AppProps } from 'next/app';
@@ -17,6 +21,12 @@ import useRHHCConfig from '../hooks/useRHHCConfig';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { useEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import useEventsConfig from '../hooks/useEventsConfig';
+
+const matomoInstance = createMatomoInstance({
+  disabled: process.env.NEXT_PUBLIC_MATOMO_ENABLED !== 'true',
+  urlBase: process.env.NEXT_PUBLIC_MATOMO_URL_BASE as string,
+  siteId: Number(process.env.NEXT_PUBLIC_MATOMO_SITE_ID),
+});
 
 const TopProgressBar = dynamic(
   () => {
@@ -72,18 +82,20 @@ function MyApp({ Component, pageProps }: AppProps) {
         <TopProgressBar />
         <ApolloProvider client={cmsApolloClient}>
           <ApolloProvider client={eventsApolloClient}>
-            {router.isFallback ? (
-              <Center>
-                <LoadingSpinner />
-              </Center>
-            ) : pageProps.error ? (
-              <Error
-                statusCode={pageProps.error.networkError?.statusCode ?? 400}
-                title={pageProps.error.title}
-              />
-            ) : (
-              <Component {...pageProps} />
-            )}
+            <MatomoProvider value={matomoInstance}>
+              {router.isFallback ? (
+                <Center>
+                  <LoadingSpinner />
+                </Center>
+              ) : pageProps.error ? (
+                <Error
+                  statusCode={pageProps.error.networkError?.statusCode ?? 400}
+                  title={pageProps.error.title}
+                />
+              ) : (
+                <Component {...pageProps} />
+              )}
+            </MatomoProvider>
           </ApolloProvider>
         </ApolloProvider>
         <ToastContainer />
