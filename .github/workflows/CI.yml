@@ -41,6 +41,11 @@ jobs:
           NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
+          NEXT_PUBLIC_MATOMO_URL_BASE: '//webanalytics.digiaiiris.com/js/'
+          NEXT_PUBLIC_MATOMO_SITE_ID: 939
+          NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
+          NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
+          NEXT_PUBLIC_MATOMO_ENABLED: 'false'
 
   test:
     name: Test
@@ -75,10 +80,5 @@ jobs:
           NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
           # Mock origin
           NEXT_PUBLIC_APP_ORIGIN: https://localhost:3001
-          NEXT_PUBLIC_MATOMO_URL_BASE: '//webanalytics.digiaiiris.com/js/'
-          NEXT_PUBLIC_MATOMO_SITE_ID: 939
-          NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
-          NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
-          NEXT_PUBLIC_MATOMO_ENABLED: 'false'
       - name: Upload coverage report to Codecov
         uses: codecov/codecov-action@v1
