@@ -15,14 +15,10 @@ import qs, { parse } from 'query-string';
 import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
+import { Checkbox, DateSelector, MultiSelectDropdown, RangeDropdown, SearchLabel, useLocale } from 'events-helsinki-components';
+import { AutosuggestMenuOption } from 'events-helsinki-components';
 
 import SearchAutosuggest from '../../../common-events/components/search/SearchAutosuggest';
-import SearchLabel from '../../../common-events/components/search/searchLabel/SearchLabel';
-// import useDivisionOptions from "../../../common-events/hooks/useDivisionOptions";
-import Checkbox from '../../../common/components/checkbox/Checkbox';
-import DateSelector from '../../../common-events/components/dateSelector/DateSelector';
-import MultiSelectDropdown from '../../../common-events/components/multiSelectDropdown/MultiSelectDropdown';
-import { AutosuggestMenuOption } from '../../../common-events/types';
 import PlaceSelector from '../../place/placeSelector/PlaceSelector';
 import {
   EVENT_DEFAULT_SEARCH_FILTERS,
@@ -39,11 +35,9 @@ import {
   MIN_AGE,
 } from './utils';
 import styles from './search.module.scss';
-import RangeDropdown from '../../../common-events/components/rangeDropdown/RangeDropdown';
-import { ROUTES } from '../../../constants';
-import useLocale from '../../../hooks/useLocale';
 import { getI18nPath } from '../../../utils/routerUtils';
 import IconRead from '../../../assets/icons/IconRead';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   scrollToResultList: () => void;

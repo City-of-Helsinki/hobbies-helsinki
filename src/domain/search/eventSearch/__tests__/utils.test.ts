@@ -1,7 +1,7 @@
 import { advanceTo, clear } from 'jest-date-mock';
+import { DATE_TYPES } from 'events-helsinki-components';
+import { Language } from 'events-helsinki-components';
 
-import { DATE_TYPES } from '../../../../constants';
-import { Language } from '../../../../types';
 import { EVENT_DEFAULT_SEARCH_FILTERS, EVENT_SORT_OPTIONS } from '../constants';
 import { getEventSearchVariables, getNextPage, getSearchQuery } from '../utils';
 

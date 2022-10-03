@@ -1,7 +1,7 @@
 import {
   initializeApolloClient,
   MutableReference,
-} from '../../../common/apollo/utils';
+} from 'events-helsinki-components';
 
 describe('client utils', () => {
   describe('initializeApolloClient', () => {

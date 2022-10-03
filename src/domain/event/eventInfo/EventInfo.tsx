@@ -14,10 +14,10 @@ import { createEvent, EventAttributes } from 'ics';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { getDateArray, getDomain } from 'events-helsinki-components';
+import { InfoWithIcon, useLocale, useTabFocusStyle, Visible } from 'events-helsinki-components';
+import { getDateRangeStr, translateValue } from 'events-helsinki-components';
 
-import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
-import useLocale from '../../../common-events/hooks/useLocale';
 import {
   getAudienceAgeText,
   getEventFields,
@@ -29,14 +29,9 @@ import styles from './eventInfo.module.scss';
 import { SubEvents, SuperEvent } from './EventsHierarchy';
 import OrganizationInfo from './OrganizationInfo';
 import OtherEventTimes from './OtherEventTimes';
-import Visible from '../../../common/components/visible/Visible';
-import { translateValue } from '../../../common-events/utils/translateUtils';
-import IconDirections from '../../../assets/icons/IconDirections';
-import useTabFocusStyle from '../../../common/hooks/useTabFocusStyle';
-import getDateArray from '../../../common-events/utils/getDateArray';
-import getDomain from '../../../common/utils/getDomain';
-import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import IconDirections from '../../../assets/icons/IconDirections';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;
@@ -120,8 +115,9 @@ const DateInfo: React.FC<{ event: EventFields }> = ({ event }) => {
           link: `${domain}${getLocalizedCmsItemUrl(
             ROUTES.COURSES,
             { eventId: event.id },
-            locale
+            locale,
           )}`,
+
         }),
         end: endTime ? getDateArray(endTime) : getDateArray(startTime),
         location: [locationName, streetAddress, district, addressLocality]

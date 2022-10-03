@@ -4,10 +4,10 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { BackgroundImage, LinkBox } from 'react-helsinki-headless-cms';
 import { useRouter } from 'next/router';
+import { addParamsToQueryString, getDateRangeStr } from 'events-helsinki-components';
+import { IconButton } from 'events-helsinki-components';
+import { useLocale } from 'events-helsinki-components';
 
-import getDateRangeStr from '../../../common-events/utils/getDateRangeStr';
-import IconButton from '../../../common/components/iconButton/IconButton';
-import { addParamsToQueryString } from '../../../common-events/utils/queryString';
 import EventKeywords from '../eventKeywords/EventKeywords';
 import LocationText from '../eventLocation/EventLocationText';
 import EventName from '../eventName/EventName';
@@ -19,9 +19,8 @@ import {
 } from '../EventUtils';
 import { EventFields } from '../types';
 import styles from './eventCard.module.scss';
-import { ROUTES } from '../../../constants';
-import useLocale from '../../../hooks/useLocale';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFields;

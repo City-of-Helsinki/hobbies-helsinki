@@ -1,6 +1,7 @@
 import * as React from 'react';
+import { Language } from 'events-helsinki-components';
+import { useLocale } from 'events-helsinki-components';
 
-import * as useLocale from '../../../../../hooks/useLocale';
 import {
   act,
   render,
@@ -8,7 +9,6 @@ import {
   userEvent,
   waitFor,
 } from '../../../../../tests/testUtils';
-import { Language } from '../../../../../types';
 import ResultsInfo from '../ResultsInfo';
 
 test('events with 0 results matches snapshot for no results', () => {

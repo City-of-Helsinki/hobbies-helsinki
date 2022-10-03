@@ -1,21 +1,18 @@
 import { isPast, isThisWeek, isToday } from 'date-fns';
 import capitalize from 'lodash/capitalize';
+import { TFunction } from 'next-i18next';
+import { EVENT_STATUS, getLocalizedString, getSecureImage, Language } from 'events-helsinki-components';
 
-import getLocalisedString from '../../common-events/utils/getLocalisedString';
-import { EVENT_STATUS } from '../../constants';
 import {
   EventFieldsFragment,
   LocalizedObject,
   PlaceFieldsFragment,
 } from '../nextApi/graphql/generated/graphql';
-import { Language } from '../../types';
 import {
   EVENT_KEYWORD_BLACK_LIST,
   EVENT_LOCATIONS,
   EVENT_SOME_IMAGE,
 } from './constants';
-import getSecureImage from '../../common-events/utils/getSecureImage';
-import { UnionTFunction } from '../../common-events/types';
 import { EventFields, KeywordOption } from './types';
 
 export const getEventCardId = (id: string): string => `event-card_${id}`;
@@ -106,7 +103,7 @@ export const getEventPrice = (
         .map((offer) =>
           // Format text to price if it happens to be number e.g. '2' -> '2 €'
           formatPrice(
-            getLocalisedString(offer.price || offer.description, locale)
+            getLocalizedString(offer.price || offer.description, locale)
           )
         )
         .filter((e) => e)
@@ -172,7 +169,7 @@ export const getEventDistrict = (
     ['district', 'neighborhood'].includes(division.type)
   );
 
-  return getLocalisedString(district?.name, locale);
+  return getLocalizedString(district?.name, locale);
 };
 
 /**
@@ -187,12 +184,12 @@ const getEventLocationFields = (
 ) => {
   const location = event.location;
   return {
-    addressLocality: getLocalisedString(location?.addressLocality, locale),
+    addressLocality: getLocalizedString(location?.addressLocality, locale),
     coordinates: [...(location?.position?.coordinates || [])].reverse(),
     district: getEventDistrict(event, locale),
     location,
     postalCode: location?.postalCode,
-    streetAddress: getLocalisedString(location?.streetAddress, locale),
+    streetAddress: getLocalizedString(location?.streetAddress, locale),
   };
 };
 
@@ -278,10 +275,10 @@ const getOfferInfoUrl = (
   locale: Language
 ): string => {
   const offer = event.offers.find((item) =>
-    getLocalisedString(item.infoUrl, locale)
+    getLocalizedString(item.infoUrl, locale)
   );
 
-  return getLocalisedString(offer?.infoUrl, locale);
+  return getLocalizedString(offer?.infoUrl, locale);
 };
 
 const getRegistrationUrl = (event: EventFieldsFragment) => {
@@ -303,32 +300,32 @@ export const getEventFields = (event: EventFields, locale: Language) => {
   const registrationUrl = getRegistrationUrl(event);
   const startTime = event.startTime;
   return {
-    description: getLocalisedString(event.description, locale),
+    description: getLocalizedString(event.description, locale),
     // district: getEventDistrict(event, locale),
     email: eventLocation?.email,
     endTime: event.endTime,
     id: event.id,
-    name: getLocalisedString(event.name, locale),
+    name: getLocalizedString(event.name, locale),
     externalLinks: event.externalLinks,
     googleDirectionsLink: getGoogleDirectionsLink(event, locale),
     hslDirectionsLink: getHslDirectionsLink(event, locale),
     imageUrl: getEventImageUrl(event),
-    infoUrl: getLocalisedString(event.infoUrl, locale),
+    infoUrl: getLocalizedString(event.infoUrl, locale),
     keywords: getKeywordList(event.keywords, locale),
     languages: event.inLanguage
       .map((item: EventFields['inLanguage'][number]) =>
-        capitalize(getLocalisedString(item.name, locale))
+        capitalize(getLocalizedString(item.name, locale))
       )
       .filter((e) => e),
-    locationName: getLocalisedString(eventLocation?.name, locale),
+    locationName: getLocalizedString(eventLocation?.name, locale),
     offerInfoUrl,
     registrationUrl,
-    provider: getLocalisedString(event.provider, locale),
+    provider: getLocalizedString(event.provider, locale),
     publisher: event.publisher || '',
-    shortDescription: getLocalisedString(event.shortDescription, locale),
+    shortDescription: getLocalizedString(event.shortDescription, locale),
     someImageUrl: getEventSomeImageUrl(event),
     startTime,
-    telephone: getLocalisedString(eventLocation?.telephone, locale),
+    telephone: getLocalizedString(eventLocation?.telephone, locale),
     freeEvent: isEventFree(event),
     today: startTime ? isToday(new Date(startTime)) : false,
     thisWeek: startTime ? isThisWeek(new Date(startTime)) : false,
@@ -352,7 +349,7 @@ export const isLocalized = (
   );
 
 export const getAudienceAgeText = (
-  t: UnionTFunction,
+  t: TFunction,
   audienceMinAge?: string | null,
   audienceMaxAge?: string | null
 ): string => {

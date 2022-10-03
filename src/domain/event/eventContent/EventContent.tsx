@@ -2,8 +2,9 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { PageSection } from 'react-helsinki-headless-cms';
 import { ContentContainer } from 'react-helsinki-headless-cms';
+import { sanitizeHtml } from 'events-helsinki-components';
+import { useLocale } from 'events-helsinki-components';
 
-import sanitizeHtml from '../../../common-events/utils/sanitizeHtml';
 import ShareLinks from '../../../common-events/components/shareLinks/ShareLinks';
 import { EVENT_LOCATIONS } from '../constants';
 import EventInfo from '../eventInfo/EventInfo';
@@ -11,7 +12,6 @@ import EventLocation from '../eventLocation/EventLocation';
 import { getEventFields } from '../EventUtils';
 import { EventFields, SuperEventResponse } from '../types';
 import styles from './eventContent.module.scss';
-import useLocale from '../../../hooks/useLocale';
 
 interface Props {
   event: EventFields;

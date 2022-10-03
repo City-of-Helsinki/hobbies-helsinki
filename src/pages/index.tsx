@@ -16,17 +16,16 @@ import {
   ArticleType,
   TemplateEnum,
 } from 'react-helsinki-headless-cms';
+import { useLocale } from 'events-helsinki-components';
+import { DEFAULT_LANGUAGE, getQlLanguage } from 'events-helsinki-components';
 
 import getHobbiesStaticProps from '../domain/app/getHobbiesStaticProps';
 import serverSideTranslationsWithCommon from '../domain/i18n/serverSideTranslationsWithCommon';
-import { getQlLanguage } from '../common/apollo/utils';
 import { LandingPageContentLayout } from '../domain/search/landingPage/LandingPage';
 import Navigation from '../common-events/components/navigation/Navigation';
 import FooterSection from '../domain/footer/Footer';
-import useLocale from '../common-events/hooks/useLocale';
 import { getDefaultCollections } from '../common-events/utils/headless-cms/headlessCmsUtils';
 import { getLocaleOrError } from '../utils/routerUtils';
-import { DEFAULT_LANGUAGE } from '../constants';
 
 const HomePage: NextPage<{
   landingPage: LandingPageQuery['landingPage'];

@@ -1,7 +1,7 @@
 import React from 'react';
+import { getLocalizedString } from 'events-helsinki-components';
+import { useLocale } from 'events-helsinki-components';
 
-import useLocale from '../../common-events/hooks/useLocale';
-import getLocalisedString from '../../common-events/utils/getLocalisedString';
 import { usePlaceDetailsQuery } from '../nextApi/graphql/generated/graphql';
 
 interface Props {
@@ -15,7 +15,7 @@ const PlaceText: React.FC<Props> = ({ id }) => {
   });
 
   return (
-    <>{getLocalisedString((data && data.placeDetails.name) || {}, locale)}</>
+    <>{getLocalizedString((data && data.placeDetails.name) || {}, locale)}</>
   );
 };
 

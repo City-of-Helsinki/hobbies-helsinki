@@ -2,13 +2,14 @@ import { useMenuQuery } from 'react-helsinki-headless-cms/apollo';
 import { Footer, Link } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React, { FunctionComponent } from 'react';
+import { Language } from 'events-helsinki-components';
+import { useLocale } from 'events-helsinki-components';
+import { resetFocusId } from 'events-helsinki-components';
 
-import { resetFocusId } from '../../common-events/components/resetFocus/ResetFocus';
-import { DEFAULT_FOOTER_MENU_NAME, ROUTES } from '../../constants';
-import useLocale from '../../hooks/useLocale';
 import { getI18nPath } from '../../utils/routerUtils';
 import styles from './footer.module.scss';
 import FooterCategories from './FooterCategories';
+import { DEFAULT_FOOTER_MENU_NAME, ROUTES } from '../../constants';
 
 const FooterSection: FunctionComponent = () => {
   const { t } = useTranslation('footer');

@@ -18,22 +18,19 @@ import {
   ArticleQueryVariables,
 } from 'react-helsinki-headless-cms/apollo';
 import { useTranslation } from 'next-i18next';
+import { KorosWrapper } from 'events-helsinki-components';
+import { Language } from 'events-helsinki-components';
 
 import Navigation from '../../common-events/components/navigation/Navigation';
 import ShareLinks from '../../common-events/components/shareLinks/ShareLinks';
 import {
-  getDefaultCollections,
-  getSlugFromUri,
-  getUriID,
+  getDefaultCollections, getSlugFromUri, getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
-import KorosWrapper from '../../common/components/korosWrapper/KorosWrapper';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { Language } from '../../types';
-import { getLocaleOrError } from '../../utils/routerUtils';
 import { getAllArticles } from '../../common-events/utils/headless-cms/service';
-import { ROUTES } from '../../constants';
+import { getLocaleOrError } from '../../utils/routerUtils';
 import AppConfig from '../../domain/app/AppConfig';
 
 const NextCmsArticle: NextPage<{

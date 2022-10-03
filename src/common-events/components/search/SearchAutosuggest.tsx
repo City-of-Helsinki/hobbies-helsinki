@@ -1,18 +1,11 @@
 import { IconSearch } from 'hds-react';
 import React, { ChangeEvent } from 'react';
+import { AutoSuggestMenu, useLocale, useDebounce, useDropdownKeyboardNavigation } from 'events-helsinki-components';
+import { AutosuggestMenuOption, AUTOSUGGEST_TYPES, getLocalizedString } from 'events-helsinki-components';
 
-import {
-  AUTOSUGGEST_KEYWORD_BLACK_LIST,
-  AUTOSUGGEST_TYPES,
-} from '../../../constants';
-import useDebounce from '../../../common/hooks/useDebounce';
-import useKeyboardNavigation from '../../../common/hooks/useDropdownKeyboardNavigation';
-import useLocale from '../../hooks/useLocale';
-import { AutosuggestMenuOption } from '../../types';
-import getLocalisedString from '../../utils/getLocalisedString';
-import AutosuggestMenu from './AutosuggestMenu';
 import styles from './searchAutosuggest.module.scss';
 import { useKeywordListQuery } from '../../../domain/nextApi/graphql/generated/graphql';
+import { AUTOSUGGEST_KEYWORD_BLACK_LIST } from '../../../constants';
 
 export interface SearchAutosuggestProps {
   name: string;
@@ -64,7 +57,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
     focusedIndex,
     setup: setupKeyboardNav,
     teardown: teardownKeyboardNav,
-  } = useKeyboardNavigation({
+  } = useDropdownKeyboardNavigation({
     container: container,
     listLength: autoSuggestItems.length,
     onKeyDown: (event: KeyboardEvent) => {
@@ -111,7 +104,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
     items.push(
       ...(keywordsData?.keywordList?.data
         .filter((keyword) => {
-          const name = getLocalisedString(keyword.name, locale).toLowerCase();
+          const name = getLocalizedString(keyword.name, locale).toLowerCase();
           return (
             !AUTOSUGGEST_KEYWORD_BLACK_LIST.includes(keyword.id || '') &&
             name &&
@@ -119,7 +112,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
           );
         })
         .map((keyword) => ({
-          text: getLocalisedString(keyword.name, locale),
+          text: getLocalizedString(keyword.name, locale),
           type: AUTOSUGGEST_TYPES.KEYWORD,
           value: keyword.id || '',
         })) || [])
@@ -225,7 +218,7 @@ const SearchAutosuggest: React.FC<SearchAutosuggestProps> = ({
           value={searchValue}
         />
       </div>
-      <AutosuggestMenu
+      <AutoSuggestMenu
         focusedOption={focusedIndex}
         isOpen={!!searchValue && isMenuOpen}
         onClose={handleCloseMenu}

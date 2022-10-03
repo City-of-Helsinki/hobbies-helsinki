@@ -17,19 +17,19 @@ import {
   PageQuery,
   PageQueryVariables,
 } from 'react-helsinki-headless-cms/apollo';
-
-import Navigation from '../../common-events/components/navigation/Navigation';
 import {
-  getDefaultCollections,
-  getSlugFromUri,
-  getUriID,
+  Language,
+} from 'events-helsinki-components';
+
+import {
+  getDefaultCollections, getSlugFromUri, getUriID,
 } from '../../common-events/utils/headless-cms/headlessCmsUtils';
+import Navigation from '../../common-events/components/navigation/Navigation';
 import { getAllPages } from '../../common-events/utils/headless-cms/service';
 import AppConfig from '../../domain/app/AppConfig';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
-import { Language } from '../../types';
 import { getLocaleOrError } from '../../utils/routerUtils';
 
 const NextCmsPage: NextPage<{

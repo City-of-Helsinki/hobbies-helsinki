@@ -7,9 +7,9 @@ import {
   Config,
   defaultConfig as rhhcDefaultConfig,
 } from 'react-helsinki-headless-cms';
+import { useLocale } from 'events-helsinki-components';
 
 import AppConfig from '../domain/app/AppConfig';
-import useLocale from './useLocale';
 import EventDetails, {
   EventDetailsProps,
 } from '../domain/event/eventDetails/EventDetails';
@@ -38,10 +38,8 @@ export default function useRHHCConfig(
     ];
     const getIsHrefExternal = (href: string) => {
       if (href?.startsWith('/')) return false;
-      if (!internalHrefOrigins.some((origin) => href?.includes(origin))) {
-        return true;
-      }
-      return false;
+      return !internalHrefOrigins.some((origin) => href?.includes(origin));
+
     };
     return {
       ...rhhcDefaultConfig,
@@ -49,8 +47,8 @@ export default function useRHHCConfig(
         ...rhhcDefaultConfig.components,
         Head: (props) => <Head {...props} />,
         Link: ({ href, ...props }) => <Link href={href || ''} {...props} />,
-        EventCardContent: (props: EventDetailsProps) => (
-          <EventDetails {...props} />
+        EventCardContent: (props) => (
+          <EventDetails {...props as EventDetailsProps} />
         ),
         ArticleCardContent: (props: ArticleDetailsProps) => (
           <ArticleDetails {...props} />

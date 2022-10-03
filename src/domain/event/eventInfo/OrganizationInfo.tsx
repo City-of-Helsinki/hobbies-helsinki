@@ -2,18 +2,16 @@ import { IconFaceSmile, IconLayers } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
 import { SecondaryLink } from 'react-helsinki-headless-cms';
+import { InfoWithIcon, LoadingSpinner, useLocale } from 'events-helsinki-components';
 
 import styles from './eventInfo.module.scss';
-import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import {
   EventFieldsFragment,
   useOrganizationDetailsQuery,
 } from '../../nextApi/graphql/generated/graphql';
 import { getEventFields } from '../EventUtils';
-import { ROUTES } from '../../../constants';
 import { getLocalizedCmsItemUrl } from '../../../utils/routerUtils';
-import useLocale from '../../../hooks/useLocale';
+import { ROUTES } from '../../../constants';
 
 interface Props {
   event: EventFieldsFragment;
@@ -51,11 +49,11 @@ const OrganizationInfo: React.FC<Props> = ({ event }) => {
                 <div>{organizationName}</div>
                 <SecondaryLink
                   className={styles.link}
-                  variant="arrowRight"
+                  variant='arrowRight'
                   href={`${getLocalizedCmsItemUrl(
                     ROUTES.SEARCH,
                     {},
-                    locale
+                    locale,
                   )}?publisher=${publisher}`}
                 >
                   {t(`event:info.linkSearchByPublisher`)}

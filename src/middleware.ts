@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 
-import { DEFAULT_LANGUAGE } from './constants';
 import { stringifyUrlObject } from './utils/routerUtils';
+
+//TODO: For some reason middleware cannot read `'events-helsinki-components` package without breaking the build
+// import { DEFAULT_LANGUAGE } from 'events-helsinki-components';
+
+const DEFAULT_LANGUAGE = 'fi'
 
 const requestType = {
   isStaticFile: (req: NextRequest) => req.nextUrl.pathname.startsWith('/_next'),

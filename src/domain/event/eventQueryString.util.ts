@@ -1,5 +1,6 @@
-import { ROUTES } from '../../constants';
+
 import { getI18nPath } from '../../utils/routerUtils';
+import { ROUTES } from '../../constants';
 
 export type ReturnParams = {
   returnPath: string;

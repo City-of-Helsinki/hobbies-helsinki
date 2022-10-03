@@ -1,10 +1,8 @@
 import { IconAngleDown, IconAngleUp, IconCalendarPlus } from 'hds-react';
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { InfoWithIcon, LoadingSpinner, SkeletonLoader } from 'events-helsinki-components';
 
-import InfoWithIcon from '../../../common-events/components/infoWithIcon/InfoWithIcon';
-import SkeletonLoader from '../../../common-events/components/skeletonLoader/SkeletonLoader';
-import LoadingSpinner from '../../../common/components/spinner/LoadingSpinner';
 import { useOtherEventTimes } from '../queryUtils';
 import { EventFields } from '../types';
 import EventList from './eventList/EventList';

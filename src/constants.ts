@@ -1,5 +1,7 @@
 import { Language } from './types';
 
+export const DEFAULT_LANGUAGE = 'fi'
+
 export const ROUTES = {
   SEARCH: '/search',
   COURSES: '/courses/[eventId]',
@@ -32,24 +34,6 @@ export const EVENT_STATUS = {
   EVENT_SCHEDULED: 'EventScheduled',
 };
 
-export enum AUTOSUGGEST_TYPES {
-  KEYWORD = 'keyword',
-  TEXT = 'text',
-}
-
-export enum SUPPORT_LANGUAGES {
-  EN = 'en',
-  FI = 'fi',
-  SV = 'sv',
-}
-
-/**
- * If logic for selecting the fallback language priority is needed,
- * then prioritize order is English, Finnish, Swedish.
- * Ref: https://helsinkisolutionoffice.atlassian.net/browse/HH-110
- */
-export const supportedLanguages = Object.values(SUPPORT_LANGUAGES);
-
 export enum DATE_PICKER_INPUT {
   START = 'start',
   END = 'end',
@@ -60,8 +44,6 @@ export enum DATE_PICKER_INPUT_STATE {
   START_TIME_SELECTED = 'start-time-selected',
   END_TIME_SELECTED = 'end-time-selected',
 }
-
-export const DEFAULT_LANGUAGE = SUPPORT_LANGUAGES.FI;
 
 export const DEFAULT_SOME_IMAGE = '/images/activities_SoMe-share.jpg';
 

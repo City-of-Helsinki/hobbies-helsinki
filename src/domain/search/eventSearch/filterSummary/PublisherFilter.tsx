@@ -1,8 +1,8 @@
 import { useTranslation } from 'next-i18next';
 import React from 'react';
+import { FilterType } from 'events-helsinki-components';
+import { FilterButton } from 'events-helsinki-components';
 
-import FilterButton from '../../../../common-events/components/filterButton/FilterButton';
-import { FilterType } from '../../../../common-events/components/filterButton/types';
 import { useOrganizationDetailsQuery } from '../../../nextApi/graphql/generated/graphql';
 
 interface Props {

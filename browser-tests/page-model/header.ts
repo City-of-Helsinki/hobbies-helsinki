@@ -1,6 +1,7 @@
 import { Selector, t } from 'testcafe';
 import { screen } from '@testing-library/testcafe';
-import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from '../../src/constants';
+import { DEFAULT_LANGUAGE, SUPPORT_LANGUAGES } from 'events-helsinki-components';
+
 import i18n from '../../src/tests/initI18n';
 
 class Header {
