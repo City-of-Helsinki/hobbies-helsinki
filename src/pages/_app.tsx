@@ -21,12 +21,9 @@ import useRHHCConfig from '../hooks/useRHHCConfig';
 import EventsConfigProvider from '../common-events/configProvider/ConfigProvider';
 import { useEventsApolloClient } from '../domain/clients/eventsApolloClient';
 import useEventsConfig from '../hooks/useEventsConfig';
+import AppConfig from '../domain/app/AppConfig';
 
-const matomoInstance = createMatomoInstance({
-  disabled: process.env.NEXT_PUBLIC_MATOMO_ENABLED !== 'true',
-  urlBase: process.env.NEXT_PUBLIC_MATOMO_URL_BASE as string,
-  siteId: Number(process.env.NEXT_PUBLIC_MATOMO_SITE_ID),
-});
+const matomoInstance = createMatomoInstance(AppConfig.matomoConfiguration);
 
 const TopProgressBar = dynamic(
   () => {

@@ -74,21 +74,18 @@ class AppConfig {
   }
 
   static get matomoConfiguration() {
-    const matomoUrlBase = '//webanalytics.digiaiiris.com/js/';
+    const matomoUrlBase = process.env.NEXT_PUBLIC_MATOMO_URL_BASE;
     const matomoEnabled = process.env.NEXT_PUBLIC_MATOMO_ENABLED;
     const matomoSiteId = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
     const getMatomoUrlPath = (path: string) => `${matomoUrlBase}${path}`;
 
-    if (matomoEnabled && matomoSiteId) {
-      return {
-        disabled: !Boolean(parseEnvValue(matomoEnabled)),
-        urlBase: matomoUrlBase as string,
-        srcUrl: getMatomoUrlPath('piwik.min.js'),
-        trackerUrl: getMatomoUrlPath('tracker.php'),
-        siteId: Number(matomoSiteId),
-      };
-    }
-    return null;
+    return {
+      disabled: !Boolean(parseEnvValue(matomoEnabled)),
+      urlBase: matomoUrlBase as string,
+      srcUrl: getMatomoUrlPath('piwik.min.js'),
+      trackerUrl: getMatomoUrlPath('tracker.php'),
+      siteId: Number(matomoSiteId),
+    };
   }
 
   static get defaultRevalidate() {
