@@ -79,6 +79,9 @@ class AppConfig {
     const matomoSiteId = process.env.NEXT_PUBLIC_MATOMO_SITE_ID;
     const getMatomoUrlPath = (path: string) => `${matomoUrlBase}${path}`;
 
+    // eslint-disable-next-line no-console
+    console.log('matomo', matomoUrlBase, matomoEnabled, matomoSiteId);
+
     return {
       disabled: !Boolean(parseEnvValue(matomoEnabled)),
       urlBase: matomoUrlBase as string,
