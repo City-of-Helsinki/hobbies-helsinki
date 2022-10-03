@@ -25,11 +25,11 @@ env:
   NEXT_PUBLIC_CMS_GRAPHQL_ENDPOINT: https://harrastus.hkih.stage.geniem.io/graphql
   NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.test.kuva.hel.ninja/proxy/graphql
   NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
-  DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_URL_BASE: '//webanalytics.digiaiiris.com/js/'
-  DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SITE_ID: 939
-  DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
-  DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
-  DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_ENABLED: 'true'
+  NEXT_PUBLIC_MATOMO_URL_BASE: '//webanalytics.digiaiiris.com/js/'
+  NEXT_PUBLIC_MATOMO_SITE_ID: 939
+  NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
+  NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
+  NEXT_PUBLIC_MATOMO_ENABLED: 'true'
   CUSTOM_ENVIRONMENT_URL: https://harrastus-helsinki-${{ github.event.pull_request.number }}.${{ secrets.BASE_DOMAIN_STAGING }}
 
 jobs:
