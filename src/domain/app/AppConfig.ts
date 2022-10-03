@@ -82,9 +82,11 @@ class AppConfig {
     return {
       disabled: !Boolean(parseEnvValue(matomoEnabled)),
       urlBase: matomoUrlBase as string,
-      srcUrl: getMatomoUrlPath(process.env.NEXT_PUBLIC_SRC_URL as string),
+      srcUrl: getMatomoUrlPath(
+        process.env.NEXT_PUBLIC_MATOMO_SRC_URL as string
+      ),
       trackerUrl: getMatomoUrlPath(
-        process.env.NEXT_PUBLIC_TRACKER_URL as string
+        process.env.NEXT_PUBLIC_MATOMO_TRACKER_URL as string
       ),
       siteId: Number(matomoSiteId),
     };
