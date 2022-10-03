@@ -62,7 +62,7 @@ jobs:
           DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SITE_ID: 939
           DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
           DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
-          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_ENABLED: 'true'
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_ENABLED: 1
 
   production:
     if: startsWith(github.ref, 'refs/tags')

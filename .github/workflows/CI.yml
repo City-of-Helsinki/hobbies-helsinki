@@ -45,7 +45,7 @@ jobs:
           NEXT_PUBLIC_MATOMO_SITE_ID: 939
           NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
           NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
-          NEXT_PUBLIC_MATOMO_ENABLED: 'false'
+          NEXT_PUBLIC_MATOMO_ENABLED: 0
 
   test:
     name: Test
