@@ -29,6 +29,7 @@ import AppConfig from '../../domain/app/AppConfig';
 import { createCmsApolloClient } from '../../domain/clients/cmsApolloClient';
 import FooterSection from '../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../domain/i18n/serverSideTranslationsWithCommon';
+import MatomoWrapper from '../../domain/matomoWrapper/MatomoWrapper';
 import { Language } from '../../types';
 import { getLocaleOrError } from '../../utils/routerUtils';
 
@@ -43,25 +44,27 @@ const NextCmsPage: NextPage<{
   } = useConfig();
 
   return (
-    <HCRCPage
-      navigation={<Navigation page={page} />}
-      content={
-        <HCRCPageContent
-          page={page as PageContentProps['page']}
-          breadcrumbs={breadcrumbs ?? undefined}
-          collections={
-            collections
-              ? getDefaultCollections(
-                  page,
-                  getRoutedInternalHref,
-                  currentLanguageCode
-                )
-              : []
-          }
-        />
-      }
-      footer={<FooterSection />}
-    />
+    <MatomoWrapper>
+      <HCRCPage
+        navigation={<Navigation page={page} />}
+        content={
+          <HCRCPageContent
+            page={page as PageContentProps['page']}
+            breadcrumbs={breadcrumbs ?? undefined}
+            collections={
+              collections
+                ? getDefaultCollections(
+                    page,
+                    getRoutedInternalHref,
+                    currentLanguageCode
+                  )
+                : []
+            }
+          />
+        }
+        footer={<FooterSection />}
+      />
+    </MatomoWrapper>
   );
 };
 

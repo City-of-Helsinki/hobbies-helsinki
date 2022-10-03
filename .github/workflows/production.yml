@@ -26,7 +26,7 @@ env:
   K8S_HPA_MAX_REPLICAS: 8
   K8S_HPA_MIN_REPLICAS: 2
   K8S_HPA_MAX_CPU_AVG: 80 # 80% from request
-#  K8S_HPA_MAX_RAM_AVG: 80 # 80% from request
+  #  K8S_HPA_MAX_RAM_AVG: 80 # 80% from request
 
   K8S_LIVENESS_PATH: /api/healthz
   K8S_READINESS_PATH: /api/readiness
@@ -38,7 +38,6 @@ env:
   NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: https://tapahtumat-proxy.prod.kuva.hel.ninja/proxy/graphql
   NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: https://api.hel.fi/linkedevents/v1/event
   NEXT_PUBLIC_APP_ORIGIN: https://harrastukset.hel.fi
-
 
 jobs:
   build:
@@ -59,8 +58,11 @@ jobs:
           DOCKER_BUILD_ARG_NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT: ${{ env.NEXT_PUBLIC_EVENTS_GRAPHQL_ENDPOINT }}
           DOCKER_BUILD_ARG_NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT: ${{ env.NEXT_PUBLIC_LINKEDEVENTS_EVENT_ENDPOINT }}
           DOCKER_BUILD_ARG_NEXT_PUBLIC_APP_ORIGIN: ${{ env.NEXT_PUBLIC_APP_ORIGIN }}
-          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SITE_ID: 587
-          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_ENABLED: 0
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_URL_BASE: '//webanalytics.digiaiiris.com/js/'
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SITE_ID: 939
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_SRC_URL: 'piwik.min.js'
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_TRACKER_URL: 'tracker.php'
+          DOCKER_BUILD_ARG_NEXT_PUBLIC_MATOMO_ENABLED: 1
 
   production:
     if: startsWith(github.ref, 'refs/tags')

@@ -9,6 +9,7 @@ import EventPageContainer from '../../../domain/event/EventPageContainer';
 import { EventFields } from '../../../domain/event/types';
 import FooterSection from '../../../domain/footer/Footer';
 import serverSideTranslationsWithCommon from '../../../domain/i18n/serverSideTranslationsWithCommon';
+import MatomoWrapper from '../../../domain/matomoWrapper/MatomoWrapper';
 import {
   EventDetailsDocument,
   EventDetailsQuery,
@@ -21,18 +22,20 @@ const Event: NextPage<{
   loading: boolean;
 }> = ({ event, loading }) => {
   return (
-    <RHHCPage
-      className="pageLayout"
-      navigation={<Navigation />}
-      content={
-        <EventPageContainer
-          event={event}
-          loading={loading}
-          showSimilarEvents={AppConfig.showSimilarEvents}
-        />
-      }
-      footer={<FooterSection />}
-    />
+    <MatomoWrapper>
+      <RHHCPage
+        className="pageLayout"
+        navigation={<Navigation />}
+        content={
+          <EventPageContainer
+            event={event}
+            loading={loading}
+            showSimilarEvents={AppConfig.showSimilarEvents}
+          />
+        }
+        footer={<FooterSection />}
+      />
+    </MatomoWrapper>
   );
 };
 export default Event;

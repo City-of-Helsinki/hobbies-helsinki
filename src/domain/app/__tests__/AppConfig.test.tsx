@@ -100,6 +100,9 @@ test.each([
 test('provides configuration for Matomo', () => {
   process.env.NEXT_PUBLIC_MATOMO_ENABLED = 'true';
   process.env.NEXT_PUBLIC_MATOMO_SITE_ID = 'abc-123';
+  process.env.NEXT_PUBLIC_MATOMO_URL_BASE = '//webanalytics.digiaiiris.com/js/';
+  process.env.NEXT_PUBLIC_MATOMO_SRC_URL = 'piwik.min.js';
+  process.env.NEXT_PUBLIC_MATOMO_TRACKER_URL = 'tracker.php';
 
   expect(AppConfig.matomoConfiguration).toMatchInlineSnapshot(`
     Object {
