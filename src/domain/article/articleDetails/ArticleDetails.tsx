@@ -15,11 +15,13 @@ const ArticleDetails: React.FC<ArticleDetailsProps> = ({ keywords }) => {
 
   return (
     <div className={styles.tags}>
-      {[first, second].map((tag) => (
-        <Tag variant="card" key={tag}>
-          {tag}
-        </Tag>
-      ))}
+      {[first, second]
+        .filter((t) => t)
+        .map((tag) => (
+          <Tag variant="card" key={tag}>
+            {tag}
+          </Tag>
+        ))}
       {!!restKeywords.length && (
         <Tag variant="card">{`+${restKeywords.length}`}</Tag>
       )}
