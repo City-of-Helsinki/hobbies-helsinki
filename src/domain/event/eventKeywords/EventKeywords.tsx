@@ -93,29 +93,19 @@ const EventKeywords: React.FC<Props> = ({
         />
       )}
       {showKeywords &&
-        first &&
-        (showKeywordsCount ? customTagsCount < 2 : true) && (
-          <Keyword
-            color="engelLight50"
-            blackOnMobile={blackOnMobile}
-            hideOnMobile={hideKeywordsOnMobile}
-            key={first.id}
-            keyword={first.name}
-            onClick={handleClick('text', first.name)}
-          />
-        )}
-      {showKeywords &&
-        second &&
-        (showKeywordsCount ? customTagsCount < 2 : true) && (
-          <Keyword
-            color="engelLight50"
-            blackOnMobile={blackOnMobile}
-            hideOnMobile={hideKeywordsOnMobile}
-            key={second.id}
-            keyword={second.name}
-            onClick={handleClick('text', second.name)}
-          />
-        )}
+        (showKeywordsCount ? customTagsCount < 2 : true) &&
+        [first, second]
+          .filter((t) => t)
+          .map((tag) => (
+            <Keyword
+              color="engelLight50"
+              blackOnMobile={blackOnMobile}
+              hideOnMobile={hideKeywordsOnMobile}
+              key={tag.id}
+              keyword={tag.name}
+              onClick={handleClick('text', tag.name)}
+            />
+          ))}
       {!!restKeywords.length && showKeywords && showKeywordsCount && (
         <Keyword
           color="engelLight50"
