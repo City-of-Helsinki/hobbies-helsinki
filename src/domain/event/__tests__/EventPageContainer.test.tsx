@@ -143,7 +143,7 @@ it('should render info and load other events + similar events', async () => {
   expect(screen.queryByRole('heading', { name: 'Kuvaus' })).toBeInTheDocument();
   expect(screen.queryByText(description)).toBeInTheDocument();
 
-  keywords.forEach((keyword) => {
+  keywords.slice(0, 2).forEach((keyword) => {
     expect(
       screen.queryByRole('link', { name: keyword.name })
     ).toBeInTheDocument();

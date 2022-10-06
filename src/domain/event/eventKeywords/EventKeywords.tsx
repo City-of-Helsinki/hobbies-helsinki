@@ -58,6 +58,9 @@ const EventKeywords: React.FC<Props> = ({
     return null;
   }
 
+  const [first, second, ...restKeywords] = keywords;
+  const customTagsCount = Number(thisWeek) + Number(showIsFree && freeEvent);
+
   return (
     <>
       {today && (
@@ -81,20 +84,35 @@ const EventKeywords: React.FC<Props> = ({
           onClick={handleClick('isFree')}
         />
       )}
-      {!!keywords.length &&
-        showKeywords &&
-        keywords.map((keyword) => {
-          return (
-            <Keyword
-              color="engelLight50"
-              blackOnMobile={blackOnMobile}
-              hideOnMobile={hideKeywordsOnMobile}
-              key={keyword.id}
-              keyword={keyword.name}
-              onClick={handleClick('text', keyword.name)}
-            />
-          );
-        })}
+      {showKeywords && first && customTagsCount < 2 && (
+        <Keyword
+          color="engelLight50"
+          blackOnMobile={blackOnMobile}
+          hideOnMobile={hideKeywordsOnMobile}
+          key={first.id}
+          keyword={first.name}
+          onClick={handleClick('text', first.name)}
+        />
+      )}
+      {showKeywords && second && customTagsCount === 0 && (
+        <Keyword
+          color="engelLight50"
+          blackOnMobile={blackOnMobile}
+          hideOnMobile={hideKeywordsOnMobile}
+          key={second.id}
+          keyword={second.name}
+          onClick={handleClick('text', second.name)}
+        />
+      )}
+      {!!restKeywords.length && showKeywords && (
+        <Keyword
+          color="engelLight50"
+          blackOnMobile={blackOnMobile}
+          hideOnMobile={hideKeywordsOnMobile}
+          keyword={`+${restKeywords.length + customTagsCount}`}
+          onClick={() => null}
+        />
+      )}
     </>
   );
 };
