@@ -8,7 +8,7 @@ interface Props {
   color?: 'engelLight50' | 'tramLight20' | 'black10';
   hideOnMobile?: boolean;
   keyword: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Keyword: FunctionComponent<Props> = ({
@@ -20,7 +20,7 @@ const Keyword: FunctionComponent<Props> = ({
 }) => {
   const handleClick = (ev: React.MouseEvent) => {
     ev.preventDefault();
-    onClick();
+    onClick && onClick();
   };
 
   return (

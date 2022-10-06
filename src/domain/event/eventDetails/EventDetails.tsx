@@ -49,7 +49,7 @@ const EventDetails: React.FC<EventDetailsProps> = (props) => {
         </div>
       )}
       <div className={styles.infoRow}>
-        <EventKeywords event={event} showIsFree />
+        <EventKeywords event={event} showIsFree showKeywordsCount />
       </div>
     </div>
   );

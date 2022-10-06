@@ -18,6 +18,7 @@ interface Props {
   hideKeywordsOnMobile?: boolean;
   showIsFree: boolean;
   showKeywords?: boolean;
+  showKeywordsCount?: boolean;
 }
 const EventKeywords: React.FC<Props> = ({
   blackOnMobile,
@@ -25,6 +26,7 @@ const EventKeywords: React.FC<Props> = ({
   hideKeywordsOnMobile = false,
   showIsFree,
   showKeywords = true,
+  showKeywordsCount,
 }) => {
   const { t } = useTranslation();
   const locale = useLocale();
@@ -84,33 +86,36 @@ const EventKeywords: React.FC<Props> = ({
           onClick={handleClick('isFree')}
         />
       )}
-      {showKeywords && first && customTagsCount < 2 && (
-        <Keyword
-          color="engelLight50"
-          blackOnMobile={blackOnMobile}
-          hideOnMobile={hideKeywordsOnMobile}
-          key={first.id}
-          keyword={first.name}
-          onClick={handleClick('text', first.name)}
-        />
-      )}
-      {showKeywords && second && customTagsCount === 0 && (
-        <Keyword
-          color="engelLight50"
-          blackOnMobile={blackOnMobile}
-          hideOnMobile={hideKeywordsOnMobile}
-          key={second.id}
-          keyword={second.name}
-          onClick={handleClick('text', second.name)}
-        />
-      )}
-      {!!restKeywords.length && showKeywords && (
+      {showKeywords &&
+        first &&
+        (showKeywordsCount ? customTagsCount < 2 : true) && (
+          <Keyword
+            color="engelLight50"
+            blackOnMobile={blackOnMobile}
+            hideOnMobile={hideKeywordsOnMobile}
+            key={first.id}
+            keyword={first.name}
+            onClick={handleClick('text', first.name)}
+          />
+        )}
+      {showKeywords &&
+        second &&
+        (showKeywordsCount ? customTagsCount < 2 : true) && (
+          <Keyword
+            color="engelLight50"
+            blackOnMobile={blackOnMobile}
+            hideOnMobile={hideKeywordsOnMobile}
+            key={second.id}
+            keyword={second.name}
+            onClick={handleClick('text', second.name)}
+          />
+        )}
+      {!!restKeywords.length && showKeywords && showKeywordsCount && (
         <Keyword
           color="engelLight50"
           blackOnMobile={blackOnMobile}
           hideOnMobile={hideKeywordsOnMobile}
           keyword={`+${restKeywords.length + customTagsCount}`}
-          onClick={() => null}
         />
       )}
     </>
