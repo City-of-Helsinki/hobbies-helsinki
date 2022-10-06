@@ -118,9 +118,22 @@ const EventKeywords: React.FC<Props> = ({
             onClick={handleClick('text', second.name)}
           />
         )}
+      {!!restKeywords.length &&
+        showKeywords &&
+        !showKeywordsCount &&
+        restKeywords.map((tag) => (
+          <Keyword
+            color="engelLight50"
+            blackOnMobile={blackOnMobile}
+            hideOnMobile={hideKeywordsOnMobile}
+            key={tag.id}
+            keyword={tag.name}
+            onClick={handleClick('text', tag.name)}
+          />
+        ))}
       {!!restKeywords.length && showKeywords && showKeywordsCount && (
         <Keyword
-          color="engelLight50"
+          color="transparent"
           blackOnMobile={blackOnMobile}
           hideOnMobile={hideKeywordsOnMobile}
           keyword={`+${restKeywords.length + customTagsCount}`}

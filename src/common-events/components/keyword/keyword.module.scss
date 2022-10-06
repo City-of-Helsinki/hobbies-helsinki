@@ -34,6 +34,14 @@
     color: var(--color-black);
   }
 
+  &.transparent,
+  &.transparent:hover {
+    background-color: unset;
+    color: var(--color-black);
+    cursor: none;
+    padding: 0;
+  }
+
   &.blackOnMobile {
     background-color: var(--color-black-80);
     color: var(--color-white);
