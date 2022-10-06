@@ -63,6 +63,12 @@ const EventKeywords: React.FC<Props> = ({
   const [first, second, ...restKeywords] = keywords;
   const customTagsCount = Number(thisWeek) + Number(showIsFree && freeEvent);
 
+  /**
+   * 2 custom tags: isFree and today || thisWeek: so customTags count is from 0-2
+   * Depending on the value, we shoud either show either hide first and second keywords and adjust the
+   * count tag value accordingly
+   */
+
   return (
     <>
       {today && (
