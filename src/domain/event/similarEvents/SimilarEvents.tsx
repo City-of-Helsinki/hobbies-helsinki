@@ -23,7 +23,9 @@ interface Props {
   type?: CollectionProps['type'];
 }
 
-export const similarEventsListTestId = 'similar-events-list';
+export const similarEventsContainerTestId = 'similar-events-container';
+export const similarEventsLoadingSpinnerTestId =
+  'similar-events-loading-spinner';
 
 const SimilarEvents: React.FC<Props> = ({ event, type = 'carousel' }) => {
   const { t } = useTranslation('event');
@@ -53,26 +55,36 @@ const SimilarEvents: React.FC<Props> = ({ event, type = 'carousel' }) => {
     );
   });
 
-  return (
-    <PageSection
-      korosTop
-      korosTopClassName={styles.korosTopCollections}
-      className={styles.similarEvents}
-    >
-      <ContentContainer>
-        {/* TODO: the loading should be indicated from inside of the Collection component instead, 
-        so that the title would be shown while the content is being loaded and ther ewould be less bouncing. */}
-        <LoadingSpinner isLoading={loading}>
-          <Collection
-            type={type}
-            title={t('similarEvents.title')}
-            cards={cards}
-            loading={loading}
-          />
-        </LoadingSpinner>
-      </ContentContainer>
-    </PageSection>
-  );
+  const hasCards = !!cards.length;
+
+  // Show the similar events -section when it's still loading or there are some events to be shown.
+  if (loading || hasCards) {
+    return (
+      <PageSection
+        korosTop
+        korosTopClassName={styles.korosTopCollections}
+        className={styles.similarEvents}
+        data-testid={similarEventsContainerTestId}
+      >
+        <ContentContainer>
+          <LoadingSpinner
+            data-testid={similarEventsLoadingSpinnerTestId}
+            isLoading={loading}
+          >
+            <Collection
+              type={type}
+              title={t('similarEvents.title')}
+              cards={cards}
+              loading={loading}
+            />
+          </LoadingSpinner>
+        </ContentContainer>
+      </PageSection>
+    );
+  }
+
+  // Show nothing / hide the similar events section when there are no events to be shown.
+  return null;
 };
 
 export default SimilarEvents;
