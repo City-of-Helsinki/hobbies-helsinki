@@ -1,4 +1,9 @@
-#Hobbies-helsinki
+#Hobbies-helsinki (DEPRECATED)
+
+New project location: [`events-helsinki-monorepo`](https://github.com/City-of-Helsinki/events-helsinki-monorepo)
+
+## Introduction
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Developing locally
