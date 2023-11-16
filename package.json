@@ -22,7 +22,7 @@
     "extends": "react-app"
   },
   "dependencies": {
-    "@apollo/client": "^3.6.6",
+    "@apollo/client": "^3.8.6",
     "@jonkoops/matomo-tracker-react": "^0.7.0",
     "@sentry/browser": "^7.1.1",
     "@svgr/webpack": "^6.2.1",
